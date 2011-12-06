@@ -1,0 +1,533 @@
+body {
+	font: 13px/1.4 "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #595959; padding: 0px 0 0; margin: 0 auto; }
+
+#Wrapper	{ background: #E8EBEC url("../images/bodyBg.gif") repeat-x 0 0; }	/* The body of the design */
+
+/* design structure */
+
+#Wrapper, #PageWrapper	{ position: relative;  }	/* IE needs this to position content when using top panel (#ContentPanel) */
+
+#PageWrapper {
+	width: 990px;
+	margin: 0 auto;
+	padding: 25px 0 0;}
+	
+.pageTop {
+	height: 10px;
+	overflow: hidden;
+	background: transparent url("../images/pageBg-top.png") no-repeat 0 0;}
+	
+.pageBottom {
+	height: 10px;
+	overflow: hidden;
+	background: transparent url("../images/pageBg-bottom.png") no-repeat 0 0;
+	margin: 0 0 0.4em;}
+
+#Header, .pageMain {
+	background: transparent url("../images/pageBg-repeat.png") repeat-y 0 0;}
+	
+#Header, .pageMain, #Footer {width: 990px;}
+	
+/* */
+
+/* main menu */
+#director {
+	position: absolute;
+	top: 148px;
+	right: 12px;
+	height: 22px;
+	float: right;
+	z-index: 99;	      
+	background: transparent url("../images/menu.png") repeat-x 0 0; }
+
+#MenuWrapper	{ height: 62px; }
+#MainMenu {
+	position: relative;
+	top: -20px;
+	right: 20px;
+	height: 62px;
+	float: right;
+	z-index: 99;	/* allows menu to overlap slideshow*/}
+#MmLeft {
+	float:left;
+	width: 25px;
+	height: 62px;
+	background: transparent url("../images/mainMenu-left.png") no-repeat 0 0;}
+#MmRight {
+	float:left;
+	width: 20px;
+	height: 62px;
+	background: transparent url("../images/mainMenu-right.png") no-repeat 0 0;}
+#MmBody {
+	float: left;
+	min-width: 500px;
+	height: 62px;
+	background: transparent url("../images/mainMenu-repeat.png") repeat-x 0 0;}
+
+#MmOtherLinks { float: left; padding-top: -3px; }
+
+.mmDivider {
+	float: left;
+	width: 10px;
+	height: 40px;
+	margin:7px -10px 0;
+	background: transparent url("../images/mainMenu-divider.gif") no-repeat 0 0;}
+
+
+.mmLogin { font-size: 0.82em; background: transparent url(../images/bullet-lock.png) no-repeat 0 0; padding-left: 15px; }
+.Login { font-size: 1em; background: transparent url(../images/bullet-lock.png) no-repeat 0 0; padding-left: 15px; }
+.logout	{ font-size: 1em; background: transparent url(../images/logout.png) no-repeat 0 0; padding-left: 20px; }
+.register { font-size: 1em; background: transparent url(../images/register.png) no-repeat 0 0; padding-left: 20px; }
+
+
+/* logo */
+
+#Logo	{ float: left; margin: -55px 0 7px 23px;}
+#Logo a { 
+	display: block; 
+	width: 368px;
+	height: 80px;
+	background: transparent url("../images/logo.png") no-repeat 0 0;}
+	
+/* max width containers */
+.contentMax, .contentArea, #Showcase, #Slides {
+	margin: 0 26px;
+	width: 938px;}
+	
+	
+/* content containers */
+
+.contentArea	{ padding: 15px 0; }
+.full-page	{ margin-right: 25px; float: none; }
+.full-page .breadcrumbs 	{ margin-bottom: 0; }
+.pattern_box_icon{ float:left; padding:5px; }	
+
+/* portfolio page */
+
+.portfolio { margin-left: -40px; }
+/* .two-thirds .portfolio { width:630px; } stupid IE (version 7 only)  */
+.portfolio-item {
+	float: left;
+	width: 275px;
+	margin: 0 0 22px 31px;}
+.portfolio-item h4, .portfolio-item p {
+	margin: 0 0 .65em;
+	padding: 0;}
+
+.portfolio-description {
+	clear:left;	
+	padding: 8px;
+	overflow: hidden;}
+
+.portfolio-item4 {
+	float: left;
+	width: 200px;
+	margin: 0 0 22px 31px;}
+.portfolio-item4 h4, .portfolio-item4 p {
+	margin: 0 0 .65em;
+	padding: 0;}
+
+#Footer a:hover, #Footer a:active,
+#Footer h1, #Footer h2, #Footer h3, #Footer h4, #Footer h5, #Footer h6,
+#Footer, #ContentPanel, #cluetip 	{ color: #8F8F8F; }
+#Header, .pageMain, #Footer {width: 990px;}	/* must be specified for PNG Fix to work (IE 6 issue) */
+
+#FooterTop {
+	height: 0px;
+	overflow: hidden;
+	background: transparent url("../images/footerBg-top.png") no-repeat 0 0;}
+	
+#FooterContent {
+	float: left;
+	padding: -20px 0 0;
+	height: 133px;
+	background: transparent url("../images/footerBg-repeat.png") repeat-y 0 0;}
+#FooterBottom {
+	width: 990px;
+	height: 33px;
+	overflow: hidden;
+	background: transparent url("../images/footerBg-bottom.png") no-repeat 0 0;
+	margin: 0 0 0.5em;}
+
+/* layouts styles */
+
+.one-third, .two-thirds, .half-page, .full-page{
+	 float: left;
+	 margin: 0 10px 0 25px; }
+.two-thirds-last {
+	 float: left;
+	 margin: 0 10px 0 25px; }
+
+
+.one-third	{ width: 273px; }
+.two-thirds	{ width: 400px; }
+.two-thirds-last { width: 350px; }
+	
+#Footer .one-third, #Footer .two-thirds, #Footer .half-page {
+	margin: 0 0 0 25px;
+	padding: 0 25px 0 0;
+	background: transparent url("../images/footerBg-verticalRule.gif") repeat-y 100% 0;}	
+#Footer .one-third	{ width: 262px; }
+#Footer .two-thirds	{ width: 419px; }
+#Footer .two-thirds-last {
+	margin: 0 0 0 25px;
+	padding: 0 25px 0 0;}	
+
+.hr { 
+	clear: both;
+	padding: 0;
+	margin: 0 0 1em;
+	height: 5px;
+	background: transparent url("../images/hr-bg.gif") repeat-x 0 0; }
+
+/* login */
+
+.loginForm		{ height: 207px; overflow: hidden; }
+.loginContainer {
+	float: left;
+	width:245px;
+	height: 132px;
+	padding: 15px 0 0 20px;
+	color: #C6C6C6;
+	overflow: hidden;}
+#loginBg                                { float: left; margin: 17px 0 0;}
+.loginForm fieldset legend		{ display: none; }
+.loginContainer p			{ margin: 0 0 0.5em; }
+.loginContainer .loginInput		{ width: 217px; }
+.loginForm .signInButton		{ margin: 0 18px 0 0; }
+
+/* other */
+
+div#fancy_overlay { background: #2c2c2c; }	/* overlay color */
+
+#fancy_title div {
+	font-family: "Liberation Sans", Arial, Helvetica, Garuda, sans-serif;
+	font-weight: normal;
+	line-height: 1;
+	margin: 0 0 0.5em;
+	padding: 0 0 0.2em;
+	color: #000;}
+
+#fancy_title div { font-size: 1.35em; }
+
+h1, h2, h3, h4, h5, h6, .headline, .title, .ribbon span, #fancy_title div {
+	font-family: "Liberation Sans", Arial, Helvetica, Garuda, sans-serif;
+	font-weight: normal;
+	line-height: 1;
+	margin: 0 0 0.5em;
+	padding: 0 0 0.2em;
+	color: #000;}
+
+h1 span, h2 span, h3 span, h4 span, h5 span, h6 span, .headline span, .title span {
+	display: block;
+	color: #8F8F8F;
+	font-size: 0.6em;
+	margin: 0.1em 0 0;}
+
+/* forms and inputs */
+
+input { color: #000; }
+textarea, .textInput {
+	width: 175px;
+	margin: 0 0 0.5em;
+	padding: 5px;
+	background: #E1E2E3 url("../images/inputBg.gif") repeat-x 0 0;
+	border: 1px solid #fff;
+	border-color: #C9CACB #fff #fff #C9CACB;
+	outline: none;}
+	
+label.overlabel { 
+	color: #B3B4B4; 
+	font-size: 1.2em; 
+	display:none;	/* initially hidden to prevent other content from shifting after JS function runs */ 
+}
+
+
+/* button styles */
+
+button { 
+	position: relative;
+	cursor: pointer;
+	overflow: visible; /* removes extra side padding in IE */}
+	
+button.btn {
+	border: 0; 
+	padding: 0;
+	outline: none;
+	margin-left: -6px; /* corrects for shadow to make left edge look aligned */
+}
+
+button span { 
+	position: relative;
+	display: block; 
+	white-space: nowrap;}
+
+button.btn { 
+	padding: 0 30px 0 0; 
+	margin-right:5px; 
+	font-size: 1em; 
+	text-align: center; 
+	background: transparent url("../images/button-sprite.gif") no-repeat right -91px;}
+	
+button.btn span {
+	padding: 13px 0 0 30px; 
+	height: 29px; 
+	background: transparent url("../images/button-sprite.gif") no-repeat left top; 
+	color: #a2a2a2;
+	line-height: 1.2;
+	text-shadow: #000 -1px -1px 0px;}
+	
+button.btn:hover, button.btnHover { background-position: right -137px;} /* extra class used for sucky browsers (stupid IE) */
+	
+button.btn:hover span, button.btnHover span {
+	background-position: 0 -46px;
+	color: #fff;
+	text-shadow: #333 -1px -1px 1px;}
+
+	
+.noMargin	{ margin: 0; }
+.marginPX { margin-left: 70px; }
+.left{float:left}
+.right{float:right}
+.center{text-align:center}
+.clear{clear:both}
+
+
+
+
+
+
+
+ul.nav-main,
+ul.nav-main li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+
+ul.nav-main {
+	position: relative;
+	z-index: 597;
+}
+
+ul.nav-main li:hover > ul {
+	visibility: visible;
+}
+
+
+ul.nav-main li.hover,
+ul.nav-main li:hover {
+	position: relative;
+	z-index: 599;
+	cursor: pointer;
+
+}
+
+
+
+ul.nav-main li {
+	float:left;
+	display:block;
+	height: 51px;
+	color: #fff;
+	font: 14px Arial, Helvetica, sans-serif;
+}
+
+ul.nav-main li a {
+	display:block;
+	padding: 20px 16px 0 5px;
+	height: 35px;
+	color: #fff;
+	font: 14px Arial, Helvetica, sans-serif;
+	text-decoration:none;
+}
+
+ul.nav-main li a:hover {
+	color:#999;
+}
+
+
+
+ul.nav-main *.list {
+	padding-right: 0px;
+        padding-top: 19px;
+}
+
+
+
+ul.nav-sub {
+	visibility: hidden;
+	position: absolute;
+	padding:10px;
+	top: 48px;
+	left: 0;
+	z-index: 598;
+	background: #353535 url(../images/dropdown-list-bg.gif) repeat-x left top;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	border-left: 1px solid #000;
+}
+
+
+ul.nav-sub li {
+	list-style:none;
+	display:block;
+	padding: 0;
+	height: 27px;
+	float: none;
+	border-bottom: 1px solid #5a5a5a;
+	background: none;
+}
+
+ul.nav-sub li a {
+	list-style:none;
+	display:block;
+	padding: 6px 5px 6px 5px;
+	height: 15px;
+	float: none;
+	background: none;
+	font: 12px Arial, Helvetica, sans-serif;	
+}
+
+
+#table-2 {
+	border: 1px solid #e3e3e3;
+	background-color: #f2f2f2;
+        width: auto;
+        margin-left:auto; 
+        margin-right:auto;         
+	border-radius: 6px;
+}
+#table-2 td, #table-2 th {
+	padding: 5px;
+	color: #333;
+}
+#table-2 thead {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	padding: .2em 0 .2em .5em;
+	text-align: left;
+	color: #4B4B4B;
+	background-color: #ffffcc;
+	border-bottom: solid 1px #999;
+}
+#table-2 th {
+        font: 13px/1.4 "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+	line-height: 20px;
+	font-style: normal;
+	font-weight: normal;
+	text-align: left;
+	text-shadow: white 1px 1px 1px;
+}
+#table-2 td {
+	line-height: 20px;
+        font: 13px/1.4 "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	border-bottom: 1px solid #fff;
+	border-top: 1px solid #fff;
+}
+#table-2 tr:hover {
+    background-color: #fff
+}
+
+
+
+
+
+ul.navmain,
+ul.navmain li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+
+ul.navmain {
+	position: relative;
+	z-index: 597;
+}
+
+ul.navmain li:hover > ul {
+	visibility: visible;
+}
+
+
+ul.navmain li.hover,
+ul.navmain li:hover {
+	position: relative;
+	z-index: 599;
+	cursor: pointer;
+
+}
+
+
+
+ul.navmain li {
+	float:left;
+	display:block;
+	height: 31px;
+	color: #fff;
+	font: 14px Arial, Helvetica, sans-serif;
+}
+
+ul.navmain li a {
+	display:block;
+	padding: 20px 16px 0 5px;
+	height: 35px;
+	color: #fff;
+	font: 14px Arial, Helvetica, sans-serif;
+	text-decoration:none;
+}
+
+ul.navmain li a:hover {
+	color:#999;
+}
+
+
+
+ul.navmain *.list a {
+	padding-right: 0px;
+        padding-top: 1px;
+}
+
+
+
+ul.navsub {
+	visibility: hidden;
+	position: absolute;
+	padding: 5px;
+	top: 20px;
+	left: 0;
+	z-index: 598;
+	background: #353535 url(../images/menu.png) repeat-x left top;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	border-left: 1px solid #000;
+}
+
+
+ul.navsub li {
+	list-style:none;
+	display:block;
+	padding: 0;
+	height: 35px;
+	float: none;
+	border-bottom: 1px solid #5a5a5a;
+	background: none;
+}
+
+ul.navsub li a {
+	list-style:none;
+	display:block;
+	padding: 3px 5px 6px 5px;
+	height:  5px;
+	float: none;
+	background: none;
+	font: 12px Arial, Helvetica, sans-serif;	
+} 
+
+
+.aInput		{ width: 216px; }
