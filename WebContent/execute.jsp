@@ -1,3 +1,4 @@
+<%@page import="sql.AccountsRepository"%>
 <%@ page import="java.sql.*;"%>  
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -24,6 +25,9 @@
     String lastname=request.getParameter("lastname");
     String firstname=request.getParameter("firstname");
     String password=request.getParameter("password");
+    
+    AccountsRepository repos = new AccountsRepository();
+    repos.create(accountId, balance, dateCreated)
     
 
 

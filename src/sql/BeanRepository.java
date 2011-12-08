@@ -9,4 +9,6 @@ public interface BeanRepository<T> {
 	
 	public int update(T bean);
 	
+	public void insert(T bean);
+	
 }
