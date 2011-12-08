@@ -1,6 +1,6 @@
 package sql;
 
-import java.sql.Timestamp;
+import java.sql.PreparedStatement;
 
 import bean.Account;
 
@@ -42,6 +42,8 @@ public class AccountsRepositoryImpl implements AccountsRepository {
 		// insert(account);
 		// return 1;
 		// }
+		// Create a coonection
+		PreparedStatement st = 
 
 		return 0;
 
