@@ -1,8 +1,8 @@
 package sql;
 
-import bean.Accounts;
+import bean.Account;
 
-public interface AccountsRepository extends BeanRepository<Accounts> {
+public interface AccountsRepository extends BeanRepository<Account> {
 
 	// TODO Add More methods
 	

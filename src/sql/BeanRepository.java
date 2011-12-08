@@ -7,6 +7,6 @@ public interface BeanRepository<T> {
 	
 	public String getQueryVariables(String table);
 	
-	public void update(T bean);
+	public int update(T bean);
 	
 }
