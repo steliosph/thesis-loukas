@@ -81,11 +81,11 @@ public class Employee {
 	}
 
 	public Integer getAccountTypeId() {
-		return accountTypeId;
+		return accountTypeId_;
 	}
 
 	public void setAccountTypeId(Integer accountTypeId) {
-		this.accountTypeId = accountTypeId;
+		this.accountTypeId_ = accountTypeId;
 	}
 
 	public Integer getAddressId() {
