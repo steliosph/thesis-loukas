@@ -1,14 +1,14 @@
 package bean;
 
-public class web_login {
+public class WebLogin {
 	private Integer webLoginId_;
 	private Integer employeeId_;
 	private Integer customerId_;
 	private String username_;
 	private String password_;
 
-	public web_login(Integer webLoginId, Integer employeeId,
-			Integer customerId, String username, String password) {
+	public WebLogin(Integer webLoginId, Integer employeeId, Integer customerId,
+			String username, String password) {
 		webLoginId_ = webLoginId;
 		employeeId_ = employeeId;
 		customerId_ = customerId;
@@ -16,7 +16,7 @@ public class web_login {
 		password_ = password;
 	}
 
-	public web_login(web_login login) {
+	public WebLogin(WebLogin login) {
 		this(login.getWebLoginId(), login.getEmployeeId(), login
 				.getCustomerId(), login.getUsername(), login.getPassword());
 	}
@@ -60,10 +60,10 @@ public class web_login {
 	public void setPassword(String password) {
 		this.password_ = password;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Username:" + getUsername + "Password:" + getPassword();
+		return "Username:" + getUsername() + "Password:" + getPassword();
 	}
 
 }
