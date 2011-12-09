@@ -1,6 +1,7 @@
 package sql;
 
 import java.sql.PreparedStatement;
+import java.sql.Timestamp;
 
 import bean.Account;
 
@@ -11,12 +12,13 @@ public class AccountsRepositoryImpl implements AccountsRepository {
 		Account bean = new Account();
 		return bean;
 	}
-	
+
 	@Override
-	public Account create(Integer accountId, float balance, Timestamp dateCreated) {
+	public Account create(Integer accountId, float balance,
+			Timestamp dateCreated) {
 		Account bean = new Account(accountId, balance, dateCreated);
 		return bean;
-		
+
 	}
 
 	// TODO More Create
@@ -29,7 +31,6 @@ public class AccountsRepositoryImpl implements AccountsRepository {
 				+ ".date_created";
 	}
 
-	
 	@Override
 	public int update(Account account) {
 		// TODO give me 5 minutes more
@@ -43,7 +44,9 @@ public class AccountsRepositoryImpl implements AccountsRepository {
 		// return 1;
 		// }
 		// Create a coonection
-		PreparedStatement st = 
+		// PreparedStatement st =
+		DatabaseClass con = new DatabaseClass();
+		// TODO Do your stuff here .....
 
 		return 0;
 
@@ -52,7 +55,7 @@ public class AccountsRepositoryImpl implements AccountsRepository {
 	@Override
 	public void insert(Account account) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

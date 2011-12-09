@@ -95,7 +95,7 @@ public class Employee {
 	public void setAddressId(Integer addressId) {
 		this.addressId_ = addressId;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Firstname:" + getFirstname() + "Lastname:" + getLastname();

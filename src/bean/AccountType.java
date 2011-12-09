@@ -1,15 +1,16 @@
 package bean;
 
-public class Account_Type {
+// Never Undespace in the Class. One Word Always seperated with Capital letter
+public class AccountType {
 	private Integer account_type_id_;
 	private String type_;
 
-	public Account_Type(Integer account_type_id, String type) {
+	public AccountType(Integer account_type_id, String type) {
 		account_type_id_ = account_type_id;
 		type_ = type;
 	}
 
-	public Account_Type(Account_Type account_types) {
+	public AccountType(AccountType account_types) {
 		this(account_types.getAccount_type_id(), account_types.getType());
 	}
 

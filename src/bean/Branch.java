@@ -1,15 +1,15 @@
 package bean;
 
-public class Branche {
+public class Branch {
 	private Integer branchId_;
 	private Integer addressId_;
 
-	public Branche(Integer branchId, Integer addressId) {
+	public Branch(Integer branchId, Integer addressId) {
 		branchId_ = branchId;
 		addressId_ = addressId;
 	}
 
-	public Branche(Branche branches) {
+	public Branch(Branch branches) {
 		this(branches.getBranchId(), branches.getAddressId());
 
 	}

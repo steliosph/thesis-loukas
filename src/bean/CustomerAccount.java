@@ -1,15 +1,15 @@
 package bean;
 
-public class customer_account {
+public class CustomerAccount {
 	private Integer customerId_;
 	private Integer accountId_;
 
-	public customer_account(Integer customerId, Integer accountId) {
+	public CustomerAccount(Integer customerId, Integer accountId) {
 		customerId_ = customerId;
 		accountId_ = accountId;
 	}
 
-	public customer_account(customer_account customer_accounts) {
+	public CustomerAccount(CustomerAccount customer_accounts) {
 		this(customer_accounts.getCustomerId(), customer_accounts
 				.getAccountId());
 	}
