@@ -3,26 +3,26 @@ package bean;
 import java.sql.Timestamp;
 
 public class Employee {
-	private Integer employeeId_;
-	private String firstname_;
-	private String lastname_;
-	private Double salary_;
-	private Timestamp dateHired_;
-	private Integer branchId_;
-	private Integer accountTypeId_;
-	private Integer addressId_;
+	private Integer EmployeeId_;
+	private String Firstname_;
+	private String Lastname_;
+	private Double Salary_;
+	private Timestamp DateHired_;
+	private Integer BranchId_;
+	private Integer AccountTypeId_;
+	private Integer AddressId_;
 
-	public Employee(Integer employeeId, String firstname, String lastname,
-			Double salary, Timestamp dateHired, Integer branchId,
-			Integer accountTypeId, Integer addressId) {
-		employeeId_ = employeeId;
-		firstname_ = firstname;
-		lastname_ = lastname;
-		salary_ = salary;
-		dateHired_ = dateHired;
-		branchId_ = branchId;
-		accountTypeId_ = accountTypeId;
-		addressId_ = addressId;
+	public Employee(Integer EmployeeId, String Firstname, String Lastname,
+			Double Salary, Timestamp DateHired, Integer BranchId,
+			Integer AccountTypeId, Integer AddressId) {
+		EmployeeId_ = EmployeeId;
+		Firstname_ = Firstname;
+		Lastname_ = Lastname;
+		Salary_ = Salary;
+		DateHired_ = DateHired;
+		BranchId_ = BranchId;
+		AccountTypeId_ = AccountTypeId;
+		AddressId_ = AddressId;
 	}
 
 	public Employee(Employee employees) {
@@ -33,72 +33,71 @@ public class Employee {
 	}
 
 	public Integer getEmployeeId() {
-		return employeeId_;
+		return EmployeeId_;
 	}
 
 	public void setEmployeeId(Integer employeeId) {
-		this.employeeId_ = employeeId;
+		this.EmployeeId_ = employeeId;
 	}
 
 	public String getFirstname() {
-		return firstname_;
+		return Firstname_;
 	}
 
 	public void setFirstname(String firstname) {
-		this.firstname_ = firstname;
+		this.Firstname_ = firstname;
 	}
 
 	public String getLastname() {
-		return lastname_;
+		return Lastname_;
 	}
 
 	public void setLastname(String lastname) {
-		this.lastname_ = lastname;
+		this.Lastname_ = lastname;
 	}
 
 	public Double getSalary() {
-		return salary_;
+		return Salary_;
 	}
 
 	public void setSalary(Double salary) {
-		this.salary_ = salary;
+		this.Salary_ = salary;
 	}
 
 	public Timestamp getDateHired() {
-		return dateHired_;
+		return DateHired_;
 	}
 
 	public void setDateHired(Timestamp dateHired) {
-		this.dateHired_ = dateHired;
+		this.DateHired_ = dateHired;
 	}
 
 	public Integer getBranchId() {
-		return branchId_;
+		return BranchId_;
 	}
 
 	public void setBranchId(Integer branchId) {
-		this.branchId_ = branchId;
+		this.BranchId_ = branchId;
 	}
 
 	public Integer getAccountTypeId() {
-		return accountTypeId_;
+		return AccountTypeId_;
 	}
 
 	public void setAccountTypeId(Integer accountTypeId) {
-		this.accountTypeId_ = accountTypeId;
+		this.AccountTypeId_ = accountTypeId;
 	}
 
 	public Integer getAddressId() {
-		return addressId_;
+		return AddressId_;
 	}
 
 	public void setAddressId(Integer addressId) {
-		this.addressId_ = addressId;
+		this.AddressId_ = addressId;
 	}
 
 	@Override
 	public String toString() {
 		return "Firstname:" + getFirstname() + "Lastname:" + getLastname();
 	}
-	// gia ta alla values pos na ta valo?
 }
