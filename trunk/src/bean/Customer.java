@@ -1,17 +1,17 @@
 package bean;
 
 public class Customer {
-	private Integer customerId_;
-	private String firstname_;
-	private String lastname_;
-	private Integer addressId_;
+	private Integer CustomerId_;
+	private String Firstname_;
+	private String Lastname_;
+	private Integer AddressId_;
 
-	public Customer(Integer customerId, String firstname, String lastname,
-			Integer addressId) {
-		customerId_ = customerId;
-		firstname_ = firstname;
-		lastname_ = lastname;
-		addressId_ = addressId;
+	public Customer(Integer CustomerId, String Firstname, String Lastname,
+			Integer AddressId) {
+		CustomerId_ = CustomerId;
+		Firstname_ = Firstname;
+		Lastname_ = Lastname;
+		AddressId_ = AddressId;
 	}
 
 	public Customer(Customer customers) {
@@ -20,35 +20,35 @@ public class Customer {
 	}
 
 	public Integer getCustomerId() {
-		return customerId_;
+		return CustomerId_;
 	}
 
 	public void setCustomerId(Integer customerId) {
-		this.customerId_ = customerId;
+		this.CustomerId_ = customerId;
 	}
 
 	public String getFirstname() {
-		return firstname_;
+		return Firstname_;
 	}
 
 	public void setFirstname(String firstname) {
-		this.firstname_ = firstname;
+		this.Firstname_ = firstname;
 	}
 
 	public String getLastname() {
-		return lastname_;
+		return Lastname_;
 	}
 
 	public void setLastname(String lastname) {
-		this.lastname_ = lastname;
+		this.Lastname_ = lastname;
 	}
 
 	public Integer getAddressId() {
-		return addressId_;
+		return AddressId_;
 	}
 
 	public void setAddressId(Integer addressId) {
-		this.addressId_ = addressId;
+		this.AddressId_ = addressId;
 	}
 
 	@Override
