@@ -9,8 +9,8 @@ public class CustomerAccount {
 		accountId_ = accountId;
 	}
 
-	public CustomerAccount(CustomerAccount customer_accounts) {
-		this(customer_accounts.getCustomerId(), customer_accounts
+	public CustomerAccount(CustomerAccount customeraccounts) {
+		this(customeraccounts.getCustomerId(), customeraccounts
 				.getAccountId());
 	}
 

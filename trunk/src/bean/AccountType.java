@@ -10,8 +10,8 @@ public class AccountType {
 		type_ = type;
 	}
 
-	public AccountType(AccountType account_types) {
-		this(account_types.getAccount_type_id(), account_types.getType());
+	public AccountType(AccountType accounttypes) {
+		this(accounttypes.getAccount_type_id(), accounttypes.getType());
 	}
 
 	public Integer getAccount_type_id() {
