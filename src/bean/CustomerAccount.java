@@ -1,12 +1,12 @@
 package bean;
 
 public class CustomerAccount {
-	private Integer customerId_;
-	private Integer accountId_;
+	private Integer CustomerId_;
+	private Integer AccountId_;
 
-	public CustomerAccount(Integer customerId, Integer accountId) {
-		customerId_ = customerId;
-		accountId_ = accountId;
+	public CustomerAccount(Integer CustomerId, Integer AccountId) {
+		CustomerId_ = CustomerId;
+		AccountId_ = AccountId;
 	}
 
 	public CustomerAccount(CustomerAccount customeraccounts) {
@@ -15,19 +15,19 @@ public class CustomerAccount {
 	}
 
 	public Integer getCustomerId() {
-		return customerId_;
+		return CustomerId_;
 	}
 
 	public void setCustomerId(Integer customerId) {
-		this.customerId_ = customerId;
+		this.CustomerId_ = customerId;
 	}
 
 	public Integer getAccountId() {
-		return accountId_;
+		return AccountId_;
 	}
 
 	public void setAccountId(Integer accountId) {
-		this.accountId_ = accountId;
+		this.AccountId_ = accountId;
 	}
 
 }
