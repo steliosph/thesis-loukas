@@ -1,19 +1,19 @@
 package bean;
 
 public class WebLogin {
-	private Integer webLoginId_;
-	private Integer employeeId_;
-	private Integer customerId_;
-	private String username_;
-	private String password_;
+	private Integer WebLoginId_;
+	private Integer EmployeeId_;
+	private Integer CustomerId_;
+	private String Username_;
+	private String Password_;
 
-	public WebLogin(Integer webLoginId, Integer employeeId, Integer customerId,
-			String username, String password) {
-		webLoginId_ = webLoginId;
-		employeeId_ = employeeId;
-		customerId_ = customerId;
-		username_ = username;
-		password_ = password;
+	public WebLogin(Integer WebLoginId, Integer EmployeeId, Integer CustomerId,
+			String Username, String Password) {
+		WebLoginId_ = WebLoginId;
+		EmployeeId_ = EmployeeId;
+		CustomerId_ = CustomerId;
+		Username_ = Username;
+		Password_ = Password;
 	}
 
 	public WebLogin(WebLogin login) {
@@ -22,43 +22,43 @@ public class WebLogin {
 	}
 
 	public Integer getWebLoginId() {
-		return webLoginId_;
+		return WebLoginId_;
 	}
 
 	public void setWebLoginId(Integer webLoginId) {
-		this.webLoginId_ = webLoginId;
+		this.WebLoginId_ = webLoginId;
 	}
 
 	public Integer getEmployeeId() {
-		return employeeId_;
+		return EmployeeId_;
 	}
 
 	public void setEmployeeId(Integer employeeId) {
-		this.employeeId_ = employeeId;
+		this.EmployeeId_ = employeeId;
 	}
 
 	public Integer getCustomerId() {
-		return customerId_;
+		return CustomerId_;
 	}
 
 	public void setCustomerId(Integer customerId) {
-		this.customerId_ = customerId;
+		this.CustomerId_ = customerId;
 	}
 
 	public String getUsername() {
-		return username_;
+		return Username_;
 	}
 
 	public void setUsername(String username) {
-		this.username_ = username;
+		this.Username_ = username;
 	}
 
 	public String getPassword() {
-		return password_;
+		return Password_;
 	}
 
 	public void setPassword(String password) {
-		this.password_ = password;
+		this.Password_ = password;
 	}
 
 	@Override
