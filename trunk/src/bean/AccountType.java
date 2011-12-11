@@ -1,6 +1,5 @@
 package bean;
 
-// Never Undespace in the Class. One Word Always seperated with Capital letter
 public class AccountType {
 	private Integer AccountTypeId_;
 	private String Type_;
