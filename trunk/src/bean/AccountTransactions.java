@@ -2,7 +2,7 @@ package bean;
 
 import java.sql.Timestamp;
 
-public class AccountTransaction {
+public class AccountTransactions {
 	private Integer AccountTransactionId_;
 	private Integer CustomerId_;
 	private Integer AccountId_;
@@ -10,7 +10,7 @@ public class AccountTransaction {
 	private Boolean Deposit_;
 	private Float Amount_;
 
-	public AccountTransaction(Integer AccountTransactionId, Integer CustomerId,
+	public AccountTransactions(Integer AccountTransactionId, Integer CustomerId,
 			Integer AccountId, Timestamp AccountTransactionTime,
 			Boolean Deposit, Float Amount) {
 		AccountTransactionId_ = AccountTransactionId;
@@ -21,7 +21,7 @@ public class AccountTransaction {
 		Amount_ = Amount;
 	}
 
-	public AccountTransaction(AccountTransaction accounttransactions) {
+	public AccountTransactions(AccountTransactions accounttransactions) {
 		this(accounttransactions.getAccountTransactionId(), accounttransactions
 				.getCustomerId(), accounttransactions.getAccountId(),
 				accounttransactions.getAccountTransactionTime(),

@@ -2,14 +2,14 @@ package bean;
 
 import java.sql.Timestamp;
 
-public class LoanTransaction {
+public class LoanTransactions {
 	private Integer LoanTransactionId_;
 	private Integer CustomerId_;
 	private Integer LoanId_;
 	private Timestamp LoanTransactionTime_;
 	private Float Amount_;
 
-	public LoanTransaction(Integer LoanTransactionId, Integer CustomerId,
+	public LoanTransactions(Integer LoanTransactionId, Integer CustomerId,
 			Integer LoanId, Timestamp LoanTransactionTime, Float Amount) {
 		LoanTransactionId_ = LoanTransactionId;
 		CustomerId_ = CustomerId;
@@ -18,10 +18,10 @@ public class LoanTransaction {
 		Amount_ = Amount;
 	}
 
-	public LoanTransaction(LoanTransaction loantransaction) {
-		this(loantransaction.getLoanTransactionId(), loantransaction
-				.getCustomerId(), loantransaction.getLoanId(), loantransaction
-				.getLoanTransactionTime(), loantransaction.getAmount());
+	public LoanTransactions(LoanTransactions loantransactions) {
+		this(loantransactions.getLoanTransactionId(), loantransactions
+				.getCustomerId(), loantransactions.getLoanId(), loantransactions
+				.getLoanTransactionTime(), loantransactions.getAmount());
 	}
 
 	public Integer getLoanTransactionId() {
