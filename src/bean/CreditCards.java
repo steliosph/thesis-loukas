@@ -5,18 +5,28 @@ public class CreditCards {
 	private Integer CustomerId_;
 	private Float Balance_;
 	private Float Orio_;
+	private String Csv_;
 
 	public CreditCards(String CardNumber, Integer CustomerId, Float Balance,
-			Float Orio) {
+			Float Orio, String Csv) {
 		CardNumber_ = CardNumber;
 		CustomerId_ = CustomerId;
 		Balance_ = Balance;
 		Orio_ = Orio;
+		Csv_ = Csv;
 	}
 
 	public CreditCards(CreditCards creditcards) {
 		this(creditcards.getCardNumber(), creditcards.getCustomerId(),
-				creditcards.getBalance(), creditcards.getOrio());
+				creditcards.getBalance(), creditcards.getOrio(),creditcards.getCsv());
+	}
+
+	public String getCsv() {
+		return Csv_;
+	}
+
+	public void setCsv(String csv) {
+		Csv_ = csv;
 	}
 
 	public String getCardNumber() {
