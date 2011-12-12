@@ -1,7 +1,7 @@
 package bean;
 
 public class Address {
-	private int AddressId_;
+	private Integer AddressId_;
 	private String Country_;
 	private String City_;
 	private String PostalCode_;
