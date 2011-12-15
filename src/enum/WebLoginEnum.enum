@@ -1,0 +1,24 @@
+// needs the imports
+public enum WebLoginEnum {
+
+	WRONG_PASSWORD("Wrong password"),
+
+	WRONG_USERNAME("Wrong username").
+
+	WRONG_LOGINS("Wrong Logins"),
+
+	CORRECT_USER("User"),
+
+	CORRECT_TAMIAS("Tamias");
+
+	private String type_;
+
+	private WebLoginEnum(Strring type) {
+		type_ = type;
+	}
+
+	public String getType() {
+		return type_;
+	}
+
+}
