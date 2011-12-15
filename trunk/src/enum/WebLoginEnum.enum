@@ -13,7 +13,7 @@ public enum WebLoginEnum {
 
 	private String type_;
 
-	private WebLoginEnum(Strring type) {
+	private WebLoginEnum(String type) {
 		type_ = type;
 	}
 
