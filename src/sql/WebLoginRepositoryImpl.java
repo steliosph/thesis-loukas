@@ -29,8 +29,8 @@ public class WebLoginRepositoryImpl implements WebLoginRepository{
 	}
 
 	@Override
-	public WebLogin create(Integer WebLoginId, Integer EmployeeId,
-			Integer CustomerId, String Username, String Password) {
+	public WebLogin create(Integer webLoginId, Integer employeeId,
+			Integer customerId, String username, String password) {
 		// TODO Auto-generated method stub
 		return null;
 	}
