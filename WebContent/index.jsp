@@ -100,9 +100,7 @@
 						<p><b>02/02/2012</b>
 						Ανακοίνωση για την Αύξηση του Μετοχικού Κεφαλαίου με Καταβολή Μετρητών με Δικαίωμα Προτίμησης Υπέρ των Παλαιών Μετόχων: Ημερομηνία Αποκοπής &
 						Περίοδος Διαπραγμάτευσης Δικαιώματος Προτίμησης.<br>
-                                                    <br><b>25/01/2012</b>
-						Η Ετήσια Γενική Συνέλευση θα πραγματοποιηθεί στα Κεντρικά Γραφεία Διοίκησης του Συγκροτήματος την Τρίτη, 24 Φεβρουαρίου 2011 και ώρα 4:30 μ.μ. 
-                                                </p>
+                                                    <br>
                                             <br><a href="news.jsp">Διαβάστε περισσότερα...</a>
 					</div>
                             </div>		
@@ -111,7 +109,6 @@
 					<div class="portfolio-description">
 						<a href="mporw.jsp" ><img src="images/mporo.jpg" class="left"></a>
 						<a href="epistrofi.jsp"><img src="images/logo epistrofi.jpg"  /></a>
-						<a href=" neoi.jsp"><img src="images/panta-neoi.jpg" /></a>
 					</div>
 				</div>
 				<div class="portfolio-item">

@@ -1,147 +1,57 @@
 
-    <%@ page language="java" import="java.sql.*" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        
- <!-- employee login -->   
-        
-        <%
- 
-String onoma = request.getParameter("onoma");
-String elegxos="no";
-String password = request.getParameter("password");
-String idiotita = request.getParameter("idiotita");
-int count=0;
+<head>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/fancybox.css" />
+<link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="js/jquery.overlabel.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var overlayColor = $('#fancybox-overlay')
+
+		$(document).ready(function() {
+			$("label.overlabel").overlabel();
+		});
+	});
+</script>
+</head>
+<body>
+	<form class="loginForm" method="post" action="checklogin.jsp">
+		<div id="loginBg">
+			<img SRC="images/lock-and-key.png" width="128" height="128"
+				alt="lock and key" />
+		</div>
+		<div class="loginContainer">
+			<h1>
+				Administrative Portal <span>Sign in to your account</span>
+			</h1>
 
 
-session.setAttribute("empid", onoma) ;
-session.setAttribute("control", elegxos) ;
-HttpSession session1=null;
+			<p>
+				<label for="log" class="overlabel">Username</label> <input id="log"
+					name="username" type="text" class="loginInput textInput rounded" />
+			</p>
+			<p>
+				<label for="pwd" class="overlabel">Password</label> <input id="pwd"
+					name="password" type="password"
+					class="loginInput textInput rounded" />
+			</p>
+		</div>
+		<div class="hr" style="margin-bottom: 3px;"></div>
+		<p class="left" style="margin: 14px 0 0 15px">
+			<a href="#">Forgot your password?</a><br>
+		</p>
+		<p class="right noMargin">
+			<button type="submit" class="btn">
+				<span>Sign in</span>
+			</button>
+		</p>
+
+	</form>
 
 
- 
- String driver = "com.mysql.jdbc.Driver";
-	Class.forName(driver).newInstance();
-	
-	Connection con=null;
-	ResultSet rst=null;
-	Statement stmt=null;
-        
-        try{
-		String url="jdbc:mysql://localhost:3306/bankdb?user=root&password=tessera";
-		con=DriverManager.getConnection(url);
-		stmt=con.createStatement();
-	}
-	catch(Exception e){
-		System.out.println(e.getMessage());
-	}
-        
-        
-        stmt=con.createStatement(); 
-        rst=stmt.executeQuery(" select * from employees where loginname='"+onoma+"' and password='"+password+"' ");
-        
-       int jobid1=0;
-        while(rst.next()){
-
-            jobid1= rst.getInt("jobid");     
-            }
-              if (jobid1==1) 
-                {
-   session.setAttribute("control", "yes") ;    
-
-response.setStatus(301);
-response.setHeader( "Location", "director/director.jsp" );
-response.setHeader( "Connection", "close" );
-            
-%>
- 
-
-<%
-
-
-
-                }                    
- else if (jobid1==3)  {
-    session.setAttribute("control", "yes") ;
-%>
-<jsp:forward page="tamias.jsp"/>
-<% 
-
-   }
-       
-  else if (jobid1==2)  {
-    session.setAttribute("control", "yes") ;
-%>
-<jsp:forward page="bdirector.jsp"/>
-<% 
-
-   }  
-
-
-  else if (jobid1==4)  {
-    session.setAttribute("control", "yes") ;
-%>
-<jsp:forward page="tmimap.jsp"/>
-<% 
-
-   }  
-
- else if (jobid1==5)  {
-    session.setAttribute("control", "yes") ;
-%>
-<jsp:forward page="logistirio.jsp"/>
-
-
-<%
-   }                 
-%>
-
-
-<!-- customer login --> 
-
-        <%
-        try{
-		String url="jdbc:mysql://localhost:3306/bankdb?user=root&password=tessera";
-		con=DriverManager.getConnection(url);
-		stmt=con.createStatement();
-	}
-	catch(Exception e){
-		System.out.println(e.getMessage());
-	}
-        
-
-                 
-        
-        stmt=con.createStatement(); 
-        rst=stmt.executeQuery(" select loginname from customers where loginname='"+onoma+"' and password='"+password+"' ");
-        
-        while(rst.next()){
-
-            jobid1++;     
-            } 
-              if (jobid1==1) 
-                {
-                  session.setAttribute("control", "yes") ;
-%>
-<jsp:forward page="footer.jsp"/>
-<% 
-   }                
-             else  {
-                 session.setAttribute("control", "no") ;
-%>
-            <%@ include file="top.jsp" %> <br><br>
-            <div id="content">
-                <p><h1>Εισάγατε λάθος στοιχεία. <br><br> Αν θέλετε να κάνετε εγγραφή πατήστε <a href="register.jsp" > εδώ</a></p></h1>
-            </div>
-<%
-   }       
-%> 
-             <%@ include file="footer.jsp" %>
 </body>
 </html>
