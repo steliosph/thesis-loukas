@@ -3,6 +3,8 @@ package sql;
 import bean.WebLogin;
 
 public class WebLoginRepositoryImpl implements WebLoginRepository{
+	
+	private DatabaseClass database;
 
 	@Override
 	public WebLogin create() {
@@ -18,6 +20,11 @@ public class WebLoginRepositoryImpl implements WebLoginRepository{
 
 	@Override
 	public int update(WebLogin bean) {
+		String SQL;
+		database = new DatabaseClass();
+		SQL= "select * from web_login";
+		database.SQLQuery(SQL);
+		
 		// TODO Auto-generated method stub
 		return 0;
 	}

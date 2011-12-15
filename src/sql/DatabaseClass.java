@@ -1,8 +1,6 @@
 package sql;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 //Database Class may be a better name
 public class DatabaseClass {
@@ -40,6 +38,25 @@ public class DatabaseClass {
 
 		return true;
 	}
+	
+
+	public void SQLQuery(String theQuery) {
+		try 
+		{
+			Statement stmt = connection_.createStatement();
+	        ResultSet rs;
+	        stmt.executeQuery(theQuery);
+	        rs = stmt.getResultSet();
+	        rs.close();
+	        stmt.close();
+	        rs = null;
+	        stmt = null;
+		}
+		catch(java.sql.SQLException e)
+        {
+
+		}
+	    
 
 	// public static void main(String[] args) {
 	// Connection conn = null;
