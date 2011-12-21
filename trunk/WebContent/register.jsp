@@ -92,11 +92,10 @@ form label.error, label.error { font-size: 0.75em; color: red; font-style: itali
 </head>
 <body>
 
-<div id="main">
 
 <form id="signupForm" method="post" action="execute.jsp">
 	<div class="regContainer">
-        <center><h1>Nέος Χρήστης</h1></center>
+        <h1>Nέος Χρήστης</h1>
 		<p>
                     <label for="firstname" class="overlabel">Όνομα</label>
                     <input id="firstname" name="firstname" type="text" class="regInput textInput" />
@@ -123,7 +122,7 @@ form label.error, label.error { font-size: 0.75em; color: red; font-style: itali
                     <input id="email" name="email" type="text" class="regInput textInput" />                     
 		</p>
             	<p>
-			<a href="oroi.jsp" /> Όροι χρήσης </a>
+			<a href="oroi.jsp"> Όροι χρήσης </a>
 			<input type="checkbox" class="checkbox" id="agree" name="agree" />
 		</p>
 		<p class="right noMargin">
