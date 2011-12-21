@@ -85,68 +85,8 @@ $().ready(function() {
 
 <style type="text/css">
 #signupForm { width: 221px; }
-#signupForm label.error {
-	margin-left: 0px;
-	width: auto;
-}
-/* Forms
-------------------------------*/
-
-form, fieldset {
-	margin: 0px;
-	padding: 0;
-        width: 215px;
-}
-	
-fieldset { border: 1px solid #000; }
-
-
-input, textarea, select {
-	margin: 0;
-	padding: 1px;
-	font-size: 100%;
-	font-family: inherit;
-}
-	
-select { padding: 0; }
-
-/**********************************
-
-Use: cmxform template
-
-***********************************/
-
-
-form.cmxform label {
-	display: inline-block;
-	line-height: 1.8;
-	vertical-align: top;
-	cursor: hand;
-}
-
-form.cmxform label { width: 200px; } /* Width of labels */
-form.cmxform.oroi label { width: 100px; }
-form.cmxform fieldset fieldset label { margin-left: 103px; } /* Width plus 3 (html space) */
-form.cmxform label.error {
-	margin-left: 103px;
-	width: 220px;
-}
-
-form.cmxform input.submit {
-	margin-left: 103px;
-}
-
-form.cmxform label.error, label.error {
-	/* remove the next line when you have trouble in IE6 with labels in list */
-	font-size: 0.75em;
-        color: red;
-	font-style: italic
-}
-div.error { display: none; }
-
-
-.regInput		{ width: 208px; }
-
+form label.error, label.error { font-size: 0.75em; color: red; font-style: italic }
+.regInput { width: 208px; }
 </style>
 
 </head>
@@ -154,7 +94,7 @@ div.error { display: none; }
 
 <div id="main">
 
-<form class="cmxform" id="signupForm" method="post" action="execute.jsp">
+<form id="signupForm" method="post" action="execute.jsp">
 	<div class="regContainer">
         <center><h1>Nέος Χρήστης</h1></center>
 		<p>
