@@ -39,23 +39,47 @@ public class DatabaseClass {
                 return true;
         }
         
+        
+    	public void update(String theQuery) throws Exception{
+    		theQuery=new String(theQuery);
+    		try{
+                Statement stmt=connection_.createStatement();
+                stmt.executeUpdate(theQuery);
+            }
+            catch(java.sql.SQLException e){
+            }
+        }      
+    	
 
-        public void SQLQuery(String theQuery) {
-                try 
-                {
-                Statement stmt = connection_.createStatement();
-                ResultSet rs;
-                stmt.executeQuery(theQuery);
-                rs = stmt.getResultSet();
-                rs.close();
-                stmt.close();
-                rs = null;
-                stmt = null;
-                }
-                catch(java.sql.SQLException e)
-        {
+    	public ResultSet getQueryVariables(String theQuery) throws Exception{
+    		ResultSet rs = null;
+    		try{
+    			theQuery=new String(theQuery);
+                Statement stmt=connection_.createStatement();
+                rs=stmt.executeQuery(theQuery);
+            }
+            catch(SQLException ex){
+            }
+    		return rs;
+        }    	
 
-                }
+    	
+    	
+       // public void SQLQuery(String theQuery) {
+       //       try 
+       //     {
+       //   Statement stmt = connection_.createStatement();
+       //           ResultSet rs;
+       //         stmt.executeQuery(theQuery);
+       //         rs = stmt.getResultSet();
+       //         rs.close();
+       //         stmt.close();
+       //         rs = null;
+       //         stmt = null;
+       //         }
+       //         catch(java.sql.SQLException e)
+       // {
+       //         }
             
 
         // public static void main(String[] args) {
@@ -78,5 +102,4 @@ public class DatabaseClass {
         // }
         // }
         // }
-}
 }
