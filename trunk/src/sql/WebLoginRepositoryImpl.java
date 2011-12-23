@@ -14,18 +14,29 @@ public class WebLoginRepositoryImpl implements WebLoginRepository{
 
 	@Override
 	public String getQueryVariables(String table) {
-		// TODO Auto-generated method stub
-		return null;
+		String SQL;
+		database = new DatabaseClass();
+		SQL= "select * from web_login";
+		try {
+			database.getQueryVariables(SQL);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return table;
 	}
 
 	@Override
 	public int update(WebLogin bean) {
 		String SQL;
 		database = new DatabaseClass();
-		SQL= "select * from web_login";
-		database.SQLQuery(SQL);
-		
-		// TODO Auto-generated method stub
+		SQL= "insert into xxx";
+		try {
+			database.update(SQL);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
