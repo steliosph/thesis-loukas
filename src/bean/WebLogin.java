@@ -1,6 +1,11 @@
 package bean;
 
 public class WebLogin {
+	
+	public String USERNAME = "username";
+	public String EMPLOYEE_ID = "employee_id";
+	public String CUSTOMER_ID = "customer_id";
+	
 	private Integer webLoginId_;
 	private Integer employeeId_;
 	private Integer customerId_;
@@ -66,6 +71,7 @@ public class WebLogin {
 		// Call function checkLogin in WebLoginReposioty of sql package.
 		// Do the switch and return the Type
 		// return webLoginEnum;
+		return null;
 	} 
 
 

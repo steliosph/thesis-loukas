@@ -5,7 +5,7 @@ public interface BeanRepository<T> {
 
 	public T create();
 
-	public String getQueryVariables(String table);
+	public String getResultSet(String table);
 
 	public int update(T bean);
 

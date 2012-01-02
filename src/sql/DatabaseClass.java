@@ -51,12 +51,12 @@ public class DatabaseClass {
         }      
     	
 
-    	public ResultSet getQueryVariables(String theQuery) throws Exception{
+    	public ResultSet getResultSet(String sqlQuery) throws Exception{
     		ResultSet rs = null;
     		try{
-    			theQuery=new String(theQuery);
+    			sqlQuery=new String(sqlQuery);
                 Statement stmt=connection_.createStatement();
-                rs=stmt.executeQuery(theQuery);
+                rs=stmt.executeQuery(sqlQuery);
             }
             catch(SQLException ex){
             }

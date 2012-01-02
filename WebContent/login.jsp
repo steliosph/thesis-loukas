@@ -35,7 +35,7 @@
 					name="username" type="text" class="loginInput textInput rounded" />
 			</p>
 			<p>
-				<label for="pwd" class="overlabel">Password</label> <input id="pwd"
+				<label for="password" class="overlabel">Password</label> <input id="password"
 					name="password" type="password"
 					class="loginInput textInput rounded" />
 			</p>

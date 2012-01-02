@@ -1,10 +1,18 @@
 package sql;
 
+import java.sql.ResultSet;
+
+import enums.WebLoginEnum;
 import bean.WebLogin;
 
-public class WebLoginRepositoryImpl implements WebLoginRepository{
+public class WebLoginRepositoryImpl implements WebLoginRepository {
+
+	private WebLogin webLogin_ ;
 	
-	private DatabaseClass database;
+	public final String USERNAME = "username";
+	
+	private DatabaseClass database = new DatabaseClass();
+	private String sqlQuery;
 
 	@Override
 	public WebLogin create() {
@@ -13,12 +21,10 @@ public class WebLoginRepositoryImpl implements WebLoginRepository{
 	}
 
 	@Override
-	public String getQueryVariables(String table) {
-		String SQL;
-		database = new DatabaseClass();
-		SQL= "select * from web_login";
+	public String getResultSet(String table) {
+		sqlQuery = "select * from web_login";
 		try {
-			database.getQueryVariables(SQL);
+			database.getResultSet(sqlQuery);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -30,11 +36,10 @@ public class WebLoginRepositoryImpl implements WebLoginRepository{
 	public int update(WebLogin bean) {
 		String SQL;
 		database = new DatabaseClass();
-		SQL= "insert into xxx";
+		SQL = "update into xxx";
 		try {
 			database.update(SQL);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
@@ -43,7 +48,7 @@ public class WebLoginRepositoryImpl implements WebLoginRepository{
 	@Override
 	public void insert(WebLogin bean) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -53,4 +58,29 @@ public class WebLoginRepositoryImpl implements WebLoginRepository{
 		return null;
 	}
 
+	@Override
+	public WebLoginEnum checkLogin(String username, String password) {
+		try { 
+			sqlQuery = "Select * from web_login WHERE username=" + username + " LIMIT 1";
+		
+			ResultSet rs = database.getResultSet(sqlQuery);
+			String user = rs.getString(webLogin_.USERNAME);
+			if (user.isEmpty() || user == null ) 
+				return WebLoginEnum.WRONG_USERNAME;
+			
+			sqlQuery = "Select * from web_login where username = " + user + "and password = " + password + " LIMIT 1"; 
+			rs = database.getResultSet(sqlQuery);
+			user = rs.getString(webLogin_.USERNAME);
+			if (user.isEmpty() || user == null ) 
+				return WebLoginEnum.WRONG_PASSWORD;
+			if ( rs.getString(webLogin_.EMPLOYEE_ID) != null )
+				return WebLoginEnum.CORRECT_EMPLOYEE;
+			if ( rs.getString(webLogin_.CUSTOMER_ID) != null )
+				return WebLoginEnum.CORRECT_USER;
+		} catch (Exception e) {
+			// TODO: handlee exception
+		} 
+			return WebLoginEnum.WRONG_LOGINS;
+		
+	}
 }

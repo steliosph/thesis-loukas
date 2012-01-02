@@ -1,19 +1,44 @@
-
+<%@ page import="sql.WebLoginRepositoryImpl"%>
+<%@ page import="bean.WebLogin"%>
+<%@ page import="sql.WebLoginRepository"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1" import="java.sql.*"%>
+<!--  Limit availability , redirect -->
 <%
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		int account_type = request.getParameter("account_type");
-		
-		if (account_type == 0) {
-			session.setAttribute("control", "yes");
-			response.setStatus(301);
-			response.setHeader("Location", "tamias/tamias.jsp");
-			response.setHeader("Connection", "close");
-		} 
-		else if (account_type == 1) {
-			session.setAttribute("control", "yes");
-			response.setStatus(301);
-			response.setHeader("Location", "customer/customer.jsp");
-			response.setHeader("Connection", "close");
+	String username = request.getParameter("username");
+	String password = request.getParameter("password");
+
+	WebLoginRepository repos = new WebLoginRepositoryImpl();
+
+	if (username.isEmpty() || password.isEmpty()) {
+		// TODO : Show him something else
+	} else {
+
+		switch (repos.checkLogin(username, password)) {
+		case WRONG_USERNAME:
+	break;
+		case WRONG_PASSWORD:
+	break;
+		case CORRECT_EMPLOYEE:
+	// Create session.
+	// Rediret to administrator
+	break;
+		case CORRECT_USER:
+	// Create Session
+	// redirect to user
+	break;
+		case WRONG_LOGINS:
+	break;
+
 		}
+
+	}
 %>
+<jsp:useBean id="login" scope="request"
+	class="sql.WebLoginRepositoryImpl">
+	<jsp:setProperty name="login" property="username"
+		value='<%=request.getParameter("username")%>' />
+	<jsp:setProperty name="login" property="password"
+		value='<%=request.getParameter("password")%>' />
+</jsp:useBean>
+
