@@ -19,7 +19,7 @@ public class AddressRepositoryImpl implements AddressRepository {
 	}
 
 	@Override
-	public String getQueryVariables(String table) {
+	public String getResultSet(String table) {
 		if (table == null)
 			return "Address_Id,Country,City,Postal_Code,Telephone";
 		return table + ".Address_Id," + table + ".Country," + table + ".City,"

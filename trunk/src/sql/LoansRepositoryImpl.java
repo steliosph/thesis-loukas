@@ -11,7 +11,7 @@ public class LoansRepositoryImpl implements LoansRepository {
 	}
 
 	@Override
-	public String getQueryVariables(String table) {
+	public String getResultSet(String table) {
 		// TODO Auto-generated method stub
 		return null;
 	}

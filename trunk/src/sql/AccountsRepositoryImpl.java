@@ -1,6 +1,5 @@
 package sql;
 
-import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 
 import bean.Account;
@@ -24,7 +23,7 @@ public class AccountsRepositoryImpl implements AccountsRepository {
 	// TODO More Create
 
 	@Override
-	public String getQueryVariables(String table) {
+	public String getResultSet(String table) {
 		if (table == null)
 			return "account_id, balance,date_created";
 		return table + ".account_id, " + table + ".balance, " + table
@@ -45,7 +44,7 @@ public class AccountsRepositoryImpl implements AccountsRepository {
 		// }
 		// Create a coonection
 		// PreparedStatement st =
-		DatabaseClass con = new DatabaseClass();
+		// DatabaseClass con = new DatabaseClass();
 		// TODO Do your stuff here .....
 
 		return 0;
