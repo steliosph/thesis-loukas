@@ -5,7 +5,7 @@ import java.sql.*;
 //Database Class may be a better name
 public class DatabaseClass {
         // Why main ? This is not a runner class.
-        private final String URL = "jdbc:mysql://localhost:3306/bankdb?user=root&password=tessera";
+        private final String URL = "jdbc:mysql://localhost:3306/bank?user=root&password=tessera";
         private Connection connection_;
 
         // TODO HAndle then with out the Throws Exception
@@ -51,7 +51,7 @@ public class DatabaseClass {
         }      
     	
 
-    	public ResultSet getResultSet(String sqlQuery) throws Exception{
+    	public ResultSet getResultSet(String sqlQuery) {
     		ResultSet rs = null;
     		try{
     			sqlQuery=new String(sqlQuery);
@@ -59,6 +59,10 @@ public class DatabaseClass {
                 rs=stmt.executeQuery(sqlQuery);
             }
             catch(SQLException ex){
+            	for (Throwable throwable : ex) {
+            			 throwable.getMessage();
+            			 System.err.println(throwable.getMessage());
+				};
             }
     		return rs;
         }    	

@@ -61,23 +61,32 @@ public class WebLoginRepositoryImpl implements WebLoginRepository {
 	@Override
 	public WebLoginEnum checkLogin(String username, String password) {
 		try { 
-			sqlQuery = "Select * from web_login WHERE username=" + username + " LIMIT 1";
+
+			sqlQuery = "Select * from web_login WHERE username='" + username + "' LIMIT 1";
 		
 			ResultSet rs = database.getResultSet(sqlQuery);
-			String user = rs.getString(webLogin_.USERNAME);
-			if (user.isEmpty() || user == null ) 
-				return WebLoginEnum.WRONG_USERNAME;
 			
-			sqlQuery = "Select * from web_login where username = " + user + "and password = " + password + " LIMIT 1"; 
+			while (rs.next()) {
+			String user = rs.getString("username");
+			if (user == null  || user.isEmpty() ) 
+				return WebLoginEnum.WRONG_USERNAME;
+					
+			sqlQuery = "Select * from web_login where username = '" + user + "' and password = '" + password + "' LIMIT 1"; 
 			rs = database.getResultSet(sqlQuery);
-			user = rs.getString(webLogin_.USERNAME);
+			if (rs.last())
+				return WebLoginEnum.WRONG_PASSWORD;
+			while (rs.next()){
+			user = rs.getString(username);
 			if (user.isEmpty() || user == null ) 
 				return WebLoginEnum.WRONG_PASSWORD;
 			if ( rs.getString(webLogin_.EMPLOYEE_ID) != null )
 				return WebLoginEnum.CORRECT_EMPLOYEE;
 			if ( rs.getString(webLogin_.CUSTOMER_ID) != null )
 				return WebLoginEnum.CORRECT_USER;
+			}
+			}
 		} catch (Exception e) {
+			e.getMessage();
 			// TODO: handlee exception
 		} 
 			return WebLoginEnum.WRONG_LOGINS;

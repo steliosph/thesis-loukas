@@ -14,16 +14,20 @@
 		// TODO : Show him something else
 	} else {
 
-		switch (repos.checkLogin(username, password)) {
+	switch (repos.checkLogin(username, password)) {
 		case WRONG_USERNAME:
+			
+			// TODO wrong
 	break;
 		case WRONG_PASSWORD:
 	break;
 		case CORRECT_EMPLOYEE:
+			 
 	// Create session.
 	// Rediret to administrator
 	break;
 		case CORRECT_USER:
+		
 	// Create Session
 	// redirect to user
 	break;
@@ -34,6 +38,7 @@
 
 	}
 %>
+
 <jsp:useBean id="login" scope="request"
 	class="sql.WebLoginRepositoryImpl">
 	<jsp:setProperty name="login" property="username"
