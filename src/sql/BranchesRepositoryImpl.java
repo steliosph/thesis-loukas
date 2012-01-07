@@ -1,9 +1,13 @@
 package sql;
 
+import java.sql.ResultSet;
 import bean.Branch;
 
 public class BranchesRepositoryImpl implements BranchesRepository {
 
+	private DatabaseClass database = new DatabaseClass();
+	private String sqlQuery;
+	
 	@Override
 	public Branch create() {
 		// TODO Auto-generated method stub
@@ -12,8 +16,14 @@ public class BranchesRepositoryImpl implements BranchesRepository {
 
 	@Override
 	public String getResultSet(String table) {
-		// TODO Auto-generated method stub
-		return null;
+		// sqlQuery = "select * from branches";
+		// ResultSet rs = database.getResultSet(sqlQuery);
+		// while (rs.next()) {
+		// rs.getString("address_id");
+		// rs.getString("branch_id");
+		// }
+		return table;
+		
 	}
 
 	@Override
@@ -34,5 +44,10 @@ public class BranchesRepositoryImpl implements BranchesRepository {
 		return null;
 	}
 	
+	public ResultSet getResult() {
+		sqlQuery = "select * from branches";
+		ResultSet rs = database.getResultSet(sqlQuery);
+		return rs;
+	}
 
 }
