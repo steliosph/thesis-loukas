@@ -40,35 +40,35 @@ public class DatabaseClass {
         }
         
         
-    	public void update(String theQuery) throws Exception{
-    		theQuery=new String(theQuery);
-    		try{
+        public void update(String theQuery) throws Exception{
+                theQuery=new String(theQuery);
+                try{
                 Statement stmt=connection_.createStatement();
                 stmt.executeUpdate(theQuery);
             }
             catch(java.sql.SQLException e){
             }
         }      
-    	
+        
 
-    	public ResultSet getResultSet(String sqlQuery) {
-    		ResultSet rs = null;
-    		try{
-    			sqlQuery=new String(sqlQuery);
+        public ResultSet getResultSet(String sqlQuery) {
+                ResultSet rs = null;
+                try{
+                        sqlQuery=new String(sqlQuery);
                 Statement stmt=connection_.createStatement();
                 rs=stmt.executeQuery(sqlQuery);
             }
             catch(SQLException ex){
-            	for (Throwable throwable : ex) {
-            			 throwable.getMessage();
-            			 System.err.println(throwable.getMessage());
-				};
+                for (Throwable throwable : ex) {
+                                 throwable.getMessage();
+                                 System.err.println(throwable.getMessage());
+                                };
             }
-    		return rs;
-        }    	
+                return rs;
+        }       
 
-    	
-    	
+        
+        
        // public void SQLQuery(String theQuery) {
        //       try 
        //     {

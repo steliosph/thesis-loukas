@@ -63,25 +63,22 @@ public class WebLoginRepositoryImpl implements WebLoginRepository {
 		try { 
 
 			sqlQuery = "Select * from web_login WHERE username='" + username + "' LIMIT 1";
-		
 			ResultSet rs = database.getResultSet(sqlQuery);
 			
 			while (rs.next()) {
 			String user = rs.getString("username");
 			if (user == null  || user.isEmpty() ) 
-				return WebLoginEnum.WRONG_USERNAME;
-					
-			sqlQuery = "Select * from web_login where username = '" + user + "' and password = '" + password + "' LIMIT 1"; 
+				return WebLoginEnum.WRONG_USERNAME;	
+			String sqlQuery = "Select * from web_login where username = '" + user + "' and password = '" + password + "' LIMIT 1"; 
 			rs = database.getResultSet(sqlQuery);
-			if (rs.last())
-				return WebLoginEnum.WRONG_PASSWORD;
+		
 			while (rs.next()){
-			user = rs.getString(username);
+			user = rs.getString("username");
 			if (user.isEmpty() || user == null ) 
 				return WebLoginEnum.WRONG_PASSWORD;
-			if ( rs.getString(webLogin_.EMPLOYEE_ID) != null )
+			if ( rs.getString("employee_id") != null )
 				return WebLoginEnum.CORRECT_EMPLOYEE;
-			if ( rs.getString(webLogin_.CUSTOMER_ID) != null )
+			if ( rs.getString("customer_id") != null )
 				return WebLoginEnum.CORRECT_USER;
 			}
 			}
