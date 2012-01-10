@@ -2,9 +2,7 @@ package enums;
 
 public enum WebLoginEnum {
 
-	WRONG_PASSWORD("Wrong password"),
-
-	WRONG_USERNAME("Wrong username"),
+	WRONG_USERNAME_PASSWORD("Wrong username"),
 
 	WRONG_LOGINS("Wrong Logins"),
 
