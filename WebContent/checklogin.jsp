@@ -14,37 +14,34 @@
 		// TODO : Show him something else
 	} else {
 
-	switch (repos.checkLogin(username, password)) {
-		case WRONG_USERNAME:			
-			// TODO wrong
-	break;
-		case WRONG_PASSWORD:
+		switch (repos.checkLogin(username, password)) {
+		case WRONG_USERNAME_PASSWORD:
+%>
+<jsp:forward page="epistrofi.jsp"></jsp:forward>
+<%
 	break;
 		case CORRECT_EMPLOYEE:
-		System.out.println( "cor emp" );
-		// Create Session
-		// redirect to emp
-		 response.sendRedirect("welcome.jsp");
+%>
+
+<jsp:forward page="test.jsp"></jsp:forward>
+
+<%
 	break;
 		case CORRECT_USER:
-		System.out.println( "cor cus" );
-	// Create Session
-	// redirect to user
-     response.sendRedirect("test.jsp");
+%>
+
+<jsp:forward page="index.jsp"></jsp:forward>
+
+<%
 	break;
 		case WRONG_LOGINS:
-	break;
+			// TODO wrong
+			break;
 
 		}
 
 	}
 %>
 
-<jsp:useBean id="login" scope="request"
-	class="sql.WebLoginRepositoryImpl">
-	<jsp:setProperty name="login" property="username"
-		value='<%=request.getParameter("username")%>' />
-	<jsp:setProperty name="login" property="password"
-		value='<%=request.getParameter("password")%>' />
-</jsp:useBean>
+
 
