@@ -21,8 +21,10 @@
 <%
 	break;
 		case CORRECT_EMPLOYEE:
+			// String emp_id = session.getAttribute("emp_id");
+			String type;
+			session.getAttribute("type", repos.getEmpId(type));
 %>
-
 <jsp:forward page="test.jsp"></jsp:forward>
 
 <%
