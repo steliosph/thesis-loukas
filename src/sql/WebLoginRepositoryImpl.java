@@ -66,8 +66,22 @@ public class WebLoginRepositoryImpl implements WebLoginRepository {
 					+ "' and password = '" + password + "' LIMIT 1";
 			ResultSet rs = database.getResultSet(sqlQuery);
 			while (rs.next()) {
-				if (rs.getString("employee_id") != null)
+				if (rs.getString("employee_id") != null) {
+				//	Integer emp_id = 0;
+				//	emp_id = rs.getInt("employee_id");
+				//	sqlQuery = " select * from employees where employee_id = " + emp_id ;
+				//	System.out.println(sqlQuery);
+				//	rs = database.getResultSet(sqlQuery);
+				//	if (rs.next()) {
+				//	Integer acc_type = rs.getInt(6);
+				//	if (acc_type == 0)
+				//		return WebLoginEnum.TAMIAS;
+				//	if (acc_type == 1)
+				//		return WebLoginEnum.DIEFTHINTIS;
+				//	}
+					
 					return WebLoginEnum.CORRECT_EMPLOYEE;
+				}
 				if (rs.getString("customer_id") != null)
 					return WebLoginEnum.CORRECT_USER;
 			}
@@ -79,21 +93,25 @@ public class WebLoginRepositoryImpl implements WebLoginRepository {
 
 	}
 
-	public String getEmpId(String username) {
+	public WebLoginEnum getEmpId(String username) {
 		Integer employee_id = 0;
-		String type = null;
+		//String type = null;
 		try {
 			sqlQuery = "select employee_id from web_login where username = '"+ username + "' LIMIT 1";
 			ResultSet rs = database.getResultSet(sqlQuery);
+			if (rs.next())
 			employee_id = rs.getInt("employee_id");
-			sqlQuery = " select account_type.type from web_login,employees,account_type where web_login.employee_id = '" + employee_id + "' and web_login.employee_id = employees.employee_id and employees.account_type_id = account_type.account_type_id";
-			rs = database.getResultSet(sqlQuery);
-		
-			rs.next();
-			type = rs.getString("type");
+			sqlQuery = " select * from employees where employee_id = " + employee_id ;
+			 rs = database.getResultSet(sqlQuery);
+			 if (rs.next()) {
+			if (rs.getInt("account_type_id") == 0)
+				return WebLoginEnum.TAMIAS;
+			if (rs.getInt("account_type_id") == 1)
+				return WebLoginEnum.DIEFTHINTIS;
+			 }
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		return type;
+		return WebLoginEnum.WRONG_TYPE;
 	}
 }

@@ -21,14 +21,21 @@
 <%
 	break;
 		case CORRECT_EMPLOYEE:
-			// String emp_id = session.getAttribute("emp_id");
-			String type;
-			session.getAttribute("type", repos.getEmpId(type));
+		// String emp_id = session.getAttribute("emp_id");
+		//String type;
+		switch (repos.getEmpId(username)) {
+		case TAMIAS:
 %>
 <jsp:forward page="test.jsp"></jsp:forward>
-
 <%
 	break;
+		case DIEFTHINTIS:
+%>
+<jsp:forward page="aaa.jsp"></jsp:forward>
+<%
+	break;
+		}
+break;
 		case CORRECT_USER:
 %>
 
@@ -43,6 +50,7 @@
 		}
 
 	}
+
 %>
 
 
