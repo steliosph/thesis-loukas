@@ -8,7 +8,13 @@ public enum WebLoginEnum {
 
 	CORRECT_USER("User"),
 
-	CORRECT_EMPLOYEE("Employee");
+	CORRECT_EMPLOYEE("Employee"),
+	
+	TAMIAS ("tamias"),
+	
+	DIEFTHINTIS ("diefthintis"),
+	
+	WRONG_TYPE ("Wrong Type");
 
 	private String type_;
 
