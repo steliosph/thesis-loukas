@@ -8,7 +8,7 @@
 <jsp:useBean id="branch" scope="page" class="sql.BranchesRepositoryImpl" />
 
 <%
-	String address_id = "", branch_id = "";
+	String branch_id = "", country = "", city = "", postal_code="", telephone = "";
 %>
 
 <html>
@@ -31,8 +31,9 @@
 			<thead>
 				<tr>
 					<th>Κωδικός Κατ.</th>
-					<th>Διεύθυνση</th>
-					<th>Πόλη</th>
+					<th>Χώρα</th>
+					<th>Πόλη</th>					
+					<th>Ταχ. Κωδ.</th>
 					<th>Τηλέφωνο</th>
 				</tr>
 			</thead>
@@ -40,14 +41,20 @@
 
 				<%
 					ResultSet rs = branch.getResult();
-					while (rs.next()) {
-						address_id = rs.getString("address_id");
+					while (rs.next()) {					
 						branch_id = rs.getString("branch_id");
+						country = rs.getString("country"); 
+						city = rs.getString("city");
+						postal_code= rs.getString("postal_code");
+						telephone = rs.getString("telephone");
 				%>
 
-				<tr>
-					<td><%=address_id%></td>
+				<tr>					
 					<td><%=branch_id%></td>
+					<td><%=country%></td>
+					<td><%=city%></td>
+					<td><%=postal_code%></td>
+					<td><%=telephone%></td>
 				</tr>
 
 				<%

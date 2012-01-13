@@ -81,11 +81,12 @@
 						επιβραβεύει τις αγορές σας με κάρτες DreamBank σε ένα ευρύ δίκτυο
 						3.500 επιχειρήσεων και σας προσφέρει καθημερινό όφελος σε
 						πραγματικά ευρώ. Χρησιμοποιήστε κάρτες DreamBank σε όλες...</p>
+						<br><br>
 					<a href="epistrofi.jsp">Διαβάστε περισσότερα...</a>
 
 				</div>
 				<div class="portfolio-item">
-					<a href="kartes.jsp"><h2>Kάρτες</h2></a><br> <a href=""><img
+					<h2>Kάρτες</h2><br> <a href=""><img
 						class="left" width=280px height=160px id="pic" name="pic" /></a>
 					<script type="text/javascript">
 						rotateImage();

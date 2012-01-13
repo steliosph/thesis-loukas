@@ -1,9 +1,14 @@
 package sql;
 
+import java.sql.ResultSet;
+
 import bean.Loans;
 
 public class LoansRepositoryImpl implements LoansRepository {
 
+	private DatabaseClass database = new DatabaseClass();
+	private String sqlQuery;
+	
 	@Override
 	public Loans create() {
 		// TODO Auto-generated method stub
@@ -34,5 +39,16 @@ public class LoansRepositoryImpl implements LoansRepository {
 		return null;
 	}
 	
+	public ResultSet getResult() {
+		sqlQuery = "select * from loans inner join loan_status on loans.loan_id = loan_status.loan_id ORDER BY loans.loan_id";
+		ResultSet rs = database.getResultSet(sqlQuery);
+		return rs;
+	}
+	
+	public ResultSet SumOfLoans() {
+		sqlQuery = "select sum(loan_amount) as SumOfLoans from loans ";
+		ResultSet rs = database.getResultSet(sqlQuery);
+		return rs;
+	}
 
 }
