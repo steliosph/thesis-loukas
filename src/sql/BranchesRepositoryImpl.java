@@ -45,7 +45,7 @@ public class BranchesRepositoryImpl implements BranchesRepository {
 	}
 	
 	public ResultSet getResult() {
-		sqlQuery = "select * from branches";
+		sqlQuery = "select * from branches inner join address on branches.address_id = address.address_id ORDER BY branch_id ";
 		ResultSet rs = database.getResultSet(sqlQuery);
 		return rs;
 	}

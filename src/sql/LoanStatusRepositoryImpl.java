@@ -25,7 +25,7 @@ public class LoanStatusRepositoryImpl implements LoanStatusRepository {
 	@Override
 	public void insert(LoanStatus bean) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -33,6 +33,5 @@ public class LoanStatusRepositoryImpl implements LoanStatusRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
 }

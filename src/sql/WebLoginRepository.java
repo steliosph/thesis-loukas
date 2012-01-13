@@ -12,6 +12,6 @@ public interface WebLoginRepository extends BeanRepository<WebLogin> {
 	// Create the appopriate checkLoign in the Impl. It will handle evetything
 	// there
 	
-	public WebLoginEnum getEmpId(String username);
+	public WebLoginEnum getAccountType(String username);
 
 }

@@ -3,10 +3,11 @@ package sql;
 import java.sql.ResultSet;
 
 import enums.WebLoginEnum;
+import bean.Employee;
 import bean.WebLogin;
 
 public class WebLoginRepositoryImpl implements WebLoginRepository {
-
+	
 	private WebLogin webLogin_;
 
 	public final String USERNAME = "username";
@@ -93,7 +94,7 @@ public class WebLoginRepositoryImpl implements WebLoginRepository {
 
 	}
 
-	public WebLoginEnum getEmpId(String username) {
+	public WebLoginEnum getAccountType(String username) {
 		Integer employee_id = 0;
 		//String type = null;
 		try {
@@ -102,8 +103,12 @@ public class WebLoginRepositoryImpl implements WebLoginRepository {
 			if (rs.next())
 			employee_id = rs.getInt("employee_id");
 			sqlQuery = " select * from employees where employee_id = " + employee_id ;
-			 rs = database.getResultSet(sqlQuery);
-			 if (rs.next()) {
+			rs = database.getResultSet(sqlQuery);
+			if (rs.next()) {
+			Employee employee = new Employee (rs.getInt("employee_id"), rs.getString("firstname"), rs.getString("lastname"), rs.getDouble("salary"), rs.getTimestamp("date_hired") , rs.getInt("branch_id"), rs.getInt("account_type_id"), rs.getInt("address_id"));
+ 
+			
+			
 			if (rs.getInt("account_type_id") == 0)
 				return WebLoginEnum.TAMIAS;
 			if (rs.getInt("account_type_id") == 1)
