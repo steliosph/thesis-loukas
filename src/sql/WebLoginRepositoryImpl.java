@@ -7,13 +7,11 @@ import bean.Employee;
 import bean.WebLogin;
 
 public class WebLoginRepositoryImpl implements WebLoginRepository {
-	
-	private WebLogin webLogin_;
 
 	public final String USERNAME = "username";
 
-	private DatabaseClass database = new DatabaseClass();
-	private String sqlQuery;
+	private DatabaseClass database_ = new DatabaseClass();
+	private String sqlQuery_;
 
 	@Override
 	public WebLogin create() {
@@ -23,9 +21,9 @@ public class WebLoginRepositoryImpl implements WebLoginRepository {
 
 	@Override
 	public String getResultSet(String table) {
-		sqlQuery = "select * from web_login";
+		sqlQuery_ = "select * from web_login";
 		try {
-			database.getResultSet(sqlQuery);
+			database_.getResultSet(sqlQuery_);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,10 +34,10 @@ public class WebLoginRepositoryImpl implements WebLoginRepository {
 	@Override
 	public int update(WebLogin bean) {
 		String SQL;
-		database = new DatabaseClass();
+		database_ = new DatabaseClass();
 		SQL = "update into xxx";
 		try {
-			database.update(SQL);
+			database_.update(SQL);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -62,25 +60,11 @@ public class WebLoginRepositoryImpl implements WebLoginRepository {
 	@Override
 	public WebLoginEnum checkLogin(String username, String password) {
 		try {
-
-			sqlQuery = "Select * from web_login where username = '" + username
+			sqlQuery_ = "Select employee_id,customer_id from web_login where username = '" + username
 					+ "' and password = '" + password + "' LIMIT 1";
-			ResultSet rs = database.getResultSet(sqlQuery);
+			ResultSet rs = database_.getResultSet(sqlQuery_);
 			while (rs.next()) {
 				if (rs.getString("employee_id") != null) {
-				//	Integer emp_id = 0;
-				//	emp_id = rs.getInt("employee_id");
-				//	sqlQuery = " select * from employees where employee_id = " + emp_id ;
-				//	System.out.println(sqlQuery);
-				//	rs = database.getResultSet(sqlQuery);
-				//	if (rs.next()) {
-				//	Integer acc_type = rs.getInt(6);
-				//	if (acc_type == 0)
-				//		return WebLoginEnum.TAMIAS;
-				//	if (acc_type == 1)
-				//		return WebLoginEnum.DIEFTHINTIS;
-				//	}
-					
 					return WebLoginEnum.CORRECT_EMPLOYEE;
 				}
 				if (rs.getString("customer_id") != null)
@@ -91,32 +75,55 @@ public class WebLoginRepositoryImpl implements WebLoginRepository {
 			// TODO: handlee exception
 		}
 		return WebLoginEnum.WRONG_USERNAME_PASSWORD;
-
 	}
 
-	public WebLoginEnum getAccountType(String username) {
-		Integer employee_id = 0;
-		//String type = null;
+	public WebLoginEnum getAccountType(String username, String password) {
 		try {
-			sqlQuery = "select employee_id from web_login where username = '"+ username + "' LIMIT 1";
-			ResultSet rs = database.getResultSet(sqlQuery);
-			if (rs.next())
-			employee_id = rs.getInt("employee_id");
-			sqlQuery = " select * from employees where employee_id = " + employee_id ;
-			rs = database.getResultSet(sqlQuery);
+			Integer employee_id = getEmployeeId(username, password);
+			sqlQuery_ = "SELECT account_type_id from employees where employee_id = "
+					+ employee_id;
+			ResultSet rs = database_.getResultSet(sqlQuery_);
 			if (rs.next()) {
-			Employee employee = new Employee (rs.getInt("employee_id"), rs.getString("firstname"), rs.getString("lastname"), rs.getDouble("salary"), rs.getTimestamp("date_hired") , rs.getInt("branch_id"), rs.getInt("account_type_id"), rs.getInt("address_id"));
- 
-			
-			
-			if (rs.getInt("account_type_id") == 0)
-				return WebLoginEnum.TAMIAS;
-			if (rs.getInt("account_type_id") == 1)
-				return WebLoginEnum.DIEFTHINTIS;
-			 }
+				if (rs.getInt("account_type_id") == 0)
+					return WebLoginEnum.TAMIAS;
+				if (rs.getInt("account_type_id") == 1)
+					return WebLoginEnum.DIEFTHINTIS;
+			}
 		} catch (Exception e) {
 			e.getMessage();
 		}
 		return WebLoginEnum.WRONG_TYPE;
+	}
+
+	@Override
+	public WebLoginEnum getAdministratorType(Integer employeeId) {
+		sqlQuery_ = " select * from employees where employee_id = "
+				+ employeeId;
+		try {
+			ResultSet rs = database_.getResultSet(sqlQuery_);
+			rs = database_.getResultSet(sqlQuery_);
+			if (rs.next()) {
+				if (rs.getInt("account_type_id") == 0)
+					return WebLoginEnum.TAMIAS;
+				if (rs.getInt("account_type_id") == 1)
+					return WebLoginEnum.DIEFTHINTIS;
+			}
+		}catch (Exception e) {
+			e.getMessage();
+		}
+		return WebLoginEnum.WRONG_TYPE;
+	}
+	
+	public Integer getEmployeeId(String username, String password) {
+		sqlQuery_ = "Select employee_id from web_login where username = '"
+				+ username + "' and password = '" + password + "' LIMIT 1";
+		try {
+			ResultSet rs = database_.getResultSet(sqlQuery_);
+			if (rs.next())
+				return rs.getInt("employee_id");
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return null;
 	}
 }
