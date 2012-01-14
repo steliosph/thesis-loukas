@@ -1,11 +1,16 @@
 package sql;
 
+import java.sql.ResultSet;
 import java.sql.Timestamp;
 
 import bean.Employee;
 
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 
+	private DatabaseClass database_ = new DatabaseClass();
+	private String sqlQuery_;
+
+	
 	@Override
 	public Employee create() {
 		// TODO Auto-generated method stub
@@ -31,11 +36,41 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	}
 
 	@Override
-	public Employee create(Integer EmployeeId, String Firstname,
-			String Lastname, Double Salary, Timestamp DateHired,
-			Integer BranchId, Integer AccountTypeId, Integer AddressId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Employee create(Integer employeeId, String firstname,
+			String lastname, Double salary, Timestamp dateHired,
+			Integer branchId, Integer accountTypeId, Integer addressId) {
+		return new Employee(employeeId, firstname, lastname, salary, dateHired, branchId, accountTypeId, addressId);
 	}
-
+	
+	@Override
+	public Employee create(Integer employeeId) {
+		Employee employee = new Employee(employeeId);
+		return employee;
+	}
+	
+	public Employee retrieveEmployee(Integer employeeId) { 
+		if ( employeeId == null || employeeId <= 0 )
+			return null; /** Thewritika en lathos na epistrefeis NULL. Eprepe na dimiourgisoume NULL OBJECT alla pexe pello **/
+		Employee employee = create(employeeId);
+		sqlQuery_ = "SELECT * FROM employee WHERE employee_id = " + employeeId + " LIMIT 1";
+		try { 
+			ResultSet rs = database_.getResultSet(sqlQuery_);
+			
+			while (rs.next()){
+				employee.setFirstname(rs.getString("firstname"));
+				employee.setLastname(rs.getString("lastname"));
+				employee.setSalary(rs.getDouble("salary"));
+				employee.setDateHired(rs.getTimestamp("date_hired"));
+				employee.setBranchId(rs.getInt("branch_id"));
+				employee.setAccountTypeId(rs.getInt("account_type_id"));
+				employee.setAddressId(rs.getInt("address_id"));
+			}
+		} catch (Exception e){
+			e.getMessage();
+		}
+		if (employee.isEmptyEmployee())
+			return null;
+		
+		return employee;
+	}
 }
