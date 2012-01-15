@@ -1,17 +1,17 @@
 package bean;
 
 public class Customer {
-	private Integer CustomerId_;
-	private String Firstname_;
-	private String Lastname_;
-	private Integer AddressId_;
+	private Integer customerId_;
+	private String firstname_;
+	private String lastname_;
+	private Integer addressId_;
 
 	public Customer(Integer CustomerId, String Firstname, String Lastname,
 			Integer AddressId) {
-		CustomerId_ = CustomerId;
-		Firstname_ = Firstname;
-		Lastname_ = Lastname;
-		AddressId_ = AddressId;
+		customerId_ = CustomerId;
+		firstname_ = Firstname;
+		lastname_ = Lastname;
+		addressId_ = AddressId;
 	}
 
 	public Customer(Customer customers) {
@@ -19,41 +19,51 @@ public class Customer {
 				.getLastname(), customers.getAddressId());
 	}
 
+	public Customer(Integer customerId) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getCustomerId() {
-		return CustomerId_;
+		return customerId_;
 	}
 
 	public void setCustomerId(Integer customerId) {
-		this.CustomerId_ = customerId;
+		this.customerId_ = customerId;
 	}
 
 	public String getFirstname() {
-		return Firstname_;
+		return firstname_;
 	}
 
 	public void setFirstname(String firstname) {
-		this.Firstname_ = firstname;
+		this.firstname_ = firstname;
 	}
 
 	public String getLastname() {
-		return Lastname_;
+		return lastname_;
 	}
 
 	public void setLastname(String lastname) {
-		this.Lastname_ = lastname;
+		this.lastname_ = lastname;
 	}
 
 	public Integer getAddressId() {
-		return AddressId_;
+		return addressId_;
 	}
 
 	public void setAddressId(Integer addressId) {
-		this.AddressId_ = addressId;
+		this.addressId_ = addressId;
 	}
 
 	@Override
 	public String toString() {
 		return "Firstname:" + getFirstname() + "Lastname:" + getLastname();
+	}
+
+	public boolean isEmptyEmployee() {
+		 if (getCustomerId() == null || getFirstname() == null)
+             return true;
+     return false;         
 	}
 
 }

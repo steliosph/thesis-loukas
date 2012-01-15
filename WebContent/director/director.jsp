@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="bean.Employee"%>
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -12,8 +13,13 @@
 		<div class="pattern_box_icon">
 			<img src="director.png" alt="" title="" />
 		</div>
+
+
+
+
+
 		<h1>Γενικός Διευθυντής<span>
-				firstname lastname sql query</span></h1> 
+				<%= session.getAttribute("firstname")%> <%= session.getAttribute("lastname")%></span></h1> 
 		
 		            <p><h1>Παρακαλώ επιλέξτε μια απο τις παρακάτω λειτουργίες.</h1>
                 <a href="sumloans.jsp">Συνολική εικόνα δανείων</a><br><br>
