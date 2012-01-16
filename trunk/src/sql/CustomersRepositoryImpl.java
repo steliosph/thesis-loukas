@@ -3,7 +3,6 @@ package sql;
 import java.sql.ResultSet;
 
 import bean.Customer;
-import bean.Employee;
 
 public class CustomersRepositoryImpl implements CustomersRepository {
 

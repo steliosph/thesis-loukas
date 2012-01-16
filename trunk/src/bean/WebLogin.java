@@ -66,15 +66,6 @@ public class WebLogin {
 		this.password_ = password;
 	}
 
-	public String checkLogin(String username, String password) {
-		// HERE : import sql.webLoginRepository
-		// Call function checkLogin in WebLoginReposioty of sql package.
-		// Do the switch and return the Type
-		// return webLoginEnum;
-		return null;
-	} 
-
-
 	@Override
 	public String toString() {
 		return "Username:" + getusername() + "Password:" + getpassword();

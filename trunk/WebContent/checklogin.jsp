@@ -8,8 +8,7 @@
 <%@ page import="bean.Employee"%>
 <%@ page import="bean.Customer"%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.sql.*"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" import="java.sql.*"%>
 <!-- Limit availability , redirect -->
 <%
 	String username = request.getParameter("username");
