@@ -3,7 +3,6 @@ package sql;
 import java.sql.ResultSet;
 
 import enums.WebLoginEnum;
-import bean.Employee;
 import bean.WebLogin;
 
 public class WebLoginRepositoryImpl implements WebLoginRepository {
