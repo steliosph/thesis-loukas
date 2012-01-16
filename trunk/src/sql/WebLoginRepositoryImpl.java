@@ -69,9 +69,9 @@ public class WebLoginRepositoryImpl implements WebLoginRepository {
 			rs = database_.getResultSet(sqlQuery_);
 			if (rs.next()) {
 				if (rs.getInt("account_type_id") == 0)
-					return WebLoginEnum.TAMIAS;
+					return WebLoginEnum.CASHIER;
 				if (rs.getInt("account_type_id") == 1)
-					return WebLoginEnum.DIEFTHINTIS;
+					return WebLoginEnum.DIRECTOR;
 			}
 		} catch (Exception e) {
 			e.getMessage();
