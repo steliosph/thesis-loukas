@@ -43,7 +43,7 @@
 					ResultSet rs = branch.getResult();
 					while (rs.next()) {					
 						branch_id = rs.getString("branch_id");
-						country = rs.getString("country"); 
+						country = rs.getString("address"); 
 						city = rs.getString("city");
 						postal_code= rs.getString("postal_code");
 						telephone = rs.getString("telephone");

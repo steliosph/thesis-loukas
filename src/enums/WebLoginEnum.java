@@ -10,9 +10,9 @@ public enum WebLoginEnum {
 
 	CORRECT_EMPLOYEE("Employee"),
 	
-	TAMIAS ("tamias"),
+	CASHIER ("Cashier"),
 	
-	DIEFTHINTIS ("diefthintis"),
+	DIRECTOR ("Director"),
 	
 	WRONG_TYPE ("Wrong Type");
 
