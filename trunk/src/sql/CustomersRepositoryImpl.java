@@ -52,7 +52,7 @@ public class CustomersRepositoryImpl implements CustomersRepository {
         if ( customerId == null || customerId <= 0 )
             return null;  
     Customer customer = create(customerId);
-    sqlQuery_ = "SELECT * FROM employees WHERE employee_id = " + customerId + " LIMIT 1";
+    sqlQuery_ = "SELECT * FROM customers WHERE customer_id= " + customerId + " LIMIT 1";
     try { 
             ResultSet rs = database_.getResultSet(sqlQuery_);
             

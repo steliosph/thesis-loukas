@@ -43,12 +43,12 @@
 			session.setAttribute("addressId", employee.getAddressId());
 			
 			switch (webLoginRepository.getAdministratorType(employeeId)) {
-			case TAMIAS:
+			case CASHIER:
 %>
 <jsp:forward page="test.jsp"></jsp:forward>
 <%
 	break;
-			case DIEFTHINTIS:
+			case DIRECTOR:
 				response.sendRedirect("director/director.jsp");
  
 	break;
