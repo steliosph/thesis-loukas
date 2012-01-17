@@ -72,9 +72,9 @@ public class CustomersRepositoryImpl implements CustomersRepository {
 	}
 
 	@Override
-	public Integer addUser(String Firstname, String Lastname) {
+	public Integer addUser(String Firstname, String Lastname, Integer AddressId) {
 		try {
-			 sqlQuery_ = "Insert into customers (Firstname,Lastname,address_id) values ('" + Firstname + "','" + Lastname + "', 5000)";
+			 sqlQuery_ = "Insert into customers (Firstname,Lastname,address_id) values ('" + Firstname + "','" + Lastname + "','" + AddressId +"' )";
 			System.out.println(sqlQuery_);
 			Integer customerId = (Integer) database_. getLastId(sqlQuery_);
 			return customerId;

@@ -45,11 +45,7 @@
 													required : true,
 													minlength : 5,
 													equalTo : "#password"
-												},
-												email : {
-													required : true,
-													email : true
-												},
+												},												
 												agree : "required"
 											},
 											messages : {
@@ -68,7 +64,6 @@
 													minlength : "Ο κωδικός πρέπει να έιναι το λιγότερο 5 χαρακτήρες.",
 													equalTo : "Οι 2 κωδικοί πρέπει να είναι ίδιοι"
 												},
-												email : "Εισάγετε έγκυρη διεύθυνση email.",
 												agree : "Διαβάστε και αποδεχτείτε τους όρους αν συμφωνείτε."
 											}
 										});
@@ -133,10 +128,6 @@ form label.error,label.error {
 				<label for="confirm_password" class="overlabel">Επιβεβαίωση
 					Κωδικού</label> <input id="confirm_password" name="confirm_password"
 					type="password" class="regInput textInput" />
-			</p>
-			<p>
-				<label for="email" class="overlabel">Εmail</label> <input id="email"
-					name="email" type="text" class="regInput textInput" />
 			</p>
 			<p>
 				<a href="oroi.jsp"> Όροι χρήσης </a> <input type="checkbox"
