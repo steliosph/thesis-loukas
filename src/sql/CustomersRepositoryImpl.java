@@ -72,29 +72,31 @@ public class CustomersRepositoryImpl implements CustomersRepository {
 	}
 
 	@Override
-	public void addUser(String Firstname, String Lastname) {
+	public Integer addUser(String Firstname, String Lastname) {
 		try {
-			sqlQuery_ = "Insert into customers (Firstname,Lastname,address_id) values ('" + Firstname + "','" + Lastname + "', 5000)";
+			 sqlQuery_ = "Insert into customers (Firstname,Lastname,address_id) values ('" + Firstname + "','" + Lastname + "', 5000)";
 			System.out.println(sqlQuery_);
-			database_.update(sqlQuery_);
-		} catch (Exception e) {
-			e.getMessage();
-		}
-	}
-	
-	
-	public Integer getCustomerId(String Firstname, String Lastname) {
-		sqlQuery_ = "SELECT customer_id FROM customers WHERE firstname='" + Firstname + "' and Lastname=  '" + Lastname + "'";
-		System.out.println(sqlQuery_);
-		try {
-			ResultSet rs = database_.getResultSet(sqlQuery_);
-			if (rs.next())
-				return rs.getInt("customer_id");
+			Integer customerId = (Integer) database_. getLastId(sqlQuery_);
+			return customerId;
 		} catch (Exception e) {
 			e.getMessage();
 		}
 		return null;
 	}
+	
+	
+//	public Integer getCustomerId(String Firstname, String Lastname) {
+//		try {
+//		sqlQuery_ = "SELECT customer_id FROM customers WHERE firstname='" + Firstname + "' and Lastname=  '" + Lastname + "'";
+//		System.out.println(sqlQuery_);
+//			ResultSet rs = database_.getResultSet(sqlQuery_);
+//			if (rs.isLast() )
+//				return rs.getInt("customer_id");
+//		} catch (Exception e) {
+//			e.getMessage();
+//		}
+//		return null;
+//	}
 	
 
 }
