@@ -1,7 +1,7 @@
-<jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
 <jsp:useBean id="webLogin" scope="page" class="sql.WebLoginRepositoryImpl" />
-
-
+ <%@ page import="bean.Customer"%>
+  <%@ page import="sql.CustomersRepository"%>
+  <%@ page import="sql.CustomersRepositoryImpl"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -10,10 +10,11 @@
 	String Lastname = request.getParameter("lastname");
 	String Firstname = request.getParameter("firstname");
 
-	//("insert into test (username,lastname,firstname,password) values (?,?,?,?)");
-customer.addUser(Firstname, Lastname);
-int CustomerId = customer.getCustomerId(Firstname, Lastname);
-webLogin.addUser(Username, Password, CustomerId);
+	
+	CustomersRepository customerRepository = new CustomersRepositoryImpl();
+	Integer CustomerId = customerRepository.addUser(Firstname, Lastname);
+	
+webLogin.addUser(Username, Password,CustomerId);
 %>
 
 

@@ -11,8 +11,6 @@ public interface CustomersRepository extends BeanRepository<Customer>{
 
 	public Customer retrieveCustomer(Integer customerId);
 	
-	void addUser(String Firstname, String Lastname);
-	
-	public Integer getCustomerId(String Firstname, String Lastname);
-	
+	public Integer addUser(String Firstname, String Lastname);
+
 }

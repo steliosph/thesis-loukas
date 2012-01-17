@@ -47,8 +47,26 @@ public class DatabaseClass {
                 } catch (java.sql.SQLException e) {
                         // TODO 
                 }
-        }
+        } 
 
+       	 public Integer getLastId(String sqlQuery) throws SQLException {
+       		ResultSet rs = null;
+       		int Id = 0;
+       		 try {
+                
+                PreparedStatement pInsertOid = connection_.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
+                pInsertOid.executeUpdate();               
+                rs = pInsertOid.getGeneratedKeys();
+                if (rs.next()) {
+                  Id = rs.getInt(1);}
+                } catch (SQLException ex) {               
+                }
+                return Id;
+       		}
+
+        	                    
+   
+        
         public ResultSet getResultSet(String sqlQuery) {
                 ResultSet rs = null;
                 try {
