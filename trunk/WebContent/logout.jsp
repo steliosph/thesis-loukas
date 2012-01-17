@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-       <% session.setAttribute("control", "no") ;%>
+       <% session.setAttribute("isValid", "no") ;%>
        
        <jsp:forward page="index.jsp"/>
     </body>

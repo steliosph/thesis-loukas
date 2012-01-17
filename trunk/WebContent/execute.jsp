@@ -1,60 +1,37 @@
-<%@page import="sql.AccountsRepository"%>
-<%@ page import="java.sql.*;"%>  
+<jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
+<jsp:useBean id="webLogin" scope="page" class="sql.WebLoginRepositoryImpl" />
+
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-      
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<link rel="stylesheet" href="css/style.css" type="text/css" />
-	<link rel="SHORTCUT ICON" href="../images/favicon.ico" type="image/x-icon" />
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-</head>
-<body>
+<%
+	String Username = request.getParameter("username");
+	String Password = request.getParameter("password");
+	String Lastname = request.getParameter("lastname");
+	String Firstname = request.getParameter("firstname");
 
-     <%   
-
-    Class.forName("com.mysql.jdbc.Driver");    
-    Connection con=DriverManager.getConnection("jdbc:mysql://localhost/bankdb", "root","tessera");
-    ResultSet rs;
-    PreparedStatement pstmt;    
-    Statement stmt=con.createStatement();
-    
-    String username=request.getParameter("username");
-    String lastname=request.getParameter("lastname");
-    String firstname=request.getParameter("firstname");
-    String password=request.getParameter("password");
-    
-    //AccountsRepository repos = new AccountsRepository();
-    //repos.create(accountId, balance, dateCreated);
-    
+	//("insert into test (username,lastname,firstname,password) values (?,?,?,?)");
+customer.addUser(Firstname, Lastname);
+int CustomerId = customer.getCustomerId(Firstname, Lastname);
+webLogin.addUser(Username, Password, CustomerId);
+%>
 
 
-pstmt=con.prepareStatement("insert into test (username,lastname,firstname,password) values (?,?,?,?)") ;
-pstmt.setString(1,username);
-pstmt.setString(2,lastname);
-pstmt.setString(3,firstname);
-pstmt.setString(4,password);
-pstmt.executeUpdate();
-
-
- %>    
-    
-    
-   <%@ include file="top.jsp" %>        
-    <div class="pageTop"></div>
-    <div class="pageMain">
+<%@ include file="top.jsp"%>
+<div class="pageTop"></div>
+<div class="pageMain">
 	<div class="contentArea">
-		<div class="full-page">  
-                    <h1>Η εγγραφή σας ολοκληρώθηκε.<br> Πατήστε <a HREF="login popup.jsp" class="login" >εδώ</a> για να συνδεθήτε.<br><span>Στοιχεία λογαριαγμού:</span></h1>
-                    Username: <%=(username)%>
-                    <br>Όνομα: <%=(firstname)%>
-                    <br>Επώνυμο: <%=(lastname)%>
-                    <br>Κωδικός: <%=(password)%>                                        
+		<div class="full-page">
+			<h1>
+				Η εγγραφή σας ολοκληρώθηκε.<br> Πατήστε <a
+					HREF="login popup.jsp" class="login">εδώ</a> για να συνδεθήτε.<br>
+				<span>Στοιχεία λογαριαγμού:</span>
+			</h1>
+ 
 
-                 </div><div class="clear"></div>					
-                   
-            </div>	
-        </div>	
-       <%@ include file="footer.jsp" %>
+		</div>
+		<div class="clear"></div>
+
+	</div>
+</div>
+<%@ include file="footer.jsp"%>

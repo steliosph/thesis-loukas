@@ -23,11 +23,13 @@
 	} else {
 		switch (webLoginRepository.checkLogin(username, password)) {
 		case WRONG_USERNAME_PASSWORD:
+			session.setAttribute("isValid", "no");
 %>
 <jsp:forward page="epistrofi.jsp"></jsp:forward>
 <%
 	break;
 		case CORRECT_EMPLOYEE:
+			session.setAttribute("isValid", "yes");
 			int employeeId = webLoginRepository.getEmployeeId(username,password);
 			
 			Employee employee = employeeRepository.retrieveEmployee(employeeId);
@@ -54,6 +56,7 @@
 			}
 			break;
 		case CORRECT_USER:
+			session.setAttribute("isValid", "yes");
 			int customerId = webLoginRepository.getCustomerId(username,password);
 			
 			Customer customer = customerRepository.retrieveCustomer(customerId);
@@ -68,10 +71,6 @@
 
 <%
 	break;
-		case WRONG_LOGINS:
-			// TODO wrong
-			break;
-
 		}
 
 	}
