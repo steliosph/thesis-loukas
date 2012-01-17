@@ -1,7 +1,9 @@
 <jsp:useBean id="webLogin" scope="page" class="sql.WebLoginRepositoryImpl" />
+<jsp:useBean id="address" scope="page" class="sql.AddressRepositoryImpl" />
+<jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
+
  <%@ page import="bean.Customer"%>
-  <%@ page import="sql.CustomersRepository"%>
-  <%@ page import="sql.CustomersRepositoryImpl"%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -9,12 +11,11 @@
 	String Password = request.getParameter("password");
 	String Lastname = request.getParameter("lastname");
 	String Firstname = request.getParameter("firstname");
-
 	
-	CustomersRepository customerRepository = new CustomersRepositoryImpl();
-	Integer CustomerId = customerRepository.addUser(Firstname, Lastname);
 	
-webLogin.addUser(Username, Password,CustomerId);
+	Integer AddressId = address.addNullAddress();
+	Integer CustomerId = customer.addUser(Firstname, Lastname, AddressId);
+	webLogin.addUser(Username, Password,CustomerId);
 %>
 
 
@@ -25,7 +26,7 @@ webLogin.addUser(Username, Password,CustomerId);
 		<div class="full-page">
 			<h1>
 				Η εγγραφή σας ολοκληρώθηκε.<br> Πατήστε <a
-					HREF="login popup.jsp" class="login">εδώ</a> για να συνδεθήτε.<br>
+					HREF="login popup.jsp">εδώ</a> για να συνδεθείτε.<br>
 				<span>Στοιχεία λογαριαγμού:</span>
 			</h1>
  
