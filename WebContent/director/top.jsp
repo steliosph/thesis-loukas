@@ -66,8 +66,10 @@
 							</ul>
 
 							<div class="mmDivider"></div>
-
-
+							<%
+								String isValid = (String) session.getAttribute("isValid");
+								if (isValid == "no" || isValid == null) {
+							%>
 							<ul class="nav-main">
 								<li class="list"><span class="mmLogin">Login/Register</span>
 									<ul class="nav-sub">
@@ -77,7 +79,15 @@
 												class="register">Register</span></a></li>
 									</ul></li>
 							</ul>
-
+							<%
+								} else if (isValid == "yes") {
+							%>
+							<ul class="nav-main">
+								<li><a href="../logout.jsp"><span class="logout">Logout</span></a></li>
+							</ul>
+							<%
+								}
+							%>
 						</div>
 						<div id="MmRight"></div>
 					</div>

@@ -15,6 +15,8 @@ public interface WebLoginRepository extends BeanRepository<WebLogin> {
         public Integer getEmployeeId(String username, String password);
         
         public Integer getCustomerId(String username, String password);
+        
+        void addUser(String Username, String Password, Integer CustomerId);
 
 }
 

@@ -103,4 +103,16 @@ public class WebLoginRepositoryImpl implements WebLoginRepository {
 		}
 		return null;
 	}
+
+	@Override
+	public void addUser(String Username, String Password, Integer CustomerId) {
+		try {
+			sqlQuery_ = "Insert into web_login (Username,Password,Customer_Id) values ('" + Username + "','" + Password + "', '" + CustomerId + "')";
+			System.out.println(sqlQuery_);
+			database_.update(sqlQuery_);
+			
+		} catch (Exception e) {
+			e.getMessage();
+		}
+	}
 }

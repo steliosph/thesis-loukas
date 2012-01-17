@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <%
-	session.setAttribute("control", "no");
+	session.setAttribute("isValid", "no");
 %>
 <head>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -17,39 +17,37 @@
 <link rel="stylesheet" type="text/css" href="css/fancybox.css" />
 
 <script type="text/javascript">
-$(document).ready(function() {
-    var overlayColor=$('#fancy_overlay')
-$("a.login").fancybox({
-	'padding':3,
-	'overlayOpacity':0.2,
-	'overlayColor':overlayColor,
-	'frameWidth':400,
-	'frameHeight':208,
-	'hideOnContentClick':false,
-	'callbackOnShow':modalStart,
-        'transitionIn'    : 'elastic',
-        'transitionOut'   : 'fade'       
-});
-$("a.register").fancybox({
-	'padding':3,
-	'overlayOpacity':0.2,
-	'overlayColor':overlayColor,
-	'frameWidth':400,
-	'frameHeight':208,
-	'hideOnContentClick':false,
-	'callbackOnShow':modalStart,
-        'transitionIn'    : 'elastic',
-        'transitionOut'   : 'fade'         
-});
-                 
+	$(document).ready(function() {
+		var overlayColor = $('#fancy_overlay')
+		$("a.login").fancybox({
+			'padding' : 3,
+			'overlayOpacity' : 0.2,
+			'overlayColor' : overlayColor,
+			'frameWidth' : 400,
+			'frameHeight' : 208,
+			'hideOnContentClick' : false,
+			'callbackOnShow' : modalStart,
+			'transitionIn' : 'elastic',
+			'transitionOut' : 'fade'
+		});
+		$("a.register").fancybox({
+			'padding' : 3,
+			'overlayOpacity' : 0.2,
+			'overlayColor' : overlayColor,
+			'frameWidth' : 400,
+			'frameHeight' : 208,
+			'hideOnContentClick' : false,
+			'callbackOnShow' : modalStart,
+			'transitionIn' : 'elastic',
+			'transitionOut' : 'fade'
+		});
 
-function modalStart(){
-    Cufon.replace('.fancy_title > div')};
-                   
-               
-                        
-});
+		function modalStart() {
+			Cufon.replace('.fancy_title > div')
+		}
+		;
 
+	});
 </script>
 </head>
 
@@ -72,8 +70,8 @@ function modalStart(){
 
 						<div class="mmDivider"></div>
 						<%
-							String elegxos1 = (String) session.getAttribute("control");
-							if (elegxos1 == "no" || elegxos1 == null) {
+							String isValid = (String) session.getAttribute("isValid");
+							if (isValid == "no" || isValid == "") {
 						%>
 						<ul class="nav-main">
 							<li class="list"><span class="mmLogin">Login/Register</span>
@@ -85,15 +83,14 @@ function modalStart(){
 								</ul></li>
 						</ul>
 						<%
-							} else if (elegxos1 == "yes") {
+							} else if (isValid == "yes") {
 						%>
 						<ul class="nav-main">
-							<li><a href="logout.jsp"><span class="logout">Logout</span></a></li>
+							<li><a href="./logout.jsp"><span class="logout">Logout</span></a></li>
 						</ul>
 						<%
 							}
 						%>
-
 					</div>
 					<div id="MmRight"></div>
 				</div>

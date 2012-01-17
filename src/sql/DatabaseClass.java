@@ -39,11 +39,11 @@ public class DatabaseClass {
                 return true;
         }
 
-        public void update(String theQuery) throws Exception {
-                theQuery = new String(theQuery);
+        public void update(String sqlQuery) throws Exception {
+        	sqlQuery = new String(sqlQuery);
                 try {
                         Statement stmt = connection_.createStatement();
-                        stmt.executeUpdate(theQuery);
+                        stmt.executeUpdate(sqlQuery);
                 } catch (java.sql.SQLException e) {
                         // TODO 
                 }
@@ -64,40 +64,4 @@ public class DatabaseClass {
                 return rs;
         }
 
-        // public void SQLQuery(String theQuery) {
-        // try
-        // {
-        // Statement stmt = connection_.createStatement();
-        // ResultSet rs;
-        // stmt.executeQuery(theQuery);
-        // rs = stmt.getResultSet();
-        // rs.close();
-        // stmt.close();
-        // rs = null;
-        // stmt = null;
-        // }
-        // catch(java.sql.SQLException e)
-        // {
-        // }
-
-        // public static void main(String[] args) {
-        // Connection conn = null;
-        // try {
-        // String url =
-        // "jdbc:mysql://localhost:3306/bankdb?user=root&password=tessera";
-        // Class.forName("com.mysql.jdbc.Driver").newInstance();
-        // conn = DriverManager.getConnection(url);
-        // System.out.println("Database connection established");
-        // } catch (Exception e) {
-        // System.err.println("Cannot connect to database server");
-        // } finally {
-        // if (conn != null) {
-        // try {
-        // conn.close();
-        // System.out.println("Database connection terminated");
-        // } catch (Exception e) { /* ignore close errors */
-        // }
-        // }
-        // }
-        // }
 }
