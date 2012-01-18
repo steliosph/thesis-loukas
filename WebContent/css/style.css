@@ -189,6 +189,7 @@ body {
 .loginForm .signInButton		{ margin: 0 18px 0 0; }
 
 /* other */
+#contactimg                                { float: right; margin-top: 0px ;}
 
 div#fancy_overlay { background: #2c2c2c; }	/* overlay color */
 

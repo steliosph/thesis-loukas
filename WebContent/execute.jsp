@@ -26,10 +26,13 @@
 		<div class="full-page">
 			<h1>
 				Η εγγραφή σας ολοκληρώθηκε.<br> Πατήστε <a
-					HREF="login popup.jsp">εδώ</a> για να συνδεθείτε.<br>
+					HREF="./login.jsp">εδώ</a> για να συνδεθείτε.<br>
 				<span>Στοιχεία λογαριαγμού:</span>
 			</h1>
- 
+  					Username: <%=(Username)%>
+                    <br>Όνομα: <%=(Firstname)%>
+                    <br>Επώνυμο: <%=(Lastname)%>
+                    <br>Κωδικός: <%=(Password)%>       
 
 		</div>
 		<div class="clear"></div>

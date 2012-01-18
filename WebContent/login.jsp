@@ -25,9 +25,9 @@
 				alt="lock and key" />
 		</div>
 		<div class="loginContainer">
-			<h1>
-				Administrative Portal <span>Sign in to your account</span>
-			</h1>
+			<h2>
+				Customer & Employee Login <span>Sign in to your account</span>
+			</h2>
 
 
 			<p>

@@ -45,6 +45,13 @@ public class LoansRepositoryImpl implements LoansRepository {
 		return rs;
 	}
 	
+	public ResultSet editLoan(Integer loanId) {
+		sqlQuery = "select * from loans inner join loan_status on loans.loan_id = loan_status.loan_id where loans.loan_id = '" + loanId + "' ORDER BY loans.loan_id";
+		System.out.println(sqlQuery);
+		ResultSet rs = database.getResultSet(sqlQuery);
+		return rs;
+	}
+	
 	public ResultSet SumOfLoans() {
 		sqlQuery = "select sum(loan_amount) as SumOfLoans from loans ";
 		ResultSet rs = database.getResultSet(sqlQuery);
