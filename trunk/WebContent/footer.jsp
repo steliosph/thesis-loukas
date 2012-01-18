@@ -16,10 +16,10 @@
 					<!-- Column 2 -->
 					<div class="two-thirds-last">
 						<h3>Contact Information</h3>
-						<p>
-							(555) 443.3221<br />
-							contact@unite-inc.com<br />
-							<a href="#">www.unite-inc.com</a><br />
+						<p>														
+							<a href="contact.jsp"  class="contact" style="font-size:10pt; color:#8F8F8F;">Contact Form</a> <br />
+							<a href="mailto:loukasz@gmail.com?Subject=Bank" style="font-size:10pt;  color:#8F8F8F;">loukasz@gmail.com</a><br />
+							
 						</p>
 					</div>
 

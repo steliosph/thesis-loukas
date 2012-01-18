@@ -41,6 +41,17 @@
 			'transitionIn' : 'elastic',
 			'transitionOut' : 'fade'
 		});
+		$("a.contact").fancybox({
+			'padding' : 3,
+			'overlayOpacity' : 0.2,
+			'overlayColor' : overlayColor,
+			'frameWidth' : 600,
+			'frameHeight' : 308,
+			'hideOnContentClick' : false,
+			'callbackOnShow' : modalStart,
+			'transitionIn' : 'elastic',
+			'transitionOut' : 'fade'
+		});
 
 		function modalStart() {
 			Cufon.replace('.fancy_title > div')
@@ -65,7 +76,7 @@
 							<li><a href="./news.jsp">Νέα</a></li>
 							<li><a href="./programmata.jsp">Προγράμματα</a></li>
 							<li><a href="./katastimata.jsp">Καταστήματα</a></li>
-							<li><a href="./contact.jsp">Επικοινωνια</a></li>
+							<li><a href="./contact.jsp" class="contact">Επικοινωνια</a></li>
 						</ul>
 
 						<div class="mmDivider"></div>

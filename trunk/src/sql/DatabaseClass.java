@@ -54,9 +54,9 @@ public class DatabaseClass {
        		int Id = 0;
        		 try {
                 
-                PreparedStatement pInsertOid = connection_.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
-                pInsertOid.executeUpdate();               
-                rs = pInsertOid.getGeneratedKeys();
+                PreparedStatement pstmt = connection_.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
+                pstmt.executeUpdate();               
+                rs = pstmt.getGeneratedKeys();
                 if (rs.next()) {
                   Id = rs.getInt(1);}
                 } catch (SQLException ex) {               

@@ -17,7 +17,27 @@
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
 <script src="../js/jquery.min.js" type="text/javascript" ></script>
+<link rel="stylesheet" type="text/css" href="../css/fancybox.css" />       
+    
 <script type="text/javascript">
+$(document).ready(function() {
+    var overlayColor=$('#fancy_overlay')
+$("a.editform").fancybox({
+	'padding':3,
+	'overlayOpacity':0.2,
+	'overlayColor':overlayColor,
+	'frameWidth':400,
+	'frameHeight':208,
+	'hideOnContentClick':false,
+	'callbackOnShow':modalStart,
+        'transitionIn'    : 'elastic',
+        'transitionOut'   : 'fade'         
+});
+                 
+function modalStart(){
+    Cufon.replace('.fancy_title > div')};                                                          
+});
+
 $(document).ready(function() {
     $("label.overlabel").overlabel();
 });      
@@ -98,6 +118,7 @@ $(document).ready(function() {
 								<th>Ποσό</th>
 								<th>Τύπος</th>
 								<th>Κατάσταση</th>
+								
 							</tr>
 						</thead>
 
@@ -122,6 +143,8 @@ $(document).ready(function() {
 								<td><%=loan_amount%></td>
 								<td><%=type%></td>
 								<td><%=status%></td>
+								<td><a href="editloans.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >Edit</a></td>
+                  				<td><a href="sumloans.jsp?delete=yes&deleteid=<%=rs.getInt("loan_id")%>" onclick="return del()">Delete</a></td>
 							</tr>
 
 							<%
