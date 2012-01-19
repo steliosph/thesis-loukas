@@ -102,7 +102,7 @@ form label.error,label.error {
 
 	<form id="signupForm" method="post" action="execute.jsp">
 		<div class="regContainer">
-			<h1>Nέος Χρήστης</h1>
+			<h1><center>Nέος Χρήστης</center></h1>
 			<p>
 				<label for="firstname" class="overlabel">Όνομα</label> <input
 					id="firstname" name="firstname" type="text"

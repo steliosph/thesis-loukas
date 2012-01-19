@@ -1,16 +1,18 @@
 <%@ page import="sql.LoansRepository"%>
-<%@ page import="bean.Loans"%>
+<%@ page import="bean.Loans"%> 
 <%@ page import="sql.LoansRepositoryImpl"%>
 <%@ page language="java" import="java.sql.*"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
+<jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
 
 <%
-	String sum = "" , loan_id = "", customer_id= "", loan_amount= "", type="", status= "";
+	String Firstname = "", Lastname = "", customerId1 = "", sum = "", loan_id = "", customer_id = "", loan_amount = "", type = "", status = "";
+	int y = 0, x = 0, loanid = 0, customerId = 0;
 %>
-
+ 
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -60,6 +62,13 @@ $(document).ready(function() {
 				</ul>
 			</div>
 			<h1>Συνολική εικόνα Δανείων</h1>
+			        <%
+			        	String update = "";
+			        	update = (String) session.getAttribute("update");
+			        	session.removeAttribute("update");
+			        	if (update != null)
+			        		out.print(update);
+			        %>
 			<div class="left noMargin">
 				<script language="javascript">
 					function toggle() {
@@ -81,25 +90,44 @@ $(document).ready(function() {
 				<%
 					ResultSet rs = loan.SumOfLoans();
 					while (rs.next()) {
-						sum = rs.getString("SumOfLoans");					
+						sum = rs.getString("SumOfLoans");
 				%>
 
 						Η τράπεζα μας έχει δώσει <br>δάνεια αξίας: <strong>
 						<%=sum%></strong><br> ευρώ!!
-									<% }  %> 
+									<%
+							}
+						%> 
 					</h2>
 				</div>
 				<br>
 				<form action="">
-					<label for="customerID" class="overlabel">Eισαγωγή ID
-						πελάτη</label> <input type="text" name="customerID" id="customerID"
-						class="aInput textInput" /> <br>
+					<label for="customerId" class="overlabel">Eισαγωγή ID
+						πελάτη</label> <input type="text" name="customerId" id="customerId"
+						class="bInput textInput" /> <br>
 					<button style="width: 236px" class="btn" type="submit">
 						<span>Αναζήτηση Πελάτη.</span>
 					</button>
 					<br>
+					<%
+						customerId1 = request.getParameter("customerId");
+					if(customerId1 != null) 
+						customerId = Integer.parseInt(customerId1);
+						rs = customer.customerSearch(customerId);
+						if (rs.next()) {
+							y = 1;
+							Firstname = rs.getString("firstname");
+							Lastname = rs.getString("lastname");
+						}
+						if (y == 1) {
+							y = 0;
+					%>
 
+					Όνομα:<%=Firstname%><br> Επώνυμο:<%=Lastname%><br>
 
+					<%
+						}
+					%>
 
 
 
@@ -114,10 +142,11 @@ $(document).ready(function() {
 						<thead>
 							<tr>
 								<th>Αριθμός Δανείου</th>
-								<th>ΙD Πελάτη</th>
+								<th>Αριθμός Πελάτη</th>
 								<th>Ποσό</th>
 								<th>Τύπος</th>
 								<th>Κατάσταση</th>
+								<th colspan="2">Actions</th>
 								
 							</tr>
 						</thead>
@@ -126,16 +155,14 @@ $(document).ready(function() {
 
 
 							<%
-					rs = loan.getResult();
-					while (rs.next()) {
-						loan_id = rs.getString("loan_id");
-						customer_id = rs.getString("customer_id");
-						loan_amount = rs.getString("loan_amount");
-						type = rs.getString("type");
-						status= rs.getString("status");
-
-						
-				%>
+								rs = loan.getResult();
+								while (rs.next()) {
+									loan_id = rs.getString("loan_id");
+									customer_id = rs.getString("customer_id");
+									loan_amount = rs.getString("loan_amount");
+									type = rs.getString("type");
+									status = rs.getString("status");
+							%>
 
 							<tr>
 								<td><%=loan_id%></td>
@@ -148,8 +175,8 @@ $(document).ready(function() {
 							</tr>
 
 							<%
-					}
-				%>
+								}
+							%>
 
 						</tbody>
 
