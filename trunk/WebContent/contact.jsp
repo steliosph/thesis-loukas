@@ -58,7 +58,6 @@ form label.error,label.error {
 <body>
 
 	<form id="contactForm" method="post" action="">
-		<div class="regContainer">
 			<center>
 				<h1>Φόρμα Επικοινωνίας</h1>
 			</center>
@@ -67,15 +66,11 @@ form label.error,label.error {
 			<img SRC="http://www.aboverubies.org.au/images/Optimized.ContactUs.jpg" width="115" height="78"
 				alt="lock and key" />
 		</div>
-		
 			<p>
 				<label for="firstname" class="overlabel">Όνομα</label> <input
 					id="firstname" name="firstname" type="text"
 					class="Input  textInput" />
-
 			</p>
-
-
 			<p>
 				<label for="email" class="overlabel">Εmail</label> <input id="email"
 					name="email" type="text" class="Input  textInput" />
@@ -90,7 +85,6 @@ form label.error,label.error {
 					<span>Submit</span>
 				</button>			
 			</p>
-		</div>
 	</form>
 
 </body>

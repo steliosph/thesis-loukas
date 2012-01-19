@@ -419,7 +419,7 @@ ul.nav-sub li a {
 	line-height: 20px;
 	font-style: normal;
 	font-weight: normal;
-	text-align: left;
+	text-align: center;
 	text-shadow: white 1px 1px 1px;
 }
 #table-2 td {
@@ -428,6 +428,7 @@ ul.nav-sub li a {
 	font-size: 12px;
 	border-bottom: 1px solid #fff;
 	border-top: 1px solid #fff;
+	
 }
 #table-2 tr:hover {
     background-color: #fff
@@ -531,3 +532,4 @@ ul.navsub li a {
 
 
 .aInput		{ width: 216px; }
+.bInput		{ width: 226px; }

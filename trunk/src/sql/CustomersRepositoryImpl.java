@@ -84,6 +84,14 @@ public class CustomersRepositoryImpl implements CustomersRepository {
 		return null;
 	}
 	
+	public ResultSet customerSearch(Integer customerId) {
+		sqlQuery_ = "select firstname,lastname from customers where customer_id = '"
+				+ customerId + "'";
+		System.out.println(sqlQuery_);
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
+	}
+	
 	
 //	public Integer getCustomerId(String Firstname, String Lastname) {
 //		try {
