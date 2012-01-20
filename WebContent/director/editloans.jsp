@@ -47,19 +47,15 @@
 			<td colspan=2 align="center" height="10px"></td>
 		</tr>
 		<tr>
-			<td>loan Id </td>
-			<td><input type="text" name="loanId" value="<%=loanId%>"></td>
-		</tr>
-		<tr>
-			<td>Id Πελάτη</td>
+			<td>Id Πελάτη:</td>
 			<td><input type="text" name="customerId" value="<%=customerId%>"></td>
 		</tr>
 		<tr>
-			<td>Ποσό</td>
+			<td>Ποσό:</td>
 			<td><input type="text" name="amount" value="<%=amount%>"></td>
 		</tr>
 		<tr>
-			<td>Tύπος</td>
+			<td>Tύπος:</td>
 			<td><select name="type">
 					<option selected value="<%=type%>"></option>
 					<option value="Προσωπικό Δάνειο">Προσωπικό Δάνειο</option>
@@ -77,8 +73,6 @@
 					<option value="Εγκριθηκε">'Εγκριση</option>
 					<option value="Απορριφθηκε">Απόρριψη</option>
 			</select></td>
-
-
 
 		</tr>
 	</table>

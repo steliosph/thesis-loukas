@@ -92,6 +92,31 @@ public class CustomersRepositoryImpl implements CustomersRepository {
 		return rs;
 	}
 	
+	public ResultSet getResult() {
+		sqlQuery_ = "select * from customers inner join address on customers.address_id = address.address_id ORDER BY customers.customer_id";
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet editCustomer(Integer customerId) {
+		sqlQuery_ = "select * from customers inner join address on customers.address_id = address.address_id  where customer_Id = '"
+				+ customerId + "'";
+		System.out.println(sqlQuery_);
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
+	}
+	
+	public void updateCustomer(Integer addressId, String firstname, String lastname) {
+		try {
+			sqlQuery_ = "update customers set firstname= '" + firstname
+					+ "', lastname = '" + lastname + "' where customers.address_id='"
+					+ addressId + "'";
+			System.out.println(sqlQuery_);
+			database_.update(sqlQuery_);
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+	}
 	
 //	public Integer getCustomerId(String Firstname, String Lastname) {
 //		try {

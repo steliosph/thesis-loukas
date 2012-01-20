@@ -9,7 +9,7 @@ public class AccessRights {
 					if (accountTypeId == 1)
 						return AccessRightsEnum.DIRECTOR;
 					if (accountTypeId == 10)
-						return AccessRightsEnum.CUSTOMER;
+						return AccessRightsEnum.CUSTOMER;	
 					return AccessRightsEnum.NOACCESS;
 				}
 
