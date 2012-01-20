@@ -56,7 +56,7 @@ $(document).ready(function() {
 					<li class="list"><a href="director.jsp">Γενικός Διευθυντής</a>
 						<ul class="navsub">
 							<li><a href="sumloans.jsp">Συνολική εικόνα δανείων</a></li>
-							<li><a href="deposits.jsp">Συνολική εικόνα καταθέσεων</a></li>
+							<li><a href="customer.jsp">Πελάτες της τράπεζας</a></li>
 							<li><a href="egkrisi.jsp">Δάνεια προς έγκριση</a></li>
 						</ul></li>
 				</ul>
@@ -111,14 +111,17 @@ $(document).ready(function() {
 					<br>
 					<%
 						customerId1 = request.getParameter("customerId");
-					if(customerId1 != null) 
+					if (customerId1 == "")
+						customerId1 = null;
+					if(customerId1 != null) {						
 						customerId = Integer.parseInt(customerId1);
 						rs = customer.customerSearch(customerId);
 						if (rs.next()) {
 							y = 1;
 							Firstname = rs.getString("firstname");
 							Lastname = rs.getString("lastname");
-						}
+						}}
+					else y = 0;
 						if (y == 1) {
 							y = 0;
 					%>

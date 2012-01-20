@@ -4,6 +4,9 @@
 <%	
 	Integer accountTypeId = (Integer) session.getAttribute("accountTypeId");
 	AccessRights accessRights = new AccessRights();
+	if (accountTypeId == null) {
+		response.sendRedirect("../errorpage.jsp");
+	} else {
 	switch (accessRights.getAccessRights(accountTypeId)) {
 	case DIRECTOR:
 %>
@@ -22,45 +25,24 @@
 		<div class="pattern_box_icon">
 			<img src="director.png" alt="" title="" />
 		</div>
-
-
-
-
-
 		<h1>
 			Γενικός Διευθυντής<span> <%=session.getAttribute("firstname")%>
 				<%=session.getAttribute("lastname")%></span>
 		</h1>
-
 		<p>
 		<h1>Παρακαλώ επιλέξτε μια απο τις παρακάτω λειτουργίες.</h1>
 		<a href="sumloans.jsp">Συνολική εικόνα δανείων</a><br> <br>
-		<a href="deposits.jsp">Συνολική εικόνα καταθέσεων</a><br> <br>
+		<a href="customers.jsp">Πληροφορίες πελατών της τράπεζας</a><br> <br>
 		<a href="egkrisi.jsp">Δάνεια προς έγκριση</a>
-
-
 	</div>
 	<div class="clear"></div>
-
-
 </div>
-
-
-
 <%@ include file="../footer.jsp"%>
-
 <%
 	break;
 	case CASHIER:
 	case NOACCESS:
-%>
-<html>
-<h1>Η πρόσβαση σε αυτή την Ιστοσελίδα απαγορεύεται!</h1>
-<br>
-<br> Επιστροφή στην αρχική
-<a href="http://localhost:8080/">σελίδα</a>.
-</html>
-<%
+		response.sendRedirect("errorpage.jsp");
 	break;
-	}
+	}}
 %>
