@@ -40,7 +40,9 @@
 		city = rs.getString("city");
 		postalCode = rs.getString("postal_code");
 		telephone = rs.getString("telephone");
-
+	
+		session.setAttribute("addressId", addressId);
+		session.setAttribute("customerId", customerId);
 	}
 %>
 

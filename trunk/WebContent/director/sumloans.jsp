@@ -56,18 +56,18 @@ $(document).ready(function() {
 					<li class="list"><a href="director.jsp">Γενικός Διευθυντής</a>
 						<ul class="navsub">
 							<li><a href="sumloans.jsp">Συνολική εικόνα δανείων</a></li>
-							<li><a href="customer.jsp">Πελάτες της τράπεζας</a></li>
+							<li><a href="customers.jsp">Κατάσταση Πελατών</a></li>
 							<li><a href="egkrisi.jsp">Δάνεια προς έγκριση</a></li>
 						</ul></li>
 				</ul>
 			</div>
 			<h1>Συνολική εικόνα Δανείων</h1>
 			        <%
-			        	String update = "";
-			        	update = (String) session.getAttribute("update");
+			        	String updateloans = "";
+			        updateloans = (String) session.getAttribute("updateloans");
 			        	session.removeAttribute("update");
-			        	if (update != null)
-			        		out.print(update);
+			        	if (updateloans != null)
+			        		out.print(updateloans);
 			        %>
 			<div class="left noMargin">
 				<script language="javascript">
