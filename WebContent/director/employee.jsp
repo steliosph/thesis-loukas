@@ -8,8 +8,8 @@
 <jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
 
 <%
-	String firstname = "", lastname = "", address = "", city = "", postalCode = "", telephone = "";
-	int customerId = 0;
+	// String firstname = "", lastname = "", address = "", city = "", postalCode = "", telephone = "";
+	// int customerId = 0;
 %>
  
 <html>
@@ -56,17 +56,17 @@ $(document).ready(function() {
 						<ul class="navsub">
 							<li><a href="sumloans.jsp">Συνολική εικόνα δανείων</a></li>
 							<li><a href="customers.jsp">Κατάσταση Πελατών</a></li>
-							<li><a href="egkrisi.jsp">Δάνεια προς έγκριση</a></li>
+							<li><a href="employee.jsp">Kατάσταση Υπαλλήλων</a></li>
 						</ul></li>
 				</ul>
 			</div>
-			<h1>Kατάσταση πελατών της τράπεζας</h1>
+			<h1>Kατάσταση Υπαλλήλων της τράπεζας</h1>
 			        <%
-			        	String updatecustomers = "";
-			        updatecustomers = (String) session.getAttribute("updatecustomer");
-			        	session.removeAttribute("updatecustomer");
-			        	if (updatecustomers != null)
-			        		out.print(updatecustomers);
+			        	String updateemployees = "";
+			        updateemployees = (String) session.getAttribute("updateemployees");
+			        	session.removeAttribute("updateemployees");
+			        	if (updateemployees != null)
+			        		out.print(updateemployees);
 			        %>
 
 				<div style="overflow: auto; height: 500px;">

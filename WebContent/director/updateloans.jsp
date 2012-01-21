@@ -26,7 +26,7 @@ response.setContentType("text/html;charset=UTF-8");%>
 	
 	loan.updateLoan(LoanId, CustomerId, LoanAmount);
 	loanstatus.updateLoan(LoanId, Status, Type);
-	session.setAttribute("update","Το δάνειο με κωδικό:(" + LoanId + ") ανανεώθηκε!");
+	session.setAttribute("updateloans","Το δάνειο με κωδικό:(" + LoanId + ") ανανεώθηκε!");
  
 %>
 

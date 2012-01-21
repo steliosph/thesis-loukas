@@ -106,11 +106,11 @@ public class CustomersRepositoryImpl implements CustomersRepository {
 		return rs;
 	}
 	
-	public void updateCustomer(Integer addressId, String firstname, String lastname) {
+	public void updateCustomer(Integer customerId, String firstname, String lastname) {
 		try {
 			sqlQuery_ = "update customers set firstname= '" + firstname
-					+ "', lastname = '" + lastname + "' where customers.address_id='"
-					+ addressId + "'";
+					+ "', lastname = '" + lastname + "' where customer_id = '"
+					+ customerId + "'";
 			System.out.println(sqlQuery_);
 			database_.update(sqlQuery_);
 		} catch (Exception e) {			

@@ -14,12 +14,11 @@ response.setContentType("text/html;charset=UTF-8");%>
 <%
 
 
-addressId1 = request.getParameter("addressId");
-addressId = Integer.parseInt(addressId1);
-
+addressId = (Integer) session.getAttribute("addressId");
 System.out.println(addressId);
-customerId1 = request.getParameter("customerId");
-customerId = Integer.parseInt(customerId1);
+
+
+customerId = (Integer) session.getAttribute("customerId");
 System.out.println(customerId);
 
 firstname = request.getParameter("firstname");
@@ -34,10 +33,10 @@ telephone = request.getParameter("telephone");
 	customer.updateCustomer(customerId, firstname, lastname);
 	addressbean.updateAddress(addressId, address, city, postalCode, telephone);
 	
-//	session.setAttribute("update","Το δάνειο με κωδικό:(" + LoanId + ") ανανεώθηκε!");
+	session.setAttribute("updatecustomer","O πελάτης με κωδικό:(" + customerId + ") ανανεώθηκε!");
  
 %>
 
-<jsp:forward page="sumloans.jsp">
+<jsp:forward page="customers.jsp">
 	<jsp:param name="update" value="<%=customerId%>" />
 </jsp:forward>
