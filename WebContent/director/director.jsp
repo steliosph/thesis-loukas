@@ -33,7 +33,7 @@
 		<h1>Παρακαλώ επιλέξτε μια απο τις παρακάτω λειτουργίες.</h1>
 		<a href="sumloans.jsp">Συνολική εικόνα δανείων</a><br> <br>
 		<a href="customers.jsp">Πληροφορίες πελατών της τράπεζας</a><br> <br>
-		<a href="egkrisi.jsp">Δάνεια προς έγκριση</a>
+		<a href="employee.jsp">Πληροφορίες υπαλλήλων της τράπεζας</a><br> <br>
 	</div>
 	<div class="clear"></div>
 </div>

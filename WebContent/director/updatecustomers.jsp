@@ -1,3 +1,15 @@
+<%@ page import="enums.AccessRightsEnum"%>
+<%@ page import="bean.AccessRights"%>
+
+<%	
+	Integer accountTypeId = (Integer) session.getAttribute("accountTypeId");
+	AccessRights accessRights = new AccessRights();
+	if (accountTypeId == null) {
+		response.sendRedirect("../errorpage.jsp");
+	} else {
+	switch (accessRights.getAccessRights(accountTypeId)) {
+	case DIRECTOR:
+%>
 <%@ page import="java.sql.*;"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("UTF-8");
@@ -40,3 +52,11 @@ telephone = request.getParameter("telephone");
 <jsp:forward page="customers.jsp">
 	<jsp:param name="update" value="<%=customerId%>" />
 </jsp:forward>
+<%
+	break;
+	case CASHIER:
+	case NOACCESS:
+		response.sendRedirect("errorpage.jsp");
+	break;
+	}}
+%>

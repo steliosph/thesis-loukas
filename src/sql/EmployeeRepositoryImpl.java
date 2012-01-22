@@ -74,4 +74,30 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                 
                 return employee;
         }
+        
+    	public ResultSet getResult() {
+    		sqlQuery_ = "select * from employees inner join branches on employees.branch_id = branches.branch_id inner join account_type on employees.account_type_id = account_type.account_type_id inner join address a on employees.address_id = a.address_id inner join address a2 on branches.address_id = a2.address_id order by employees.employee_id";
+    		ResultSet rs = database_.getResultSet(sqlQuery_);
+    		return rs;
+    	}
+    	
+    	public ResultSet editEmployee(Integer employeeId) {
+    		sqlQuery_ = " select * from employees inner join branches on employees.branch_id = branches.branch_id inner join account_type on employees.account_type_id = account_type.account_type_id inner join address a on employees.address_id = a.address_id inner join address a2 on branches.address_id = a2.address_id where employee_id= '"
+    				+ employeeId + "'";
+    		System.out.println(sqlQuery_);
+    		ResultSet rs = database_.getResultSet(sqlQuery_);
+    		return rs;
+    	}
+    	
+    	public void updateEmployee(Integer employeeId, String firstname, String lastname, Double salary) {
+    		try {
+    			sqlQuery_ = "update employees set firstname= '" + firstname
+    					+ "', lastname = '" + lastname + "', salary = '" +salary + "' where employee_id = '"
+    					+ employeeId + "'";
+    			System.out.println(sqlQuery_);
+    			database_.update(sqlQuery_);
+    		} catch (Exception e) {			
+    			e.printStackTrace();
+    		}
+    	}
 }
