@@ -5,7 +5,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-       <% session.setAttribute("isValid", "no") ;%>
+       <% session.setAttribute("isValid", "no") ;
+       session.setAttribute("accountTypeId", null);
+      %>
        
        <jsp:forward page="index.jsp"/>
     </body>

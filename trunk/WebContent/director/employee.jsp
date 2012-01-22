@@ -1,3 +1,15 @@
+<%@ page import="enums.AccessRightsEnum"%>
+<%@ page import="bean.AccessRights"%>
+
+<%	
+	Integer accountTypeId = (Integer) session.getAttribute("accountTypeId");
+	AccessRights accessRights = new AccessRights();
+	if (accountTypeId == null) {
+		response.sendRedirect("../errorpage.jsp");
+	} else {
+	switch (accessRights.getAccessRights(accountTypeId)) {
+	case DIRECTOR:
+%>
 <%@ page import="sql.LoansRepository"%>
 <%@ page import="bean.Loans"%> 
 <%@ page import="sql.LoansRepositoryImpl"%>
@@ -5,11 +17,13 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
+<jsp:useBean id="employee" scope="page" class="sql.EmployeeRepositoryImpl" />
 
 <%
-	// String firstname = "", lastname = "", address = "", city = "", postalCode = "", telephone = "";
-	// int customerId = 0;
+	 String firstname = "", lastname = "", type= "", empAddress = "", empCity = "", empPostalCode = "", empTelephone = "", branchAddress= "", branchCity="", branchPostalCode= "", branchTelephone= "";
+	 int employeeId = 0, empAddressId = 0, branchAddressId;
+	 double salary = 0;
+	 Timestamp dataHired;
 %>
  
 <html>
@@ -56,7 +70,7 @@ $(document).ready(function() {
 						<ul class="navsub">
 							<li><a href="sumloans.jsp">Συνολική εικόνα δανείων</a></li>
 							<li><a href="customers.jsp">Κατάσταση Πελατών</a></li>
-							<li><a href="employee.jsp">Kατάσταση Υπαλλήλων</a></li>
+							<li><a href="employee.jsp">Κατάσταση εργαζομένων</a></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -73,13 +87,20 @@ $(document).ready(function() {
 					<table id="table-2">
 						<thead>
 							<tr>
-								<th>Αριθμός Πελάτη</th>
+								<th>Αριθμός Εργαζομένου</th>
 								<th>Όνομα</th>
 								<th>Επώνυμο</th>
-								<th>Διεύθυνση</th>
-								<th>Πόλη</th>
-								<th>Τ.Κ</th>
-								<th>Τηλέφωνο</th>
+								<th>Μισθος</th>
+								<th>Ημ. Προσληψης</th>
+								<th>Τυπος</th>
+								<th>Διευθυνση Εργαζομένου</th>
+								<th>Πόλη Εργαζομένου</th>
+								<th>Τ.Κ Εργαζομένου</th>
+								<th>Τηλέφωνο Εργαζομένου</th>
+								<th>Διευθυνση Καταστήματος</th>
+								<th>Πόλη Καταστήματος</th>
+								<th>Τ.Κ Καταστήματος</th>
+								<th>Τηλέφωνο Καταστήματος</th>
 								<th colspan="2">Actions</th>
 								
 							</tr>
@@ -89,27 +110,41 @@ $(document).ready(function() {
 
 
 							<%
-								ResultSet rs = customer.getResult();
+								ResultSet rs = employee.getResult();
 								while (rs.next()) {								
-									customerId = rs.getInt("customer_id");
+									employeeId = rs.getInt("employee_id");
 									firstname = rs.getString("firstname");
 									lastname = rs.getString("lastname");
-									address = rs.getString("address");
-									city = rs.getString("city");
-									postalCode = rs.getString("postal_code");
-									telephone = rs.getString("telephone");
+									salary = rs.getDouble("salary");
+									dataHired = rs.getTimestamp("date_hired");
+									type = rs.getString("type");
+									empAddress = rs.getString("a.address");
+									empCity = rs.getString("a.city");
+									empPostalCode = rs.getString("a.postal_code");
+									empTelephone = rs.getString("a.telephone");
+									branchAddress = rs.getString("a2.address");
+									branchCity = rs.getString("a2.city");
+									branchPostalCode = rs.getString("a2.postal_code");
+									branchTelephone = rs.getString("a2.telephone");
 							%>
 
 							<tr>
-								<td><%=customerId%></td>
+								<td><%=employeeId%></td>
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>
-								<td><%=address%></td>
-								<td><%=city%></td>
-								<td><%=postalCode%></td>
-								<td><%=telephone%></td>
-								<td><a href="editcustomer.jsp?customerId=<%=rs.getInt("customer_id")%>" class="editform" >Edit</a></td>
-                  				<td><a href="sumloans.jsp?delete=yes&deleteid=<%=rs.getInt("customer_id")%>>" onclick="return del()">Delete</a></td>
+								<td><%=salary%></td>
+								<td><%=dataHired%></td>
+								<td><%=type%></td>
+								<td><%=empAddress%></td>
+								<td><%=empCity%></td>
+								<td><%=empPostalCode%></td>
+								<td><%=empTelephone%></td>
+								<td><%=branchAddress%></td>
+								<td><%=branchCity%></td>
+								<td><%=branchPostalCode%></td>
+								<td><%=branchTelephone%></td>
+								<td><a href="editemployees.jsp?employeeId=<%=rs.getInt("employee_Id")%>" class="editform" >Edit</a></td>
+                  				<td><a href="sumloans.jsp?delete=yes&deleteid= >" onclick="return del()">Delete</a></td>
 							</tr>
 
 							<%
@@ -128,3 +163,11 @@ $(document).ready(function() {
 
 </body>
 </html>
+<%
+	break;
+	case CASHIER:
+	case NOACCESS:
+		response.sendRedirect("errorpage.jsp");
+	break;
+	}}
+%>

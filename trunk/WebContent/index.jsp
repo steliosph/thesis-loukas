@@ -6,7 +6,6 @@
        footer ti allo na valo
        kartes.jsp
        karta1-4 na ftiaxtoun
-       epikoinonia
         -->
 
     <!-- Rotate image script-->

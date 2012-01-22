@@ -1,3 +1,16 @@
+<%@ page import="enums.AccessRightsEnum"%>
+<%@ page import="bean.AccessRights"%>
+
+<%	
+	Integer accountTypeId = (Integer) session.getAttribute("accountTypeId");
+	AccessRights accessRights = new AccessRights();
+	if (accountTypeId == null) {
+		response.sendRedirect("../errorpage.jsp");
+	} else {
+	switch (accessRights.getAccessRights(accountTypeId)) {
+	case DIRECTOR:
+%>
+
 <%@ page import="sql.LoansRepository"%>
 <%@ page import="bean.Loans"%> 
 <%@ page import="sql.LoansRepositoryImpl"%>
@@ -56,7 +69,7 @@ $(document).ready(function() {
 						<ul class="navsub">
 							<li><a href="sumloans.jsp">Συνολική εικόνα δανείων</a></li>
 							<li><a href="customers.jsp">Κατάσταση Πελατών</a></li>
-							<li><a href="egkrisi.jsp">Δάνεια προς έγκριση</a></li>
+							<li><a href="employee.jsp">Κατάσταση εργαζομένων</a></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -128,3 +141,11 @@ $(document).ready(function() {
 
 </body>
 </html>
+<%
+	break;
+	case CASHIER:
+	case NOACCESS:
+		response.sendRedirect("errorpage.jsp");
+	break;
+	}}
+%>

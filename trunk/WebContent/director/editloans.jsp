@@ -1,3 +1,15 @@
+<%@ page import="enums.AccessRightsEnum"%>
+<%@ page import="bean.AccessRights"%>
+
+<%	
+	Integer accountTypeId = (Integer) session.getAttribute("accountTypeId");
+	AccessRights accessRights = new AccessRights();
+	if (accountTypeId == null) {
+		response.sendRedirect("../errorpage.jsp");
+	} else {
+	switch (accessRights.getAccessRights(accountTypeId)) {
+	case DIRECTOR:
+%>
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
@@ -33,6 +45,7 @@
 		amount = rs.getFloat("loan_amount");
 		type = rs.getString("type");
 		status = rs.getString("status");
+		session.setAttribute("loanId", loanId);
 	}
 %>
 
@@ -85,3 +98,11 @@
 </form>
 </body>
 </html>
+<%
+	break;
+	case CASHIER:
+	case NOACCESS:
+		response.sendRedirect("errorpage.jsp");
+	break;
+	}}
+%>
