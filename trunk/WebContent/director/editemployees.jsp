@@ -34,10 +34,10 @@
 	class="sql.EmployeeRepositoryImpl" />
 
 <%
-	 String employeeId1="", firstname = "", lastname = "", type= "", empAddress = "", empCity = "", empPostalCode = "", empTelephone = "", branchAddress= "", branchCity="", branchPostalCode= "", branchTelephone= "";
+	 String s="", employeeId1="", firstname = "", lastname = "", type= "", empAddress = "", empCity = "", empPostalCode = "", empTelephone = "", branchAddress= "", branchCity="", branchPostalCode= "", branchTelephone= "";
 	 int employeeId = 0, empAddressId = 0, branchAddressId = 0;
 	 double salary = 0;
-	 Timestamp dataHired;
+	 Timestamp dateHired;
 %>	
 	
 <%
@@ -52,8 +52,9 @@ System.out.println(employeeId);
 		firstname = rs.getString("firstname");
 		lastname = rs.getString("lastname");
 		salary = rs.getDouble("salary");
-		dataHired = rs.getTimestamp("date_hired");
-		System.out.println(dataHired);
+		dateHired = rs.getTimestamp("date_hired");
+		
+		System.out.println(dateHired);
 		
 		type = rs.getString("type");
 		empAddressId = rs.getInt("a.address_id");

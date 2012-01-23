@@ -29,6 +29,7 @@ body {
 #Header, .pageMain, #Footer {width: 990px;}
 	
 /* */
+#contactimg                                { float: right; margin-top: 0px ;}
 
 /* main menu */
 #director {

@@ -77,7 +77,7 @@ $(document).ready(function() {
 			        <%
 			        	String updateloans = "";
 			        updateloans = (String) session.getAttribute("updateloans");
-			        	session.removeAttribute("update");
+			        	session.removeAttribute("updateloans");
 			        	if (updateloans != null)
 			        		out.print(updateloans);
 			        %>
