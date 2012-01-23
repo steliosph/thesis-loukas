@@ -29,22 +29,12 @@
 
 <%
 			LoanId = (Integer) session.getAttribute("loanId");
-			System.out.println(LoanId);
-
-			CustomerId1 = request.getParameter("customerId");
-			CustomerId = Integer.parseInt(CustomerId1);
-			System.out.println(CustomerId);
+			CustomerId = (Integer) session.getAttribute("customerId");
 
 			LoanAmount1 = request.getParameter("amount");
 			LoanAmount = Float.parseFloat(LoanAmount1);
-			System.out.println(LoanAmount);
-
 			Type = request.getParameter("type");
 			Status = request.getParameter("status");
-
-			System.out.println(Type);
-			System.out.println(Status);
-
 			loan.updateLoan(LoanId, CustomerId, LoanAmount);
 			loanstatus.updateLoan(LoanId, Status, Type);
 			session.setAttribute("updateloans", "Το δάνειο με κωδικό:("

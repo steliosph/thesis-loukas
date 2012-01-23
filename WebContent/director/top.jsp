@@ -16,23 +16,12 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var overlayColor = $('#fancy_overlay')
-		$("a.login").fancybox({
+		$("a.contact").fancybox({
 			'padding' : 3,
 			'overlayOpacity' : 0.2,
 			'overlayColor' : overlayColor,
-			'frameWidth' : 400,
-			'frameHeight' : 208,
-			'hideOnContentClick' : false,
-			'callbackOnShow' : modalStart,
-			'transitionIn' : 'elastic',
-			'transitionOut' : 'fade'
-		});
-		$("a.register").fancybox({
-			'padding' : 3,
-			'overlayOpacity' : 0.2,
-			'overlayColor' : overlayColor,
-			'frameWidth' : 400,
-			'frameHeight' : 208,
+			'frameWidth' : 600,
+			'frameHeight' : 288,
 			'hideOnContentClick' : false,
 			'callbackOnShow' : modalStart,
 			'transitionIn' : 'elastic',
@@ -63,13 +52,13 @@
 								<li><a href="../news.jsp">Νέα</a></li>
 								<li><a href="../programmata.jsp">Προγράμματα</a></li>
 								<li><a href="../katastimata.jsp">Καταστήματα</a></li>
-								<li><a href="../contact.jsp">Επικοινωνια</a></li>
+								<li><a href="./contact.jsp" class="contact">Επικοινωνια</a></li>
 							</ul>
 
 							<div class="mmDivider"></div>
 							<%
 								String isValid = (String) session.getAttribute("isValid");
-								if (isValid == "no" || isValid == null) {
+						 		if (isValid == "no" || isValid == null) {
 							%>
 							<ul class="nav-main">
 								<li class="list"><span class="mmLogin">Login/Register</span>

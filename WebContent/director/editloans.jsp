@@ -1,14 +1,15 @@
 <%@ page import="enums.AccessRightsEnum"%>
 <%@ page import="bean.AccessRights"%>
 
-<%	
-	Integer accountTypeId = (Integer) session.getAttribute("accountTypeId");
+<%
+	Integer accountTypeId = (Integer) session
+			.getAttribute("accountTypeId");
 	AccessRights accessRights = new AccessRights();
 	if (accountTypeId == null) {
 		response.sendRedirect("../errorpage.jsp");
 	} else {
-	switch (accessRights.getAccessRights(accountTypeId)) {
-	case DIRECTOR:
+		switch (accessRights.getAccessRights(accountTypeId)) {
+		case DIRECTOR:
 %>
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -31,23 +32,27 @@
 </head>
 
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
-<%! String loanId1 = "", type = "", status = ""; 
+<%!String loanId1 = "", type = "", status = "";
 	int loanId = 0, customerId = 0;
 	float amount = 0;%>
 
 <%
 	loanId1 = request.getParameter("loanId");
-	loanId = Integer.parseInt(loanId1);
-	ResultSet rs = loan.editLoan(loanId);
-	if (rs.next()) {
-		loanId = rs.getInt("loan_id");
-		customerId = rs.getInt("customer_id");
-		amount = rs.getFloat("loan_amount");
-		type = rs.getString("type");
-		status = rs.getString("status");
-		session.setAttribute("loanId", loanId);
-	}
+			loanId = Integer.parseInt(loanId1);
+			ResultSet rs = loan.editLoan(loanId);
+			if (rs.next()) {
+				loanId = rs.getInt("loan_id");
+				customerId = rs.getInt("customer_id");
+				amount = rs.getFloat("loan_amount");
+				type = rs.getString("type");
+				status = rs.getString("status");
+				session.setAttribute("loanId", loanId);
+				session.setAttribute("customerId", customerId);
+			}
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@page import="enums.LoanOptions"%>
 
 <form name="editform" method="post" action="updateloans.jsp">
 	<table width="300px">
@@ -61,7 +66,7 @@
 		</tr>
 		<tr>
 			<td>Id Πελάτη:</td>
-			<td><input type="text" name="customerId" value="<%=customerId%>"></td>
+			<td><input type="text" name="customerId" value="<%=customerId%>" readonly></td>
 		</tr>
 		<tr>
 			<td>Ποσό:</td>
@@ -70,11 +75,10 @@
 		<tr>
 			<td>Tύπος:</td>
 			<td><select name="type">
-					<option selected value="<%=type%>"></option>
-					<option value="Προσωπικό Δάνειο">Προσωπικό Δάνειο</option>
-					<option value="Δάνειo Αγοράς">Δάνειo Αγοράς</option>
-					<option value="Στεγαστικό δάνειο">Στεγαστικό δάνειο</option>
-					<option value="Καταναλωτικό Δάνειο">Καταναλωτικό Δάνειο</option>
+					<option selected value="<%=type%>"><%=type%></option>
+					<c:forEach var="type" items="<%= LoanOptions.values() %>">
+						<option value="${type}">${type}</option>
+					</c:forEach>
 			</select></td>
 
 		</tr>
@@ -86,6 +90,7 @@
 					<option value="Εγκριθηκε">'Εγκριση</option>
 					<option value="Απορριφθηκε">Απόρριψη</option>
 			</select></td>
+			
 
 		</tr>
 	</table>
@@ -100,9 +105,10 @@
 </html>
 <%
 	break;
-	case CASHIER:
-	case NOACCESS:
-		response.sendRedirect("errorpage.jsp");
-	break;
-	}}
+		case CASHIER:
+		case NOACCESS:
+			response.sendRedirect("errorpage.jsp");
+			break;
+		}
+	}
 %>
