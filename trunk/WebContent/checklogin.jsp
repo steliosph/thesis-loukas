@@ -3,7 +3,7 @@
 <%@ page import="sql.EmployeeRepositoryImpl"%>
 <%@ page import="sql.EmployeeRepository"%>
 <%@ page import="sql.CustomersRepositoryImpl"%>
-<%@ page import="sql.CustomersRepository"%>
+<%@ page import="sql.CustomersRepository"%> 
 <%@ page import="bean.WebLogin"%>
 <%@ page import="bean.Employee"%>
 <%@ page import="bean.Customer"%>
@@ -45,9 +45,7 @@
 			
 			switch (webLoginRepository.getAdministratorType(employeeId)) {
 			case CASHIER:
-%>
-<jsp:forward page="test.jsp"></jsp:forward>
-<%
+				response.sendRedirect("cashier/cashier.jsp");
 	break;
 			case DIRECTOR:
 				response.sendRedirect("director/director.jsp");

@@ -46,7 +46,7 @@ form label.error,label.error {
 }
 
 .Input {
-	width: 153px;
+	width: 159px;
 }
 
 .box {
@@ -63,8 +63,7 @@ form label.error,label.error {
 			</center>
 			<div class="hr" style="margin-top: -12px;"></div>
 	<div id="contactimg">
-			<img SRC="http://www.aboverubies.org.au/images/Optimized.ContactUs.jpg" width="115" height="78"
-				alt="lock and key" />
+			<img SRC="images/contact.jpg" width="115" height="78"/>
 		</div>
 			<p>
 				<label for="firstname" class="overlabel">Όνομα</label> <input
