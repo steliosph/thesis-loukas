@@ -44,14 +44,14 @@ public class DatabaseClass {
                         Statement stmt = connection_.createStatement();
                         stmt.executeUpdate(sqlQuery);
                 } catch (java.sql.SQLException e) {
-                        throw new Exception("Cannot execute query:" +sqlQuery + " message:"+e.getMessage); 
+                        throw new Exception("Cannot execute query:" +sqlQuery + " message:"+e.getMessage()); 
                 }
         } 
 
-       	 public Integer getLastId(String sqlQuery) throws SQLException {
-       		ResultSet rs = null;
-       		int Id = 0;
-       		 try {
+         public Integer getLastId(String sqlQuery) throws SQLException {
+                ResultSet rs = null;
+                int Id = 0;
+                 try {
                 
                 PreparedStatement pstmt = connection_.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
                 pstmt.executeUpdate();               
@@ -61,9 +61,9 @@ public class DatabaseClass {
                 } catch (SQLException ex) {               
                 }
                 return Id;
-       		}
+                }
 
-        	                    
+                                    
    
         
         public ResultSet getResultSet(String sqlQuery) {
