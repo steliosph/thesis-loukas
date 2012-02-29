@@ -40,12 +40,11 @@ public class DatabaseClass {
         }
 
         public void update(String sqlQuery) throws Exception {
-        	sqlQuery = new String(sqlQuery);
                 try {
                         Statement stmt = connection_.createStatement();
                         stmt.executeUpdate(sqlQuery);
                 } catch (java.sql.SQLException e) {
-                        // TODO 
+                        throw new Exception("Cannot execute query:" +sqlQuery + " message:"+e.getMessage); 
                 }
         } 
 
