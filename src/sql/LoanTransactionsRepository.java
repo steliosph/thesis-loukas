@@ -7,8 +7,8 @@ import bean.LoanTransactions;
 public interface LoanTransactionsRepository extends
 		BeanRepository<LoanTransactions> {
 
-	public LoanTransactions create(Integer LoanTransactionId,
-			Integer CustomerId, Integer LoanId, Timestamp LoanTransactionTime,
-			Float Amount);
+	LoanTransactions create(Integer LoanTransactionId, Integer LoanId,
+			Timestamp LoanTransactionTime, Float InitialLoanAmount,
+			Float TotalPayedAmount, Float RemainingPayeeAmount);
 
 }

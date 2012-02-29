@@ -4,24 +4,28 @@ import java.sql.Timestamp;
 
 public class LoanTransactions {
 	private Integer LoanTransactionId_;
-	private Integer CustomerId_;
-	private Integer LoanId_;
 	private Timestamp LoanTransactionTime_;
-	private Float Amount_;
+	private Integer LoanId_;
+	private Float InitialLoanAmount_;
+	private Float TotalPayedAmount_;
+	private Float RemainingPayeeAmount_;
+	
 
-	public LoanTransactions(Integer LoanTransactionId, Integer CustomerId,
-			Integer LoanId, Timestamp LoanTransactionTime, Float Amount) {
-		LoanTransactionId_ = LoanTransactionId;
-		CustomerId_ = CustomerId;
-		LoanId_ = LoanId;
+	public LoanTransactions(Integer LoanTransactionId, Timestamp LoanTransactionTime, Integer LoanId, Float InitialLoanAmount, Float TotalPayedAmount, Float RemainingPayeeAmount) {
+		LoanTransactionId_ = LoanTransactionId;		
 		LoanTransactionTime_ = LoanTransactionTime;
-		Amount_ = Amount;
+		LoanId_ = LoanId;
+		InitialLoanAmount_ = InitialLoanAmount;
+		TotalPayedAmount_ = TotalPayedAmount;
+		RemainingPayeeAmount_ = RemainingPayeeAmount;		
 	}
 
 	public LoanTransactions(LoanTransactions loantransactions) {
 		this(loantransactions.getLoanTransactionId(), loantransactions
-				.getCustomerId(), loantransactions.getLoanId(), loantransactions
-				.getLoanTransactionTime(), loantransactions.getAmount());
+				.getLoanTransactionTime(), loantransactions.getLoanId(),
+				loantransactions.getInitialLoanAmount(), loantransactions
+						.getTotalPayedAmount(), loantransactions
+						.getTotalPayedAmount());
 	}
 
 	public Integer getLoanTransactionId() {
@@ -30,14 +34,6 @@ public class LoanTransactions {
 
 	public void setLoanTransactionId(Integer loanTransactionId) {
 		LoanTransactionId_ = loanTransactionId;
-	}
-
-	public Integer getCustomerId() {
-		return CustomerId_;
-	}
-
-	public void setCustomerId(Integer customerId) {
-		CustomerId_ = customerId;
 	}
 
 	public Integer getLoanId() {
@@ -56,12 +52,30 @@ public class LoanTransactions {
 		LoanTransactionTime_ = loanTransactionTime;
 	}
 
-	public Float getAmount() {
-		return Amount_;
+	public Float getInitialLoanAmount() {
+		return InitialLoanAmount_;
 	}
 
-	public void setAmount(Float amount) {
-		Amount_ = amount;
+	public void setInitialLoanAmount(Float initialLoanAmount) {
+		InitialLoanAmount_ = initialLoanAmount;
 	}
 
+	public Float getTotalPayedAmount() {
+		return TotalPayedAmount_;
+	}
+
+	public void setTotalPayedAmount(Float totalPayedAmount) {
+		TotalPayedAmount_ = totalPayedAmount;
+	}
+
+	public Float getRemainingPayeeAmount() {
+		return RemainingPayeeAmount_;
+	}
+
+	public void setRemainingPayeeAmount(Float remainingPayeeAmount) {
+		RemainingPayeeAmount_ = remainingPayeeAmount;
+	}
+
+	
+	
 }
