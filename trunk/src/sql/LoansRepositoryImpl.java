@@ -65,7 +65,6 @@ public class LoansRepositoryImpl implements LoansRepository {
 					+ "', loan_amount = '" + LoanAmount + "' where loan_id='"
 					+ LoanId + "'";
 			System.out.println(sqlQuery_);
-
 			database_.update(sqlQuery_);
 		} catch (Exception e) {			
 			e.printStackTrace();

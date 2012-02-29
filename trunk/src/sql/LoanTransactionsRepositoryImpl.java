@@ -7,6 +7,9 @@ import bean.LoanTransactions;
 public class LoanTransactionsRepositoryImpl implements
 		LoanTransactionsRepository {
 
+	private DatabaseClass database_ = new DatabaseClass();
+	private String sqlQuery_;
+
 	@Override
 	public LoanTransactions create() {
 		// TODO Auto-generated method stub
@@ -37,6 +40,22 @@ public class LoanTransactionsRepositoryImpl implements
 			Float Amount) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void loanTransaction(Integer LoanId, Float InitialLoanAmount,
+			Float TotalPayedAmount, Float RemainingPayeeAmount) {
+		try {
+			sqlQuery_ = "insert into loan_transactions (loan_id,initial_loan_amount,total_payed_amount,remaining_payee_amount) values ('"
+					+ LoanId
+					+ "','"
+					+ InitialLoanAmount
+					+ "','"
+					+ TotalPayedAmount + "','" + RemainingPayeeAmount + "')";
+			System.out.println(sqlQuery_);
+			database_.update(sqlQuery_);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
