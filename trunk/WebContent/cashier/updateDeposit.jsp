@@ -21,12 +21,11 @@
 %>
 
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
-<jsp:useBean id="loantransactions" scope="page"
-	class="sql.LoanTransactionsRepositoryImpl" />
+<jsp:useBean id="loantransactions" scope="page" class="sql.LoanTransactionsRepositoryImpl" />
 <%!String LoanId1 = "", TotalPayedAmount1;
 	int LoanId = 0, CustomerId = 0;
 	float LoanAmount = 0 ,InitialLoanAmount = 0 ,TotalPayedAmount = 0 ,RemainingPayeeAmount = 0 ;
-%>
+%> 
 
 <%
 			LoanId = (Integer) session.getAttribute("loanId");	
@@ -44,7 +43,8 @@
 			System.out.println(TotalPayedAmount);
 			System.out.println(RemainingPayeeAmount);
 			
-			loantransactions.loanTransaction(LoanId, InitialLoanAmount, TotalPayedAmount, RemainingPayeeAmount);
+			loantransactions.getResult();
+			//loantransactions.loanTransaction(LoanId, InitialLoanAmount, TotalPayedAmount, RemainingPayeeAmount);
 			loan.updateLoan(LoanId, CustomerId, LoanAmount);
 			session.setAttribute("updateloans", "Το δάνειο με κωδικό:("
 					+ LoanId + ") ανανεώθηκε!");
