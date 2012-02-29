@@ -37,7 +37,7 @@
 <%!String loanId1 = "", type = "", status = "";
 	int loanId = 0, customerId = 0;
 	float amount = 0;%>
-
+ 
 <%
 	loanId1 = request.getParameter("loanId");
 			loanId = Integer.parseInt(loanId1);
