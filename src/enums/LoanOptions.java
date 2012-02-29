@@ -6,17 +6,19 @@ public enum LoanOptions {
 	
 	DANEIO_AGORAS ("Δάνειo Αγοράς"),
 	
-	STEGASTIKO_DANEIO ("Στεγαστικό Δάνειο"),
+	STEGASTIKO_DANEIO ("Στεγαστικό δάνειο"),
+	
+	DANEIO_AGORA_AFTOKINITOU ("Δάνεια Αγοράς Αυτοκινήτου"),
 	
 	KATANALWTIKO_DANEIO ("Καταναλωτικό Δάνειο");
 	
-	private String type_;
+	private String type;
 
 	private LoanOptions(String type) {
-		type_ = type;
+		this.type = type;
 	}
 
 	public String getType() {
-		return type_;
+		return type;
 	}
 }

@@ -58,7 +58,7 @@
 							<div class="mmDivider"></div>
 							<%
 								String isValid = (String) session.getAttribute("isValid");
-						 		if (isValid == "no" || isValid == null) {
+								if (isValid == "no" || isValid == null) {
 							%>
 							<ul class="nav-main">
 								<li class="list"><span class="mmLogin">Login/Register</span>
@@ -80,6 +80,11 @@
 							%>
 						</div>
 						<div id="MmRight"></div>
+						<h2><span>Γενικός Διευθυντής:
+							<a href="./director.jsp" STYLE="text-decoration: none">   <%=session.getAttribute("firstname")%>
+									<%=session.getAttribute("lastname")%></span>
+							</a>
+						</h2>
 					</div>
 				</div>
 				<div id="Logo">
@@ -92,4 +97,3 @@
 			<div class="pageBottom"></div>
 
 			<%@page contentType="text/html" pageEncoding="UTF-8"%>
-	

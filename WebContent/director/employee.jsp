@@ -125,7 +125,7 @@ $(document).ready(function() {
 									branchAddress = rs.getString("a2.address");
 									branchCity = rs.getString("a2.city");
 									branchPostalCode = rs.getString("a2.postal_code");
-									branchTelephone = rs.getString("a2.telephone");
+									branchTelephone = rs.getString("a2.telephone");									
 							%>
 
 							<tr>

@@ -7,6 +7,8 @@
     <body>
        <% session.setAttribute("isValid", "no") ;
        session.setAttribute("accountTypeId", null);
+       session.setAttribute("firstname", null) ;
+       session.setAttribute("lastname", null) ;
       %>
        
        <jsp:forward page="index.jsp"/>
