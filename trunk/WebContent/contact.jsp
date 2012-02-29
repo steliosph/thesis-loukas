@@ -46,11 +46,11 @@ form label.error,label.error {
 }
 
 .Input {
-	width: 159px;
+	width: 173px;
 }
 
 .box {
-	width: 278;
+	width: 298;
 }
 </style>
 
@@ -61,7 +61,7 @@ form label.error,label.error {
 			<center>
 				<h1>Φόρμα Επικοινωνίας</h1>
 			</center>
-			<div class="hr" style="margin-top: -12px;"></div>
+			<div class="hr" style="margin-top: -12px; margin-right: 52px;"></div>
 	<div id="contactimg">
 			<img SRC="images/contact.jpg" width="115" height="78"/>
 		</div>
@@ -77,7 +77,7 @@ form label.error,label.error {
 			<p>
 				<label for="comment" class="overlabel"> </label>
 				<textarea name="message" id="message"
-					style='resize: none; width: 278px; height: 150px;' /></textarea>
+					style='resize: none; width: 288px; height: 150px;' /></textarea>
 			</p>
 			<p class="right noMargin">
 				<button type="submit" class="btn" value="Submit">

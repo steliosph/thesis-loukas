@@ -1,5 +1,7 @@
+<%@page import="enums.LoanStatus"%>
 <%@ page import="enums.AccessRightsEnum"%>
 <%@ page import="bean.AccessRights"%>
+<%@page import="enums.LoanOptions"%>
 
 <%
 	Integer accountTypeId = (Integer) session
@@ -48,11 +50,15 @@
 				status = rs.getString("status");
 				session.setAttribute("loanId", loanId);
 				session.setAttribute("customerId", customerId);
+				session.setAttribute("type", type);
+				session.setAttribute("status", status);
 			}
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%@page import="enums.LoanOptions"%>
+<%
+	pageContext.setAttribute("loanOptions", enums.LoanOptions.values());
+	pageContext.setAttribute("loanStatus", enums.LoanStatus.values());
+%>
 
 <form name="editform" method="post" action="updateloans.jsp">
 	<table width="300px">
@@ -74,24 +80,19 @@
 		</tr>
 		<tr>
 			<td>Tύπος:</td>
-			<td><select name="type">
-					<option selected value="<%=type%>"><%=type%></option>
-					<c:forEach var="type" items="<%= LoanOptions.values() %>">
-						<option value="${type}">${type}</option>
+			<td><select name='type'>
+					<c:forEach items="${loanOptions}" var="loanOptions">
+						<option value="${loanOptions.type}" ${loanOptions.type==type ? 'selected' : ''}>${loanOptions.type}</option>
 					</c:forEach>
 			</select></td>
-
 		</tr>
 		<tr>
-			<td>Κατάσταση:</td>
-			<td><select name="status">
-					<option selected value="<%=status%>"></option>
-					<option value="Εκκρεμεί">Εκκρεμεί</option>
-					<option value="Εγκριθηκε">'Εγκριση</option>
-					<option value="Απορριφθηκε">Απόρριψη</option>
+			<td>Κατάσταση:</td>  
+			<td><select name=status>
+					<c:forEach items="${loanStatus}" var="loanStatus">
+						<option value="${loanStatus.status}" ${loanStatus.status==status ? 'selected' : ''}>${loanStatus.status}</option>
+					</c:forEach>							
 			</select></td>
-			
-
 		</tr>
 	</table>
 		<div class="hr" style="margin-bottom: -3px;"></div>

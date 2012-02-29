@@ -66,7 +66,7 @@ $(document).ready(function() {
 			<!-- Main Menu Links -->
 			<div id="director">
 				<ul class="navmain">
-					<li class="list"><a href="director.jsp">Γενικός Διευθυντής</a>
+					<li class="list"><a href="cashier.jsp">Χειριστής Ταμείου</a>
 						<ul class="navsub">
 							<li><a href="sumloans.jsp">Συνολική εικόνα δανείων</a></li>
 							<li><a href="customers.jsp">Κατάσταση Πελατών</a></li>

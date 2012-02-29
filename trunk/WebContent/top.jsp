@@ -1,6 +1,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <%
-	session.setAttribute("isValid", "no");
+	if (session.getAttribute("isValid") == null) {
+		session.setAttribute("isValid", "no");
+	}
+	// session.setAttribute("isValid", "no");
 %>
 <head>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -104,6 +107,28 @@
 						%>
 					</div>
 					<div id="MmRight"></div>
+					<%
+						if (isValid == "yes") {
+							Integer accountTypeId = (Integer) session.getAttribute("accountTypeId");
+							if (accountTypeId == 1) {
+					%>
+					<h2>
+						<span>Γενικός Διευθυντής: <a href="./director/director.jsp"
+							STYLE="text-decoration: none"> <%=session.getAttribute("firstname")%>
+								<%=session.getAttribute("lastname")%></span> </a>
+					</h2>
+					<%
+						}
+							else if (accountTypeId == 0) {
+					%>
+					<h2>
+						<span>Tαμίας: <a href="./cashier/cashier.jsp"
+							STYLE="text-decoration: none"> <%=session.getAttribute("firstname")%>
+								<%=session.getAttribute("lastname")%></span> </a>
+					</h2>
+					<%
+						}}
+					%>
 				</div>
 			</div>
 			<div id="Logo">
