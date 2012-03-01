@@ -11,19 +11,17 @@
 	case DIRECTOR:
 	case CASHIER:
 %>
-<%@ page import="sql.LoansRepository"%>
-<%@ page import="bean.Loans"%> 
-<%@ page import="sql.LoansRepositoryImpl"%> 
-<%@ page language="java" import="java.sql.*"%>
 
+
+<%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
-<jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
+<jsp:useBean id="creditCards" scope="page" class="sql.CreditCardsRepositoryImpl" />
 
 <%
-	String firstname = "", lastname = "", Firstname = "", Lastname = "", customerId1 = "", sum = "", loan_id = "", customer_id = "", loan_amount = "", type = "", status = "";
+	String firstname = "", lastname = "", Firstname = "", Lastname = "", customerId1 = "", cardNumber = "";
 	int y = 0, x = 0, loanid = 0, customerId = 0;
+	float balance, orio;
 %>
  
 <html>
@@ -65,60 +63,51 @@ $(document).ready(function() {
 		<div class="contentArea">
 			<!-- Main Menu Links -->
 		<%@ include file="menu.jsp"%>
-			<h1>Συνολική εικόνα Δανείων</h1>
+			<h1>Συνολική εικόνα πιστωτικών καρτών</h1>
 			        <%
-			        	String updateloans = "";
-			        updateloans = (String) session.getAttribute("updateloans");
-			        	session.removeAttribute("updateloans");
-			        	if (updateloans != null)
-			        		out.print(updateloans);
+			        	String updatecc = "";
+			        updatecc = (String) session.getAttribute("updatecc");
+			        	session.removeAttribute("updatecc");
+			        	if (updatecc != null)
+			        		out.print(updatecc);
 			        %>
 			<div>
 				<div style="overflow: auto; height: 500px;">
 					<table id="table-2">
-						<caption>Στοιχεία δανείών</caption>
+						<caption>Στοιχεία πιστωτικών καρτών</caption>
 						<thead>
 							<tr>
-								<th>Αριθμός Δανείου</th>
-								<th>Αριθμός Πελάτη</th>
-								<th>Ποσό</th>
-								<th>Τύπος</th>
-								<th>Κατάσταση</th>
-								<th colspan="2">Actions</th>
-								
+								<th>Επώνυμο</th>
+								<th>Όνομα</th>
+								<th>Αριθμός κάρτας</th>
+								<th>Υπόλοιπο</th>
+								<th>Όριο</th>
+								<th colspan="2">Actions</th>								
 							</tr>
 						</thead>
-
 						<tbody>
-
-
 							<%
-							ResultSet rs = loan.getResultWithName();
-								while (rs.next()) {
-									loan_id = rs.getString("loan_id");
+							ResultSet rs = creditCards.getResultWithName();
+								while (rs.next()) {									
+									cardNumber = rs.getString("card_number");
 									firstname = rs.getString("Firstname");
 									lastname = rs.getString("lastname");
-									loan_amount = rs.getString("loan_amount");
-									type = rs.getString("type");
-									status = rs.getString("status");
+									balance = rs.getFloat("balance");									
+									orio = rs.getFloat("orio");
 							%>
-
 							<tr> 
-								<td><%=loan_id%></td>
+								<td><%=cardNumber%></td>
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>
- 								<td><%=loan_amount%></td>
-								<td><%=type%></td>
-								<td><%=status%></td>
-								<td><a href="amountOfDeposit.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >Κατάθεση</a></td>                  				
+ 								<td><%=balance%></td>
+								<td><%=orio%></td>								
+								<td><a href="ccDeposit.jsp?cardNumber=<%=rs.getString("card_number")%>" class="editform" >Κατάθεση</a></td>                  				
+								<td><a href="ccWithdrawals.jsp?cardNumber=<%=rs.getString("card_number")%>" class="editform" >Ανάληψη</a></td>                   				                  			
 							</tr>
-
 							<%
 								}
 							%>
-
 						</tbody>
-
 					</table>
 				</div>
 				<div class="clear"></div>
@@ -127,7 +116,6 @@ $(document).ready(function() {
 		<div class="clear"></div>
 	</div>
 	<%@ include file="../footer.jsp"%>
-
 </body>
 </html>
 <%

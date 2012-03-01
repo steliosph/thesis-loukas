@@ -36,15 +36,7 @@
 			TotalPayedAmount = Float.parseFloat(TotalPayedAmount1);			
 			RemainingPayeeAmount = InitialLoanAmount - TotalPayedAmount;			
 			LoanAmount = RemainingPayeeAmount;					
-
-			
-			System.out.println(LoanId);
-			System.out.println(InitialLoanAmount);
-			System.out.println(TotalPayedAmount);
-			System.out.println(RemainingPayeeAmount);
-			
-			loantransactions.getResult();
-			//loantransactions.loanTransaction(LoanId, InitialLoanAmount, TotalPayedAmount, RemainingPayeeAmount);
+			loantransactions.loanTransaction(LoanId, InitialLoanAmount, TotalPayedAmount, RemainingPayeeAmount);
 			loan.updateLoan(LoanId, CustomerId, LoanAmount);
 			session.setAttribute("updateloans", "Το δάνειο με κωδικό:("
 					+ LoanId + ") ανανεώθηκε!");

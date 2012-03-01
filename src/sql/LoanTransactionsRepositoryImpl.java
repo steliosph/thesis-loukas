@@ -57,9 +57,5 @@ public class LoanTransactionsRepositoryImpl implements
 			e.getMessage();
 		}
 	}
-	
-	public void getResult() {
-		System.out.println("dsafdasf");
-	}
 
 }
