@@ -4,7 +4,11 @@ import java.sql.Timestamp;
 
 import bean.CreditCardsTransaction;
 
-public class CreditCardsTransactionRepositoryImpl implements CreditCardsTransactionRepository {
+public class CreditCardsTransactionRepositoryImpl implements
+		CreditCardsTransactionRepository {
+
+	private DatabaseClass database_ = new DatabaseClass();
+	private String sqlQuery_;
 
 	@Override
 	public CreditCardsTransaction create() {
@@ -27,7 +31,7 @@ public class CreditCardsTransactionRepositoryImpl implements CreditCardsTransact
 	@Override
 	public void insert(CreditCardsTransaction bean) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -36,6 +40,33 @@ public class CreditCardsTransactionRepositoryImpl implements CreditCardsTransact
 			Timestamp CreditCardTransactionTime, Boolean Deposit, Float Amount) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void creditCardTransaction(String CardNumber, Integer CustomerId, String Deposit,
+			Float InitialCreditCardAmount, Float TotalCreditCardAmount,
+			Float RemainingCreditCardAmount, Float Orio) {
+		try {
+			sqlQuery_ = "insert into credit_cards_transactions (card_number,customer_id,deposit,initial_credit_card_amount,total_credit_card_amount,remaining_credit_card_amount,orio) values ('"
+					+ CardNumber
+					+ "','"
+					+ CustomerId
+					+ "','"
+					+ Deposit
+					+ "','"
+					+ InitialCreditCardAmount
+					+ "','"
+					+ TotalCreditCardAmount
+					+ "','"
+					+ RemainingCreditCardAmount
+					+ "','"
+					+ Orio
+					+ "')";
+			System.out.println(sqlQuery_);
+			database_.update(sqlQuery_);
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
 	}
 
 }

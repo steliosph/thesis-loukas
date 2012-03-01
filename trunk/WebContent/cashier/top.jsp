@@ -81,7 +81,7 @@
 						</div>
 						<div id="MmRight"></div>
 												<h2><span>Ταμίας:
-							<a href="./director.jsp" STYLE="text-decoration: none">   <%=session.getAttribute("firstname")%>
+							<a href="./cashier.jsp" STYLE="text-decoration: none">   <%=session.getAttribute("firstname")%>
 									<%=session.getAttribute("lastname")%></span>
 							</a>
 						</h2>

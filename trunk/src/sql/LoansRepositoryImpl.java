@@ -44,6 +44,12 @@ public class LoansRepositoryImpl implements LoansRepository {
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
 	}
+	
+	public ResultSet getResultWithName() {
+		sqlQuery_ = "select * from loans inner join loan_status on loans.loan_id = loan_status.loan_id inner join customers on loans.customer_id = customers.customer_id ORDER BY loans.loan_id";
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
+	}
 
 	public ResultSet editLoan(Integer loanId) {
 		sqlQuery_ = "select * from loans inner join loan_status on loans.loan_id = loan_status.loan_id where loans.loan_id = '"

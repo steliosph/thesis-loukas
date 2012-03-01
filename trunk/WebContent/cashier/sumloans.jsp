@@ -64,16 +64,7 @@ $(document).ready(function() {
 	<div class="pageMain">
 		<div class="contentArea">
 			<!-- Main Menu Links -->
-			<div id="director">
-				<ul class="navmain">
-					<li class="list"><a href="cashier.jsp">Χειριστής Ταμείου</a>
-						<ul class="navsub">
-							<li><a href="sumloans.jsp">Συνολική εικόνα δανείων</a></li>
-							<li><a href="customers.jsp">Κατάσταση Πελατών</a></li>
-							<li><a href="employee.jsp">Κατάσταση εργαζομένων</a></li>
-						</ul></li>
-				</ul>
-			</div>
+				<%@ include file="menu.jsp"%>
 			<h1>Συνολική εικόνα Δανείων</h1>
 			        <%
 			        	String updateloans = "";
