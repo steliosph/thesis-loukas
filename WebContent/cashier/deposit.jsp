@@ -22,8 +22,8 @@
 <jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
 
 <%
-	String firstname = "", lastname = "", Firstname = "", Lastname = "", customerId1 = "", sum = "", loan_id = "", customer_id = "", loan_amount = "", type = "", status = "";
-	int y = 0, x = 0, loanid = 0, customerId = 0;
+	String firstname = "", lastname = "", loan_id = "", loan_amount = "", type = "", status = "";
+	int loanid = 0;
 %>
  
 <html>
@@ -44,9 +44,7 @@ $("a.editform").fancybox({
 	'frameWidth':400,
 	'frameHeight':208,
 	'hideOnContentClick':false,
-	'callbackOnShow':modalStart,
-        'transitionIn'    : 'elastic',
-        'transitionOut'   : 'fade'         
+	'callbackOnShow':modalStart         
 });
                  
 function modalStart(){
@@ -80,11 +78,12 @@ $(document).ready(function() {
 						<thead>
 							<tr>
 								<th>Αριθμός Δανείου</th>
-								<th>Αριθμός Πελάτη</th>
+								<th>Όνομα</th>
+								<th>Επώνυμο</th>
 								<th>Ποσό</th>
-								<th>Τύπος</th>
 								<th>Κατάσταση</th>
-								<th colspan="2">Actions</th>
+								<th>Τύπος</th>
+								<th>Actions</th>
 								
 							</tr>
 						</thead>

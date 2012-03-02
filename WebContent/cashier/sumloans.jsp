@@ -23,7 +23,7 @@
 
 <%
 	String Firstname = "", Lastname = "", customerId1 = "", sum = "", loan_id = "", customer_id = "", loan_amount = "", type = "", status = "";
-	int y = 0, x = 0, loanid = 0, customerId = 0;
+	int y = 0, loanid = 0, customerId = 0;
 %>
  
 <html>
@@ -44,9 +44,7 @@ $("a.editform").fancybox({
 	'frameWidth':400,
 	'frameHeight':208,
 	'hideOnContentClick':false,
-	'callbackOnShow':modalStart,
-        'transitionIn'    : 'elastic',
-        'transitionOut'   : 'fade'         
+	'callbackOnShow':modalStart         
 });
                  
 function modalStart(){

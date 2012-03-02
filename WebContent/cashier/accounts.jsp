@@ -16,11 +16,14 @@
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<jsp:useBean id="creditCards" scope="page" class="sql.CreditCardsRepositoryImpl" />
+<jsp:useBean id="account" scope="page" class="sql.AccountsRepositoryImpl" />
 
 <%
-	String firstname = "", lastname = "", cardNumber = "";
-	float balance, orio;
+	String Firstname = "", Lastname = "", cardNumber = "";
+	int AccountId = 0;
+	float Balance;
+	Timestamp DateCreated;
+
 %>
  
 <html>
@@ -62,44 +65,44 @@ $(document).ready(function() {
 		<%@ include file="menu.jsp"%>
 			<h1>Συνολική εικόνα πιστωτικών καρτών</h1>
 			        <%
-			        	String updatecc = "";
-			        updatecc = (String) session.getAttribute("updatecc");
-			        	session.removeAttribute("updatecc");
-			        	if (updatecc != null)
-			        		out.print(updatecc);
+			        	String updateCa = "";
+			        updateCa = (String) session.getAttribute("updateCa");
+			        	session.removeAttribute("updateCa");
+			        	if (updateCa != null)
+			        		out.print(updateCa);
 			        %>
 			<div>
 				<div style="overflow: auto; height: 500px;">
 					<table id="table-2">
-						<caption>Στοιχεία πιστωτικών καρτών</caption>
+						<caption>Στοιχεία λογαριασμών πελατών</caption>
 						<thead>
 							<tr>
-								<th>Αριθμός κάρτας</th>
+								<th>Αριθμός λογαριασμού</th>
 								<th>Όνομα</th>
 								<th>Επώνυμο</th>
-								<th>Υπόλοιπο</th>
-								<th>Όριο</th>
+								<th>Υπόλοιπο</th>								
+								<th>Ημ.Δημιουρ.</th>
 								<th colspan="2">Actions</th>								
 							</tr>
 						</thead>
 						<tbody>
 							<%
-							ResultSet rs = creditCards.getResultWithName();
+							ResultSet rs = account.getResult();
 								while (rs.next()) {									
-									cardNumber = rs.getString("card_number");
-									firstname = rs.getString("Firstname");
-									lastname = rs.getString("lastname");
-									balance = rs.getFloat("balance");									
-									orio = rs.getFloat("orio");
+									AccountId = rs.getInt("Account_Id");
+									Firstname = rs.getString("Firstname");
+									Lastname = rs.getString("lastname");
+									Balance = rs.getFloat("balance");									
+									DateCreated = rs.getTimestamp("date_created");
 							%>
 							<tr> 
-								<td><%=cardNumber%></td>
-								<td><%=firstname%></td>
-								<td><%=lastname%></td>
- 								<td><%=balance%></td>
-								<td><%=orio%></td>								
-								<td><a href="ccDeposit.jsp?cardNumber=<%=rs.getString("card_number")%>" class="editform" >Κατάθεση</a></td>                  				
-								<td><a href="ccWithdrawals.jsp?cardNumber=<%=rs.getString("card_number")%>" class="editform" >Ανάληψη</a></td>                   				                  			
+								<td><%=AccountId%></td>
+								<td><%=Firstname%></td>
+								<td><%=Lastname%></td>
+ 								<td><%=Balance%></td>
+								<td><%=DateCreated%></td>								
+								<td><a href="accountDeposit.jsp?AccountId=<%=rs.getString("Account_Id")%>" class="editform" >Κατάθεση</a></td>                  				
+								<td><a href="accountWithdrawals.jsp?AccountId=<%=rs.getString("Account_Id")%>" class="editform" >Ανάληψη</a></td>                   				                  			
 							</tr>
 							<%
 								}

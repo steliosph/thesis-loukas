@@ -23,8 +23,7 @@
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
 <jsp:useBean id="loanstatus" scope="page"
 	class="sql.LoanStatusRepositoryImpl" />
-<%!String LoanAmount1 = "", CustomerId1 = "", LoanId1 = "", Type = "",
-			Status = "";
+<%!String LoanAmount1 = "", Type = "", Status = "";
 	int LoanId = 0, CustomerId = 0;
 	float LoanAmount;%>
 

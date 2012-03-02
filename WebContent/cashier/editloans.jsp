@@ -40,7 +40,7 @@
 	float amount = 0;%>
 
 <%
-	loanId1 = request.getParameter("loanId");
+				loanId1 = request.getParameter("loanId");
 				loanId = Integer.parseInt(loanId1);
 				ResultSet rs = loan.editLoan(loanId);
 				if (rs.next()) {

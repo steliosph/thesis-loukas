@@ -6,7 +6,7 @@
 				<li><a href="sumloans.jsp">Συνολική εικόνα δανείων</a></li>
 				<li><a href="deposit.jsp">Κατάθεση σε δάνειο</a></li>
 				<li><a href="creditcard.jsp">Κατάθεση/Ανάληψη πιστωτικής κάρτας</a></li>
-				<li><a href="creditcard.jsp">Κατάσταση εργαζομένων</a></li>
+				<li><a href="accounts.jsp">Κατάθεση/Ανάληψη Λογαριασμού</a></li>
 			</ul></li>
 	</ul>
 </div>
