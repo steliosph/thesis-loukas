@@ -5,6 +5,9 @@ import java.sql.Timestamp;
 import bean.AccountTransactions;
 
 public class AccountTransactionsImpl implements AccountTransactionsRepository {
+	
+	private DatabaseClass database_ = new DatabaseClass();
+	private String sqlQuery_;
 
 	@Override
 	public AccountTransactions create() {
@@ -38,5 +41,29 @@ public class AccountTransactionsImpl implements AccountTransactionsRepository {
 		return null;
 	}
 	
+	public void accountTransaction(Integer AccountId, Integer CustomerId, String Action,
+			Float InitialAccountAmount, Float TotalAccountAmount,
+			Float RemainingAccountAmount) {
+		try {
+			sqlQuery_ = "insert into account_transactions (account_id,customer_id,action,initial_account_amount,total_account_amount,remaining_account_amount) values ('"
+					+ AccountId
+					+ "','"
+					+ CustomerId
+					+ "','"
+					+ Action
+					+ "','"
+					+ InitialAccountAmount
+					+ "','"
+					+ TotalAccountAmount
+					+ "','"
+					+ RemainingAccountAmount
+					+ "')";
+			System.out.println(sqlQuery_);
+			database_.update(sqlQuery_);
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+	}
 
 }

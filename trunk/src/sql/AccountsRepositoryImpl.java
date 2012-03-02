@@ -1,11 +1,15 @@
 package sql;
 
+import java.sql.ResultSet;
 import java.sql.Timestamp;
 
 import bean.Account;
 
 public class AccountsRepositoryImpl implements AccountsRepository {
 
+	private DatabaseClass database_ = new DatabaseClass();
+	private String sqlQuery_;
+	
 	@Override
 	public Account create() {
 		Account bean = new Account();
@@ -20,41 +24,48 @@ public class AccountsRepositoryImpl implements AccountsRepository {
 
 	}
 
-	// TODO More Create
-
 	@Override
 	public String getResultSet(String table) {
-		if (table == null)
-			return "account_id, balance,date_created";
-		return table + ".account_id, " + table + ".balance, " + table
-				+ ".date_created";
-	}
-
-	@Override
-	public int update(Account account) {
-		// TODO give me 5 minutes more
-		if (account == null)
-			return 0;
-		// XXX check for nullObject
-
-		// XXX TODO
-		// if (account.isNewInsert()){
-		// insert(account);
-		// return 1;
-		// }
-		// Create a coonection
-		// PreparedStatement st =
-		// DatabaseClass con = new DatabaseClass();
-		// TODO Do your stuff here .....
-
-		return 0;
-
-	}
-
-	@Override
-	public void insert(Account account) {
 		// TODO Auto-generated method stub
-
+		return null;
 	}
+
+	@Override
+	public int update(Account bean) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void insert(Account bean) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public ResultSet getResult() {
+		sqlQuery_ = "select * from accounts inner join customer_accounts on accounts.account_id = customer_accounts.account_id inner join customers on customer_accounts.customer_id = customers.customer_id ORDER BY accounts.account_id";
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet editAccount(Integer AccountId) {
+		sqlQuery_ = "select * from accounts inner join customer_accounts on accounts.account_id = customer_accounts.account_id inner join customers on customer_accounts.customer_id = customers.customer_id  where accounts.account_id ='"
+				+ AccountId + "' ORDER BY accounts.account_id";
+		System.out.println(sqlQuery_);
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
+	}
+	
+	public void updateAccount(Float Balance, Integer AccountId) {
+		try {
+			sqlQuery_ = "update accounts set balance = '" + Balance + "' where account_id='"
+					+ AccountId + "'";
+			System.out.println(sqlQuery_);
+			database_.update(sqlQuery_);
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+	}
+
 
 }

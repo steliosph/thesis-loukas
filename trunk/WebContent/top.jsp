@@ -29,9 +29,7 @@
 			'frameWidth' : 400,
 			'frameHeight' : 208,
 			'hideOnContentClick' : false,
-			'callbackOnShow' : modalStart,
-			'transitionIn' : 'elastic',
-			'transitionOut' : 'fade'
+			'callbackOnShow' : modalStart 
 		});
 		$("a.register").fancybox({
 			'padding' : 3,
@@ -40,9 +38,7 @@
 			'frameWidth' : 400,
 			'frameHeight' : 208,
 			'hideOnContentClick' : false,
-			'callbackOnShow' : modalStart,
-			'transitionIn' : 'elastic',
-			'transitionOut' : 'fade'
+			'callbackOnShow' : modalStart 
 		});
 		$("a.contact").fancybox({
 			'padding' : 3,
@@ -51,9 +47,7 @@
 			'frameWidth' : 600,
 			'frameHeight' : 308,
 			'hideOnContentClick' : false,
-			'callbackOnShow' : modalStart,
-			'transitionIn' : 'elastic',
-			'transitionOut' : 'fade'
+			'callbackOnShow' : modalStart 
 		});
 
 		function modalStart() {

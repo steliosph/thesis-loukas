@@ -23,9 +23,7 @@
 			'frameWidth' : 600,
 			'frameHeight' : 288,
 			'hideOnContentClick' : false,
-			'callbackOnShow' : modalStart,
-			'transitionIn' : 'elastic',
-			'transitionOut' : 'fade'
+			'callbackOnShow' : modalStart
 		});
 
 		function modalStart() {

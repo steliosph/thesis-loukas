@@ -46,7 +46,7 @@ form label.error,label.error {
 }
 
 .Input {
-	width: 164px;
+	width: 173px;
 }
 
 .box {
@@ -63,7 +63,7 @@ form label.error,label.error {
 			</center>
 			<div class="hr" style="margin-top: -12px; margin-right: 52px;"></div>
 	<div id="contactimg">
-			<img SRC="images/contact.jpg" width="115" height="78"/>
+			<img SRC="../images/contact.jpg" width="115" height="78"/>
 		</div>
 			<p>
 				<label for="firstname" class="overlabel">Όνομα</label> <input
@@ -77,7 +77,7 @@ form label.error,label.error {
 			<p>
 				<label for="comment" class="overlabel"> </label>
 				<textarea name="message" id="message"
-					style='resize: none; width: 278px; height: 150px;' /></textarea>
+					style='resize: none; width: 288px; height: 150px;' /></textarea>
 			</p>
 			<p class="right noMargin">
 				<button type="submit" class="btn" value="Submit">

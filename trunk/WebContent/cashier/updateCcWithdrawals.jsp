@@ -36,10 +36,8 @@
 			balance = (Float) session.getAttribute("balance");				
 			InitialCreditCardAmount = balance;						
 			TotalCreditCardAmount1 = request.getParameter("TotalCreditCardAmount");								
-			TotalCreditCardAmount = Float.parseFloat(TotalCreditCardAmount1);	
-			
-			RemainingCreditCardAmount = InitialCreditCardAmount - TotalCreditCardAmount;
-			System.out.println(Orio);
+			TotalCreditCardAmount = Float.parseFloat(TotalCreditCardAmount1);				
+			RemainingCreditCardAmount = InitialCreditCardAmount - TotalCreditCardAmount;			
 			if (0 > RemainingCreditCardAmount) {
 				//TODO analipsi > ipolipo
 			}
