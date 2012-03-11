@@ -22,8 +22,9 @@
 <jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
 
 <%
-	String firstname = "", lastname = "", loan_id = "", loan_amount = "", type = "", status = "";
+	String firstname = "", lastname = "", loan_id = "", type = "", status = "";
 	int loanid = 0;
+	float remaingPayeeAmount, loan_amount;
 %>
  
 <html>
@@ -80,7 +81,8 @@ $(document).ready(function() {
 								<th>Αριθμός Δανείου</th>
 								<th>Όνομα</th>
 								<th>Επώνυμο</th>
-								<th>Ποσό</th>
+								<th>Αρχικό Ποσό</th>
+								<th>Ποσό για εξόφληση</th>
 								<th>Κατάσταση</th>
 								<th>Τύπος</th>
 								<th>Actions</th>
@@ -97,7 +99,8 @@ $(document).ready(function() {
 									loan_id = rs.getString("loan_id");
 									firstname = rs.getString("Firstname");
 									lastname = rs.getString("lastname");
-									loan_amount = rs.getString("loan_amount");
+									remaingPayeeAmount = rs.getFloat("remaining_payee_amount");
+									loan_amount = rs.getFloat("loan_amount");
 									type = rs.getString("type");
 									status = rs.getString("status");
 							%>
@@ -107,6 +110,7 @@ $(document).ready(function() {
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>
  								<td><%=loan_amount%></td>
+ 								<td><%=remaingPayeeAmount%></td>
 								<td><%=type%></td>
 								<td><%=status%></td>
 								<td><a href="amountOfDeposit.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >Κατάθεση</a></td>                  				

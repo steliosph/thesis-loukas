@@ -65,10 +65,10 @@ public class LoansRepositoryImpl implements LoansRepository {
 		return rs;
 	}
 
-	public void updateLoan(Integer LoanId, Integer CustomerId, Float LoanAmount) {
+	public void updateLoan(Integer LoanId, Integer CustomerId, Float RemainingPayeeAmount) {
 		try {
 			sqlQuery_ = "update loans set customer_id= '" + CustomerId
-					+ "', loan_amount = '" + LoanAmount + "' where loan_id='"
+					+ "', remaining_payee_amount = '" + RemainingPayeeAmount + "' where loan_id='"
 					+ LoanId + "'";
 			System.out.println(sqlQuery_);
 			database_.update(sqlQuery_);

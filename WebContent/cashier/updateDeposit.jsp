@@ -24,20 +24,21 @@
 <jsp:useBean id="loantransactions" scope="page" class="sql.LoanTransactionsRepositoryImpl" />
 <%!String LoanId1 = "", TotalPayedAmount1;
 	int LoanId = 0, CustomerId = 0;
-	float LoanAmount = 0 ,InitialLoanAmount = 0 ,TotalPayedAmount = 0 ,RemainingPayeeAmount = 0 ;
+	float remainingPayeeAmount, LoanAmount, LoanBalance, TotalPayedAmount, RemainingPayeeAmount;
 %> 
 
 <%
 			LoanId = (Integer) session.getAttribute("loanId");	
 			CustomerId = (Integer) session.getAttribute("customerId");
-			LoanAmount = (Float) session.getAttribute("amount");			
-			InitialLoanAmount = LoanAmount;			
+			LoanAmount = (Float) session.getAttribute("amount");
+			LoanBalance = (Float) session.getAttribute("remainingPayeeAmount");										
 			TotalPayedAmount1 = request.getParameter("TotalPayedAmount");
-			TotalPayedAmount = Float.parseFloat(TotalPayedAmount1);			
-			RemainingPayeeAmount = InitialLoanAmount - TotalPayedAmount;			
-			LoanAmount = RemainingPayeeAmount;					
-			loantransactions.loanTransaction(LoanId, InitialLoanAmount, TotalPayedAmount, RemainingPayeeAmount);
-			loan.updateLoan(LoanId, CustomerId, LoanAmount);
+			TotalPayedAmount = Float.parseFloat(TotalPayedAmount1);	
+			
+			RemainingPayeeAmount = LoanBalance - TotalPayedAmount;			
+											
+			loantransactions.loanTransaction(LoanId, CustomerId, LoanAmount, LoanBalance, TotalPayedAmount, RemainingPayeeAmount);
+			loan.updateLoan(LoanId, CustomerId, RemainingPayeeAmount);
 			session.setAttribute("updateloans", "Το δάνειο με κωδικό:("
 					+ LoanId + ") ανανεώθηκε!");
 

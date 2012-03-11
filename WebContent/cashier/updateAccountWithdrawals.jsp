@@ -22,7 +22,7 @@
 
 <jsp:useBean id="accountTransaction" scope="page" class="sql.AccountTransactionsImpl" />
 
-<%!String TotalAccountAmount1 = "", CardNumber = "", Action = "";
+<%!String TotalAccountAmount1 = "", CardNumber = "", Action = "", result="";
 	int CustomerId, AccountId;
 	float Balance = 0, InitialAccountAmount = 0, TotalAccountAmount = 0, RemainingAccountAmount = 0 ;
 %>
@@ -38,18 +38,17 @@
 			TotalAccountAmount = Float.parseFloat(TotalAccountAmount1);	
 			RemainingAccountAmount = InitialAccountAmount - TotalAccountAmount;
 			if (0 > RemainingAccountAmount) {
-				session.setAttribute("updateCa", "Το υπόλοιπο του λογαριασμού:("
-						+ AccountId + ") δεν επαρκεί για αυτή την συναλλαγή!");	
+				System.out.println(RemainingAccountAmount);
+				//session.setAttribute("updateCa", "Το υπόλοιπο του λογαριασμού:("+ AccountId + ") δεν επαρκεί για αυτή την συναλλαγή!");
+				out.println("wrong");					
 			}
 			else if (0 <= RemainingAccountAmount) {
 				Balance = RemainingAccountAmount;				
 				account.updateAccount(Balance, AccountId);
-				accountTransaction.accountTransaction(AccountId, CustomerId, Action, InitialAccountAmount, TotalAccountAmount, RemainingAccountAmount);
-										
-				session.setAttribute("updateCa", "Το υπόλοιπο του λογαριασμού:("
-						+ AccountId + ") ανανεώθηκε!");		
-				}
-			response.sendRedirect("accounts.jsp");
+				accountTransaction.accountTransaction(AccountId, CustomerId, Action, InitialAccountAmount, TotalAccountAmount, RemainingAccountAmount);											
+				out.println("correct");
+				}			
+		//	response.sendRedirect("accounts.jsp");
 			break;
 		case NOACCESS:
 			response.sendRedirect("errorpage.jsp");

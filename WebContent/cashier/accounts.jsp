@@ -41,10 +41,13 @@ $("a.editform").fancybox({
 	'padding':3,
 	'overlayOpacity':0.2,
 	'overlayColor':overlayColor,
-	'frameWidth':400,
+	'frameWidth':430,
 	'frameHeight':208,
 	'hideOnContentClick':false,
-	'callbackOnShow':modalStart        
+	'callbackOnShow':modalStart,
+	 'onClosed': function() {
+		   parent.location.reload(true);
+		  } 	
 });
                  
 function modalStart(){
@@ -63,7 +66,7 @@ $(document).ready(function() {
 		<div class="contentArea">
 			<!-- Main Menu Links -->
 		<%@ include file="menu.jsp"%>
-			<h1>Συνολική εικόνα πιστωτικών καρτών</h1>
+			<h1>Συνολική εικόνα λογαριασμών</h1>
 			        <%
 			        	String updateCa = "";
 			        updateCa = (String) session.getAttribute("updateCa");
@@ -72,7 +75,7 @@ $(document).ready(function() {
 			        		out.print(updateCa);
 			        %>
 			<div>
-				<div style="overflow: auto; height: 500px;">
+				<div id="result" style="overflow: auto; height: 500px;">
 					<table id="table-2">
 						<caption>Στοιχεία λογαριασμών πελατών</caption>
 						<thead>
@@ -101,8 +104,8 @@ $(document).ready(function() {
 								<td><%=Lastname%></td>
  								<td><%=Balance%></td>
 								<td><%=DateCreated%></td>								
-								<td><a href="accountDeposit.jsp?AccountId=<%=rs.getString("Account_Id")%>" class="editform" >Κατάθεση</a></td>                  				
-								<td><a href="accountWithdrawals.jsp?AccountId=<%=rs.getString("Account_Id")%>" class="editform" >Ανάληψη</a></td>                   				                  			
+								<td><a href="accountDeposit.jsp?AccountId=<%=rs.getInt("Account_Id")%>" class="editform" >Κατάθεση</a></td>                  				
+								<td><a href="accountWithdrawals.jsp?AccountId=<%=rs.getInt("Account_Id")%>" class="editform" >Ανάληψη</a></td>                   				                  			
 							</tr>
 							<%
 								}
