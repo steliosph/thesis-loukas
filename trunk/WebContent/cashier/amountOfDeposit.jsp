@@ -35,7 +35,7 @@
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
 <%!String loanId1 = "";
 	int loanId = 0, customerId=0;
-	float amount = 0;%>
+	float amount, remainingPayeeAmount;%>
 
 <%
 				loanId1 = request.getParameter("loanId");
@@ -45,10 +45,11 @@
 					loanId = rs.getInt("loan_id");					
 					amount = rs.getFloat("loan_amount");
 					customerId = rs.getInt("customer_id");
+					remainingPayeeAmount = rs.getFloat("remaining_payee_amount");
 					session.setAttribute("customerId", customerId);
 					session.setAttribute("loanId", loanId);
 					session.setAttribute("amount", amount);
-					session.setAttribute("customerId", customerId);
+					session.setAttribute("remainingPayeeAmount", remainingPayeeAmount);
 				}
 %>
 

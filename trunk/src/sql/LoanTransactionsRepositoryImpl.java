@@ -41,15 +41,21 @@ public class LoanTransactionsRepositoryImpl implements
 		return null;
 	}
 
-	public void loanTransaction(Integer LoanId, Float InitialLoanAmount,
+	public void loanTransaction(Integer LoanId, Integer CustomerId, Float LoanAmount, Float LoanBalance,
 			Float TotalPayedAmount, Float RemainingPayeeAmount) {
 		try {
-			sqlQuery_ = "insert into loan_transactions (loan_id,initial_loan_amount,total_payed_amount,remaining_payee_amount) values ('"
+			sqlQuery_ = "insert into loan_transactions (loan_id,customer_id,loan_amount,loan_balance,total_payed_amount,remaining_payee_amount) values ('"
 					+ LoanId
 					+ "','"
-					+ InitialLoanAmount
+					+ CustomerId
 					+ "','"
-					+ TotalPayedAmount + "','" + RemainingPayeeAmount + "')";
+					+ LoanAmount
+					+ "','"
+					+ LoanBalance
+					+ "','"
+					+ TotalPayedAmount
+					+ "','"
+					+ RemainingPayeeAmount + "')";
 			System.out.println(sqlQuery_);
 			database_.update(sqlQuery_);
 			
