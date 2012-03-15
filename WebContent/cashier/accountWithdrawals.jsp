@@ -102,16 +102,15 @@
 </form>	
 
 </div>
-<div id="login_correct" style="display: none;">
+<div id="correct" style="display: none;">
 	<strong>Το υπόλοιπο του λογαριασμού:(<%=AccountId%>)
 		ανανεώθηκε!
 	</strong>
 </div>
-<div id="login_error" style="display: none;">
+<div id="error" style="display: none;">
 	<strong>Το υπόλοιπο του λογαριασμού:(<%=AccountId%>) δεν
 		επαρκεί για αυτή την συναλλαγή!
-	</strong></div>
-
+	</strong>
 </div>
 
 
@@ -126,13 +125,13 @@ $(document).ready(function(){
 			success: function(result){
 				var result = $.trim(result);				 
 				if (result=='correct'){
-					$('#login_error').hide();
-					$('#login_correct').fadeIn(500).show();
+					$('#error').hide();
+					$('#correct').fadeIn(500).show();
 					$('#reload').load('accountWithdrawals.jsp', {'AccountId' : <%=AccountId%>,}); 																							
-				} else {
-					$('#login_correct').fadeOut();
-					$('#login_error').fadeIn(500).show();						
-				}
+				} else {					
+					$('#error').fadeIn(500).show();
+					$('#correct').hide();
+				}			
 			}
 		});
 	return false;
