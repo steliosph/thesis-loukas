@@ -38,7 +38,7 @@
 			TotalAccountAmount = Float.parseFloat(TotalAccountAmount1);	
 			RemainingAccountAmount = InitialAccountAmount - TotalAccountAmount;
 			if (0 > RemainingAccountAmount) {
-				System.out.println(RemainingAccountAmount);
+				//System.out.println(RemainingAccountAmount);
 				//session.setAttribute("updateCa", "Το υπόλοιπο του λογαριασμού:("+ AccountId + ") δεν επαρκεί για αυτή την συναλλαγή!");
 				out.println("wrong");					
 			}

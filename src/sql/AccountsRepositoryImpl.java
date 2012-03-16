@@ -51,7 +51,7 @@ public class AccountsRepositoryImpl implements AccountsRepository {
 	public ResultSet editAccount(Integer AccountId) {
 		sqlQuery_ = "select * from accounts inner join customer_accounts on accounts.account_id = customer_accounts.account_id inner join customers on customer_accounts.customer_id = customers.customer_id  where accounts.account_id ='"
 				+ AccountId + "' ORDER BY accounts.account_id";
-		System.out.println(sqlQuery_);
+		//System.out.println(sqlQuery_);
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
 	}
