@@ -46,7 +46,7 @@
 		AccountId1 = request.getParameter("AccountId");
 
 				AccountId = Integer.parseInt(AccountId1);
-				System.out.println(AccountId);
+				//System.out.println(AccountId);
 				ResultSet rs = account.editAccount(AccountId);
 				if (rs.next()) {
 					CustomerId = rs.getInt("customer_id");
@@ -95,23 +95,12 @@
 		</table>
 		<div class="hr" style="margin-bottom: -3px;"></div>
 		<p class="right noMargin">
-			<button type="submit" id="subbtn" class="btn" value="Submit">
+			<button type="submit" id="subbtn" class="btn" value="Submit" >
 				<span>Save..</span>
 			</button>
 			<br>
 </form>	
 
-</div>
-<div id="correct" style="display: none;">
-	<strong>Το υπόλοιπο του λογαριασμού:(<%=AccountId%>)
-		ανανεώθηκε!
-	</strong>
-</div>
-<div id="error" style="display: none;">
-	<strong>Το υπόλοιπο του λογαριασμού:(<%=AccountId%>) δεν
-		επαρκεί για αυτή την συναλλαγή!
-	</strong>
-</div>
 
 
 <script>
@@ -123,23 +112,45 @@ $(document).ready(function(){
 			url: "updateAccountWithdrawals.jsp",
 			data: "TotalAccountAmount="+ TotalAccountAmount,
 			success: function(result){
-				var result = $.trim(result);				 
+				var result = $.trim(result);
+				
+				//$('#reload').load('accountWithdrawals.jsp', {'AccountId' : <%=AccountId%>,});
+				//$('#loading').fadeIn(500).show();
+				//alert(result);			
+			 
+				setTimeout(function(){
+					//$("#loading").show().delay(100).fadeOut();					
 				if (result=='correct'){
-					$('#error').hide();
+					$('#error').hide();								
 					$('#correct').fadeIn(500).show();
-					$('#reload').load('accountWithdrawals.jsp', {'AccountId' : <%=AccountId%>,}); 																							
-				} else {					
-					$('#error').fadeIn(500).show();
+				} else {
 					$('#correct').hide();
+					$('#loading').hide();
+					$('#error').fadeIn(500).show();	
 				}			
-			}
+			;},150);
+				}
 		});
 	return false;
 	});
 });
 ;
 </script>
-
+</div>
+ 
+<div id="loading" style="display: none;">
+	<img src="../images/fancybox/loading.gif"/> 
+</div>
+<div id="correct" style="display: none;">
+	<strong>Το υπόλοιπο του λογαριασμού:(<%=AccountId%>)
+		ανανεώθηκε!
+	</strong>
+</div>
+<div id="error" style="display: none;">
+	<strong>Το υπόλοιπο του λογαριασμού:(<%=AccountId%>) δεν
+		επαρκεί για αυτή την συναλλαγή!
+	</strong>
+</div>
 </body>
 </html>
 <%
