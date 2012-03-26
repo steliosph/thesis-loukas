@@ -146,12 +146,12 @@ $(document).ready(function() {
 						<caption>Στοιχεία δανείου</caption>
 						<thead>
 							<tr>
-								<th>Αριθμός Δανείου</th>
-								<th>Αριθμός Πελάτη</th>
+								<th>Αρ. Δανείου</th>
+								<th>Αρ. Πελάτη</th>
 								<th>Ποσό</th>
 								<th>Τύπος</th>
 								<th>Κατάσταση</th>
-								<th colspan="2">Actions</th>
+								<th colspan="2">Επιλογές</th>
 								
 							</tr>
 						</thead>
@@ -175,8 +175,8 @@ $(document).ready(function() {
 								<td><%=loan_amount%></td>
 								<td><%=type%></td>
 								<td><%=status%></td>
-								<td><a href="editloans.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >Edit</a></td>
-                  				<td><a href="sumloans.jsp?delete=yes&deleteid=<%=rs.getInt("loan_id")%>" onclick="return del()">Delete</a></td>
+								<td><a href="editloans.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >Aλλαγή</a></td>
+                  				<td><a href="sumloans.jsp?delete=yes&deleteid=<%=rs.getInt("loan_id")%>" onclick="return del()">Διαγραφή</a></td>
 							</tr>
 
 							<%

@@ -80,11 +80,11 @@ $(document).ready(function() {
 						<caption>Στοιχεία λογαριασμών πελατών</caption>
 						<thead>
 							<tr>
-								<th>Αριθμός λογαριασμού</th>
+								<th>Αρ. Λογ.</th>
 								<th>Όνομα</th>
 								<th>Επώνυμο</th>
 								<th>Υπόλοιπο</th>								
-								<th>Ημ.Δημιουρ.</th>
+								<th>Ημ. Τελ. Κίν.</th>
 								<th colspan="2">Actions</th>								
 							</tr>
 						</thead>
