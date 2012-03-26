@@ -55,8 +55,7 @@ public class LoanTransactionsRepositoryImpl implements
 					+ "','"
 					+ TotalPayedAmount
 					+ "','"
-					+ RemainingPayeeAmount + "')";
-			System.out.println(sqlQuery_);
+					+ RemainingPayeeAmount + "')";			 
 			database_.update(sqlQuery_);
 			
 		} catch (Exception e) {

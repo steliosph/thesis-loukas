@@ -45,7 +45,7 @@ $("a.editform").fancybox({
 	'frameWidth':400,
 	'frameHeight':208,
 	'hideOnContentClick':false,
-	'callbackOnShow':modalStart         
+	'callbackOnShow':modalStart	
 });
                  
 function modalStart(){
@@ -78,7 +78,7 @@ $(document).ready(function() {
 						<caption>Στοιχεία δανείών</caption>
 						<thead>
 							<tr>
-								<th>Αριθμός Δανείου</th>
+								<th>Αρ. Δανείου</th>
 								<th>Όνομα</th>
 								<th>Επώνυμο</th>
 								<th>Αρχικό Ποσό</th>
@@ -113,7 +113,7 @@ $(document).ready(function() {
  								<td><%=remaingPayeeAmount%></td>
 								<td><%=type%></td>
 								<td><%=status%></td>
-								<td><a href="amountOfDeposit.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >Κατάθεση</a></td>                  				
+								<td><a href="amountOfDeposit.jsp?LoanId=<%=rs.getInt("loan_id")%>" class="editform" >Κατάθεση</a></td>                  				
 							</tr>
 
 							<%

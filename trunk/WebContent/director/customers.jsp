@@ -143,7 +143,7 @@ $(document).ready(function() {
 	break;
 	case CASHIER:
 	case NOACCESS:
-		response.sendRedirect("errorpage.jsp");
+		response.sendRedirect("../errorpage.jsp");
 	break;
 	}}
 %>

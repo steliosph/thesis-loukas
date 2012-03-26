@@ -22,13 +22,14 @@
 
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
 <jsp:useBean id="loantransactions" scope="page" class="sql.LoanTransactionsRepositoryImpl" />
-<%!String LoanId1 = "", TotalPayedAmount1;
-	int LoanId = 0, CustomerId = 0;
+<%!String TotalPayedAmount1;
+	int LoanId, CustomerId;
 	float remainingPayeeAmount, LoanAmount, LoanBalance, TotalPayedAmount, RemainingPayeeAmount;
 %> 
 
 <%
 			LoanId = (Integer) session.getAttribute("loanId");	
+
 			CustomerId = (Integer) session.getAttribute("customerId");
 			LoanAmount = (Float) session.getAttribute("amount");
 			LoanBalance = (Float) session.getAttribute("remainingPayeeAmount");										
@@ -36,17 +37,21 @@
 			TotalPayedAmount = Float.parseFloat(TotalPayedAmount1);	
 			
 			RemainingPayeeAmount = LoanBalance - TotalPayedAmount;			
-											
+			System.out.println(LoanId);
+			System.out.println(CustomerId);
+			System.out.println(LoanAmount);
+			System.out.println(LoanBalance);
+			System.out.println(TotalPayedAmount);
+			System.out.println(RemainingPayeeAmount);
+			
 			loantransactions.loanTransaction(LoanId, CustomerId, LoanAmount, LoanBalance, TotalPayedAmount, RemainingPayeeAmount);
 			loan.updateLoan(LoanId, CustomerId, RemainingPayeeAmount);
-			session.setAttribute("updateloans", "Το δάνειο με κωδικό:("
-					+ LoanId + ") ανανεώθηκε!");
-
-			response.sendRedirect("deposit.jsp");
-
+			
+			out.println("correct");
+			
 			break;
 		case NOACCESS:
-			response.sendRedirect("errorpage.jsp");
+			response.sendRedirect("../errorpage.jsp");
 			break;
 		}
 	}

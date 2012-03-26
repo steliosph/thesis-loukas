@@ -33,18 +33,17 @@
 			AccountId = (Integer) session.getAttribute("AccountId");			
 			Balance = (Float) session.getAttribute("Balance");
 			
-			InitialAccountAmount = Balance;						
+			InitialAccountAmount = Balance;			
+			System.out.println(TotalAccountAmount);
 			TotalAccountAmount1 = request.getParameter("TotalAccountAmount");								
 			TotalAccountAmount = Float.parseFloat(TotalAccountAmount1);	
 			RemainingAccountAmount = InitialAccountAmount + TotalAccountAmount;						
 			Balance = RemainingAccountAmount;				
 			account.updateAccount(Balance, AccountId);
 			accountTransaction.accountTransaction(AccountId, CustomerId, Action, InitialAccountAmount, TotalAccountAmount, RemainingAccountAmount);
-					
 			
-			session.setAttribute("updateCa", "Το υπόλοιπο του λογαριασμού:("
-					+ AccountId + ") ανανεώθηκε!");
-			response.sendRedirect("accounts.jsp");
+			out.println("correct");
+
 			break;
 		case NOACCESS:
 			response.sendRedirect("errorpage.jsp");

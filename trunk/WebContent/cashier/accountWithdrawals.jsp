@@ -24,7 +24,6 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		var overlayColor = $('#fancybox-overlay')
@@ -75,17 +74,17 @@
 			<tr>
 				<td>Όνομα:</td>
 				<td><input type="text" id="AccountId" value="<%=Firstname%>"
-					readonly></td>
+					disabled="disabled" style="background:#E8E8E8;"></td>
 			</tr>
 			<tr>
 				<td>Επώνυμο:</td>
 				<td><input type="text" id="AccountId" value="<%=Lastname%>"
-					readonly></td>
+					disabled="disabled" style="background:#E8E8E8;"></td>
 			</tr>
 			<tr>
-				<td>Υπόλοιπος:</td>
+				<td>Υπόλοιπο:</td>
 				<td><input type="text" id="Balance" value="<%=Balance%>"
-					readonly></td>
+					disabled="disabled" style="background:#E8E8E8;" /></td>
 			</tr>
 			<tr>
 				<td>Ποσό ανάληψης:</td>
@@ -101,7 +100,7 @@
 			<br>
 </form>	
 
-
+</div>
 
 <script>
 $(document).ready(function(){
@@ -114,18 +113,17 @@ $(document).ready(function(){
 			success: function(result){
 				var result = $.trim(result);
 				
-				//$('#reload').load('accountWithdrawals.jsp', {'AccountId' : <%=AccountId%>,});
+				$('#reload').load('accountWithdrawals.jsp', {'AccountId' : <%=AccountId%>,});
 				//$('#loading').fadeIn(500).show();
 				//alert(result);			
 			 
 				setTimeout(function(){
 					//$("#loading").show().delay(100).fadeOut();					
 				if (result=='correct'){
-					$('#error').hide();								
+					$('#error').fadeOut(1600, "linear");								
 					$('#correct').fadeIn(500).show();
 				} else {
-					$('#correct').hide();
-					$('#loading').hide();
+					$('#correct').fadeOut(1600, "linear");				
 					$('#error').fadeIn(500).show();	
 				}			
 			;},150);
@@ -136,17 +134,17 @@ $(document).ready(function(){
 });
 ;
 </script>
-</div>
+
  
 <div id="loading" style="display: none;">
 	<img src="../images/fancybox/loading.gif"/> 
 </div>
-<div id="correct" style="display: none;">
+<div id="correct" style="display: none; color: red; ">
 	<strong>Το υπόλοιπο του λογαριασμού:(<%=AccountId%>)
 		ανανεώθηκε!
 	</strong>
 </div>
-<div id="error" style="display: none;">
+<div id="error" style="display: none; color: red; ">
 	<strong>Το υπόλοιπο του λογαριασμού:(<%=AccountId%>) δεν
 		επαρκεί για αυτή την συναλλαγή!
 	</strong>

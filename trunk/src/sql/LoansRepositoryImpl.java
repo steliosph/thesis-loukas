@@ -52,9 +52,8 @@ public class LoansRepositoryImpl implements LoansRepository {
 	}
 
 	public ResultSet editLoan(Integer loanId) {
-		sqlQuery_ = "select * from loans inner join loan_status on loans.loan_id = loan_status.loan_id where loans.loan_id = '"
-				+ loanId + "' ORDER BY loans.loan_id";
-		System.out.println(sqlQuery_);
+		sqlQuery_ = "select * from loans inner join loan_status on loans.loan_id = loan_status.loan_id inner join customers on loans.customer_id = customers.customer_id where loans.loan_id =  '"
+				+ loanId + "'";
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
 	}
@@ -69,8 +68,7 @@ public class LoansRepositoryImpl implements LoansRepository {
 		try {
 			sqlQuery_ = "update loans set customer_id= '" + CustomerId
 					+ "', remaining_payee_amount = '" + RemainingPayeeAmount + "' where loan_id='"
-					+ LoanId + "'";
-			System.out.println(sqlQuery_);
+					+ LoanId + "'"; 			
 			database_.update(sqlQuery_);
 		} catch (Exception e) {			
 			e.printStackTrace();
