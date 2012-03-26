@@ -7,6 +7,7 @@
 				<li><a href="deposit.jsp">Κατάθεση σε δάνειο</a></li>
 				<li><a href="creditcard.jsp">Κατάθεση/Ανάληψη πιστωτικής κάρτας</a></li>
 				<li><a href="accounts.jsp">Κατάθεση/Ανάληψη Λογαριασμού</a></li>
+				<li><a href="loantransactions.jsp">Συναλλαγές Δανείων</a></li>
 			</ul></li>
 	</ul>
 </div>

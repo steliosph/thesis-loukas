@@ -87,6 +87,10 @@
 					disabled="disabled" style="background:#E8E8E8;" /></td>
 			</tr>
 			<tr>
+				<td>Περιγραφή:</td>
+				<td><input type="text" id="desc"></td>
+			</tr>
+			<tr>
 				<td>Ποσό ανάληψης:</td>
 				<td><input type="text" id="TotalAccountAmount" value=""></td>
 			</tr>
@@ -106,10 +110,11 @@
 $(document).ready(function(){
 	$("form#accountWithdrawals").submit(function() {
 	var TotalAccountAmount = $('#TotalAccountAmount').attr('value');
+	var desc = $('#desc').attr('value');
 		$.ajax({
 			type: "POST",
 			url: "updateAccountWithdrawals.jsp",
-			data: "TotalAccountAmount="+ TotalAccountAmount,
+			data: {"TotalAccountAmount": TotalAccountAmount, "desc": desc},	
 			success: function(result){
 				var result = $.trim(result);
 				

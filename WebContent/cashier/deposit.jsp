@@ -45,7 +45,10 @@ $("a.editform").fancybox({
 	'frameWidth':400,
 	'frameHeight':208,
 	'hideOnContentClick':false,
-	'callbackOnShow':modalStart	
+	'callbackOnShow':modalStart,
+	'onClosed': function() {
+		   parent.location.reload(true);
+		  } 	
 });
                  
 function modalStart(){

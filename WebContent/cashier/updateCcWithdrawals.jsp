@@ -23,14 +23,15 @@
 <jsp:useBean id="creditCards" scope="page" class="sql.CreditCardsRepositoryImpl" />
 <jsp:useBean id="creditCardsTransaction" scope="page" class="sql.CreditCardsTransactionRepositoryImpl" />
 
-<%!String TotalCreditCardAmount1 = "", CardNumber = "", Deposit = "";
+<%!String TotalCreditCardAmount1, CardNumber, Deposit, Desc;
 	int CustomerId;
-	float balance = 0, Orio = 0, InitialCreditCardAmount = 0, TotalCreditCardAmount = 0, RemainingCreditCardAmount = 0 ;
+	float balance, Orio, InitialCreditCardAmount, TotalCreditCardAmount, RemainingCreditCardAmount;
 %>
 
 <%
 			CustomerId = (Integer) session.getAttribute("customerId");
 			Deposit = "Ανάληψη";
+			Desc = request.getParameter("desc");
 			CardNumber = (String) session.getAttribute("cardNumber");	
 			Orio = (Float) session.getAttribute("orio");			
 			balance = (Float) session.getAttribute("balance");				
@@ -39,15 +40,13 @@
 			TotalCreditCardAmount = Float.parseFloat(TotalCreditCardAmount1);				
 			RemainingCreditCardAmount = InitialCreditCardAmount - TotalCreditCardAmount;			
 			if (0 > RemainingCreditCardAmount) {
-				//TODO analipsi > ipolipo
+				out.println("wrong");
 			}
 			else if (0 <= RemainingCreditCardAmount) {
 			balance = RemainingCreditCardAmount;						
-			creditCardsTransaction.creditCardTransaction(CardNumber, CustomerId, Deposit, InitialCreditCardAmount, TotalCreditCardAmount, RemainingCreditCardAmount, Orio);
+			creditCardsTransaction.creditCardTransaction(CardNumber, CustomerId, Deposit, InitialCreditCardAmount, TotalCreditCardAmount, RemainingCreditCardAmount, Orio, Desc);
 			creditCards.updateCreditCard(balance, CardNumber);
-			session.setAttribute("updatecc", "Το πιστωτικό υπόλοιπο της κάρτας:("
-					+ CardNumber + ") ανανεώθηκε!");
-			response.sendRedirect("creditcard.jsp");
+			out.println("correct");
 			}
 			break;
 		case NOACCESS:

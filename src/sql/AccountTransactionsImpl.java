@@ -43,9 +43,9 @@ public class AccountTransactionsImpl implements AccountTransactionsRepository {
 	
 	public void accountTransaction(Integer AccountId, Integer CustomerId, String Action,
 			Float InitialAccountAmount, Float TotalAccountAmount,
-			Float RemainingAccountAmount) {
+			Float RemainingAccountAmount, String Desc) {
 		try {
-			sqlQuery_ = "insert into account_transactions (account_id,customer_id,action,initial_account_amount,total_account_amount,remaining_account_amount) values ('"
+			sqlQuery_ = "insert into account_transactions (account_id,customer_id,action,initial_account_amount,total_account_amount,remaining_account_amount,description) values ('"
 					+ AccountId
 					+ "','"
 					+ CustomerId
@@ -57,6 +57,8 @@ public class AccountTransactionsImpl implements AccountTransactionsRepository {
 					+ TotalAccountAmount
 					+ "','"
 					+ RemainingAccountAmount
+					+ "','"
+					+ Desc
 					+ "')";
 			System.out.println(sqlQuery_);
 			database_.update(sqlQuery_);

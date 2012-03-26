@@ -40,7 +40,7 @@
 		<a href="deposit.jsp">Κατάθεση χρημάτων σε δάνειο</a><br> <br>
 		<a href="creditcard.jsp">Κατάθεση/Ανάληψη χρημάτων σε κάρτα</a><br> <br>
 		<a href="accounts.jsp">Κατάθεση/Ανάληψη χρημάτων σε λογαριασμό</a><br> <br>
-		<a href="employee.jsp">Πληροφορίες υπαλλήλων της τράπεζας</a><br> <br>
+		<a href="loantransactions.jsp">Συναλλαγές Δανείων</a><br> <br>
 		<a href="employee.jsp">Πληροφορίες υπαλλήλων της τράπεζας</a><br> <br>
 	</div>
 	</div>

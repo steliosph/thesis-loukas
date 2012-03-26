@@ -22,9 +22,9 @@
 
 <jsp:useBean id="accountTransaction" scope="page" class="sql.AccountTransactionsImpl" />
 
-<%!String TotalAccountAmount1 = "", CardNumber = "", Action = "", result="";
+<%!String TotalAccountAmount1, CardNumber, Action, result, Desc;
 	int CustomerId, AccountId;
-	float Balance = 0, InitialAccountAmount = 0, TotalAccountAmount = 0, RemainingAccountAmount = 0 ;
+	float Balance, InitialAccountAmount, TotalAccountAmount, RemainingAccountAmount;
 %>
 
 <%
@@ -32,7 +32,7 @@
 			Action = "Ανάληψη";
 			AccountId = (Integer) session.getAttribute("AccountId");			
 			Balance = (Float) session.getAttribute("Balance");
-			
+			Desc = request.getParameter("desc");
 			InitialAccountAmount = Balance;						
 			TotalAccountAmount1 = request.getParameter("TotalAccountAmount");								
 			TotalAccountAmount = Float.parseFloat(TotalAccountAmount1);	
@@ -45,7 +45,7 @@
 			else if (0 <= RemainingAccountAmount) {
 				Balance = RemainingAccountAmount;				
 				account.updateAccount(Balance, AccountId);
-				accountTransaction.accountTransaction(AccountId, CustomerId, Action, InitialAccountAmount, TotalAccountAmount, RemainingAccountAmount);											
+				accountTransaction.accountTransaction(AccountId, CustomerId, Action, InitialAccountAmount, TotalAccountAmount, RemainingAccountAmount, Desc);								
 				out.println("correct");
 				}			
 		//	response.sendRedirect("accounts.jsp");
