@@ -44,9 +44,9 @@ public class CreditCardsTransactionRepositoryImpl implements
 
 	public void creditCardTransaction(String CardNumber, Integer CustomerId, String Deposit,
 			Float InitialCreditCardAmount, Float TotalCreditCardAmount,
-			Float RemainingCreditCardAmount, Float Orio) {
+			Float RemainingCreditCardAmount, Float Orio, String Desc) {
 		try {
-			sqlQuery_ = "insert into credit_cards_transactions (card_number,customer_id,deposit,initial_credit_card_amount,total_credit_card_amount,remaining_credit_card_amount,orio) values ('"
+			sqlQuery_ = "insert into credit_cards_transactions (card_number,customer_id,deposit,initial_credit_card_amount,total_credit_card_amount,remaining_credit_card_amount,orio,description) values ('"
 					+ CardNumber
 					+ "','"
 					+ CustomerId
@@ -60,6 +60,8 @@ public class CreditCardsTransactionRepositoryImpl implements
 					+ RemainingCreditCardAmount
 					+ "','"
 					+ Orio
+					+ "','"
+					+ Desc
 					+ "')";
 			System.out.println(sqlQuery_);
 			database_.update(sqlQuery_);

@@ -1,5 +1,6 @@
 package sql;
 
+import java.sql.ResultSet;
 import java.sql.Timestamp;
 
 import bean.LoanTransactions;
@@ -42,9 +43,9 @@ public class LoanTransactionsRepositoryImpl implements
 	}
 
 	public void loanTransaction(Integer LoanId, Integer CustomerId, Float LoanAmount, Float LoanBalance,
-			Float TotalPayedAmount, Float RemainingPayeeAmount) {
+			Float TotalPayedAmount, Float RemainingPayeeAmount, String Desc) {
 		try {
-			sqlQuery_ = "insert into loan_transactions (loan_id,customer_id,loan_amount,loan_balance,total_payed_amount,remaining_payee_amount) values ('"
+			sqlQuery_ = "insert into loan_transactions (loan_id,customer_id,loan_amount,loan_balance,total_payed_amount,remaining_payee_amount,description) values ('"
 					+ LoanId
 					+ "','"
 					+ CustomerId
@@ -55,12 +56,19 @@ public class LoanTransactionsRepositoryImpl implements
 					+ "','"
 					+ TotalPayedAmount
 					+ "','"
-					+ RemainingPayeeAmount + "')";			 
+					+ RemainingPayeeAmount
+					+ "','"
+					+ Desc +"')";			 
 			database_.update(sqlQuery_);
-			
+			System.out.println(sqlQuery_);
 		} catch (Exception e) {
 			e.getMessage();
 		}
 	}
 
+	public ResultSet getLoanTransaction() {
+		sqlQuery_ = "SELECT * FROM loan_transactions inner join customers on loan_transactions.customer_id = customers.customer_id inner join loans on loan_transactions.loan_id = loans.loan_id ORDER BY loan_transactions.loan_transaction_id;";
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
+	}
 }
