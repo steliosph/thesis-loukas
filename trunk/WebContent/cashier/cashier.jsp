@@ -41,7 +41,8 @@
 		<a href="creditcard.jsp">Κατάθεση/Ανάληψη χρημάτων σε κάρτα</a><br> <br>
 		<a href="accounts.jsp">Κατάθεση/Ανάληψη χρημάτων σε λογαριασμό</a><br> <br>
 		<a href="loantransactions.jsp">Συναλλαγές Δανείων</a><br> <br>
-		<a href="employee.jsp">Πληροφορίες υπαλλήλων της τράπεζας</a><br> <br>
+		<a href="ccTransactions.jsp">Συναλλαγές Καρτών</a><br> <br>
+		<a href="accountTransactions.jsp">Συναλλαγές Λογαριασμών</a><br> <br>
 	</div>
 	</div>
 	<div class="clear"></div>

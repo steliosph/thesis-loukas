@@ -193,7 +193,6 @@ $(document).ready(function() {
 		<div class="clear"></div>
 	</div>
 	<%@ include file="../footer.jsp"%>
-
 </body>
 </html>
 <%
