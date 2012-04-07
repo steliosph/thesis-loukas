@@ -144,8 +144,7 @@ $(document).ready(function(){
 	</strong>
 </div>
 <div id="error" style="display: none; color: red; ">
-	<strong>Το υπόλοιπο του λογαριασμού:(<%=loanId%>) δεν
-		επαρκεί για αυτή την συναλλαγή!
+	<strong>Το ποσο για εξόγληση του δανείου:<%=loanId%> αντιστοιχεί σε:</br><%=remainingPayeeAmount%> €
 	</strong>
 </div>
 

@@ -1,5 +1,6 @@
 package sql;
 
+import java.sql.ResultSet;
 import java.sql.Timestamp;
 
 import bean.CreditCardsTransaction;
@@ -69,6 +70,12 @@ public class CreditCardsTransactionRepositoryImpl implements
 		} catch (Exception e) {
 			e.getMessage();
 		}
+	}
+	
+	public ResultSet getCcTransaction() {
+		sqlQuery_ = "SELECT * FROM credit_cards_transactions inner join customers on credit_cards_transactions.customer_id = customers.customer_id ORDER BY credit_cards_transactions.credit_card_transaction_id;";
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
 	}
 
 }

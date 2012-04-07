@@ -26,7 +26,7 @@
 <%!String TotalPayedAmount1, Desc;
 	int LoanId, CustomerId;
 	float remainingPayeeAmount, LoanAmount, LoanBalance, TotalPayedAmount,
-			RemainingPayeeAmount;%>
+			RemainingPayeeAmount, AmountToClose;%>
 
 <%
 	LoanId = (Integer) session.getAttribute("loanId");
@@ -38,9 +38,7 @@
 			LoanBalance = (Float) session.getAttribute("remainingPayeeAmount");
 			TotalPayedAmount1 = request.getParameter("TotalPayedAmount");
 			TotalPayedAmount = Float.parseFloat(TotalPayedAmount1);
-
 			RemainingPayeeAmount = LoanBalance - TotalPayedAmount;
-
 			if (RemainingPayeeAmount >= 0) {
 				loantransactions.loanTransaction(LoanId, CustomerId, LoanAmount, LoanBalance, TotalPayedAmount, RemainingPayeeAmount, Desc);
 				loan.updateLoan(LoanId, CustomerId,
