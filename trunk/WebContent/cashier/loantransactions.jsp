@@ -1,36 +1,34 @@
-<%@ page import="enums.AccessRightsEnum"%>
-<%@ page import="bean.AccessRights"%>
-
-<%	
-	Integer accountTypeId = (Integer) session.getAttribute("accountTypeId");
-	AccessRights accessRights = new AccessRights();
-	if (accountTypeId == null) {
-		response.sendRedirect("../errorpage.jsp");
-	} else {
-	switch (accessRights.getAccessRights(accountTypeId)) {
-	case DIRECTOR:
-	case CASHIER:
-%>
 <%@ page import="sql.LoanTransactionsRepository"%>
 <%@ page language="java" import="java.sql.*"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <jsp:useBean id="loanTransactions" scope="page" class="sql.LoanTransactionsRepositoryImpl" />
-
 <%
-	String desc = "", firstname = "", lastname = "";
+	String desc, firstname, lastname;
 	int loanTransactionId ;
 	float loanAmount, loanBalance, totalPayedAmount, remainingPayeeAmount;
 	Timestamp loanTransactionTime; 
 %>
- 
+<script type="text/javascript" language="javascript"> 
+function showHide() {
+    var table = document.getElementById("table");
+    if(table.style.display == "block") {
+    	table.style.display = "none";
+      }
+    else {
+    	table.style.display = "block";
+    }
+}
+	function openPage(pageURL)
+
+ {
+ window.location.href = pageURL;
+ }
+</script> 
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="style.css" type="text/css" />
-<link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
-    
+<link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />   
 </head>
 <body>
 	<%@ include file="top.jsp"%>
@@ -40,8 +38,43 @@
 			<!-- Main Menu Links -->
 		<%@ include file="menu.jsp"%>
 			<h1>Συνολική εικόνα συναλλαγων δανείων</h1>
+			<table ALIGN="center" border="1">
+				<tr>
+					<td ALIGN="center">Αναζήτηση</td>
+					<td ALIGN="center">Όλες οι συναλλαγές</td>
+				</tr>
+				<tr>
+					<td>
+						<form action="searchLoanTransaction.jsp" method="post" style="padding: 0; margin: 0">
+							<select name="searchCombo">
+								<option value="searchId">Αρ. Συναλ.</option>
+								<option value="searchFirst">Όνομα</option>
+								<option value="searchLast">Επώνυμο</option>
+								<option value="searchDesc">Περιγραφή</option>
+								<option value="searchLoanAmount">Ποσό Δανείου</option>
+								<option value="searchLoanBalance">Παλαίο Υπόλοιπο</option>
+								<option value="searchTotalPayedAmount">Πληρωτέο Ποσό</option>
+								<option value="searchRemainingPayeeAmount">Νέο Υπόλοιπο</option>						
+							</select> 
+							
+							<input type="text" name="search" id="search">
+
+							<button type="submit" class="btn" value="Submit">
+								<span>Aναζήτηση..</span>
+							</button>
+						</form>
+					</td>
+					<td>&nbsp;
+						<button type="button" class="btn" value="Show-Hide"
+							onclick="return showHide();">
+							<span>Όλες οι συναλλαγές</span>
+						</button>
+					</td>
+				</tr>
+			</table>
+			<br>			
 			<div>
-				<div style="overflow: auto; height: 500px;">
+				<div id="table" style="overflow: auto; height: 500px; display: none;">
 					<table id="table-2">
 						<thead>
 							<tr>
@@ -95,10 +128,3 @@
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>
-<%
-	break;
-	case NOACCESS:
-		response.sendRedirect("errorpage.jsp");
-	break;
-	}}
-%>

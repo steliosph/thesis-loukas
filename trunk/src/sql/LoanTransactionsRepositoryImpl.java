@@ -71,4 +71,60 @@ public class LoanTransactionsRepositoryImpl implements
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
 	}
+	
+	public ResultSet searchLoanTransactionId(String Search) {
+		sqlQuery_ = "SELECT * FROM loan_transactions inner join customers on loan_transactions.customer_id = customers.customer_id inner join loans on loan_transactions.loan_id = loans.loan_id where loan_transactions.loan_transaction_id='"+ Search + "'"; 
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchLoanTransactionFirstname(String Search) {
+		sqlQuery_ = "SELECT * FROM loan_transactions inner join customers on loan_transactions.customer_id = customers.customer_id inner join loans on loan_transactions.loan_id = loans.loan_id where customers.firstname='"+ Search + "'";
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchLoanTransactionLastname(String Search) {
+		sqlQuery_ = "SELECT * FROM loan_transactions inner join customers on loan_transactions.customer_id = customers.customer_id inner join loans on loan_transactions.loan_id = loans.loan_id where customers.lastname='"+ Search + "'";
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchLoanTransactionDesc(String Search) {
+		sqlQuery_ = "SELECT * FROM loan_transactions inner join customers on loan_transactions.customer_id = customers.customer_id inner join loans on loan_transactions.loan_id = loans.loan_id where loan_transactions.description='"+ Search + "'";
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchLoanTransactionLoanAmount(String Search) {
+		sqlQuery_ = "SELECT * FROM loan_transactions inner join customers on loan_transactions.customer_id = customers.customer_id inner join loans on loan_transactions.loan_id = loans.loan_id where loan_transactions.loan_amount='"+ Search + "'";
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchLoanTransactionLoanBalance(String Search) {
+		sqlQuery_ = "SELECT * FROM loan_transactions inner join customers on loan_transactions.customer_id = customers.customer_id inner join loans on loan_transactions.loan_id = loans.loan_id where loan_transactions.loan_balance='"+ Search + "'";
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchLoanTransactionTotalPayedAmount(String Search) {
+		sqlQuery_ = "SELECT * FROM loan_transactions inner join customers on loan_transactions.customer_id = customers.customer_id inner join loans on loan_transactions.loan_id = loans.loan_id where loan_transactions.total_payed_amount='"+ Search + "'";
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchLoanTransactionRemainingPayeeAmount(String Search) {
+		sqlQuery_ = "SELECT * FROM loan_transactions inner join customers on loan_transactions.customer_id = customers.customer_id inner join loans on loan_transactions.loan_id = loans.loan_id where loan_transactions.remaining_payee_amount='"+ Search + "'"; 
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
 }

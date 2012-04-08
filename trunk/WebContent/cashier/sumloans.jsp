@@ -1,31 +1,14 @@
-<%@ page import="enums.AccessRightsEnum"%>
-<%@ page import="bean.AccessRights"%>
-
-<%	
-	Integer accountTypeId = (Integer) session.getAttribute("accountTypeId");
-	AccessRights accessRights = new AccessRights();
-	if (accountTypeId == null) {
-		response.sendRedirect("../errorpage.jsp");
-	} else {
-	switch (accessRights.getAccessRights(accountTypeId)) {
-	case DIRECTOR:
-	case CASHIER:
-%>
 <%@ page import="sql.LoansRepository"%>
 <%@ page import="bean.Loans"%> 
 <%@ page import="sql.LoansRepositoryImpl"%> 
 <%@ page language="java" import="java.sql.*"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
 <jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
-
 <%
 	String Firstname = "", Lastname = "", customerId1 = "", sum = "", loan_id = "", customer_id = "", loan_amount = "", type = "", status = "";
 	int y = 0, loanid = 0, customerId = 0;
 %>
- 
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -33,7 +16,6 @@
 <link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
 <script src="../js/jquery.min.js" type="text/javascript" ></script>
 <link rel="stylesheet" type="text/css" href="../css/fancybox.css" />       
-    
 <script type="text/javascript">
 $(document).ready(function() {
     var overlayColor=$('#fancy_overlay')
@@ -46,7 +28,7 @@ $("a.editform").fancybox({
 	'hideOnContentClick':false,
 	'callbackOnShow':modalStart         
 });
-                 
+             
 function modalStart(){
     Cufon.replace('.fancy_title > div')};                                                          
 });
@@ -94,7 +76,6 @@ $(document).ready(function() {
 					while (rs.next()) {
 						sum = rs.getString("SumOfLoans");
 				%>
-
 						Η τράπεζα μας έχει δώσει <br>δάνεια αξίας: <strong>
 						<%=sum%></strong><br> ευρώ!!
 									<%
@@ -127,18 +108,11 @@ $(document).ready(function() {
 						if (y == 1) {
 							y = 0;
 					%>
-
 					Όνομα:<%=Firstname%><br> Επώνυμο:<%=Lastname%><br>
-
 					<%
 						}
 					%>
-
-
-
 				</form>
-
-
 			</div>
 			<div class="left ">
 				<div style="overflow: auto; height: 500px;">
@@ -155,10 +129,7 @@ $(document).ready(function() {
 								
 							</tr>
 						</thead>
-
 						<tbody>
-
-
 							<%
 								rs = loan.getResult();
 								while (rs.next()) {
@@ -168,7 +139,6 @@ $(document).ready(function() {
 									type = rs.getString("type");
 									status = rs.getString("status");
 							%>
-
 							<tr>
 								<td><%=loan_id%></td>
 								<td><%=customer_id%></td>
@@ -178,13 +148,10 @@ $(document).ready(function() {
 								<td><a href="editloans.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >Aλλαγή</a></td>
                   				<td><a href="sumloans.jsp?delete=yes&deleteid=<%=rs.getInt("loan_id")%>" onclick="return del()">Διαγραφή</a></td>
 							</tr>
-
 							<%
 								}
 							%>
-
 						</tbody>
-
 					</table>
 				</div>
 				<div class="clear"></div>
@@ -195,10 +162,3 @@ $(document).ready(function() {
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>
-<%
-	break;
-	case NOACCESS:
-		response.sendRedirect("errorpage.jsp");
-	break;
-	}}
-%>

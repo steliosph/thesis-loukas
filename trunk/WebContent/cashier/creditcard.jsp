@@ -1,36 +1,18 @@
-<%@ page import="enums.AccessRightsEnum"%>
-<%@ page import="bean.AccessRights"%>
-
-<%	
-	Integer accountTypeId = (Integer) session.getAttribute("accountTypeId");
-	AccessRights accessRights = new AccessRights();
-	if (accountTypeId == null) {
-		response.sendRedirect("../errorpage.jsp");
-	} else {
-	switch (accessRights.getAccessRights(accountTypeId)) {
-	case DIRECTOR:
-	case CASHIER:
-%>
-
-
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <jsp:useBean id="creditCards" scope="page" class="sql.CreditCardsRepositoryImpl" />
-
 <%
 	String firstname = "", lastname = "", cardNumber = "";
 	float balance, orio;
 %>
- 
+
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
 <script src="../js/jquery.min.js" type="text/javascript" ></script>
-<link rel="stylesheet" type="text/css" href="../css/fancybox.css" />       
-    
+<link rel="stylesheet" type="text/css" href="../css/fancybox.css" />           
 <script type="text/javascript">
 $(document).ready(function() {
     var overlayColor=$('#fancy_overlay')
@@ -45,12 +27,10 @@ $("a.editform").fancybox({
 	'onClosed': function() {
 		   parent.location.reload(true);
 		  } 
-});
-                 
+});                 
 function modalStart(){
     Cufon.replace('.fancy_title > div')};                                                          
 });
-
 $(document).ready(function() {
     $("label.overlabel").overlabel();
 });      
@@ -118,10 +98,3 @@ $(document).ready(function() {
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>
-<%
-	break;
-	case NOACCESS:
-		response.sendRedirect("errorpage.jsp");
-	break;
-	}}
-%>
