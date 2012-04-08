@@ -1,16 +1,3 @@
-<%@ page import="enums.AccessRightsEnum"%>
-<%@ page import="bean.AccessRights"%> 
-<%
-	Integer accountTypeId = (Integer) session
-			.getAttribute("accountTypeId");
-	AccessRights accessRights = new AccessRights();
-	if (accountTypeId == null) {
-		response.sendRedirect("../errorpage.jsp");
-	} else {
-		switch (accessRights.getAccessRights(accountTypeId)) {
-			case DIRECTOR :
-			case CASHIER :
-%>
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
@@ -36,7 +23,6 @@
 	int customerId; 
 	float balance, orio; 
 %>
-
 <%
 				cardNumber = request.getParameter("cardNumber");				
 				ResultSet rs = creditCards.editCreditCard(cardNumber);
@@ -53,8 +39,6 @@
 					session.setAttribute("customerId", customerId);
 				}
 %>
-
-
 <form name="editform" method="post" id="CcWithdrawals" action="">
 	<table width="320px">
 		<tr>
@@ -62,7 +46,6 @@
 					style="margin-bottom: -3px;">Ανάληψη Χρημάτων σε πιστωτική κάρτα</h2>
 				<div class="hr" style="margin-bottom: -3px;"></div></td>
 		</tr>
-
 		<tr>
 			<td colspan=2 align="center" height="10px"></td>
 		</tr>
@@ -105,7 +88,6 @@
 		<br>
 </form>
 </div>
-
 <script>
 $(document).ready(function(){
 	$("form#CcWithdrawals").submit(function() {
@@ -117,7 +99,6 @@ $(document).ready(function(){
 			data: {"TotalCreditCardAmount": TotalCreditCardAmount, "desc": desc},	
 			success: function(result){
 				var result = $.trim(result);
-				
 				$('#reload').load('ccWithdrawals.jsp', {'cardNumber' : <%=cardNumber%>,});				
 				setTimeout(function(){
 					//$("#loading").show().delay(100).fadeOut();					
@@ -136,7 +117,6 @@ $(document).ready(function(){
 });
 ;
 </script>
-
 <div id="correct" style="display: none; color: red; ">
 	<strong>Το ποσό για εξόφληση του δάνειο:(<%=cardNumber%>)
 		ανανεώθηκε!
@@ -149,11 +129,3 @@ $(document).ready(function(){
 </div>
 </body>
 </html>
-<%
-	break;
-			case NOACCESS :
-				response.sendRedirect("errorpage.jsp");
-				break;
-		}
-	}
-%>

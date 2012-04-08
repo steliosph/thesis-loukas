@@ -1,32 +1,13 @@
-<%@ page import="enums.AccessRightsEnum"%>
-<%@ page import="bean.AccessRights"%>
-
-<%
-	Integer accountTypeId = (Integer) session
-			.getAttribute("accountTypeId");
-	AccessRights accessRights = new AccessRights();
-	if (accountTypeId == null) {
-		response.sendRedirect("../errorpage.jsp");
-	} else {
-		switch (accessRights.getAccessRights(accountTypeId)) {
-			case DIRECTOR :
-			case CASHIER :
-%>
 <%@ page import="sql.AccountTransactionsRepository"%>
 <%@ page language="java" import="java.sql.*"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<jsp:useBean id="accountTransactions" scope="page"
-	class="sql.AccountTransactionsImpl" />
-
+<jsp:useBean id="accountTransactions" scope="page" class="sql.AccountTransactionsImpl" />
 <%
 	String desc, firstname, lastname, action;
 	int accountTransactionId;
 	float orio, initialAmount, accountAmount, accountBalance, totalPayedAmount, remainingPayeeAmount;
 	Timestamp accountTransactionTime;
 %>
-
 
 <script type="text/javascript" language="javascript"> 
 function showHide() {
@@ -50,7 +31,6 @@ function showHide() {
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
-
 </head>
 <body>
 	<%@ include file="top.jsp"%>
@@ -82,7 +62,7 @@ function showHide() {
 							<input type="text" name="search" id="search">
 
 							<button type="submit" class="btn" value="Submit">
-								<span>search..</span>
+								<span>Aναζήτηση..</span>
 							</button>
 						</form>
 					</td>
@@ -96,8 +76,7 @@ function showHide() {
 			</table>
 			<br>
 			<div>
-				<div id="table"
-					style="overflow: auto; height: 500px; display: none;">
+				<div id="table" style="overflow: auto; height: 500px; display: none;">
 					<table id="table-2">
 						<thead>
 							<tr>
@@ -151,11 +130,3 @@ function showHide() {
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>
-<%
-	break;
-			case NOACCESS :
-				response.sendRedirect("errorpage.jsp");
-				break;
-		}
-	}
-%>

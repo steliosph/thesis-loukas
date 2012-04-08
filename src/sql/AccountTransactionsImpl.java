@@ -73,33 +73,7 @@ public class AccountTransactionsImpl implements AccountTransactionsRepository {
 		sqlQuery_ = "SELECT * FROM account_transactions inner join customers on account_transactions.customer_id = customers.customer_id ORDER BY account_transactions.account_transaction_id;";
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
-	}
-	
-	public ResultSet searchAccountTransaction(String Search) {
-		sqlQuery_ = "SELECT * FROM account_transactions inner join customers on account_transactions.customer_id = customers.customer_id where  account_transactions.account_transaction_id= '"
-				+ Search
-				+ "' or account_transactions.account_id='"
-				+ Search
-				+ "' or account_transactions.action='"
-				+ Search
-				+ "' or account_transactions.initial_account_amount='"
-				+ Search
-				+ "' or account_transactions.total_account_amount='"
-				+ Search
-				+ "' or account_transactions.remaining_account_amount='"
-				+ Search
-				+ "'or account_transactions.description='"
-				+ Search
-				+ "'or customers.customer_id='"
-				+ Search
-				+ "'or customers.firstname='"
-				+ Search
-				+ "'or customers.lastname='" + Search + "'";
-		ResultSet rs = database_.getResultSet(sqlQuery_);
-		System.out.println(sqlQuery_);
-		return rs;
-	}
-	
+	}	
 	
 	public ResultSet searchAccountTransactionId(String Search) {
 		sqlQuery_ = "SELECT * FROM account_transactions inner join customers on account_transactions.customer_id = customers.customer_id where  account_transactions.account_transaction_id= '"+ Search + "'"; 

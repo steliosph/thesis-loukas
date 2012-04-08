@@ -1,31 +1,13 @@
-<%@ page import="enums.AccessRightsEnum"%>
-<%@ page import="bean.AccessRights"%>
-
-<%	
-	Integer accountTypeId = (Integer) session.getAttribute("accountTypeId");
-	AccessRights accessRights = new AccessRights();
-	if (accountTypeId == null) {
-		response.sendRedirect("../errorpage.jsp");
-	} else {
-	switch (accessRights.getAccessRights(accountTypeId)) {
-	case DIRECTOR:
-	case CASHIER:
-%>
-
-
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <jsp:useBean id="account" scope="page" class="sql.AccountsRepositoryImpl" />
-
 <%
 	String Firstname = "", Lastname = "", cardNumber = "";
 	int AccountId = 0;
 	float Balance;
 	Timestamp DateCreated;
-
 %>
- 
+
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -121,10 +103,3 @@ $(document).ready(function() {
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>
-<%
-	break;
-	case NOACCESS:
-		response.sendRedirect("errorpage.jsp");
-	break;
-	}}
-%>

@@ -3,15 +3,15 @@
 	response.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html;charset=UTF-8");
 %>
-<%@ page import="sql.AccountTransactionsRepository"%>
+<%@ page import="sql.LoanTransactionsRepository"%>
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="accountTransactions" scope="page" class="sql.AccountTransactionsImpl" />
+<jsp:useBean id="loanTransactions" scope="page" class="sql.LoanTransactionsRepositoryImpl" />
 <%
-	String desc, firstname, lastname, action, Search, combobox;
-	int accountTransactionId;
-	float orio, initialAmount, accountAmount, accountBalance, totalPayedAmount, remainingPayeeAmount;
-	Timestamp accountTransactionTime;
+	String desc, firstname, lastname, Search, combobox;
+	int loanTransactionId ;
+	float loanAmount, loanBalance, totalPayedAmount, remainingPayeeAmount;
+	Timestamp loanTransactionTime; 
 %>
 <script type="text/javascript" language="javascript"> 
 function showHide() {
@@ -34,7 +34,7 @@ function showHide() {
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="style.css" type="text/css" />
-<link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
+<link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />  
 </head>
 <body>
 	<%@ include file="top.jsp"%>
@@ -42,8 +42,8 @@ function showHide() {
 	<div class="pageMain">
 		<div class="contentArea">
 			<!-- Main Menu Links -->
-			<%@ include file="menu.jsp"%>
-			<h1>Συνολική εικόνα συναλλαγων λογαριασμών</h1>
+		<%@ include file="menu.jsp"%>
+			<h1>Συνολική εικόνα συναλλαγων δανείων</h1>
 			<table ALIGN="center" border="1">
 				<tr>
 					<td ALIGN="center">Αναζήτηση</td>
@@ -51,18 +51,17 @@ function showHide() {
 				</tr>
 				<tr>
 					<td>
-						<form action="searchAccountTransaction.jsp" method="post"
-							style="padding: 0; margin: 0">
+						<form action="searchLoanTransaction.jsp" method="post" style="padding: 0; margin: 0">
 							<select name="searchCombo">
 								<option value="searchId">Αρ. Συναλ.</option>
 								<option value="searchFirst">Όνομα</option>
 								<option value="searchLast">Επώνυμο</option>
 								<option value="searchDesc">Περιγραφή</option>
-								<option value="searchAction">Κατ./Ανά.</option>
-								<option value="searchInitialAmount">Υπόλοιπο</option>
-								<option value="searchTotalPayedAmount">Ποσό Κατ./Ανά.</option>
-								<option value="searchRemainingPayeeAmount">Νέο Υπόλοιπο</option>
-							</select> 
+								<option value="searchLoanAmount">Ποσό Δανείου</option>
+								<option value="searchLoanBalance">Παλαίο Υπόλοιπο</option>
+								<option value="searchTotalPayedAmount">Πληρωτέο Ποσό</option>
+								<option value="searchRemainingPayeeAmount">Νέο Υπόλοιπο</option>						
+							</select> 							
 							<input type="text" name="search" id="search">
 							<button type="submit" class="btn" value="Submit">
 								<span>Aναζήτηση..</span>
@@ -77,9 +76,9 @@ function showHide() {
 					</td>
 				</tr>
 			</table>
-			<br>
+			<br>			
 			<div>
-				<div id="table" style="overflow: auto; height: 500px; display: none;">
+				<div  id="table" style="overflow: auto; height: 500px; display: none;">
 					<table id="table-2">
 						<thead>
 							<tr>
@@ -87,37 +86,37 @@ function showHide() {
 								<th>Όνομα</th>
 								<th>Επώνυμο</th>
 								<th>Περιγραφή</th>
-								<th>Κατ./Ανά.</th>
-								<th>Υπόλοιπο.</th>
-								<th>Ποσό Κατ./Ανά.</th>
+								<th>Ποσό Δανείου</th>
+								<th>Παλαίο Υπόλοιπο</th>
+								<th>Πληρωτέο Ποσό</th>
 								<th>Νέο Υπόλοιπο</th>
-								<th>Ώρα Συναλ.</th>
+								<th>Ώρα Συναλ.</th>								
 							</tr>
 						</thead>
 						<tbody>
 							<%
-							ResultSet rs = accountTransactions.getAccountTransaction();
+							ResultSet rs = loanTransactions.getLoanTransaction();
 								while (rs.next()) {
-									accountTransactionId = rs.getInt("account_transaction_id");
+									loanTransactionId = rs.getInt("loan_transaction_id");
 									firstname = rs.getString("Firstname");
 									lastname = rs.getString("lastname");
 									desc = rs.getString("description");
-									action = rs.getString("action");
-									initialAmount = rs.getFloat("initial_account_amount");
-									totalPayedAmount = rs.getFloat("total_account_Amount");
-									remainingPayeeAmount = rs.getFloat("remaining_account_amount");
-									accountTransactionTime = rs.getTimestamp("account_Transacion_Time");
+									loanAmount = rs.getFloat("loan_amount");
+									loanBalance = rs.getFloat("loan_balance");
+									totalPayedAmount = rs.getFloat("total_Payed_Amount");
+									remainingPayeeAmount = rs.getFloat("remaining_payee_amount");
+									loanTransactionTime = rs.getTimestamp("loan_Transaction_Time");
 							%>
-							<tr>
-								<td><%=accountTransactionId%></td>
+							<tr> 
+								<td><%=loanTransactionId%></td>
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>
 								<td><%=desc%></td>
-								<td><%=action%></td>
-								<td><%=initialAmount%></td>
+ 								<td><%=loanAmount%></td>
+ 								<td><%=loanBalance%></td>
 								<td><%=totalPayedAmount%></td>
 								<td><%=remainingPayeeAmount%></td>
-								<td><%=accountTransactionTime%></td>
+							    <td><%=loanTransactionTime%></td>							    			
 							</tr>
 							<%
 								}
@@ -129,16 +128,16 @@ function showHide() {
 				<div id="table2" style="overflow: auto; height: 500px; width: auto;">
 					<table id="table-2">
 						<thead>
-							<tr>
+							<tr>	
 								<th>Αρ. Συναλ.</th>
 								<th>Όνομα</th>
 								<th>Επώνυμο</th>
 								<th>Περιγραφή</th>
-								<th>Κατ./Ανά.</th>
-								<th>Υπόλοιπο.</th>
-								<th>Ποσό Κατ./Ανά.</th>
+								<th>Ποσό Δανείου</th>
+								<th>Παλαίο Υπόλοιπο</th>
+								<th>Πληρωτέο Ποσό</th>
 								<th>Νέο Υπόλοιπο</th>
-								<th>Ώρα Συναλ.</th>
+								<th>Ώρα Συναλ.</th>								
 							</tr>
 						</thead>
 						<tbody>
@@ -146,58 +145,57 @@ function showHide() {
 				Search = request.getParameter("search");	
 				combobox = request.getParameter("searchCombo");							
 				if (combobox.equals("searchId") ) {				
-					rs = accountTransactions.searchAccountTransactionId(Search);
+					rs = loanTransactions.searchLoanTransactionId(Search); 
 				}
 				else if (combobox.equals("searchFirst") ) {
-					rs = accountTransactions.searchAccountTransactionFirstname(Search);			
+					rs = loanTransactions.searchLoanTransactionFirstname(Search);		
 				}
 				else if (combobox.equals("searchLast") ) {
-					rs = accountTransactions.searchAccountTransactionLastname(Search);
+					rs = loanTransactions.searchLoanTransactionLastname(Search);
 				}				
 				else if (combobox.equals("searchDesc") ) {
-					rs = accountTransactions.searchAccountTransactionDesc(Search);
+					rs = loanTransactions.searchLoanTransactionDesc(Search);
 				}
-				else if (combobox.equals("searchAction") ) {
-					rs = accountTransactions.searchAccountTransactionAction(Search);
+				else if (combobox.equals("searchLoanAmount") ) {
+					rs = loanTransactions.searchLoanTransactionLoanAmount(Search);
 				}
-				else if (combobox.equals("searchInitialAmount") ) {
-					rs = accountTransactions.searchAccountTransactionInitialAmount(Search);
+				else if (combobox.equals("searchLoanBalance") ) {
+					rs = loanTransactions.searchLoanTransactionLoanBalance(Search);
 				}
 				else if (combobox.equals("searchTotalPayedAmount") ) {
-					rs = accountTransactions.searchAccountTransactionTotalPayedAmount(Search);
+					rs = loanTransactions.searchLoanTransactionTotalPayedAmount(Search);
 				}
 				else if (combobox.equals("searchRemainingPayeeAmount") ) {
-					rs = accountTransactions.searchAccountTransactionRemainingPayeeAmount(Search);
-				}								
+					rs = loanTransactions.searchLoanTransactionRemainingPayeeAmount(Search);
+				}							
 				while (rs.next()) {
-					accountTransactionId = rs.getInt("account_transaction_id");
+					loanTransactionId = rs.getInt("loan_transaction_id");
 					firstname = rs.getString("Firstname");
 					lastname = rs.getString("lastname");
 					desc = rs.getString("description");
-					action = rs.getString("action");
-					initialAmount = rs.getFloat("initial_account_amount");
-					totalPayedAmount = rs.getFloat("total_account_Amount");
-					remainingPayeeAmount = rs.getFloat("remaining_account_amount");
-					accountTransactionTime = rs.getTimestamp("account_Transacion_Time");					
+					loanAmount = rs.getFloat("loan_amount");
+					loanBalance = rs.getFloat("loan_balance");
+					totalPayedAmount = rs.getFloat("total_Payed_Amount");
+					remainingPayeeAmount = rs.getFloat("remaining_payee_amount");
+					loanTransactionTime = rs.getTimestamp("loan_Transaction_Time");					
 				%>
-							<tr>
-								<td><%=accountTransactionId%></td>
+							<tr> 
+								<td><%=loanTransactionId%></td>
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>
 								<td><%=desc%></td>
-								<td><%=action%></td>
-								<td><%=initialAmount%></td>
+ 								<td><%=loanAmount%></td>
+ 								<td><%=loanBalance%></td>
 								<td><%=totalPayedAmount%></td>
 								<td><%=remainingPayeeAmount%></td>
-								<td><%=accountTransactionTime%></td>
-							</tr>
+							    <td><%=loanTransactionTime%></td>							    			
+							</tr>		
 							<%
 								}
 							%>
 						</tbody>
 					</table>
-				</div>
-
+				</div>													
 			</div>
 		</div>
 		<div class="clear"></div>

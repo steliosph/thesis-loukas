@@ -1,19 +1,5 @@
 <%@page import="enums.LoanStatus"%>
-<%@ page import="enums.AccessRightsEnum"%>
-<%@ page import="bean.AccessRights"%>
 <%@page import="enums.LoanOptions"%>
-
-<%
-	Integer accountTypeId = (Integer) session
-			.getAttribute("accountTypeId");
-	AccessRights accessRights = new AccessRights();
-	if (accountTypeId == null) {
-		response.sendRedirect("../errorpage.jsp");
-	} else {
-		switch (accessRights.getAccessRights(accountTypeId)) {
-			case DIRECTOR :
-			case CASHIER :
-%>
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
@@ -26,19 +12,16 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var overlayColor = $('#fancybox-overlay')
-
 		$(document).ready(function() {
 			$("label.overlabel").overlabel();
 		});
 	});
 </script>
 </head>
-
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
 <%!String loanId1 = "", type = "", status = "";
 	int loanId = 0, customerId = 0;
 	float amount = 0;%>
-
 <%
 				loanId1 = request.getParameter("loanId");
 				loanId = Integer.parseInt(loanId1);
@@ -57,12 +40,9 @@
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	pageContext.setAttribute("loanOptions",
-						enums.LoanOptions.values());
-				pageContext.setAttribute("loanStatus",
-						enums.LoanStatus.values());
+	pageContext.setAttribute("loanOptions",enums.LoanOptions.values());
+	pageContext.setAttribute("loanStatus",enums.LoanStatus.values());
 %>
-
 <form name="editform" method="post" action="updateloans.jsp">
 	<table width="300px">
 		<tr>
@@ -70,14 +50,12 @@
 					style="margin-bottom: -3px;">Επεξεργασία Δανείου</h2>
 				<div class="hr" style="margin-bottom: -3px;"></div></td>
 		</tr>
-
 		<tr>
 			<td colspan=2 align="center" height="10px"></td>
 		</tr>
 		<tr>
 			<td>Id Πελάτη:</td>
-			<td><input type="text" name="customerId" value="<%=customerId%>"
-				readonly></td>
+			<td><input type="text" name="customerId" value="<%=customerId%>" readonly></td>
 		</tr>
 		<tr>
 			<td>Ποσό:</td>
@@ -109,11 +87,3 @@
 </form>
 </body>
 </html>
-<%
-	break;
-			case NOACCESS :
-				response.sendRedirect("errorpage.jsp");
-				break;
-		}
-	}
-%>

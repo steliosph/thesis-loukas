@@ -1,16 +1,3 @@
-<%@ page import="enums.AccessRightsEnum"%>
-<%@ page import="bean.AccessRights"%>
-<%
-	Integer accountTypeId = (Integer) session
-			.getAttribute("accountTypeId");
-	AccessRights accessRights = new AccessRights();
-	if (accountTypeId == null) {
-		response.sendRedirect("../errorpage.jsp");
-	} else {
-		switch (accessRights.getAccessRights(accountTypeId)) {
-		case DIRECTOR:
-		case CASHIER:
-%>
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
@@ -20,10 +7,8 @@
 <link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="../js/jquery.overlabel.min.js" type="text/javascript"></script>
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var overlayColor = $('#fancybox-overlay')
@@ -40,12 +25,9 @@
 	<%!String AccountId1 = "", Firstname = "", Lastname = "";
 	int CustomerId, AccountId;
 	float Balance;%>
-
 	<%
-		AccountId1 = request.getParameter("AccountId");
-
+				AccountId1 = request.getParameter("AccountId");
 				AccountId = Integer.parseInt(AccountId1);
-				//System.out.println(AccountId);
 				ResultSet rs = account.editAccount(AccountId);
 				if (rs.next()) {
 					CustomerId = rs.getInt("customer_id");
@@ -58,8 +40,6 @@
 					session.setAttribute("AccountId", AccountId);
 				}
 	%>
-
-
 	<form name="accountWithdrawals" id="accountWithdrawals" method="post" action="">
 		<table width="330px">
 			<tr>
@@ -67,7 +47,6 @@
 						style="margin-bottom: -3px;">Ανάληψη Χρημάτων απο λογαριασμό</h2>
 					<div class="hr" style="margin-bottom: -3px;"></div></td>
 			</tr>
-
 			<tr>
 				<td colspan=2 align="center" height="10px"></td>
 			</tr>
@@ -94,7 +73,6 @@
 				<td>Ποσό ανάληψης:</td>
 				<td><input type="text" id="TotalAccountAmount" value=""></td>
 			</tr>
-
 		</table>
 		<div class="hr" style="margin-bottom: -3px;"></div>
 		<p class="right noMargin">
@@ -103,9 +81,7 @@
 			</button>
 			<br>
 </form>	
-
 </div>
-
 <script>
 $(document).ready(function(){
 	$("form#accountWithdrawals").submit(function() {
@@ -116,14 +92,9 @@ $(document).ready(function(){
 			url: "updateAccountWithdrawals.jsp",
 			data: {"TotalAccountAmount": TotalAccountAmount, "desc": desc},	
 			success: function(result){
-				var result = $.trim(result);
-				
+				var result = $.trim(result);				
 				$('#reload').load('accountWithdrawals.jsp', {'AccountId' : <%=AccountId%>,});
-				//$('#loading').fadeIn(500).show();
-				//alert(result);			
-			 
-				setTimeout(function(){
-					//$("#loading").show().delay(100).fadeOut();					
+				setTimeout(function(){										
 				if (result=='correct'){
 					$('#error').fadeOut(1600, "linear");								
 					$('#correct').fadeIn(500).show();
@@ -140,10 +111,6 @@ $(document).ready(function(){
 ;
 </script>
 
- 
-<div id="loading" style="display: none;">
-	<img src="../images/fancybox/loading.gif"/> 
-</div>
 <div id="correct" style="display: none; color: red; ">
 	<strong>Το υπόλοιπο του λογαριασμού:(<%=AccountId%>)
 		ανανεώθηκε!
@@ -156,11 +123,3 @@ $(document).ready(function(){
 </div>
 </body>
 </html>
-<%
-	break;
-		case NOACCESS:
-			response.sendRedirect("errorpage.jsp");
-			break;
-		}
-	}
-%>

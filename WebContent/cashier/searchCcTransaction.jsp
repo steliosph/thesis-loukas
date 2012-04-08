@@ -3,15 +3,15 @@
 	response.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html;charset=UTF-8");
 %>
-<%@ page import="sql.AccountTransactionsRepository"%>
+<%@ page import="sql.CreditCardsTransactionRepository"%>
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="accountTransactions" scope="page" class="sql.AccountTransactionsImpl" />
+<jsp:useBean id="ccTransactions" scope="page" class="sql.CreditCardsTransactionRepositoryImpl" />
 <%
 	String desc, firstname, lastname, action, Search, combobox;
-	int accountTransactionId;
-	float orio, initialAmount, accountAmount, accountBalance, totalPayedAmount, remainingPayeeAmount;
-	Timestamp accountTransactionTime;
+	int ccTransactionId ;
+	float orio, initialAmount, ccAmount, ccBalance, totalPayedAmount, remainingPayeeAmount;
+	Timestamp ccTransactionTime; 
 %>
 <script type="text/javascript" language="javascript"> 
 function showHide() {
@@ -34,7 +34,7 @@ function showHide() {
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="style.css" type="text/css" />
-<link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
+<link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" /> 
 </head>
 <body>
 	<%@ include file="top.jsp"%>
@@ -42,8 +42,8 @@ function showHide() {
 	<div class="pageMain">
 		<div class="contentArea">
 			<!-- Main Menu Links -->
-			<%@ include file="menu.jsp"%>
-			<h1>Συνολική εικόνα συναλλαγων λογαριασμών</h1>
+		<%@ include file="menu.jsp"%>
+			<h1>Συνολική εικόνα συναλλαγων πιστωτικών καρτών</h1>
 			<table ALIGN="center" border="1">
 				<tr>
 					<td ALIGN="center">Αναζήτηση</td>
@@ -51,8 +51,7 @@ function showHide() {
 				</tr>
 				<tr>
 					<td>
-						<form action="searchAccountTransaction.jsp" method="post"
-							style="padding: 0; margin: 0">
+						<form action="searchCcTransaction.jsp" method="post" style="padding: 0; margin: 0">
 							<select name="searchCombo">
 								<option value="searchId">Αρ. Συναλ.</option>
 								<option value="searchFirst">Όνομα</option>
@@ -62,7 +61,8 @@ function showHide() {
 								<option value="searchInitialAmount">Υπόλοιπο</option>
 								<option value="searchTotalPayedAmount">Ποσό Κατ./Ανά.</option>
 								<option value="searchRemainingPayeeAmount">Νέο Υπόλοιπο</option>
-							</select> 
+								<option value="searchOrio">Όριο</option>						
+							</select> 	
 							<input type="text" name="search" id="search">
 							<button type="submit" class="btn" value="Submit">
 								<span>Aναζήτηση..</span>
@@ -77,7 +77,7 @@ function showHide() {
 					</td>
 				</tr>
 			</table>
-			<br>
+			<br>				
 			<div>
 				<div id="table" style="overflow: auto; height: 500px; display: none;">
 					<table id="table-2">
@@ -88,36 +88,39 @@ function showHide() {
 								<th>Επώνυμο</th>
 								<th>Περιγραφή</th>
 								<th>Κατ./Ανά.</th>
-								<th>Υπόλοιπο.</th>
-								<th>Ποσό Κατ./Ανά.</th>
+								<th>Υπόλοιπο</th>
+								<th>Ποσό Κατ./Ανά.</th>								
 								<th>Νέο Υπόλοιπο</th>
-								<th>Ώρα Συναλ.</th>
+								<th>Όριο</th>
+								<th>Ώρα Συναλ.</th>								
 							</tr>
 						</thead>
 						<tbody>
 							<%
-							ResultSet rs = accountTransactions.getAccountTransaction();
+							ResultSet rs = ccTransactions.getCcTransaction();
 								while (rs.next()) {
-									accountTransactionId = rs.getInt("account_transaction_id");
+									ccTransactionId = rs.getInt("credit_card_transaction_id");
 									firstname = rs.getString("Firstname");
 									lastname = rs.getString("lastname");
 									desc = rs.getString("description");
-									action = rs.getString("action");
-									initialAmount = rs.getFloat("initial_account_amount");
-									totalPayedAmount = rs.getFloat("total_account_Amount");
-									remainingPayeeAmount = rs.getFloat("remaining_account_amount");
-									accountTransactionTime = rs.getTimestamp("account_Transacion_Time");
+									action = rs.getString("deposit");
+									initialAmount = rs.getFloat("initial_credit_card_amount");
+									totalPayedAmount = rs.getFloat("total_credit_card_Amount");
+									remainingPayeeAmount = rs.getFloat("remaining_credit_card_amount");
+									orio = rs.getFloat("orio");
+									ccTransactionTime = rs.getTimestamp("credit_car_Transaction_Time");
 							%>
-							<tr>
-								<td><%=accountTransactionId%></td>
+							<tr> 
+								<td><%=ccTransactionId%></td>
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>
 								<td><%=desc%></td>
 								<td><%=action%></td>
-								<td><%=initialAmount%></td>
-								<td><%=totalPayedAmount%></td>
+ 								<td><%=initialAmount%></td> 								
+ 								<td><%=totalPayedAmount%></td>
 								<td><%=remainingPayeeAmount%></td>
-								<td><%=accountTransactionTime%></td>
+								<td><%=orio%></td>
+							    <td><%=ccTransactionTime%></td>							    			
 							</tr>
 							<%
 								}
@@ -135,10 +138,11 @@ function showHide() {
 								<th>Επώνυμο</th>
 								<th>Περιγραφή</th>
 								<th>Κατ./Ανά.</th>
-								<th>Υπόλοιπο.</th>
-								<th>Ποσό Κατ./Ανά.</th>
+								<th>Υπόλοιπο</th>
+								<th>Ποσό Κατ./Ανά.</th>								
 								<th>Νέο Υπόλοιπο</th>
-								<th>Ώρα Συναλ.</th>
+								<th>Όριο</th>
+								<th>Ώρα Συναλ.</th>								
 							</tr>
 						</thead>
 						<tbody>
@@ -146,58 +150,62 @@ function showHide() {
 				Search = request.getParameter("search");	
 				combobox = request.getParameter("searchCombo");							
 				if (combobox.equals("searchId") ) {				
-					rs = accountTransactions.searchAccountTransactionId(Search);
+					rs = ccTransactions.searchCcTransactionId(Search); 
 				}
 				else if (combobox.equals("searchFirst") ) {
-					rs = accountTransactions.searchAccountTransactionFirstname(Search);			
+					rs = ccTransactions.searchCcTransactionFirstname(Search); 	
 				}
 				else if (combobox.equals("searchLast") ) {
-					rs = accountTransactions.searchAccountTransactionLastname(Search);
+					rs = ccTransactions.searchCcTransactionLastname(Search);
 				}				
 				else if (combobox.equals("searchDesc") ) {
-					rs = accountTransactions.searchAccountTransactionDesc(Search);
+					rs = ccTransactions.searchCcTransactionDesc(Search); 
 				}
 				else if (combobox.equals("searchAction") ) {
-					rs = accountTransactions.searchAccountTransactionAction(Search);
+					rs = ccTransactions.searchCcTransactionAction(Search); 
 				}
 				else if (combobox.equals("searchInitialAmount") ) {
-					rs = accountTransactions.searchAccountTransactionInitialAmount(Search);
+					rs = ccTransactions.searchCcTransactionInitialAmount(Search); 
 				}
 				else if (combobox.equals("searchTotalPayedAmount") ) {
-					rs = accountTransactions.searchAccountTransactionTotalPayedAmount(Search);
+					rs = ccTransactions.searchCcTransactionTotalPayedAmount(Search);
 				}
 				else if (combobox.equals("searchRemainingPayeeAmount") ) {
-					rs = accountTransactions.searchAccountTransactionRemainingPayeeAmount(Search);
-				}								
+					rs = ccTransactions.searchCcTransactionRemainingPayeeAmount(Search);
+				}	
+				else if (combobox.equals("searchOrio") ) {
+					rs = ccTransactions.searchCcTransactionOrio(Search); 
+				}	
 				while (rs.next()) {
-					accountTransactionId = rs.getInt("account_transaction_id");
+					ccTransactionId = rs.getInt("credit_card_transaction_id");
 					firstname = rs.getString("Firstname");
 					lastname = rs.getString("lastname");
 					desc = rs.getString("description");
-					action = rs.getString("action");
-					initialAmount = rs.getFloat("initial_account_amount");
-					totalPayedAmount = rs.getFloat("total_account_Amount");
-					remainingPayeeAmount = rs.getFloat("remaining_account_amount");
-					accountTransactionTime = rs.getTimestamp("account_Transacion_Time");					
-				%>
-							<tr>
-								<td><%=accountTransactionId%></td>
+					action = rs.getString("deposit");
+					initialAmount = rs.getFloat("initial_credit_card_amount");
+					totalPayedAmount = rs.getFloat("total_credit_card_Amount");
+					remainingPayeeAmount = rs.getFloat("remaining_credit_card_amount");
+					orio = rs.getFloat("orio");
+					ccTransactionTime = rs.getTimestamp("credit_car_Transaction_Time");				
+				%>	
+							<tr> 
+								<td><%=ccTransactionId%></td>
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>
 								<td><%=desc%></td>
 								<td><%=action%></td>
-								<td><%=initialAmount%></td>
-								<td><%=totalPayedAmount%></td>
+ 								<td><%=initialAmount%></td> 								
+ 								<td><%=totalPayedAmount%></td>
 								<td><%=remainingPayeeAmount%></td>
-								<td><%=accountTransactionTime%></td>
+								<td><%=orio%></td>
+							    <td><%=ccTransactionTime%></td>							    			
 							</tr>
 							<%
 								}
 							%>
 						</tbody>
 					</table>
-				</div>
-
+				</div>			
 			</div>
 		</div>
 		<div class="clear"></div>

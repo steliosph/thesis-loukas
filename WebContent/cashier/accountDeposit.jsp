@@ -1,16 +1,3 @@
-<%@ page import="enums.AccessRightsEnum"%>
-<%@ page import="bean.AccessRights"%>
-<%
-	Integer accountTypeId = (Integer) session
-			.getAttribute("accountTypeId");
-	AccessRights accessRights = new AccessRights();
-	if (accountTypeId == null) {
-		response.sendRedirect("../errorpage.jsp");
-	} else {
-		switch (accessRights.getAccessRights(accountTypeId)) {
-		case DIRECTOR:
-		case CASHIER:
-%>
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
@@ -40,7 +27,6 @@
 <%!String AccountId1 = "", Firstname = "", Lastname = "";
 	int CustomerId, AccountId;
 	float Balance;%>
-
 <%
 	AccountId1 = request.getParameter("AccountId");
 			AccountId = Integer.parseInt(AccountId1);
@@ -56,8 +42,6 @@
 				session.setAttribute("AccountId", AccountId);
 			}
 %>
-
-
 <form name="editform" id="accountDeposit" method="post" action="">
 
 	<table width="320px">
@@ -101,7 +85,6 @@
 		<br>
 </form>
 </div>
-
 <script>
 $(document).ready(function(){
 	$("form#accountDeposit").submit(function() {
@@ -124,21 +107,10 @@ $(document).ready(function(){
 	});
 });
 </script>
-
 <div id="correct" style="display: none; color: red; ">
 	<strong>Το υπόλοιπο του λογαριασμού:(<%=AccountId%>)
 		ανανεώθηκε!
 	</strong>
 </div>
-
-
 </body>
 </html>
-<%
-	break;
-		case NOACCESS:
-			response.sendRedirect("errorpage.jsp");
-			break;
-		}
-	}
-%>

@@ -1,16 +1,3 @@
-<%@ page import="enums.AccessRightsEnum"%>
-<%@ page import="bean.AccessRights"%>
-<%
-	Integer accountTypeId = (Integer) session
-			.getAttribute("accountTypeId");
-	AccessRights accessRights = new AccessRights();
-	if (accountTypeId == null) {
-		response.sendRedirect("../errorpage.jsp");
-	} else {
-		switch (accessRights.getAccessRights(accountTypeId)) {
-		case DIRECTOR:
-		case CASHIER:
-%>
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
@@ -20,14 +7,11 @@
 <link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="../js/jquery.overlabel.min.js" type="text/javascript"></script>
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var overlayColor = $('#fancybox-overlay')
-
 		$(document).ready(function() {
 			$("label.overlabel").overlabel();
 		});
@@ -39,7 +23,6 @@
 <%!String loanId1 = "", Firstname = "", Lastname = "";
 	int loanId, customerId;
 	float amount, remainingPayeeAmount;%>
-
 <%
 				loanId1 = request.getParameter("LoanId");
 				loanId = Integer.parseInt(loanId1);
@@ -57,8 +40,6 @@
 					session.setAttribute("remainingPayeeAmount", remainingPayeeAmount);
 				}
 %>
-
-
 <form name="editform" id="aaa" method="post" action="">
 
 	<table width="320px">
@@ -120,8 +101,7 @@ $(document).ready(function(){
 			success: function(result){
 				var result = $.trim(result);
 				$('#reload').load('amountOfDeposit.jsp', {'LoanId' : <%=loanId%>,});				
-				setTimeout(function(){
-					//$("#loading").show().delay(100).fadeOut();					
+				setTimeout(function(){					
 				if (result=='correct'){
 					$('#error').fadeOut(1600, "linear");								
 					$('#correct').fadeIn(500).show();
@@ -137,7 +117,6 @@ $(document).ready(function(){
 });
 ;
 </script>
-
 <div id="correct" style="display: none; color: red; ">
 	<strong>Το ποσό για εξόφληση του δάνειο:(<%=loanId%>)
 		ανανεώθηκε!
@@ -150,11 +129,3 @@ $(document).ready(function(){
 
 </body>
 </html>
-<%
-	break;
-		case NOACCESS:
-			response.sendRedirect("../errorpage.jsp");
-			break;
-		}
-	}
-%>

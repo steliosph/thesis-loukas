@@ -77,5 +77,68 @@ public class CreditCardsTransactionRepositoryImpl implements
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
 	}
+	
+	public ResultSet searchCcTransactionId(String Search) {
+		sqlQuery_ = "SELECT * FROM credit_cards_transactions inner join customers on credit_cards_transactions.customer_id = customers.customer_id where credit_cards_transactions.credit_card_transaction_id='"+ Search + "'"; 
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchCcTransactionFirstname(String Search) {
+		sqlQuery_ = "SELECT * FROM credit_cards_transactions inner join customers on credit_cards_transactions.customer_id = customers.customer_id where customers.firstname='"+ Search + "'"; 
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchCcTransactionLastname(String Search) {
+		sqlQuery_ = "SELECT * FROM credit_cards_transactions inner join customers on credit_cards_transactions.customer_id = customers.customer_id where customers.lastname='"+ Search + "'"; 
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchCcTransactionDesc(String Search) {
+		sqlQuery_ = "SELECT * FROM credit_cards_transactions inner join customers on credit_cards_transactions.customer_id = customers.customer_id where credit_cards_transactions.description='"+ Search + "'"; 
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchCcTransactionAction(String Search) {
+		sqlQuery_ = "SELECT * FROM credit_cards_transactions inner join customers on credit_cards_transactions.customer_id = customers.customer_id where credit_cards_transactions.deposit='"+ Search + "'"; 
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchCcTransactionInitialAmount(String Search) {
+		sqlQuery_ = "SELECT * FROM credit_cards_transactions inner join customers on credit_cards_transactions.customer_id = customers.customer_id where credit_cards_transactions.initial_credit_card_amount='"+ Search + "'"; 
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchCcTransactionTotalPayedAmount(String Search) {
+		sqlQuery_ = "SELECT * FROM credit_cards_transactions inner join customers on credit_cards_transactions.customer_id = customers.customer_id where credit_cards_transactions.total_credit_card_amount='"+ Search + "'"; 
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchCcTransactionRemainingPayeeAmount(String Search) {
+		sqlQuery_ = "SELECT * FROM credit_cards_transactions inner join customers on credit_cards_transactions.customer_id = customers.customer_id where credit_cards_transactions.remaining_credit_card_amount='"+ Search + "'"; 
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
+	
+	public ResultSet searchCcTransactionOrio(String Search) {
+		sqlQuery_ = "SELECT * FROM credit_cards_transactions inner join customers on credit_cards_transactions.customer_id = customers.customer_id where credit_cards_transactions.orio='"+ Search + "'"; 
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
+		return rs;
+	}
 
 }

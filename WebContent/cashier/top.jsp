@@ -1,3 +1,5 @@
+<%@ page import="enums.AccessRightsEnum"%>
+<%@ page import="bean.AccessRights"%>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -6,10 +8,8 @@
 <title>Τράπεζα Παπεί</title>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <!-- login menu -->
-
 <script src="../js/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript"
-	SRC="../js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" SRC="../js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <script src="../js/jquery.overlabel.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="../css/fancybox.css" />
 
@@ -56,7 +56,7 @@
 							<div class="mmDivider"></div>
 							<%
 								String isValid = (String) session.getAttribute("isValid");
-						 		if (isValid == "no" || isValid == null) {
+								if (isValid == "no" || isValid == null) {
 							%>
 							<ul class="nav-main">
 								<li class="list"><span class="mmLogin">Login/Register</span>
@@ -78,11 +78,40 @@
 							%>
 						</div>
 						<div id="MmRight"></div>
-												<h2><span>Ταμίας:
-							<a href="./cashier.jsp" STYLE="text-decoration: none">   <%=session.getAttribute("firstname")%>
-									<%=session.getAttribute("lastname")%></span>
-							</a>
+						<%
+							Integer accountTypeId = (Integer) session
+									.getAttribute("accountTypeId");
+							AccessRights accessRights = new AccessRights();
+							if (accountTypeId == null) {
+								response.sendRedirect("../errorpage.jsp");
+							} else {
+								switch (accessRights.getAccessRights(accountTypeId)) {
+								case DIRECTOR:
+						%>
+						<h2>
+							<span>Γενικός Διευθυντής: <a href="../director/director.jsp" style="text-decoration: none">
+									<%=session.getAttribute("firstname")%> 
+									<%=session.getAttribute("lastname")%>
+							</span></a>
 						</h2>
+						<%
+							break;
+								case CASHIER:
+						%>
+						<h2>
+							<span>Ταμίας: <a href="./cashier.jsp" style="text-decoration: none"> 
+									<%=session.getAttribute("firstname")%>
+									<%=session.getAttribute("lastname")%>
+							</span> </a>
+						</h2>
+						<%
+						break;
+								case NOACCESS:
+									response.sendRedirect("errorpage.jsp");
+									break;
+								}
+							}
+						%>
 					</div>
 				</div>
 				<div id="Logo">
@@ -95,4 +124,4 @@
 			<div class="pageBottom"></div>
 
 			<%@page contentType="text/html" pageEncoding="UTF-8"%>
-	
+ 
