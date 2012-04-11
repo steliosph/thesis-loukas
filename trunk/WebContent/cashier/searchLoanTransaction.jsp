@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="loanTransactions" scope="page" class="sql.LoanTransactionsRepositoryImpl" />
 <%
-	String desc, firstname, lastname, Search, combobox;
+	String desc, firstname, lastname, Search = "", combobox;
 	int loanTransactionId ;
 	float loanAmount, loanBalance, totalPayedAmount, remainingPayeeAmount;
 	Timestamp loanTransactionTime; 
@@ -125,6 +125,11 @@ function showHide() {
 					</table>
 				</div>
 				<div class="clear"></div>
+				<% 
+				Search = request.getParameter("search");
+				System.out.println(Search);
+				if (Search != "" ) {
+				%>				
 				<div id="table2" style="overflow: auto; height: 500px; width: auto;">
 					<table id="table-2">
 						<thead>
@@ -142,7 +147,6 @@ function showHide() {
 						</thead>
 						<tbody>
 				<% 
-				Search = request.getParameter("search");	
 				combobox = request.getParameter("searchCombo");							
 				if (combobox.equals("searchId") ) {				
 					rs = loanTransactions.searchLoanTransactionId(Search); 
@@ -195,7 +199,10 @@ function showHide() {
 							%>
 						</tbody>
 					</table>
-				</div>													
+				</div>	
+						<%
+							}
+						%>																	
 			</div>
 		</div>
 		<div class="clear"></div>

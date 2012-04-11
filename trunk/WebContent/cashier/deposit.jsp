@@ -48,13 +48,6 @@ $(document).ready(function() {
 			<!-- Main Menu Links -->
 		<%@ include file="menu.jsp"%>
 			<h1>Συνολική εικόνα Δανείων</h1>
-			        <%
-			        	String updateloans = "";
-			        updateloans = (String) session.getAttribute("updateloans");
-			        	session.removeAttribute("updateloans");
-			        	if (updateloans != null)
-			        		out.print(updateloans);
-			        %>
 			<div>
 				<div style="overflow: auto; height: 500px;">
 					<table id="table-2">

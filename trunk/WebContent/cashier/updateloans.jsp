@@ -15,9 +15,9 @@
 <%@ page import="java.sql.*;"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("UTF-8");
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 %>
 
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
@@ -30,18 +30,13 @@
 <%
 			LoanId = (Integer) session.getAttribute("loanId");
 			CustomerId = (Integer) session.getAttribute("customerId");
-
 			LoanAmount1 = request.getParameter("amount");
 			LoanAmount = Float.parseFloat(LoanAmount1);
 			Type = request.getParameter("type");
 			Status = request.getParameter("status");
 			loan.updateLoan(LoanId, CustomerId, LoanAmount);
 			loanstatus.updateLoan(LoanId, Status, Type);
-			session.setAttribute("updateloans", "Το δάνειο με κωδικό:("
-					+ LoanId + ") ανανεώθηκε!");
-
-			response.sendRedirect("sumloans.jsp");
-
+			out.println("correct");
 			break;
 		case NOACCESS:
 			response.sendRedirect("errorpage.jsp");

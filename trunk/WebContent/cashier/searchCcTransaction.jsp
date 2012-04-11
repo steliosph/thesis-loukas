@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="ccTransactions" scope="page" class="sql.CreditCardsTransactionRepositoryImpl" />
 <%
-	String desc, firstname, lastname, action, Search, combobox;
+	String desc, firstname, lastname, action, Search = "", combobox;
 	int ccTransactionId ;
 	float orio, initialAmount, ccAmount, ccBalance, totalPayedAmount, remainingPayeeAmount;
 	Timestamp ccTransactionTime; 
@@ -129,6 +129,11 @@ function showHide() {
 					</table>
 				</div>
 				<div class="clear"></div>
+				<% 
+				Search = request.getParameter("search");
+				System.out.println(Search);
+				if (Search != "" ) {
+				%>				
 				<div id="table2" style="overflow: auto; height: 500px; width: auto;">
 					<table id="table-2">
 						<thead>
@@ -146,8 +151,7 @@ function showHide() {
 							</tr>
 						</thead>
 						<tbody>
-				<% 
-				Search = request.getParameter("search");	
+				<% 			
 				combobox = request.getParameter("searchCombo");							
 				if (combobox.equals("searchId") ) {				
 					rs = ccTransactions.searchCcTransactionId(Search); 
@@ -205,7 +209,10 @@ function showHide() {
 							%>
 						</tbody>
 					</table>
-				</div>			
+				</div>	
+						<%
+							}
+						%>							
 			</div>
 		</div>
 		<div class="clear"></div>

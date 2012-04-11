@@ -55,6 +55,7 @@ public class LoansRepositoryImpl implements LoansRepository {
 		sqlQuery_ = "select * from loans inner join loan_status on loans.loan_id = loan_status.loan_id inner join customers on loans.customer_id = customers.customer_id where loans.loan_id =  '"
 				+ loanId + "'";
 		ResultSet rs = database_.getResultSet(sqlQuery_);
+		System.out.println(sqlQuery_);
 		return rs;
 	}
 
@@ -73,5 +74,13 @@ public class LoansRepositoryImpl implements LoansRepository {
 		} catch (Exception e) {			
 			e.printStackTrace();
 		}
+	}
+	
+	public ResultSet selectAccount(Integer CustomerId) {
+		sqlQuery_ = "SELECT * FROM loans inner join customers on loans.customer_id = customers.customer_id inner join loan_status on loans.loan_id = loan_status.loan_id where loans.customer_id='"
+				+ CustomerId + "'";
+		System.out.println(sqlQuery_);
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
 	}
 }

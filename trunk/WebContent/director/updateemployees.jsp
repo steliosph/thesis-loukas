@@ -29,44 +29,34 @@ response.setContentType("text/html;charset=UTF-8");%>
 <%
 
 
-employeeId = (Integer) session.getAttribute("employeeId");
-empAddressId = (Integer) session.getAttribute("empAddressId");
-branchAddressId = (Integer) session.getAttribute("branchAddressId");
-
-
-firstname = request.getParameter("firstname");
-lastname = request.getParameter("lastname");
-salary1 = request.getParameter("salary");
-salary = Double.parseDouble(salary1);
-// dateHired = request.getParameter("dateHired");
-type = request.getParameter("type");
-empAddress = request.getParameter("empAddress");
-empCity = request.getParameter("empCity");
-empPostalCode = request.getParameter("empPostalCode");
-empTelephone = request.getParameter("empTelephone");
-branchAddress = request.getParameter("branchAddress");
-branchCity = request.getParameter("branchCity");
-branchPostalCode = request.getParameter("branchPostalCode");
-branchTelephone = request.getParameter("branchTelephone");
-
-
-employee.updateEmployee(employeeId, firstname, lastname, salary);
-addressbean.updateAddress(empAddressId, empAddress, empCity, empPostalCode, empTelephone);
-addressbean.updateAddress(branchAddressId, branchAddress, branchCity, branchPostalCode, branchTelephone);
-
+	employeeId = (Integer) session.getAttribute("employeeId");
+	empAddressId = (Integer) session.getAttribute("empAddressId");
+	branchAddressId = (Integer) session.getAttribute("branchAddressId");
+	firstname = request.getParameter("firstname");
+	lastname = request.getParameter("lastname");
+	salary1 = request.getParameter("salary");
+	salary = Double.parseDouble(salary1);
+	// dateHired = request.getParameter("dateHired");
+	type = request.getParameter("type");
+	empAddress = request.getParameter("empAddress");
+	empCity = request.getParameter("empCity");
+	empPostalCode = request.getParameter("empPostalCode");
+	empTelephone = request.getParameter("empTelephone");
+	branchAddress = request.getParameter("branchAddress");
+	branchCity = request.getParameter("branchCity");
+	branchPostalCode = request.getParameter("branchPostalCode");
+	branchTelephone = request.getParameter("branchTelephone");
 	
-	session.setAttribute("updateemployees","O εργαζόμενος με κωδικό:(" + employeeId + ") ανανεώθηκε!");
- 
-%>
-
-<jsp:forward page="employee.jsp">
-	<jsp:param name="update" value="<%=employeeId%>" />
-</jsp:forward>
-<%
+	employee.updateEmployee(employeeId, firstname, lastname, salary);
+	addressbean.updateAddress(empAddressId, empAddress, empCity, empPostalCode, empTelephone);
+	addressbean.updateAddress(branchAddressId, branchAddress, branchCity, branchPostalCode, branchTelephone);
+	out.println("correct");
+	
 	break;
 	case CASHIER:
 	case NOACCESS:
-		response.sendRedirect("errorpage.jsp");
+	case CUSTOMER:
+		response.sendRedirect("../errorpage.jsp");
 	break;
 	}}
 %>

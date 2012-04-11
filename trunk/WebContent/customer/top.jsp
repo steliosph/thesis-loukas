@@ -1,5 +1,15 @@
 <%@ page import="enums.AccessRightsEnum"%>
 <%@ page import="bean.AccessRights"%>
+						<%
+	Integer accountTypeId = (Integer) session.getAttribute("accountTypeId");
+	AccessRights accessRights = new AccessRights();
+	if (accountTypeId == null) {
+		response.sendRedirect("../errorpage.jsp");
+	} else {
+		switch (accessRights.getAccessRights(accountTypeId)) {
+	case DIRECTOR:
+	case CUSTOMER:
+	%>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -78,41 +88,15 @@
 							%>
 						</div>
 						<div id="MmRight"></div>
-						<%
-							Integer accountTypeId = (Integer) session
-									.getAttribute("accountTypeId");
-							AccessRights accessRights = new AccessRights();
-							if (accountTypeId == null) {
-								response.sendRedirect("../errorpage.jsp");
-							} else {
-								switch (accessRights.getAccessRights(accountTypeId)) {
-								case DIRECTOR:
-						%>
+
 						<h2>
-							<span>Γενικός Διευθυντής: <a href="../director/director.jsp" style="text-decoration: none">
+							<span><a href="../customer/customer.jsp" style="text-decoration: none">
 									<%=session.getAttribute("firstname")%> 
 									<%=session.getAttribute("lastname")%>
 							</span></a>
 						</h2>
-						<%
-							break;
-								case CASHIER:
-						%>
-						<h2>
-							<span>Ταμίας: <a href="./cashier.jsp" style="text-decoration: none"> 
-									<%=session.getAttribute("firstname")%>
-									<%=session.getAttribute("lastname")%>
-							</span> </a>
-						</h2>
-						<%
-						break;
-								case NOACCESS:
-								case CUSTOMER:
-									response.sendRedirect("../errorpage.jsp");
-									break;
-								}
-							}
-						%>
+
+
 					</div>
 				</div>
 				<div id="Logo">
@@ -125,4 +109,11 @@
 			<div class="pageBottom"></div>
 
 			<%@page contentType="text/html" pageEncoding="UTF-8"%>
- 
+ 						<%
+					break;
+					case NOACCESS:
+					response.sendRedirect("errorpage.jsp");
+					break;
+				}
+			}
+		%>

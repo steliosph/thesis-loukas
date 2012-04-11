@@ -29,22 +29,17 @@
 	});
 </script>
 </head>
+<div id="reload">
+<jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
 
-<jsp:useBean id="customer" scope="page"
-	class="sql.CustomersRepositoryImpl" />
-
-<%!String customerId1 = "", firstname = "", lastname = "", address = "",
-			city = "", postalCode = "", telephone = "";
-	int customerId = 0, addressId = 0;%>
+<%!String customerId1, firstname, lastname, address, city, postalCode, telephone;
+	int customerId, addressId;%>
 <%
 	customerId1 = request.getParameter("customerId");
 	customerId = Integer.parseInt(customerId1);
 	ResultSet rs = customer.editCustomer(customerId);
 	if (rs.next()) {
-		addressId = rs.getInt("address.address_id");
-
-		System.out.println(addressId);
-		System.out.println(customerId);		
+		addressId = rs.getInt("address.address_id");	
 		customerId = rs.getInt("customer_id");
 		firstname = rs.getString("firstname");
 		lastname = rs.getString("lastname");
@@ -58,40 +53,39 @@
 	}
 %>
 
-<form name="editform" method="post" action="updatecustomers.jsp">
+<form name="editform" method="post" id="editCustomers" action="">
 	<table width="300px">
 		<tr>
 			<td colspan=2 style="font-weight: bold;" align="center"><h2
 					style="margin-bottom: -3px;">Επεξεργασία Πελάτη</h2>
 				<div class="hr" style="margin-bottom: -3px;"></div></td>
 		</tr>
-
 		<tr>
 			<td colspan=2 align="center" height="10px"></td>
-		</tr>
+		</tr>		
 		<tr>
 			<td>Όνομα:</td>
-			<td><input type="text" name="firstname" value="<%=firstname%>"></td>
+			<td><input type="text" name="firstname" id="firstname" value="<%=firstname%>"></td>
 		</tr>
 		<tr>
 			<td>Επώνυμο:</td>
-			<td><input type="text" name="lastname" value="<%=lastname%>"></td>
+			<td><input type="text" name="lastname" id="lastname" value="<%=lastname%>"></td>
 		</tr>
 		<tr>
 			<td>Διεύθυνση:</td>
-			<td><input type="text" name="address" value="<%=address%>"></td>
+			<td><input type="text" name="address" id="address" value="<%=address%>"></td>
 		</tr>
 		<tr>
 			<td>Πόλη:</td>
-			<td><input type="text" name="city" value="<%=city%>"></td>
+			<td><input type="text" name="city" id="city" value="<%=city%>"></td>
 		</tr>
 		<tr>
 			<td>Τ.Κ:</td>
-			<td><input type="text" name="postalCode" value="<%=postalCode%>"></td>
+			<td><input type="text" name="postalCode" id="postalCode" value="<%=postalCode%>"></td>
 		</tr>
 		<tr>
 			<td>Τηλέφωνο:</td>
-			<td><input type="text" name="telephone" value="<%=telephone%>"></td>
+			<td><input type="text" name="telephone" id="telephone" value="<%=telephone%>"></td>
 		</tr>
 	</table>
 	<div class="hr" style="margin-bottom: -3px;"></div>
@@ -101,13 +95,51 @@
 		</button>
 		<br>
 </form>
+</div>
+<script>
+$(document).ready(function(){
+	$("form#editCustomers").submit(function() {
+	var firstname = $('#firstname').attr('value');
+	var lastname = $('#lastname').attr('value');	
+	var address = $('#address').attr('value');
+	var city = $('#city').attr('value');
+	var postalCode = $('#postalCode').attr('value');
+	var telephone = $('#telephone').attr('value');
+		$.ajax({
+			type: "POST",
+			url: "updatecustomers.jsp",
+			data: {"firstname": firstname, "lastname": lastname, "address": address, "city": city, "postalCode": postalCode, "telephone": telephone},	
+			success: function(result){
+				var result = $.trim(result);
+				$('#reload').load('editcustomer.jsp', {'customerId' : <%=customerId%>,});									
+				setTimeout(function(){				
+					if (result=='correct'){								
+						$('#correct').fadeIn(500).show();
+						setTimeout(function() {
+						    $('#correct').fadeOut(1600, "linear");
+						}, 3000);
+					} else {}			
+				;},150);
+					}
+			});
+		return false;
+		});
+	});
+	;
+	</script>
+<div id="correct" style="display: none; color: red; ">
+	<strong>Τα στοιχεία του πελάτη
+	<%=firstname%> <%=lastname%> ανανεώθηκαν!
+	</strong>
+</div>
 </body>
 </html>
 <%
 	break;
 	case CASHIER:
 	case NOACCESS:
-		response.sendRedirect("errorpage.jsp");
+	case CUSTOMER:
+		response.sendRedirect("../errorpage.jsp");
 	break;
 	}}
 %>

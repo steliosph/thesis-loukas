@@ -29,22 +29,19 @@
 	});
 </script>
 </head>
-
-<jsp:useBean id="employee" scope="page"
-	class="sql.EmployeeRepositoryImpl" />
+<div id="reload">
+<jsp:useBean id="employee" scope="page" class="sql.EmployeeRepositoryImpl" />
 
 <%
-	 String s="", employeeId1="", firstname = "", lastname = "", type= "", empAddress = "", empCity = "", empPostalCode = "", empTelephone = "", branchAddress= "", branchCity="", branchPostalCode= "", branchTelephone= "";
-	 int employeeId = 0, empAddressId = 0, branchAddressId = 0;
+	 String employeeId1, firstname = "", lastname = "", type = "", empAddress = "", empCity = "", empPostalCode = "", empTelephone = "", branchAddress = "", branchCity = "", branchPostalCode = "", branchTelephone = "";
+	 int employeeId, empAddressId, branchAddressId;
 	 double salary = 0;
 	 Timestamp dateHired;
 %>	
 	
 <%
-employeeId1 = request.getParameter("employeeId");
-employeeId = Integer.parseInt(employeeId1);
-
-System.out.println(employeeId);
+	employeeId1 = request.getParameter("employeeId");
+	employeeId = Integer.parseInt(employeeId1);
 
 	ResultSet rs = employee.editEmployee(employeeId);
 	if (rs.next()) {
@@ -53,9 +50,6 @@ System.out.println(employeeId);
 		lastname = rs.getString("lastname");
 		salary = rs.getDouble("salary");
 		dateHired = rs.getTimestamp("date_hired");
-		
-		System.out.println(dateHired);
-		
 		type = rs.getString("type");
 		empAddressId = rs.getInt("a.address_id");
 		empAddress = rs.getString("a.address");
@@ -74,8 +68,8 @@ System.out.println(employeeId);
 	}
 %>
 
-<form name="editform" method="post" action="updateemployees.jsp">
-	<table width="300px">
+<form name="editform" method="post" id="editEmployees" action="">
+	<table width="350px">
 		<tr>
 			<td colspan=2 style="font-weight: bold;" align="center"><h2
 					style="margin-bottom: -3px;">Επεξεργασία Υπαλλήλου</h2>
@@ -87,15 +81,15 @@ System.out.println(employeeId);
 		</tr>
 		<tr>
 			<td>Όνομα:</td>
-			<td><input type="text" name="firstname" value="<%=firstname%>"></td>
+			<td><input type="text" name="firstname" id="firstname" value="<%=firstname%>"></td>
 		</tr>
 		<tr>
 			<td>Επώνυμο:</td>
-			<td><input type="text" name="lastname" value="<%=lastname%>"></td>
+			<td><input type="text" name="lastname" id="lastname" value="<%=lastname%>"></td>
 		</tr>
 		<tr>
 			<td>Μισθός:</td>
-			<td><input type="text" name="salary" value="<%=salary%>"></td>
+			<td><input type="text" name="salary" id="salary" value="<%=salary%>"></td>
 		</tr>
 		<tr>
 			<td>Ημ. Προσληψης:</td>
@@ -103,39 +97,39 @@ System.out.println(employeeId);
 		</tr>
 		<tr>
 			<td>Τυπος:</td>
-			<td><input type="text" name="type" value="<%=type%>"></td>
+			<td><input type="text" name="type" id="type" value="<%=type%>"></td>
 		</tr>
 		<tr>
 			<td>Διευθυνση Εργαζομένου:</td>
-			<td><input type="text" name="empAddress" value="<%=empAddress%>"></td>
+			<td><input type="text" name="empAddress" id="empAddress" value="<%=empAddress%>"></td>
 		</tr>
 		<tr>
 			<td>Πόλη Εργαζομένου:</td>
-			<td><input type="text" name="empCity" value="<%=empCity%>"></td>
+			<td><input type="text" name="empCity" id="empCity" value="<%=empCity%>"></td>
 		</tr>
 				<tr>
 			<td>Τ.Κ Εργαζομένου:</td>
-			<td><input type="text" name="empPostalCode" value="<%=empPostalCode%>"></td>
+			<td><input type="text" name="empPostalCode" id="empPostalCode" value="<%=empPostalCode%>"></td>
 		</tr>
 				<tr>
 			<td>Τηλέφωνο Εργαζομένου:</td>
-			<td><input type="text" name="empTelephone" value="<%=empTelephone%>"></td>
+			<td><input type="text" name="empTelephone" id="empTelephone" value="<%=empTelephone%>"></td>
 		</tr>
 				<tr>
 			<td>Διευθυνση Καταστήματος:</td>
-			<td><input type="text" name="branchAddress" value="<%=branchAddress%>"></td>
+			<td><input type="text" name="branchAddress" id="branchAddress" value="<%=branchAddress%>"></td>
 		</tr>
 				<tr>
 			<td>Πόλη Καταστήματος:</td>
-			<td><input type="text" name="branchCity" value="<%=branchCity%>"></td>
+			<td><input type="text" name="branchCity" id="branchCity" value="<%=branchCity%>"></td>
 		</tr>
 				<tr>
 			<td>Τ.Κ Καταστήματος:</td>
-			<td><input type="text" name="branchPostalCode" value="<%=branchPostalCode%>"></td>
+			<td><input type="text" name="branchPostalCode" id="branchPostalCode" value="<%=branchPostalCode%>"></td>
 		</tr>
 				<tr>
 			<td>Τηλέφωνο Καταστήματος:</td>
-			<td><input type="text" name="branchTelephone" value="<%=branchTelephone%>"></td>
+			<td><input type="text" name="branchTelephone" id="branchTelephone" value="<%=branchTelephone%>"></td>
 		</tr>		
 	</table>
 	<div class="hr" style="margin-bottom: -3px;"></div>
@@ -145,13 +139,56 @@ System.out.println(employeeId);
 		</button>
 		<br>
 </form>
+</div>
+<script>
+$(document).ready(function(){
+	$("form#editEmployees").submit(function() {
+	var firstname = $('#firstname').attr('value');
+	var lastname = $('#lastname').attr('value');	
+	var salary = $('#salary').attr('value');
+	var empAddress = $('#empAddress').attr('value');
+	var empCity = $('#empCity').attr('value');	
+	var empPostalCode = $('#empPostalCode').attr('value');
+	var empTelephone = $('#empTelephone').attr('value');
+	var branchAddress = $('#branchAddress').attr('value');	
+	var branchCity = $('#branchCity').attr('value');
+	var branchPostalCode = $('#branchPostalCode').attr('value');
+	var branchTelephone = $('#branchTelephone').attr('value');	
+		$.ajax({
+			type: "POST",
+			url: "updateemployees.jsp",
+			data: {"firstname": firstname, "lastname": lastname, "salary": salary, "empAddress": empAddress, "empCity": empCity, "empPostalCode": empPostalCode, "empTelephone": empTelephone, "branchAddress": branchAddress, "branchCity": branchCity, "branchPostalCode": branchPostalCode, "branchTelephone": branchTelephone},	
+			success: function(result){
+				var result = $.trim(result);
+				$('#reload').load('editemployees.jsp', {'employeeId' : <%=employeeId%>,});									
+				setTimeout(function(){				
+				if (result=='correct'){								
+					$('#correct').fadeIn(500).show();
+					setTimeout(function() {
+					    $('#correct').fadeOut(1600, "linear");
+					}, 3000);
+				} else {}			
+			;},150);
+				}
+		});
+	return false;
+	});
+});
+;
+</script>
+<div id="correct" style="display: none; color: red; ">
+	<strong>Οι πληροφορίες του εργαζομένου <br><%=firstname%> <%=lastname%>
+		ανανεώθηκαν
+	</strong>
+</div>
 </body>
 </html>
 <%
 	break;
 	case CASHIER:
 	case NOACCESS:
-		response.sendRedirect("errorpage.jsp");
+	case CUSTOMER:
+		response.sendRedirect("../errorpage.jsp");
 	break;
 	}}
 %>
