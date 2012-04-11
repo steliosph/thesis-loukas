@@ -77,10 +77,7 @@
 								<td><%=Balance%></td>
 							</tr>
 							<%
-								}
-							%>
-							
-							<%
+								}							
 							rs = loans.selectAccount(CustomerId);
 								while (rs.next()) {
 									LoanId = rs.getInt("loan_id");
@@ -89,7 +86,14 @@
 									Type = rs.getString("type");
 									Limit = rs.getFloat("loan_amount");
 									Balance = rs.getFloat("remaining_payee_amount");								
-							%>
+							%>													 
+							<tr>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th bgcolor="#ffffcc">Ποσό Δανείου</th>
+								<th bgcolor="#ffffcc">Ποσό για εξόφληση</th>								
+							</tr>						 						
 							<tr> 
 								<td><%=LoanId%></td>								
  								<td><%=Type%></td>
@@ -105,8 +109,7 @@
 					</table>
 				</div>
 				<div class="clear"></div>
-			</div>
-		
+			</div>		
 		
 		</div>
 		<div class="clear"></div>
