@@ -18,6 +18,7 @@
 	});
 </script>
 </head>
+<div id="reload">
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
 <%!String loanId1 = "", type = "", status = "";
 	int loanId = 0, customerId = 0;
@@ -43,7 +44,7 @@
 	pageContext.setAttribute("loanOptions",enums.LoanOptions.values());
 	pageContext.setAttribute("loanStatus",enums.LoanStatus.values());
 %>
-<form name="editform" method="post" action="updateloans.jsp">
+<form name="editform" method="post" id="editLoans" action="">
 	<table width="300px">
 		<tr>
 			<td colspan=2 style="font-weight: bold;" align="center"><h2
@@ -59,11 +60,11 @@
 		</tr>
 		<tr>
 			<td>Ποσό:</td>
-			<td><input type="text" name="amount" value="<%=amount%>"></td>
+			<td><input type="text" name="amount" id="amount" value="<%=amount%>"></td>
 		</tr>
 		<tr>
 			<td>Tύπος:</td>
-			<td><select name='type'>
+			<td><select name='type' id="type">
 					<c:forEach items="${loanOptions}" var="loanOptions">
 						<option value="${loanOptions.type}" ${loanOptions.type==type? 'selected' : ''}>${loanOptions.type}</option>
 					</c:forEach>
@@ -71,7 +72,7 @@
 		</tr>
 		<tr>
 			<td>Κατάσταση:</td>
-			<td><select name=status>
+			<td><select name=status id="status">
 					<c:forEach items="${loanStatus}" var="loanStatus">
 						<option value="${loanStatus.status}" ${loanStatus.status==status? 'selected' : ''}>${loanStatus.status}</option>
 					</c:forEach>
@@ -85,5 +86,39 @@
 		</button>
 		<br>
 </form>
+</div>
+<script>
+$(document).ready(function(){
+	$("form#editLoans").submit(function() {
+	var amount = $('#amount').attr('value');
+	var type = $('#type').attr('value');	
+	var status = $('#status').attr('value');	
+		$.ajax({
+			type: "POST",
+			url: "updateloans.jsp",
+			data: {"amount": amount, "type": type, "status": status},	
+			success: function(result){
+				var result = $.trim(result);
+				$('#reload').load('editloans.jsp', {'loanId' : <%=loanId%>,});									
+				setTimeout(function(){			
+				if (result=='correct'){								
+					$('#correct').fadeIn(500).show();
+					setTimeout(function() {
+						$('#correct').fadeOut(1600, "linear");
+					}, 3000);
+				} else { }			
+			;},150);
+				}
+		});
+	return false;
+	});
+});
+;
+</script>
+<div id="correct" style="display: none; color: red; ">
+	<strong>Τo δάνειο:(<%=loanId%>)
+		ανανεώθηκε!
+	</strong>
+</div>
 </body>
 </html>

@@ -49,13 +49,6 @@ $(document).ready(function() {
 			<!-- Main Menu Links -->
 		<%@ include file="menu.jsp"%>
 			<h1>Συνολική εικόνα λογαριασμών</h1>
-			        <%
-			        	String updateCa = "";
-			        updateCa = (String) session.getAttribute("updateCa");
-			        	session.removeAttribute("updateCa");
-			        	if (updateCa != null)
-			        		out.print(updateCa);
-			        %>
 			<div>
 				<div id="result" style="overflow: auto; height: 500px;">
 					<table id="table-2">

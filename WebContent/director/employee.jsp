@@ -44,7 +44,10 @@ $("a.editform").fancybox({
 	'frameWidth':400,
 	'frameHeight':208,
 	'hideOnContentClick':false,
-	'callbackOnShow':modalStart         
+	'callbackOnShow':modalStart,
+	'onClosed': function() {
+		   parent.location.reload(true);
+		  } 
 });
                  
 function modalStart(){
@@ -73,40 +76,28 @@ $(document).ready(function() {
 				</ul>
 			</div>
 			<h1>Kατάσταση Υπαλλήλων της τράπεζας</h1>
-			        <%
-			        	String updateemployees = "";
-			        updateemployees = (String) session.getAttribute("updateemployees");
-			        	session.removeAttribute("updateemployees");
-			        	if (updateemployees != null)
-			        		out.print(updateemployees);
-			        %>
-
 				<div style="overflow: auto; height: 500px;">
 					<table id="table-2">
 						<thead>
 							<tr>
-								<th>Αριθμός Εργαζομένου</th>
+								<th>A/A</th>
 								<th>Όνομα</th>
 								<th>Επώνυμο</th>
 								<th>Μισθος</th>
-								<th>Ημ. Προσληψης</th>
+								<th>Ημ. Προσλ.</th>
 								<th>Τυπος</th>
-								<th>Διευθυνση Εργαζομένου</th>
-								<th>Πόλη Εργαζομένου</th>
-								<th>Τ.Κ Εργαζομένου</th>
-								<th>Τηλέφωνο Εργαζομένου</th>
-								<th>Διευθυνση Καταστήματος</th>
-								<th>Πόλη Καταστήματος</th>
-								<th>Τ.Κ Καταστήματος</th>
-								<th>Τηλέφωνο Καταστήματος</th>
-								<th colspan="2">Actions</th>
-								
+								<th>Διευθ. Εργαζ.</th>
+								<th>Πόλη Εργαζ.</th>
+								<th>Τ.Κ Εργαζ.</th>
+								<th>Τηλ. Εργαζ.</th>
+								<th>Διευθ. Κατα.</th>
+								<th>Πόλη Κατα.</th>
+								<th>Τ.Κ Κατα.</th>
+								<th>Τηλέφωνο Κατα.</th>
+								<th colspan="2">Επιλογές</th>	
 							</tr>
 						</thead>
-
 						<tbody>
-
-
 							<%
 								ResultSet rs = employee.getResult();
 								while (rs.next()) {								
@@ -125,7 +116,6 @@ $(document).ready(function() {
 									branchPostalCode = rs.getString("a2.postal_code");
 									branchTelephone = rs.getString("a2.telephone");									
 							%>
-
 							<tr>
 								<td><%=employeeId%></td>
 								<td><%=firstname%></td>
@@ -141,16 +131,13 @@ $(document).ready(function() {
 								<td><%=branchCity%></td>
 								<td><%=branchPostalCode%></td>
 								<td><%=branchTelephone%></td>
-								<td><a href="editemployees.jsp?employeeId=<%=rs.getInt("employee_Id")%>" class="editform" >Edit</a></td>
-                  				<td><a href="sumloans.jsp?delete=yes&deleteid= >" onclick="return del()">Delete</a></td>
+								<td><a href="editemployees.jsp?employeeId=<%=rs.getInt("employee_Id")%>" class="editform" >Aλλαγή</a></td>
+                  				<td><a href="sumloans.jsp?delete=yes&deleteid= >" onclick="return del()">Διαγραφή</a></td>
 							</tr>
-
 							<%
 								}
 							%>			
-
 						</tbody>
-
 					</table>
 				</div>
 				<div class="clear"></div>
@@ -158,14 +145,14 @@ $(document).ready(function() {
 		<div class="clear"></div>
 	</div>
 	<%@ include file="../footer.jsp"%>
-
 </body>
 </html>
 <%
 	break;
 	case CASHIER:
 	case NOACCESS:
-		response.sendRedirect("errorpage.jsp");
+	case CUSTOMER:
+		response.sendRedirect("../errorpage.jsp");
 	break;
 	}}
 %>

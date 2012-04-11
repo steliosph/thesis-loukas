@@ -55,6 +55,7 @@
 	break;
 	case CASHIER:
 	case NOACCESS:
+	case CUSTOMER:
 		response.sendRedirect("../errorpage.jsp");
 	break;
 	}}

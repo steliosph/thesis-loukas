@@ -11,41 +11,36 @@
 		switch (accessRights.getAccessRights(accountTypeId)) {
 		case DIRECTOR:
 %>
-<%@page import="java.sql.*;"%>
+<%@ page import="java.sql.*;"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("UTF-8");
-	response.setCharacterEncoding("UTF-8");
-	response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 %>
 
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
 <jsp:useBean id="loanstatus" scope="page"
 	class="sql.LoanStatusRepositoryImpl" />
-<%!String LoanAmount1 = "", CustomerId1 = "", LoanId1 = "", Type = "",
-			Status = "";
+<%!String LoanAmount1 = "", Type = "", Status = "";
 	int LoanId = 0, CustomerId = 0;
 	float LoanAmount;%>
 
 <%
 			LoanId = (Integer) session.getAttribute("loanId");
 			CustomerId = (Integer) session.getAttribute("customerId");
-
 			LoanAmount1 = request.getParameter("amount");
 			LoanAmount = Float.parseFloat(LoanAmount1);
 			Type = request.getParameter("type");
 			Status = request.getParameter("status");
 			loan.updateLoan(LoanId, CustomerId, LoanAmount);
 			loanstatus.updateLoan(LoanId, Status, Type);
-			session.setAttribute("updateloans", "Το δάνειο με κωδικό:("
-					+ LoanId + ") ανανεώθηκε!");
-
-			response.sendRedirect("sumloans.jsp");
-
+			out.println("correct");
 			break;
-		case CASHIER:
 		case NOACCESS:
-			response.sendRedirect("errorpage.jsp");
+		case CASHIER:
+		case CUSTOMER:
+			response.sendRedirect("../errorpage.jsp");
 			break;
 		}
 	}

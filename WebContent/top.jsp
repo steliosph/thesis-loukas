@@ -121,7 +121,16 @@
 								<%=session.getAttribute("lastname")%></span> </a>
 					</h2>
 					<%
-						}}
+						}
+							else if (accountTypeId == 10) {
+					%>
+					<h2>
+						<span>Πελάτης: <a href="./customer/customer.jsp"
+							STYLE="text-decoration: none"> <%=session.getAttribute("firstname")%>
+								<%=session.getAttribute("lastname")%></span> </a>
+					</h2>
+					<% 
+					}}
 					%>
 				</div>
 			</div>

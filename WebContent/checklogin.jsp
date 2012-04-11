@@ -63,11 +63,9 @@
 			session.setAttribute("firstname", customer.getFirstname());
 			session.setAttribute("lastname", customer.getLastname());
 			session.setAttribute("addressId", customer.getAddressId());
-%>
-
-<jsp:forward page="index.jsp"></jsp:forward>
-
-<%
+			session.setAttribute("accountTypeId", 10);
+			
+			response.sendRedirect("customer/customer.jsp");
 	break;
 		}
 

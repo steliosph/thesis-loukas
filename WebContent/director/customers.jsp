@@ -43,7 +43,10 @@ $("a.editform").fancybox({
 	'frameWidth':400,
 	'frameHeight':208,
 	'hideOnContentClick':false,
-	'callbackOnShow':modalStart          
+	'callbackOnShow':modalStart,
+	'onClosed': function() {
+		   parent.location.reload(true);
+		  } 	
 });
                  
 function modalStart(){
@@ -72,26 +75,18 @@ $(document).ready(function() {
 				</ul>
 			</div>
 			<h1>Kατάσταση πελατών της τράπεζας</h1>
-			        <%
-			        	String updatecustomers = "";
-			        updatecustomers = (String) session.getAttribute("updatecustomer");
-			        	session.removeAttribute("updatecustomer");
-			        	if (updatecustomers != null)
-			        		out.print(updatecustomers);
-			        %>
-
 				<div style="overflow: auto; height: 500px;">
 					<table id="table-2">
 						<thead>
 							<tr>
-								<th>Αριθμός Πελάτη</th>
+								<th>Αρ. Πελ.</th>
 								<th>Όνομα</th>
 								<th>Επώνυμο</th>
-								<th>Διεύθυνση</th>
+								<th>Διεύθ.</th>
 								<th>Πόλη</th>
 								<th>Τ.Κ</th>
 								<th>Τηλέφωνο</th>
-								<th colspan="2">Actions</th>
+								<th colspan="2">Επιλογές</th>
 								
 							</tr>
 						</thead>
@@ -119,8 +114,8 @@ $(document).ready(function() {
 								<td><%=city%></td>
 								<td><%=postalCode%></td>
 								<td><%=telephone%></td>
-								<td><a href="editcustomer.jsp?customerId=<%=rs.getInt("customer_id")%>" class="editform" >Edit</a></td>
-                  				<td><a href="sumloans.jsp?delete=yes&deleteid=<%=rs.getInt("customer_id")%>>" onclick="return del()">Delete</a></td>
+								<td><a href="editcustomer.jsp?customerId=<%=rs.getInt("customer_id")%>" class="editform" >Aλλαγή</a></td>
+                  				<td><a href="sumloans.jsp?delete=yes&deleteid=<%=rs.getInt("customer_id")%>>" onclick="return del()">Διαγραφή</a></td>
 							</tr>
 
 							<%
@@ -143,6 +138,7 @@ $(document).ready(function() {
 	break;
 	case CASHIER:
 	case NOACCESS:
+	case CUSTOMER:
 		response.sendRedirect("../errorpage.jsp");
 	break;
 	}}

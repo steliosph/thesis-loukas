@@ -14,17 +14,13 @@
 <%@ page import="bean.Loans"%> 
 <%@ page import="sql.LoansRepositoryImpl"%>
 <%@ page language="java" import="java.sql.*"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
 <jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
-
 <%
 	String Firstname = "", Lastname = "", customerId1 = "", sum = "", loan_id = "", customer_id = "", loan_amount = "", type = "", status = "";
 	int y = 0, x = 0, loanid = 0, customerId = 0;
 %>
- 
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -43,7 +39,10 @@ $("a.editform").fancybox({
 	'frameWidth':400,
 	'frameHeight':208,
 	'hideOnContentClick':false,
-	'callbackOnShow':modalStart         
+	'callbackOnShow':modalStart,  
+	'onClosed': function() {
+		   parent.location.reload(true);
+		  } 	
 });
                  
 function modalStart(){
@@ -72,13 +71,6 @@ $(document).ready(function() {
 				</ul>
 			</div>
 			<h1>Συνολική εικόνα Δανείων</h1>
-			        <%
-			        	String updateloans = "";
-			        updateloans = (String) session.getAttribute("updateloans");
-			        	session.removeAttribute("updateloans");
-			        	if (updateloans != null)
-			        		out.print(updateloans);
-			        %>
 			<div class="left noMargin">
 				<script language="javascript">
 					function toggle() {
@@ -102,7 +94,6 @@ $(document).ready(function() {
 					while (rs.next()) {
 						sum = rs.getString("SumOfLoans");
 				%>
-
 						Η τράπεζα μας έχει δώσει <br>δάνεια αξίας: <strong>
 						<%=sum%></strong><br> ευρώ!!
 									<%
@@ -135,18 +126,11 @@ $(document).ready(function() {
 						if (y == 1) {
 							y = 0;
 					%>
-
 					Όνομα:<%=Firstname%><br> Επώνυμο:<%=Lastname%><br>
-
 					<%
 						}
 					%>
-
-
-
 				</form>
-
-
 			</div>
 			<div class="left ">
 				<div style="overflow: auto; height: 500px;">
@@ -154,19 +138,15 @@ $(document).ready(function() {
 						<caption>Στοιχεία δανείου</caption>
 						<thead>
 							<tr>
-								<th>Αριθμός Δανείου</th>
-								<th>Αριθμός Πελάτη</th>
+								<th>Αρ. Δανείου</th>
+								<th>Αρ. Πελάτη</th>
 								<th>Ποσό</th>
 								<th>Τύπος</th>
 								<th>Κατάσταση</th>
-								<th colspan="2">Actions</th>
-								
+								<th colspan="2">Επιλογές</th>							
 							</tr>
 						</thead>
-
 						<tbody>
-
-
 							<%
 								rs = loan.getResult();
 								while (rs.next()) {
@@ -176,23 +156,19 @@ $(document).ready(function() {
 									type = rs.getString("type");
 									status = rs.getString("status");
 							%>
-
 							<tr>
 								<td><%=loan_id%></td>
 								<td><%=customer_id%></td>
 								<td><%=loan_amount%></td>
 								<td><%=type%></td>
 								<td><%=status%></td>
-								<td><a href="editloans.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >Edit</a></td>
-                  				<td><a href="sumloans.jsp?delete=yes&deleteid=<%=rs.getInt("loan_id")%>" onclick="return del()">Delete</a></td>
+								<td><a href="editloans.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >	Aλλαγή</a></td>
+                  				<td><a href="sumloans.jsp?delete=yes&deleteid=<%=rs.getInt("loan_id")%>" onclick="return del()">Διαγραφή</a></td>
 							</tr>
-
 							<%
 								}
 							%>
-
 						</tbody>
-
 					</table>
 				</div>
 				<div class="clear"></div>
@@ -208,7 +184,8 @@ $(document).ready(function() {
 	break;
 	case CASHIER:
 	case NOACCESS:
-		response.sendRedirect("errorpage.jsp");
+	case CUSTOMER:
+		response.sendRedirect("../errorpage.jsp");
 	break;
 	}}
 %>
