@@ -23,14 +23,14 @@
 			<h1>Εικόνα Υπολοίπων</h1>
 			
 						<div>
-				<div style="overflow: auto; height: 500px;">
+				<div style="overflow: auto; height: auto;">
 					<table id="table-2">
 						<caption>Στοιχεία δανείών</caption>
 						<thead>
 							<tr>
-								<th>Αριθμός Λογαριασμού</th>
-								<th>Είδος Λογαριασμόυ</th>
-								<th>Κάτοχος Λογαριασμού</th>
+								<th>Aρ. Λογ.</th>
+								<th>Είδος Λογαριασμού</th>
+								<th>Κάτοχος Λογαριασμού.</th>
 								<th>Όριο</th>
 								<th>Υπόλοιπο</th>
 								
@@ -44,12 +44,12 @@
 									AccountId = rs.getInt("account_id");
 									Firstname = rs.getString("Firstname");
 									Lastname = rs.getString("lastname");
-									Type = "Λογαριασμός";
+									Type = "Ταμιευτήριο";
 									Limit = rs.getFloat("balance");
 									Balance = rs.getFloat("balance");								
 							%>
 							<tr> 
-								<td><%=AccountId%></td>								
+								<td><%=AccountId%> <img src="../images/10t.png" align="right"> </td>								
  								<td><%=Type%></td>
  								<td><%=Firstname%> <%=Lastname%></td>
  								<td><%=Limit%></td>
@@ -70,7 +70,7 @@
 									Balance = rs.getFloat("balance");								
 							%>
 							<tr> 
-								<td><%=CardNumber%></td>								
+								<td><%=CardNumber%> <img src="../images/10t.png" align="right"></td>								
  								<td><%=Type%></td>
  								<td><%=Firstname%> <%=Lastname%></td>
  								<td><%=Limit%></td>
@@ -86,16 +86,18 @@
 									Type = rs.getString("type");
 									Limit = rs.getFloat("loan_amount");
 									Balance = rs.getFloat("remaining_payee_amount");								
-							%>													 
+							%>	
+							<thead>												 
 							<tr>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th bgcolor="#ffffcc">Ποσό Δανείου</th>
-								<th bgcolor="#ffffcc">Ποσό για εξόφληση</th>								
-							</tr>						 						
+								<th bgcolor="#f2f2f2"></th>
+								<th bgcolor="#f2f2f2"></th>
+								<th bgcolor="#f2f2f2"></th>
+								<th>Ποσό Δανείου</th>
+								<th>Ποσό για εξόφληση</th>								
+							</tr>	
+							</thead>					 						
 							<tr> 
-								<td><%=LoanId%></td>								
+								<td><%=LoanId%> <img src="../images/10t.png" align="right"></td>								
  								<td><%=Type%></td>
  								<td><%=Firstname%> <%=Lastname%></td>
  								<td><%=Limit%></td>

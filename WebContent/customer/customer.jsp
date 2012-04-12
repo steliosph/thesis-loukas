@@ -24,7 +24,7 @@
 		<h1>Παρακαλώ επιλέξτε μια απο τις παρακάτω λειτουργίες.</h1>
 		<h3>Λογαριασμοί</h3>
 			<li style="margin-bottom:10px;"><a href="BalanceOverview.jsp">Εικόνα Υπολοίπων</a></li>
-			<li style="margin-bottom:10px;"><a href="customers.jsp">Στοιχεία Λογαριασμού</a></li>
+			<li style="margin-bottom:10px;"><a href="AccountDetails.jsp">Στοιχεία Λογαριασμού</a></li>
 			<li style="margin-bottom:10px;"><a href="employee.jsp">Ιστορικό Κινήσεων</a></li>
 		 
 		<div class="left">	
