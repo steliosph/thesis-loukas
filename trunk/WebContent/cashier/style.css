@@ -410,7 +410,7 @@ ul.nav-sub li a {
 	padding: .2em 0 .2em .5em;
 	text-align: left;
 	color: #4B4B4B;
-	background-color: #ffffcc;
+	background-color: #fffaaa;
 	border-bottom: solid 1px #999;
 }
 #table-2 th {
@@ -431,8 +431,8 @@ ul.nav-sub li a {
 	border-top: 1px solid #fff;
 	
 }
-#table-2 tr:hover {
-    background-color: #fff
+#table-2 tbody tr:hover {
+    background-color: #ffffcc
 }
 
 
