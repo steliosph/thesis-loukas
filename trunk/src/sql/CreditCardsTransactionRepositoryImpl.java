@@ -142,8 +142,8 @@ public class CreditCardsTransactionRepositoryImpl implements
 	}
 	
 	public ResultSet selectAccount(Integer CustomerId) {
-		sqlQuery_ = "select * from credit_cards inner join customers on credit_cards.customer_id = customers.customer_id where credit_cards.customer_id='"
-				+ CustomerId + "'";
+		sqlQuery_ = "select * from credit_cards inner join customers on credit_cards.customer_id = customers.customer_id inner join address on customers.address_id = address.address_id inner join credit_cards_transactions on customers.customer_id = credit_cards_transactions.customer_id where credit_cards.customer_id='"
+				+ CustomerId + "'limit 1";
 		System.out.println(sqlQuery_);
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
