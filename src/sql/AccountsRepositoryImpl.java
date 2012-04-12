@@ -68,8 +68,8 @@ public class AccountsRepositoryImpl implements AccountsRepository {
 	}
 	
 	public ResultSet selectAccount(Integer CustomerId) {
-		sqlQuery_ = "select * from accounts inner join customer_accounts on accounts.account_id = customer_accounts.account_id inner join customers on customer_accounts.customer_id = customers.customer_id where customer_accounts.customer_id='"
-				+ CustomerId + "'";
+		sqlQuery_ = "select * from accounts inner join customer_accounts on accounts.account_id = customer_accounts.account_id inner join customers on customer_accounts.customer_id = customers.customer_id inner join address on customers.address_id = address.address_id inner join account_transactions on customers.customer_id = account_transactions.customer_id where customer_accounts.customer_id='"
+				+ CustomerId + "'limit 1";
 		System.out.println(sqlQuery_);
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
