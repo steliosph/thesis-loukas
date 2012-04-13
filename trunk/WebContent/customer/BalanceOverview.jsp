@@ -20,11 +20,10 @@
 	<div class="pageTop"></div>
 	<div class="pageMain">
 		<div class="contentArea">
-			<h1>Εικόνα Υπολοίπων</h1>
-			
-						<div>
+			<h1>Εικόνα Υπολοίπων</h1>		
+			<div>
 				<div style="overflow: auto; height: auto;">
-					<table id="table-2">
+					<table class="table-2">
 						<caption>Στοιχεία δανείών</caption>
 						<thead>
 							<tr>
@@ -49,7 +48,7 @@
 									Balance = rs.getFloat("balance");								
 							%>
 							<tr> 
-								<td><%=AccountId%> <img src="../images/10t.png" align="right"> </td>								
+								<td><a href= "AccountDetails.jsp?showDiv=Acc"><%=AccountId%></a>  <img src="../images/10t.png" align="right"> </td>								
  								<td><%=Type%></td>
  								<td><%=Firstname%> <%=Lastname%></td>
  								<td><%=Limit%></td>
@@ -70,7 +69,7 @@
 									Balance = rs.getFloat("balance");								
 							%>
 							<tr> 
-								<td><%=CardNumber%> <img src="../images/10t.png" align="right"></td>								
+								<td><a href= "AccountDetails.jsp?showDiv=Cc"><%=CardNumber%></a> <img src="../images/10t.png" align="right"></td>								
  								<td><%=Type%></td>
  								<td><%=Firstname%> <%=Lastname%></td>
  								<td><%=Limit%></td>
@@ -97,7 +96,7 @@
 							</tr>	
 							</thead>					 						
 							<tr> 
-								<td><%=LoanId%> <img src="../images/10t.png" align="right"></td>								
+								<td><a href= "AccountDetails.jsp?showDiv=Loan"><%=LoanId%></a> <img src="../images/10t.png" align="right"></td>								
  								<td><%=Type%></td>
  								<td><%=Firstname%> <%=Lastname%></td>
  								<td><%=Limit%></td>
