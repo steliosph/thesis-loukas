@@ -65,8 +65,7 @@
 		%>
 		
 		
-<% String showDiv = request.getParameter( "showDiv" ); 
-System.out.println(showDiv);%>
+<% String showDiv = request.getParameter( "showDiv" ); %>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var showDiv="<%=showDiv%>";	
@@ -112,10 +111,10 @@ System.out.println(showDiv);%>
 <script type="text/javascript">
 $('#mySelect').change(function() {
 	  if ($(this).val() == '') { 
-		     $('#table1').hide();
-		     $('#table2').hide();
-		     $('#table3').hide();
-		  }
+		  $('#table1').hide();
+		  $('#table2').hide();
+		  $('#table3').hide();
+	  }
 	  if ($(this).val() == 'TypeAcc') { 
 	     $('#table1').fadeIn();
 	     $('#table2').hide();

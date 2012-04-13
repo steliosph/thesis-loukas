@@ -25,7 +25,7 @@
 		<h3>Λογαριασμοί</h3>
 			<li style="margin-bottom:10px;"><a href="BalanceOverview.jsp">Εικόνα Υπολοίπων</a></li>
 			<li style="margin-bottom:10px;"><a href="AccountDetails.jsp">Στοιχεία Λογαριασμού</a></li>
-			<li style="margin-bottom:10px;"><a href="employee.jsp">Ιστορικό Κινήσεων</a></li>
+			<li style="margin-bottom:10px;"><a href="TransactionHistory.jsp">Ιστορικό Κινήσεων</a></li>
 		 
 		<div class="left">	
 		<h3>Μεταφορές</h3>
