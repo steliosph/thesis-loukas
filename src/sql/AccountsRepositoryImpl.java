@@ -74,6 +74,15 @@ public class AccountsRepositoryImpl implements AccountsRepository {
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
 	}
+	
+	public ResultSet selectAccountTransactions(Integer CustomerId) {
+		sqlQuery_ = "SELECT * FROM account_transactions where customer_id='"
+				+ CustomerId + "'limit 1";
+		System.out.println(sqlQuery_);
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
+	}
 
 
+	
 }
