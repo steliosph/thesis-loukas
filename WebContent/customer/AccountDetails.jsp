@@ -22,6 +22,9 @@
 		<h1>Στοιχεία Λογαριασμού</h1>
 		<%
 			CustomerId = (Integer) session.getAttribute("customerId");
+			//TypeAcc = (String) request.getParameter("TypeAcc");
+			//System.out.println(TypeAcc);
+		
 			ResultSet rs = account.selectAccount(CustomerId);
 			while (rs.next()) {
 				AccLastTran = rs.getString("account_transacion_time");
@@ -60,21 +63,59 @@
 				TypeLoan = rs.getString("type");
 			}
 		%>
-			<table>
+		
+		
+<% String showDiv = request.getParameter( "showDiv" ); 
+System.out.println(showDiv);%>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var showDiv="<%=showDiv%>";	
+		if ( showDiv == "null" ) {
+			$("#mySelect option[value='empty']").attr('selected', 'selected'); 
+		}
+		if ( showDiv == "Acc")
+		{
+			$('#table1').fadeIn();
+		    $('#table2').hide();
+		    $('#table3').hide();
+		    $("#mySelect option[value='TypeAcc']").attr('selected', 'selected'); 
+		}
+		else if ( showDiv == "Cc" )
+		{
+			$('#table1').hide();
+			$('#table2').fadeIn();
+			$('#table3').hide();
+			$("#mySelect option[value='TypeCc']").attr('selected', 'selected');
+		}
+		else if ( showDiv == "Loan")
+		{
+			$('#table1').hide();
+			$('#table2').hide();
+			$('#table3').fadeIn();
+			$("#mySelect option[value='TypeLoan']").attr('selected', 'selected');
+		}
+			});
+</script>		
+			<table class="table-2">
 				<tr>
-					<td>Επιλογή Λογαριασμού:</td>
+					<td  bgcolor="#fffaaa">Επιλογή Λογαριασμού:</td>
 					<td><select id="mySelect"; >
+					<option value="empty"></option>
 						<%if (TypeAcc != "") {%>
 							<option value="TypeAcc"><%=TypeAcc %></option>
 							<% } if (TypeCc != "") {%>
 							<option value="TypeCc"><%=TypeCc %></option>
 							<% } if (TypeLoan != "") {%>
-							<option value="TypeLoan"><%=TypeLoan %></option>
+							<option value="TypeLoan">Δάνειο</option>
 							<% } %>
 					</select></td>
-
 <script type="text/javascript">
 $('#mySelect').change(function() {
+	  if ($(this).val() == '') { 
+		     $('#table1').hide();
+		     $('#table2').hide();
+		     $('#table3').hide();
+		  }
 	  if ($(this).val() == 'TypeAcc') { 
 	     $('#table1').fadeIn();
 	     $('#table2').hide();
@@ -91,80 +132,78 @@ $('#mySelect').change(function() {
 		  $('#table3').fadeIn();
 		  }
 	});
-
 </script>
 </table>
-
-<table id='table1' style="display: none;">
+<table id='table1' style="display: none;" class="table-2">
 				</tr>
 				<tr>
-					<td>Αριθμός Λογαριασμού:</td>
+					<td bgcolor="#fffaaa">Αριθμός Λογαριασμού:</td>
 					<td><%=AccountId%></td>
 				</tr>
 				<tr>
-					<td>Τελευταία Ενημέρωση:</td>
+					<td bgcolor="#fffaaa">Τελευταία Ενημέρωση:</td>
 					<td><%=AccLastTran%></td>
 				</tr>
 				<tr>
-					<td>Είδος Λογαριασμού:</td>
+					<td bgcolor="#fffaaa">Είδος Λογαριασμού:</td>
 					<td><%=TypeAcc%></td>
 				</tr>
 				<tr>
-					<td> Κάτοχος Λογαριασμού:</td>
+					<td bgcolor="#fffaaa"> Κάτοχος Λογαριασμού:</td>
 					<td><%=Firstname%> <%=Lastname%></td>
 				</tr>
 				<tr>
-					<td>Διεύθυνση Αλληλογραφίας:</td>
+					<td bgcolor="#fffaaa">Διεύθυνση Αλληλογραφίας:</td>
 					<td><%=Address%> <%=City%></td>
 				</tr>
 				<tr>
-					<td>Ημερομηνία Ανοίγματος:</td>
+					<td bgcolor="#fffaaa">Ημερομηνία Ανοίγματος:</td>
 					<td><%=AccDate%></td>
 				</tr>								
 </table>
-<table id='table2' style="display: none;">
+<table id='table2' style="display: none;"  class="table-2">
 				</tr>
 				<tr>
-					<td>Αριθμός Λογαριασμού:</td>
+					<td bgcolor="#fffaaa">Αριθμός Λογαριασμού:</td>
 					<td><%=CardNumber%></td>
 				</tr>
 				<tr>
-					<td>Τελευταία Ενημέρωση:</td>
+					<td bgcolor="#fffaaa">Τελευταία Ενημέρωση:</td>
 					<td><%=CcLastTran%></td>
 				</tr>
 				<tr>
-					<td>Είδος Λογαριασμού:</td>
+					<td bgcolor="#fffaaa">Είδος Λογαριασμού:</td>
 					<td><%=TypeCc%></td>
 				</tr>
 				<tr>
-					<td> Κάτοχος Λογαριασμού:</td>
+					<td bgcolor="#fffaaa"> Κάτοχος Λογαριασμού:</td>
 					<td><%=Firstname%> <%=Lastname%></td>
 				</tr>
 				<tr>
-					<td>Διεύθυνση Αλληλογραφίας:</td>
+					<td bgcolor="#fffaaa">Διεύθυνση Αλληλογραφίας:</td>
 					<td><%=Address%> <%=City%></td>
 				</tr>								
 </table>
-<table id='table3' style="display: none;">
+<table id='table3' style="display: none;"  class="table-2">
 				</tr>
 				<tr>
-					<td>Αριθμός Λογαριασμού:</td>
+					<td bgcolor="#fffaaa">Αριθμός Λογαριασμού:</td>
 					<td><%=AccountId%></td>
 				</tr>
 				<tr>
-					<td>Τελευταία Ενημέρωση:</td>
+					<td bgcolor="#fffaaa">Τελευταία Ενημέρωση:</td>
 					<td><%=LoanLastTran%></td>
 				</tr>
 				<tr>
-					<td>Είδος Λογαριασμού:</td>
+					<td bgcolor="#fffaaa">Είδος Λογαριασμού:</td>
 					<td><%=TypeLoan%></td>
 				</tr>
 				<tr>
-					<td> Κάτοχος Λογαριασμού:</td>
+					<td bgcolor="#fffaaa"> Κάτοχος Λογαριασμού:</td>
 					<td><%=Firstname%> <%=Lastname%></td>
 				</tr>
 				<tr>
-					<td>Διεύθυνση Αλληλογραφίας:</td>
+					<td bgcolor="#fffaaa">Διεύθυνση Αλληλογραφίας:</td>
 					<td><%=Address%> <%=City%></td>
 				</tr>							
 </table>				   							
