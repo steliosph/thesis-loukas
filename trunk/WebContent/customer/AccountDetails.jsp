@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="SHORTCUT ICON" href="../images/favicon.ico" type="image/x-icon" />
 </head>
-<body>
+<body onload="load()">
 	<%@ include file="top.jsp"%>
 	<div class="pageTop"></div>
 	<div class="pageMain">
@@ -22,8 +22,6 @@
 		<h1>Στοιχεία Λογαριασμού</h1>
 		<%
 			CustomerId = (Integer) session.getAttribute("customerId");
-			//TypeAcc = (String) request.getParameter("TypeAcc");
-			//System.out.println(TypeAcc);
 		
 			ResultSet rs = account.selectAccount(CustomerId);
 			while (rs.next()) {
@@ -62,31 +60,29 @@
 				LoanBalance = rs.getFloat("remaining_payee_amount");	
 				TypeLoan = rs.getString("type");
 			}
-		%>
-		
-		
-<% String showDiv = request.getParameter( "showDiv" ); %>
+	String showDiv = request.getParameter( "showDiv" ); %>
+	
 <script type="text/javascript">
 	$(document).ready(function() {
 		var showDiv="<%=showDiv%>";	
-		if ( showDiv == "null" ) {
-			$("#mySelect option[value='empty']").attr('selected', 'selected'); 
-		}
-		if ( showDiv == "Acc")
+		var TypeAcc='<%=TypeAcc%>';
+		var TypeCc='<%=TypeCc%>';
+		var TypeLoan='<%=TypeLoan%>';
+		if ( showDiv == "Acc" || TypeAcc != "")
 		{
 			$('#table1').fadeIn();
 		    $('#table2').hide();
 		    $('#table3').hide();
 		    $("#mySelect option[value='TypeAcc']").attr('selected', 'selected'); 
 		}
-		else if ( showDiv == "Cc" )
+		else if ( showDiv == "Cc" || TypeCc != "" )
 		{
 			$('#table1').hide();
 			$('#table2').fadeIn();
 			$('#table3').hide();
 			$("#mySelect option[value='TypeCc']").attr('selected', 'selected');
 		}
-		else if ( showDiv == "Loan")
+		else if ( showDiv == "Loan" || TypeLoan != "")
 		{
 			$('#table1').hide();
 			$('#table2').hide();
@@ -95,11 +91,11 @@
 		}
 			});
 </script>		
+
 			<table class="table-2">
 				<tr>
 					<td  bgcolor="#fffaaa">Επιλογή Λογαριασμού:</td>
 					<td><select id="mySelect"; >
-					<option value="empty"></option>
 						<%if (TypeAcc != "") {%>
 							<option value="TypeAcc"><%=TypeAcc %></option>
 							<% } if (TypeCc != "") {%>
@@ -107,7 +103,9 @@
 							<% } if (TypeLoan != "") {%>
 							<option value="TypeLoan">Δάνειο</option>
 							<% } %>
-					</select></td>
+						</select>
+					</td>
+					
 <script type="text/javascript">
 $('#mySelect').change(function() {
 	  if ($(this).val() == '') { 
