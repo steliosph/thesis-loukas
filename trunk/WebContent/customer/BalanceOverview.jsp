@@ -24,7 +24,7 @@
 			<div>
 				<div style="overflow: auto; height: auto;">
 					<table class="table-2">
-						<caption>Στοιχεία δανείών</caption>
+						<caption>Στοιχεία Λογαριασμών</caption>
 						<thead>
 							<tr>
 								<th>Aρ. Λογ.</th>
