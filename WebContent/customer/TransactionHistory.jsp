@@ -4,7 +4,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
-<link rel="SHORTCUT ICON" href="../images/favicon.ico" type="image/x-icon" />
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"
+	type="image/x-icon" />
 </head>
 <script language="javascript" type="text/javascript">  
 var xmlHttp;  
@@ -13,9 +14,11 @@ function showState(){
 	var AccountType = document.getElementById("AccountSel");
 		AccountType = AccountType.options[AccountType.selectedIndex].value;
 	var TransactionTime = document.getElementById("ActionSel");
-		TransactionTime = TransactionTime.options[TransactionTime.selectedIndex].value;		
+		TransactionTime = TransactionTime.options[TransactionTime.selectedIndex].value;	
+		
+	var TransactionTimeText =  document.getElementById("ActionSel");
+	TransactionTimeText = TransactionTimeText.options[TransactionTimeText.selectedIndex].text;		
 
-	
 if (typeof XMLHttpRequest != "undefined"){
   xmlHttp= new XMLHttpRequest();
       }
@@ -27,7 +30,8 @@ if (xmlHttp==null){
 return
 } 
 var url="getTransactions.jsp";
-url = url + "?AccountType=" + AccountType + "&TransactionTime=" +TransactionTime;
+url = url + "?AccountType=" + AccountType + "&TransactionTime=" +TransactionTime + "&TransactionTimeText=" + TransactionTimeText; 
+
 xmlHttp.onreadystatechange = stateChange;
 xmlHttp.open("GET", url, true);
 xmlHttp.send(null);
@@ -39,39 +43,34 @@ document.getElementById("result").innerHTML=xmlHttp.responseText;
 }
 
 </script>
-<body> 
+<body>
 	<%@ include file="top.jsp"%>
+	<jsp:useBean id="account" scope="page" class="sql.AccountsRepositoryImpl" />
+	<jsp:useBean id="creditCard" scope="page" class="sql.CreditCardsTransactionRepositoryImpl" />
+	<jsp:useBean id="loans" scope="page" class="sql.LoansRepositoryImpl" />
+	<%
+		String CustomerId1, showDiv = "", TypeAcc = "", TypeCc = "", TypeLoan = "";
+		int CustomerId = 0;
+	%>
+	<%
+		if (session.getAttribute("customerId") == null) {
+		} else {
+			CustomerId = (Integer) session.getAttribute("customerId");
 
-
-<jsp:useBean id="account" scope="page" class="sql.AccountsRepositoryImpl" />
-<jsp:useBean id="creditCard" scope="page" class="sql.CreditCardsTransactionRepositoryImpl" />
-<jsp:useBean id="loans" scope="page" class="sql.LoansRepositoryImpl" />
-<%
-	String CustomerId1, showDiv = "", TypeAcc = "", TypeCc = "", TypeLoan = "";
-	int CustomerId = 0;
-%>
-<%
-
-if (session.getAttribute("customerId") == null) {
-}
-else {
-	CustomerId = (Integer) session.getAttribute("customerId");
-
-
-	ResultSet rs = account.selectAccount(CustomerId);
-	while (rs.next()) {
-		TypeAcc = "Ταμιευτήριο";
-	}
-	rs = creditCard.selectAccount(CustomerId);
-	while (rs.next()) {
-		TypeCc = "Πιστωτική κάρτα";
-	}
-	rs = loans.selectAccount(CustomerId);
-	while (rs.next()) {
-		TypeLoan = rs.getString("type");
-	}
-	showDiv = request.getParameter("showDiv");
-%>
+			ResultSet rs = account.selectAccount(CustomerId);
+			while (rs.next()) {
+				TypeAcc = "Ταμιευτήριο";
+			}
+			rs = creditCard.selectAccount(CustomerId);
+			while (rs.next()) {
+				TypeCc = "Πιστωτική κάρτα";
+			}
+			rs = loans.selectAccount(CustomerId);
+			while (rs.next()) {
+				TypeLoan = rs.getString("type");
+			}
+			showDiv = request.getParameter("showDiv");
+	%>
 
 	<div class="pageTop"></div>
 	<div class="pageMain">
@@ -106,7 +105,6 @@ else {
 	}	
 	});
 </script>
-			<div id="show"></div>
 			<div class="left">
 				<table class="table-2">
 					<tr>
@@ -118,19 +116,18 @@ else {
 								<option value="TypeAcc"><%=TypeAcc%></option>
 								<%
 									}
-									if (TypeCc != "") {
+										if (TypeCc != "") {
 								%>
 								<option value="TypeCc"><%=TypeCc%></option>
 								<%
 									}
-									if (TypeLoan != "") {
+										if (TypeLoan != "") {
 								%>
 								<option value="TypeLoan">Δάνειο</option>
 								<%
 									}
 								%>
 						</select></td>
-
 					</tr>
 					<tr>
 						<td bgcolor="#fffaaa">Επιλέξτε Περίοδο:</td>
@@ -149,17 +146,21 @@ else {
 					</tr>
 					<tr>
 						<td bgcolor="#fffaaa">Από Ημερομηνία</td>
-						<td>combobox</td>
+						<td>date</td>
 					</tr>
 					<tr>
 						<td bgcolor="#fffaaa">Έως Ημερομηνία</td>
-						<td>combobox</td>
+						<td>date</td>
 					</tr>
 				</table>
+				<br>
+				<button type="button" class="btn" onClick="showState();">
+					<span>Search..</span>
+				</button>
 			</div>
-<form name="form">
-<div id="result"></div>
-</form>
+			<form name="form">
+				<div id="result" style="overflow: auto; height: 250px;"></div>
+			</form>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -167,4 +168,6 @@ else {
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>
-<% } %> 
+<%
+	}
+%>
