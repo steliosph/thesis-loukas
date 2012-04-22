@@ -4,8 +4,6 @@
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="SHORTCUT ICON" href="../images/favicon.ico" type="image/x-icon" />
-
- 
 </head>
 <body>
 <%@ include file="top.jsp"%>
