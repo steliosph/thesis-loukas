@@ -127,4 +127,10 @@ public class LoanTransactionsRepositoryImpl implements
 		System.out.println(sqlQuery_);
 		return rs;
 	}
+	
+	public ResultSet selectTransactionsCustomer(Integer CustomerId, String TransactionTime) {
+		sqlQuery_ = "SELECT * FROM loan_transactions where customer_id='"+ CustomerId + "' and loan_transaction_time " + TransactionTime ;		
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
+	}
 }

@@ -10,17 +10,17 @@
 <script type="text/javascript">
 function showAcc(AccountType)
 { 
- 	xmlHttp=GetXmlHttpObject()
+ 	xmlHttp=GetXmlHttpObject();
 	if (xmlHttp==null)
  		{
- 			alert ("Browser does not support HTTP Request")
+ 			alert ("Browser does not support HTTP Request");
  			return
  		}
-	var url="getuser.jsp",
-	url = url + "?AccountType=" + AccountType
-	xmlHttp.onreadystatechange=stateChanged
-	xmlHttp.open("GET",url,true)
-	xmlHttp.send(null)
+	var url="getAccount.jsp";
+	url = url + "?AccountType=" + AccountType;
+	xmlHttp.onreadystatechange=stateChanged;
+	xmlHttp.open("GET",url,true);
+	xmlHttp.send(null);
 }
 
 function stateChanged() 
@@ -42,11 +42,12 @@ if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 			document.getElementById("Type").innerHTML= strar[3];
 			document.getElementById("FullName").innerHTML= strar[4];
 			document.getElementById("Address").innerHTML= strar[5];
+			document.getElementById("Balance").innerHTML= strar[6];			
 			$("#show").hide();
 		}       
 	}
 if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") { 
-	document.getElementById("show").innerHTML="<div align=center> <img src='../images/loading.gif' alt='Loading..'></div>"
+	document.getElementById("show").innerHTML="<div align=center> <img src='../images/loading.gif' alt='Loading..'></div>";
 	document.getElementById("show").focus();
 	}
 
@@ -78,7 +79,12 @@ function GetXmlHttpObject()
 	int CustomerId;
 
 %>
+<body>
+	<%@ include file="top.jsp"%>
 <%
+if (session.getAttribute("customerId") == null) {
+}
+else {
 	CustomerId = (Integer) session.getAttribute("customerId");
 	ResultSet rs = account.selectAccount(CustomerId);
 	while (rs.next()) {
@@ -93,10 +99,8 @@ function GetXmlHttpObject()
 		TypeLoan = rs.getString("type");
 	}
 	showDiv = request.getParameter( "showDiv" );
-	System.out.println(showDiv);
 %>
-<body>
-	<%@ include file="top.jsp"%>
+
 	<div class="pageTop"></div>
 	<div class="pageMain">
 		<div class="contentArea">
@@ -184,6 +188,11 @@ function GetXmlHttpObject()
 					<td bgcolor="#fffaaa">Διεύθυνση Αλληλογραφίας:</td>
 					<td id="Address"></td>
 				</tr>
+				<tr>
+					<td bgcolor="#fffaaa">Υπόλοιπο:</td>
+					<td id="Balance"></td>
+				</tr>
+				
 			</table>		
 		</div>
 		<div class="clear"></div>
@@ -192,3 +201,4 @@ function GetXmlHttpObject()
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>
+<% } %>

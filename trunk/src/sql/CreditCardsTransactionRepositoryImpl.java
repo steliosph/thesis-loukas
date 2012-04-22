@@ -148,5 +148,11 @@ public class CreditCardsTransactionRepositoryImpl implements
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
 	}
+	
+	public ResultSet selectTransactionsCustomer(Integer CustomerId, String TransactionTime) {
+		sqlQuery_ = "SELECT * FROM credit_cards_transactions where customer_id='"+ CustomerId + "' and credit_car_transaction_time " + TransactionTime ;		
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
+	}
 
 }
