@@ -26,7 +26,9 @@
 		rs = accountTransactions.selectTransactionsCustomer(CustomerId, TransactionTime);	
 		if (rs.next()) {
 			response.getWriter().print(table);
-		
+			
+			rs.beforeFirst();
+			
 			while(rs.next()){
 				TransactionId = rs.getInt("account_transaction_id");
 				Desc = rs.getString("description");
@@ -54,7 +56,7 @@
 		rs = creditCardTransactions.selectTransactionsCustomer(CustomerId, TransactionTime);
 		if (rs.next()) {
 			response.getWriter().print(table);
-		
+			rs.beforeFirst();
 			while(rs.next()){
 				TransactionId = rs.getInt("credit_card_transaction_id");
 				Desc = rs.getString("description");
@@ -82,7 +84,7 @@
 		rs = loanTransactions.selectTransactionsCustomer(CustomerId, TransactionTime);
 		if (rs.next()) {
 			response.getWriter().print(table);
-			
+			rs.beforeFirst();
 			while(rs.next()){
 				TransactionId = rs.getInt("loan_transaction_id");
 				Desc = rs.getString("description");

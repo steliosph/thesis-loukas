@@ -150,7 +150,8 @@ public class CreditCardsTransactionRepositoryImpl implements
 	}
 	
 	public ResultSet selectTransactionsCustomer(Integer CustomerId, String TransactionTime) {
-		sqlQuery_ = "SELECT * FROM credit_cards_transactions where customer_id='"+ CustomerId + "' and credit_car_transaction_time " + TransactionTime ;		
+		sqlQuery_ = "SELECT * FROM credit_cards_transactions where customer_id='"+ CustomerId + "' and credit_car_transaction_time " + TransactionTime ;
+		System.out.println(sqlQuery_);
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
 	}

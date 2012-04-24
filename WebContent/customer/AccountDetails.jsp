@@ -10,12 +10,16 @@
 <script type="text/javascript">
 function showAcc(AccountType)
 { 
- 	xmlHttp=GetXmlHttpObject();
-	if (xmlHttp==null)
- 		{
- 			alert ("Browser does not support HTTP Request");
- 			return
- 		}
+	if (typeof XMLHttpRequest != "undefined"){
+		  xmlHttp= new XMLHttpRequest();
+		      }
+		      else if (window.ActiveXObject){
+		  xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
+		      }
+		if (xmlHttp==null){
+		   alert ("Browser does not support XMLHTTP Request")
+		return
+		} 
 	var url="getAccount.jsp";
 	url = url + "?AccountType=" + AccountType;
 	xmlHttp.onreadystatechange=stateChanged;
@@ -25,11 +29,6 @@ function showAcc(AccountType)
 
 function stateChanged() 
 { 
-	document.getElementById("AccId").value ="";
-	document.getElementById("LastTransaction").value ="";
-	document.getElementById("Type").value ="";
-	document.getElementById("FullName").value ="";
-	document.getElementById("Address").value ="";
 if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 	{         
 	var showdata = xmlHttp.responseText; 
@@ -48,26 +47,11 @@ if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 	}
 if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") { 
 	document.getElementById("show").innerHTML="<div align=center> <img src='../images/loading.gif' alt='Loading..'></div>";
-	document.getElementById("show").focus();
 	}
 
 }
 
-function GetXmlHttpObject()
-{
-    if (window.XMLHttpRequest)
-    {
-       return new XMLHttpRequest();
-    }
-    if (window.ActiveXObject)
-    {
-      return new ActiveXObject("Microsoft.XMLHTTP");
-    }
- return null;
-}
 </script>
-
-
 
 <jsp:useBean id="account" scope="page"
 	class="sql.AccountsRepositoryImpl" />
