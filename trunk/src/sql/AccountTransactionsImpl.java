@@ -132,7 +132,8 @@ public class AccountTransactionsImpl implements AccountTransactionsRepository {
 	}		
 	
 	public ResultSet selectTransactionsCustomer(Integer CustomerId, String TransactionTime) {
-		sqlQuery_ = "SELECT * FROM account_transactions where customer_id='"+ CustomerId + "' and account_transacion_time " + TransactionTime ;		
+		sqlQuery_ = "SELECT * FROM account_transactions where customer_id='"+ CustomerId + "' and account_transacion_time " + TransactionTime ;
+		System.out.println(sqlQuery_);
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
 	}

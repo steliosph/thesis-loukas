@@ -4,8 +4,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
-<link rel="SHORTCUT ICON" href="../images/favicon.ico"
-	type="image/x-icon" />
+<link rel="SHORTCUT ICON" href="../images/favicon.ico" type="image/x-icon" />
 </head>
 <script language="javascript" type="text/javascript">  
 var xmlHttp;  
@@ -85,15 +84,12 @@ document.getElementById("result").innerHTML=xmlHttp.responseText;
 		var TypeLoan='<%=TypeLoan%>';		 
 	if ( "null" == showDiv ) {
 		if ( TypeAcc != "" ) {
-		showAcc("TypeAcc");
 	    $("#AccountSel option[value='TypeAcc']").attr('selected', 'selected'); 
 		}
 		else if ( TypeCc != "" ) {
-			showAcc("TypeCc");
 			$("#AccountSel option[value='TypeCc']").attr('selected', 'selected');
 			}
 		else if ( TypeLoan != "" ) {
-			showAcc("TypeLoan");
 			$("#AccountSel option[value='TypeLoan']").attr('selected', 'selected');			
 		}
 	}
