@@ -533,3 +533,8 @@ ul.navsub li a {
 
 .aInput		{ width: 216px; }
 .bInput		{ width: 226px; }
+
+input[disabled] {
+	border: 1px solid #999;
+	background-color: #ddd;
+}

@@ -137,5 +137,12 @@ public class AccountTransactionsImpl implements AccountTransactionsRepository {
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
 	}
+	
+	public ResultSet selectTransactionsDate(Integer CustomerId ,String StartDate, String EndDate) {
+		sqlQuery_ = "SELECT * FROM account_transactions where customer_id='"+ CustomerId + "' and account_transacion_time BETWEEN '" + StartDate + "' AND '" + EndDate + "'";
+		System.out.println(sqlQuery_);
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
+	}
 
 }
