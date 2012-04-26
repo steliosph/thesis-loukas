@@ -48,7 +48,7 @@
 									Balance = rs.getFloat("balance");								
 							%>
 							<tr> 
-								<td><a href= "AccountDetails.jsp?showDiv=Acc"><%=AccountId%></a>  <img src="../images/10t.png" align="right"> </td>								
+								<td><a href= "AccountDetails.jsp?showDiv=Acc"><%=AccountId%></a> <a href="TransactionHistory.jsp?showDiv=Acc&TransactionsSelect=l10t"> <img src="../images/10t.png" align="right"> </a></td>								
  								<td><%=Type%></td>
  								<td><%=Firstname%> <%=Lastname%></td>
  								<td><%=Limit%></td>
@@ -69,7 +69,7 @@
 									Balance = rs.getFloat("balance");								
 							%>
 							<tr> 
-								<td><a href= "AccountDetails.jsp?showDiv=Cc"><%=CardNumber%></a> <img src="../images/10t.png" align="right"></td>								
+								<td><a href= "AccountDetails.jsp?showDiv=Cc"><%=CardNumber%></a> <a href="TransactionHistory.jsp?showDiv=Cc&TransactionsSelect=l10t"> <img src="../images/10t.png" align="right"></a></td> 								
  								<td><%=Type%></td>
  								<td><%=Firstname%> <%=Lastname%></td>
  								<td><%=Limit%></td>
@@ -96,7 +96,7 @@
 							</tr>	
 							</thead>					 						
 							<tr> 
-								<td><a href= "AccountDetails.jsp?showDiv=Loan"><%=LoanId%></a> <img src="../images/10t.png" align="right"></td>								
+								<td><a href= "AccountDetails.jsp?showDiv=Loan"><%=LoanId%></a> <a href="TransactionHistory.jsp?showDiv=Loan&TransactionsSelect=l10t"><img src="../images/10t.png" align="right"></a></td>								
  								<td><%=Type%></td>
  								<td><%=Firstname%> <%=Lastname%></td>
  								<td><%=Limit%></td>

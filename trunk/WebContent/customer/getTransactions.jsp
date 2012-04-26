@@ -4,7 +4,7 @@
 <jsp:useBean id="loanTransactions" scope="page" class="sql.LoanTransactionsRepositoryImpl" />
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-	String TransactionTimeText, AccountType, Action, TransactionTime, Desc ;
+	String StartDate, EndDate, TransactionTimeText, AccountType, Action, TransactionTime, Desc ;
 	int CustomerId, TransactionId;
 	float Balance, Poso, NewBalance;
 	Timestamp Time;
@@ -19,11 +19,22 @@
  	AccountType = request.getParameter("AccountType"); 	
  	TransactionTime = request.getParameter("TransactionTime");
  	TransactionTimeText = request.getParameter("TransactionTimeText");
+ 	
+ 
+	StartDate = request.getParameter("StartDate");
+ 	EndDate = request.getParameter("EndDate");
 	String table="<table class='table-2'><thead> <tr> <th>Αρ. Συναλ.</th><th>Περιγραφή</th><th>Ώρα Συναλ.</th><th>Αναλ./Κατ.</th><th>Υπόλοιπο</th><th>Ποσό</th><th>Νεο Υπολοιπο</th></tr></thead><tbody>";
 	
 	ResultSet rs;
-	if (AccountType.equals("TypeAcc")) {				
-		rs = accountTransactions.selectTransactionsCustomer(CustomerId, TransactionTime);	
+	if (AccountType.equals("TypeAcc")) {	
+		if (TransactionTime.equals("date")) {		
+			System.out.println("vvvv");
+			rs = accountTransactions.selectTransactionsDate(CustomerId, StartDate, EndDate);
+			}	
+		else {
+		rs = accountTransactions.selectTransactionsCustomer(CustomerId, TransactionTime);
+		System.out.println("aaaaa");
+		}
 		if (rs.next()) {
 			response.getWriter().print(table);
 			
@@ -48,7 +59,17 @@
 				response.getWriter().print("</tr>");
 				}
 		}
-		else {
+		else if (TransactionTime.equals("date")){
+			if ( StartDate == "" || EndDate == "") {
+				response.getWriter().print("<div class='center'> <p style='font-style:italic; color:red;'> Παρακαλώ καταχωρίστε ημερομηνίες</p>");
+			}
+			else {
+			System.out.println("aa ");
+			response.getWriter().print("<div class='center'> <p style='font-style:italic; color:red;'> Δεν υπάρχουν συναλλαγές για τις ημερομηνίες που έχετε επιλέξει <br>(" + StartDate + " - " + EndDate + ")</p>");									
+			}
+		}
+		else {		
+			System.out.println("bbbbbbb");
 			response.getWriter().print("<div class='center'> <p style='font-style:italic; color:red;'> Δεν υπάρχουν συναλλαγές για την περιοδο που έχετε επιλέξει <br>(" + TransactionTimeText + ")</p>");
 		}
 	}
