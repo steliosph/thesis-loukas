@@ -4,6 +4,7 @@
 <jsp:useBean id="creditCard" scope="page" class="sql.CreditCardsTransactionRepositoryImpl" />
 <jsp:useBean id="loans" scope="page" class="sql.LoansRepositoryImpl" />
 <%
+	// TODO Limit availiability
 	String Action, data = "" ;
 	int CustomerId, AccountId = 0, LoanId = 0;
 	float AccLimit, AccBalance, CcLimit, CcBalance, LoanLimit, LoanBalance;

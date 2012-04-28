@@ -289,7 +289,8 @@ button.btn:hover span, button.btnHover span {
 
 	
 .noMargin	{ margin: 0; }
-.marginPX { margin-left: 70px; }
+.marginPX { margin-left: 120px; }
+.marginPX80 { margin-left: 80px; }
 
 .left{float:left}
 .right{float:right}

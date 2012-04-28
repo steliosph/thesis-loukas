@@ -28,7 +28,7 @@
 		<div class="left">	
 		<h3>Μεταφορές</h3>
 		
-			<li style="margin-bottom:10px;"><a href="../cashier/sumloans.jsp">Μεταφορά Mεταξύ Λογαριασμών μου</a></li>
+			<li style="margin-bottom:10px;"><a href="TransferBetweenMyAccounts.jsp">Μεταφορά Mεταξύ Λογαριασμών μου</a></li>
 			<li style="margin-bottom:10px;"><a href="../cashier/deposit.jsp">Μεταφορά σε Πελάτες Τράπεζας Κύπρου</a></li>
 			<li style="margin-bottom:10px;"><a href="../cashier/creditcard.jsp">Μεταφορά σε Τοπικές Τράπεζες</a></li>
 		<h3>e-shop</h3>				

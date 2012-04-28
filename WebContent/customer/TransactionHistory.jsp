@@ -15,7 +15,7 @@
 <script language="javascript" type="text/javascript">  
 var xmlHttp;  
 var xmlHttp;
-function showState(){ 
+function showTransactions(){ 
 	
 	var TransactionTime = document.getElementById("ActionSel");
 		TransactionTime = TransactionTime.options[TransactionTime.selectedIndex].value;		
@@ -57,9 +57,13 @@ xmlHttp.open("GET", url, true);
 xmlHttp.send(null);
 }
 function stateChange(){   
-if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
-document.getElementById("result").innerHTML=xmlHttp.responseText;  
-}   
+	if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
+		document.getElementById("result").innerHTML=xmlHttp.responseText;  
+	} 
+	if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") { 
+		document.getElementById("result").innerHTML="<div align=center> <img src='../images/loading.gif' alt='Loading..'></div>";
+		}
+
 }
 
 </script>
@@ -118,17 +122,17 @@ document.getElementById("result").innerHTML=xmlHttp.responseText;
 	else if ( TransactionsSelect == "l10t" && showDiv == "Acc") {
 	    $("#AccountSel option[value='TypeAcc']").attr('selected', 'selected'); 
 	    $("#ActionSel option[value='limit 10']").attr('selected', 'selected');
-		showState();
+	    showTransactions();
 	}
 	else if ( TransactionsSelect == "l10t" && showDiv == "Cc") {
 	    $("#AccountSel option[value='TypeCc']").attr('selected', 'selected'); 
 	    $("#ActionSel option[value='limit 10']").attr('selected', 'selected');
-		showState();
+	    showTransactions();
 	}
 	else if ( TransactionsSelect == "l10t" && showDiv == "Loan") {
 	    $("#AccountSel option[value='TypeLoan']").attr('selected', 'selected'); 
 	    $("#ActionSel option[value='limit 10']").attr('selected', 'selected');
-		showState();
+	    showTransactions();
 	}
 	});
 </script>
@@ -181,7 +185,7 @@ document.getElementById("result").innerHTML=xmlHttp.responseText;
 					</tr>
 				</table>
 				<br>
-				<button type="button" class="btn" onClick="showState();">
+				<button type="button" class="btn" onClick="showTransactions();">
 					<span>Search..</span>
 				</button>
 <script type="text/javascript">
@@ -191,15 +195,12 @@ $(document).change(function() {
 if (TransactionTime == "date") {
 	$("#txtStartDate ").removeAttr('disabled');
 	$("#txtEndDate ").removeAttr('disabled');
-
 }
-
 else {
 	$("#txtStartDate").attr("disabled", "disabled");
 	$("#txtEndDate").attr("disabled", "disabled");
 	document.getElementById('txtStartDate').value = "";
 	document.getElementById('txtEndDate').value = "";
-	
 }
 });
 </script>				
