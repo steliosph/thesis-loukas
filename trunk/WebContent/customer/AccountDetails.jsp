@@ -53,10 +53,8 @@ if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") {
 
 </script>
 
-<jsp:useBean id="account" scope="page"
-	class="sql.AccountsRepositoryImpl" />
-<jsp:useBean id="creditCard" scope="page"
-	class="sql.CreditCardsTransactionRepositoryImpl" />
+<jsp:useBean id="account" scope="page" class="sql.AccountsRepositoryImpl" />
+<jsp:useBean id="creditCard" scope="page" class="sql.CreditCardsTransactionRepositoryImpl" />
 <jsp:useBean id="loans" scope="page" class="sql.LoansRepositoryImpl" />
 <%
 	String showDiv = "", TypeAcc = "", TypeCc = "", TypeLoan = "";
