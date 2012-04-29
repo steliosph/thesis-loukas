@@ -18,7 +18,7 @@ function showAcc(AccountType,Number) {
 		  xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
 		      }
 		if (xmlHttp==null){
-		   alert ("Browser does not support XMLHTTP Request")
+		   alert ("Browser does not support XMLHTTP Request");
 		return
 		} 
 	var url="getAccount.jsp";
@@ -88,6 +88,7 @@ if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 					<tr>
 						<td bgcolor="#fffaaa">Από Λογαριασμό:</td>
 						<td><select id="AccountSel1">
+								<option value="noAccount">Επιλέξτε λογαριασμό</option>
 								<%
 									if (TypeAcc != "") {
 								%>
@@ -138,6 +139,7 @@ if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 					<tr>
 						<td bgcolor="#fffaaa">Από Λογαριασμό:</td>
 						<td><select id="AccountSel2">
+								<option value="noAccount">Επιλέξτε λογαριασμό</option>
 								<%
 									if (TypeAcc != "") {
 								%>
@@ -191,16 +193,24 @@ $(function() {
     	var TransferAmount = document.getElementById('TransferAmount').value;
     	var TransferDesc = document.getElementById('TransferDesc').value;    	
     	var Balance1 = document.getElementById('Balance1').innerHTML;
-
-    	alert(Balance1);
-    	if (AccountSel1 == AccountSel2) {
-    		alert("Πρέπει να επιλέξετε διαφορετικούς λογαριασμούς");
-    	}
-    	else if (Balance1 == "") {
+    	var Balance2 = document.getElementById('Balance2').innerHTML;
+    	    
+    	var BalanceLength1 = $("#Balance1").html();
+    	BalanceLength1 = $.trim(BalanceLength1);    	
+    	var BalanceLength2 = $("#Balance2").html();
+    	BalanceLength2 = $.trim(BalanceLength2);
+    	
+    	if (BalanceLength1 == 0) {
     		alert("Παρακαλώ επιλέξτε λογαριασμό εντολέα");
     	} 
-    	else if (TransferAmount > Balance1) {
-    		alert("To υπόλοιπο του λογαριασμού είναι μεγαλύτερο από το ποσό που θέλετε να μεταφέρετε");
+    	else if (BalanceLength2 == 0) {
+    		alert("Παρακαλώ επιλέξτε λογαριασμό δικαιούχου");
+    	}    
+    	else if (AccountSel1 == AccountSel2) {
+    		alert("Πρέπει να επιλέξετε διαφορετικούς λογαριασμούς");
+    	} 	
+    	else if (TransferAmount < Balance1) {
+    		alert("To υπόλοιπο του λογαριασμού είναι μικρότερο από το ποσό που θέλετε να μεταφέρετε");
     	}
     }
     );
@@ -216,14 +226,28 @@ function tranfer (){
 </script>			
 			
 			<script>
+			$("#AccountSel1 option[value='noAccount']").attr('selected', 'selected');
+			$("#AccountSel2 option[value='noAccount']").attr('selected', 'selected'); 
 				$('#AccountSel1').change(function()
 				{
-		 			var Number = 1;
+					var noAccount = document.getElementById("AccountSel1");
+					noAccount = noAccount.options[noAccount.selectedIndex].value;
+					if (noAccount == "noAccount") {
+						document.getElementById('Id1').innerHTML = "";
+						document.getElementById('Balance1').innerHTML = "";
+					}
+		 			var Number = 1;		 		  
 		   			showAcc(this.value,Number);		   
 				});
 		
 				$('#AccountSel2').change(function()
 				{
+					var noAccount = document.getElementById("AccountSel2");
+					noAccount = noAccount.options[noAccount.selectedIndex].value;
+					if (noAccount == "noAccount") {
+						document.getElementById('Id2').innerHTML = "";
+						document.getElementById('Balance2').innerHTML = "";
+					}
 		   			var Number = 2;
 		   			showAcc(this.value,Number);
 				});		

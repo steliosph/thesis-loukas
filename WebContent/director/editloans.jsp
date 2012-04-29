@@ -2,7 +2,6 @@
 <%@ page import="enums.AccessRightsEnum"%>
 <%@ page import="bean.AccessRights"%>
 <%@page import="enums.LoanOptions"%>
-
 <%
 	Integer accountTypeId = (Integer) session
 			.getAttribute("accountTypeId");

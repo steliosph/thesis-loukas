@@ -2,11 +2,11 @@ package enums;
 
 public enum LoanStatus {
 	
-	EKKREMEI ("Εκκρεμεί"),
+	EKKREMEI ("Ξ•ΞΊΞΊΟΞµΞΌΞµΞ―"),
 	
-	EGKRITHIKE ("Εγκρίθηκε"),
+	EGKRITHIKE ("Ξ•Ξ³ΞΊΟΞ―ΞΈΞ·ΞΊΞµ"),
 	
-	APORIFTHIKE ("Απόρριψη");
+	APORIFTHIKE ("Ξ‘Ο€ΟΟΟΞΉΟΞ·");
 	
 	private String status;
 
