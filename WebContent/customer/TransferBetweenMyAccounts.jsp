@@ -137,7 +137,7 @@ if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 				<table class="table-2">
 					Δικαιούχος
 					<tr>
-						<td bgcolor="#fffaaa">Από Λογαριασμό:</td>
+						<td bgcolor="#fffaaa">Σε Λογαριασμό:</td>
 						<td><select id="AccountSel2">
 								<option value="noAccount">Επιλέξτε λογαριασμό</option>
 								<%
@@ -160,7 +160,7 @@ if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 						</select></td>
 					</tr>
 					<tr>
-						<td bgcolor="#fffaaa">Από Αριθμό Λογαριασμού:</td>
+						<td bgcolor="#fffaaa">Σε Αριθμό Λογαριασμού:</td>
 						<td id="Id2" />
 					</tr>
 					<tr>
@@ -173,32 +173,31 @@ if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 			<br><br><br><br><br><br><br><br><br><br>
 			<div class="left marginPX80">
 				<button type="button" class="btn" id="Submit">
-					<span>Search..</span>
+					<span>Μεταφορά..</span>
 				</button>
-				<button type="button" class="btn">
-					<span>Cancel..</span>
+				<button type="button" class="btn" id="Clear">
+					<span>Ακύρωση..</span>
 				</button>		
 				
 				</div>	
 <script>
 $(function() {
     $("#Submit").click( function()
-    {  
+    {     
     	var AccountSel1 = document.getElementById("AccountSel1");
-    	AccountSel1 = AccountSel1.options[AccountSel1.selectedIndex].value;
-     	
+    	AccountSel1 = AccountSel1.options[AccountSel1.selectedIndex].value;     	
         var AccountSel2 = document.getElementById("AccountSel2");
-        AccountSel2 = AccountSel2.options[AccountSel2.selectedIndex].value;
-     		
+        AccountSel2 = AccountSel2.options[AccountSel2.selectedIndex].value;     		
     	var TransferAmount = document.getElementById('TransferAmount').value;
     	var TransferDesc = document.getElementById('TransferDesc').value;    	
     	var Balance1 = document.getElementById('Balance1').innerHTML;
-    	var Balance2 = document.getElementById('Balance2').innerHTML;
-    	    
+    	var Balance2 = document.getElementById('Balance2').innerHTML;    	     	
     	var BalanceLength1 = $("#Balance1").html();
     	BalanceLength1 = $.trim(BalanceLength1);    	
     	var BalanceLength2 = $("#Balance2").html();
-    	BalanceLength2 = $.trim(BalanceLength2);
+    	BalanceLength2 = $.trim(BalanceLength2);    	
+    	Balance1=parseFloat(Balance1);
+    	TransferAmount=parseFloat(TransferAmount);     	
     	
     	if (BalanceLength1 == 0) {
     		alert("Παρακαλώ επιλέξτε λογαριασμό εντολέα");
@@ -208,13 +207,27 @@ $(function() {
     	}    
     	else if (AccountSel1 == AccountSel2) {
     		alert("Πρέπει να επιλέξετε διαφορετικούς λογαριασμούς");
-    	} 	
-    	else if (TransferAmount < Balance1) {
+    	}
+    	else if(isNaN(TransferAmount)) {
+    		alert("Παρακαλώ εισάγετε ποσό μεταφοράς");
+    	}
+    	else if (TransferAmount > Balance1) {
     		alert("To υπόλοιπο του λογαριασμού είναι μικρότερο από το ποσό που θέλετε να μεταφέρετε");
     	}
-    }
-    );
-});
+        else if(answered == true) {
+       	 alert("sql for tranfer");
+        }
+    	else if (TransferAmount < Balance1) {    		    		
+    		$("#Submit span").text("Επιλέξτε για επιβεβαίωση");    		
+    		document.getElementById("AccountSel1").disabled=true;
+    		document.getElementById("AccountSel2").disabled=true;
+    		document.getElementById("TransferAmount").disabled=true;
+    		document.getElementById("TransferDesc").disabled=true;
+    	    answered = true;   
+    	    
+    	}    
+    });
+}); 
 
 function tranfer (){
 	alert("asd");
@@ -226,15 +239,22 @@ function tranfer (){
 </script>			
 			
 			<script>
+			var answered = false;
 			$("#AccountSel1 option[value='noAccount']").attr('selected', 'selected');
-			$("#AccountSel2 option[value='noAccount']").attr('selected', 'selected'); 
+			$("#AccountSel2 option[value='noAccount']").attr('selected', 'selected');
+			document.getElementById('TransferAmount').value = "";
+			document.getElementById('TransferDesc').value = "";
+    		document.getElementById('AccountSel1').disabled=false;
+    		document.getElementById('AccountSel2').disabled=false;
+    		document.getElementById('TransferAmount').disabled=false;
+    		document.getElementById('TransferDesc').disabled=false;
 				$('#AccountSel1').change(function()
 				{
 					var noAccount = document.getElementById("AccountSel1");
 					noAccount = noAccount.options[noAccount.selectedIndex].value;
 					if (noAccount == "noAccount") {
 						document.getElementById('Id1').innerHTML = "";
-						document.getElementById('Balance1').innerHTML = "";
+						document.getElementById('Balance1').innerHTML = "";						
 					}
 		 			var Number = 1;		 		  
 		   			showAcc(this.value,Number);		   
