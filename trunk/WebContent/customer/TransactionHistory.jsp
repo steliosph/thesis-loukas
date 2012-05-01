@@ -62,7 +62,7 @@ function stateChange(){
 	} 
 	if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") { 
 		document.getElementById("result").innerHTML="<div align=center> <img src='../images/loading.gif' alt='Loading..'></div>";
-		}
+	}
 
 }
 
@@ -205,9 +205,9 @@ else {
 });
 </script>				
 			</div>
-			<form name="form">
+
 				<div id="result" style="overflow: auto; height: 250px;"></div>
-			</form>
+			
 			
 			
 			
