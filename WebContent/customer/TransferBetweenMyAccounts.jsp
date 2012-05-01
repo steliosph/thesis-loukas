@@ -9,8 +9,7 @@
 	type="image/x-icon" />
 </head>
 <script type="text/javascript">
-function showAcc(AccountType,Number) {
-
+function showAcc(AccountType,Number) {{
 	if (typeof XMLHttpRequest != "undefined"){
 		  xmlHttp= new XMLHttpRequest();
 		      }
@@ -32,21 +31,50 @@ function showAcc(AccountType,Number) {
 function stateChanged(Number) 
 { 
 var Number = this.Number;
-if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
-	{         
+if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete") {   
+	
 	var showdata = xmlHttp.responseText; 
 	var strar = showdata.split(",");     
-	if(strar.length>1)
-		{
+	if(strar.length>1) {
 		var strname = strar[1];
 		document.getElementById('Id' + Number).innerHTML= strar[1];
-		document.getElementById("Balance" + Number).innerHTML= strar[6];		
+		document.getElementById("Balance" + Number).innerHTML= strar[6];
 		}       
 	}
 }
+}
 
 
+function transfer(AccountSel1, Balance1, AccNumber1, AccountSel2, Balance2, AccNumber2, TransferAmount, TransferDesc) {
+{
+	if (typeof XMLHttpRequest != "undefined"){
+		  xmlHttp= new XMLHttpRequest();
+		      }
+		      else if (window.ActiveXObject){
+		  xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
+		      }
+		if (xmlHttp==null){
+		   alert ("Browser does not support XMLHTTP Request");
+		return
+		} 
+	var url="transfer.jsp";
+	url = url + "?AccountSel1=" + AccountSel1 + "&Balance1=" + Balance1 + "&AccNumber1=" + AccNumber1 + "&AccountSel2=" + AccountSel2 + "&Balance2=" + Balance2 + "&AccNumber2=" + AccNumber2 + "&TransferAmount=" + TransferAmount + "&TransferDesc=" + TransferDesc;
+	xmlHttp.onreadystatechange = stateChange;
+	xmlHttp.open("GET", url, true);
+	xmlHttp.send(null);
+}
 
+function stateChange(){   
+	if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
+		document.getElementById("result").innerHTML=xmlHttp.responseText;
+		alert("bbbbbbbbbbbbbbbbbbbbbb");
+	} 
+	if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") { 
+		document.getElementById("result").innerHTML="<div align=center> <img src='../images/loading.gif' alt='Loading..'></div>";
+	}
+
+}
+}
 </script>
 
 <body>
@@ -81,6 +109,7 @@ if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 		<div class="contentArea">
 			<h1>Μεταφορά Μεταξύ Λογαριασμών μουν</h1>
 
+<div class="center" id="result" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;"></div>
 
 			<div class="left marginPX">
 				<table class="table-2">
@@ -191,33 +220,41 @@ $(function() {
     	var TransferAmount = document.getElementById('TransferAmount').value;
     	var TransferDesc = document.getElementById('TransferDesc').value;    	
     	var Balance1 = document.getElementById('Balance1').innerHTML;
-    	var Balance2 = document.getElementById('Balance2').innerHTML;    	     	
+    	var Balance2 = document.getElementById('Balance2').innerHTML;    
     	var BalanceLength1 = $("#Balance1").html();
     	BalanceLength1 = $.trim(BalanceLength1);    	
     	var BalanceLength2 = $("#Balance2").html();
-    	BalanceLength2 = $.trim(BalanceLength2);    	
+    	BalanceLength2 = $.trim(BalanceLength2);
     	Balance1=parseFloat(Balance1);
-    	TransferAmount=parseFloat(TransferAmount);     	
+    	Balance2=parseFloat(Balance2);
+    	TransferAmount=parseFloat(TransferAmount);    
+    	
+    	var AccNumber1 = document.getElementById('Id1').innerHTML;    
+    	var AccNumber2 = document.getElementById('Id2').innerHTML;     	    	    	    	 	
     	
     	if (BalanceLength1 == 0) {
-    		alert("Παρακαλώ επιλέξτε λογαριασμό εντολέα");
+    		$("#result").text('Παρακαλώ επιλέξτε λογαριασμό εντολέα');
     	} 
     	else if (BalanceLength2 == 0) {
-    		alert("Παρακαλώ επιλέξτε λογαριασμό δικαιούχου");
+    		$("#result").text('Παρακαλώ επιλέξτε λογαριασμό δικαιούχου');    	
     	}    
     	else if (AccountSel1 == AccountSel2) {
-    		alert("Πρέπει να επιλέξετε διαφορετικούς λογαριασμούς");
+    		$("#result").text('Πρέπει να επιλέξετε διαφορετικούς λογαριασμούς');    		
     	}
     	else if(isNaN(TransferAmount)) {
-    		alert("Παρακαλώ εισάγετε ποσό μεταφοράς");
+    		$("#result").text('Παρακαλώ εισάγετε ποσό μεταφοράς');   
     	}
     	else if (TransferAmount > Balance1) {
-    		alert("To υπόλοιπο του λογαριασμού είναι μικρότερο από το ποσό που θέλετε να μεταφέρετε");
+    		$("#result").text('To υπόλοιπο του λογαριασμού είναι μικρότερο από το ποσό που θέλετε να μεταφέρετε');
     	}
         else if(answered == true) {
-       	 alert("sql for tranfer");
+       		Balance1 = Balance1 - TransferAmount;
+       		Balance2 = Balance2 + TransferAmount;
+			transfer(AccountSel1, Balance1, AccNumber1, AccountSel2, Balance2, AccNumber2, TransferAmount, TransferDesc);
+       	 	// AccountSel1, Balance1, AccNumber1, AccountSel2, Balance2, AccNumber2, TransferAmount, TransferDesc ;
         }
-    	else if (TransferAmount < Balance1) {    		    		
+    	else if (TransferAmount < Balance1) {   
+    		$("#result").fadeOut();
     		$("#Submit span").text("Επιλέξτε για επιβεβαίωση");    		
     		document.getElementById("AccountSel1").disabled=true;
     		document.getElementById("AccountSel2").disabled=true;
@@ -229,13 +266,6 @@ $(function() {
     });
 }); 
 
-function tranfer (){
-	alert("asd");
-	var TransactionTime = document.getElementById("ActionSel1");
-	TransactionTime = TransactionTime.options[TransactionTime.selectedIndex].value;		
-	var ActionSel1 = document.getElementById('TransferAmount').value;
-	alert(TransactionTime);
-}
 </script>			
 			
 			<script>

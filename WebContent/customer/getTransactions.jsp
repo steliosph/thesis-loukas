@@ -1,10 +1,7 @@
 <%@page language="java" import="java.sql.*"%>
-<jsp:useBean id="accountTransactions" scope="page"
-	class="sql.AccountTransactionsImpl" />
-<jsp:useBean id="creditCardTransactions" scope="page"
-	class="sql.CreditCardsTransactionRepositoryImpl" />
-<jsp:useBean id="loanTransactions" scope="page"
-	class="sql.LoanTransactionsRepositoryImpl" />
+<jsp:useBean id="accountTransactions" scope="page" class="sql.AccountTransactionsImpl" />
+<jsp:useBean id="creditCardTransactions" scope="page" class="sql.CreditCardsTransactionRepositoryImpl" />
+<jsp:useBean id="loanTransactions" scope="page" class="sql.LoanTransactionsRepositoryImpl" />
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 //TODO Limit availiability
