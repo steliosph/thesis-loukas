@@ -14,9 +14,7 @@
 </head>
 <script language="javascript" type="text/javascript">  
 var xmlHttp;  
-var xmlHttp;
-function showTransactions(){ 
-	
+function showTransactions(){ 	
 	var TransactionTime = document.getElementById("ActionSel");
 		TransactionTime = TransactionTime.options[TransactionTime.selectedIndex].value;		
 	var StartDate = document.getElementById('txtStartDate').value ;
@@ -25,16 +23,13 @@ function showTransactions(){
 	if (TransactionTime == "date") {
 		$("#txtStartDate ").removeAttr('disabled');
 		$("#txtEndDate ").removeAttr('disabled');
-
-	}
-	
+	}	
 	else if ( TransactionTime != "date" ) {
 		$("#txtStartDate").attr("disabled", "disabled");
 		$("#txtEndDate").attr("disabled", "disabled");
 		document.getElementById('txtStartDate').value = "";
 		document.getElementById('txtEndDate').value = "";	
-	}
-	
+	}	
 	var AccountType = document.getElementById("AccountSel");
 		AccountType = AccountType.options[AccountType.selectedIndex].value;
 	var TransactionTimeText =  document.getElementById("ActionSel");

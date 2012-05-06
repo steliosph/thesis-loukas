@@ -10,6 +10,7 @@
 	float AccLimit, AccBalance, CcLimit, CcBalance, LoanLimit, LoanBalance;
 %>
       <%
+      System.out.println("getAccount");
       CustomerId = (Integer) session.getAttribute("customerId");
       Action = request.getParameter("AccountType");
       ResultSet rs;

@@ -144,5 +144,15 @@ public class AccountTransactionsImpl implements AccountTransactionsRepository {
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
 	}
+	
+	public void updateBalance(Integer AccountId, Float Balance) {
+		try {
+			sqlQuery_ = "update accounts set balance= '" + Balance + "' where account_id='" + AccountId+ "'";
+			System.out.println(sqlQuery_);
+			database_.update(sqlQuery_);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }
