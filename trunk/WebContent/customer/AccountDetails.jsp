@@ -32,16 +32,15 @@ function stateChanged()
 if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 	{         
 	var showdata = xmlHttp.responseText; 
-	var strar = showdata.split(",");        
-	if(strar.length>1)
-		{
-			var strname = strar[1];
-			document.getElementById("AccId").innerHTML= strar[1];
-			document.getElementById("LastTransaction").innerHTML= strar[2];
-			document.getElementById("Type").innerHTML= strar[3];
-			document.getElementById("FullName").innerHTML= strar[4];
-			document.getElementById("Address").innerHTML= strar[5];
-			document.getElementById("Balance").innerHTML= strar[6];			
+	var data = showdata.split(",");        
+	if(data.length>1)
+		{			
+			document.getElementById("AccId").innerHTML= data[1];
+			document.getElementById("LastTransaction").innerHTML= data[2];
+			document.getElementById("Type").innerHTML= data[3];
+			document.getElementById("FullName").innerHTML= data[4];
+			document.getElementById("Address").innerHTML= data[5];
+			document.getElementById("Balance").innerHTML= data[6];			
 			$("#show").hide();
 		}       
 	}

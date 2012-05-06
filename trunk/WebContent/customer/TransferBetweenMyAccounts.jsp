@@ -9,72 +9,71 @@
 	type="image/x-icon" />
 </head>
 <script type="text/javascript">
-function showAcc(AccountType,Number) {{
-	if (typeof XMLHttpRequest != "undefined"){
-		  xmlHttp= new XMLHttpRequest();
-		      }
-		      else if (window.ActiveXObject){
-		  xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
-		      }
-		if (xmlHttp==null){
-		   alert ("Browser does not support XMLHTTP Request");
-		return
-		} 
-	var url="getAccount.jsp";
-	url = url + "?AccountType=" + AccountType;
-	xmlHttp.onreadystatechange = stateChanged;
-	xmlHttp.Number = Number;
-	xmlHttp.open("GET",url,true);
-	xmlHttp.send(null);
-}
-
-function stateChanged(Number) 
-{ 
-var Number = this.Number;
-if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete") {   
-	
-	var showdata = xmlHttp.responseText; 
-	var strar = showdata.split(",");     
-	if(strar.length>1) {
-		var strname = strar[1];
-		document.getElementById('Id' + Number).innerHTML= strar[1];
-		document.getElementById("Balance" + Number).innerHTML= strar[6];
-		}       
-	}
-}
-}
-
-
-function transfer(AccountSel1, Balance1, AccNumber1, AccountSel2, Balance2, AccNumber2, TransferAmount, TransferDesc) {
-{
-	if (typeof XMLHttpRequest != "undefined"){
-		  xmlHttp= new XMLHttpRequest();
-		      }
-		      else if (window.ActiveXObject){
-		  xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
-		      }
-		if (xmlHttp==null){
-		   alert ("Browser does not support XMLHTTP Request");
-		return
-		} 
-	var url="transfer.jsp";
-	url = url + "?AccountSel1=" + AccountSel1 + "&Balance1=" + Balance1 + "&AccNumber1=" + AccNumber1 + "&AccountSel2=" + AccountSel2 + "&Balance2=" + Balance2 + "&AccNumber2=" + AccNumber2 + "&TransferAmount=" + TransferAmount + "&TransferDesc=" + TransferDesc;
-	xmlHttp.onreadystatechange = stateChange;
-	xmlHttp.open("GET", url, true);
-	xmlHttp.send(null);
-}
-
-function stateChange(){   
-	if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
-		document.getElementById("result").innerHTML=xmlHttp.responseText;
-		alert("bbbbbbbbbbbbbbbbbbbbbb");
-	} 
-	if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") { 
-		document.getElementById("result").innerHTML="<div align=center> <img src='../images/loading.gif' alt='Loading..'></div>";
+var xmlhttp,xmlhttp1;
+	function transfer(AccountSel1, Balance1, AccNumber1, AccountSel2, Balance2,
+			AccNumber2, TransferAmount, TransferDesc) {
+		xmlhttp = GetXmlHttpObject();
+		if (xmlhttp == null) {
+			alert("Your browser does not support AJAX!");
+			return;
+		}
+		var url = "transfer.jsp";
+		url = url + "?AccountSel1=" + AccountSel1 + "&Balance1=" + Balance1 + "&AccNumber1=" + AccNumber1 + "&AccountSel2=" + AccountSel2 + "&Balance2=" + Balance2 + "&AccNumber2=" + AccNumber2 + "&TransferAmount=" + TransferAmount + "&TransferDesc=" + TransferDesc;
+		xmlhttp.onreadystatechange = stateChanged;
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send(null);
 	}
 
-}
-}
+	function stateChanged() {
+		if (xmlhttp.readyState == 4) {
+			document.getElementById('result').innerHTML = xmlhttp.responseText;
+			$("#result").fadeIn();
+			 document.getElementById('Submit').style.visibility='hidden';  
+			setTimeout(location.reload,4000);									
+		}
+		if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") { 
+			document.getElementById("result").innerHTML="<div align=center> <img src='../images/loading.gif' alt='Loading..'></div>";
+		}
+	}
+
+	function showAcc(AccountType, Number) {
+		xmlhttp1 = GetXmlHttpObject();
+		if (xmlhttp1 == null) {
+			alert("Your browser does not support AJAX!");
+			return;
+		}
+		var url1 = "getAccount.jsp";
+		url1 = url1 + "?AccountType=" + AccountType;
+		xmlhttp1.onreadystatechange = stateChanged1;
+		xmlhttp1.Number = Number;
+		xmlhttp1.open("GET", url1, true);
+		xmlhttp1.send(null);
+	}
+
+	function stateChanged1() {
+		var Number = this.Number;
+		if (xmlhttp1.readyState == 4) {
+			var showdata = xmlhttp1.responseText;
+			var data = showdata.split(",");
+			if (data.length > 1) {
+				document.getElementById('Id' + Number).innerHTML = data[1];
+				document.getElementById("Balance" + Number).innerHTML = data[6];
+			}
+		}
+		if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") { 
+			document.getElementById("result").innerHTML="<div align=center> <img src='../images/loading.gif' alt='Loading..'></div>";
+		}
+	}
+
+	function GetXmlHttpObject() {
+		if (window.XMLHttpRequest) {
+			return new XMLHttpRequest();
+		}
+		if (window.ActiveXObject) {
+			return new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		return null;
+	}
 </script>
 
 <body>
@@ -87,6 +86,7 @@ function stateChange(){
 	%>
 	<%
 		if (session.getAttribute("customerId") == null) {
+			response.sendRedirect("../errorpage.jsp");
 		} else {
 			CustomerId = (Integer) session.getAttribute("customerId");
 
@@ -96,21 +96,18 @@ function stateChange(){
 			}
 			rs = creditCard.selectAccount(CustomerId);
 			while (rs.next()) {
-				TypeCc = "Πιστωτική κάρτα";
+				TypeCc = "Πιστωτική κάρτα";;
 			}
 			rs = loans.selectAccount(CustomerId);
 			while (rs.next()) {
 				TypeLoan = rs.getString("type");
 			}
 	%>
-
 	<div class="pageTop"></div>
 	<div class="pageMain">
 		<div class="contentArea">
 			<h1>Μεταφορά Μεταξύ Λογαριασμών μουν</h1>
-
 <div class="center" id="result" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;"></div>
-
 			<div class="left marginPX">
 				<table class="table-2">
 					Στοιχεία Λογαριασμού Εντολέα
@@ -145,8 +142,7 @@ function stateChange(){
 						<td bgcolor="#fffaaa">Διαθέσιμο Υπόλοιπο:</td>
 						<td id="Balance1" />
 					</tr>
-				</table>
-				
+				</table>			
 				<br> Στοιχεία Μεταφοράς
 				<table class="table-2">
 					<tr>
@@ -160,8 +156,6 @@ function stateChange(){
 				</table>
 
 			</div>
-
-
 			<div class="left ">
 				<table class="table-2">
 					Δικαιούχος
@@ -197,8 +191,7 @@ function stateChange(){
 						<td id="Balance2" />
 				</table>
 
-			</div>
-			
+			</div>			
 			<br><br><br><br><br><br><br><br><br><br>
 			<div class="left marginPX80">
 				<button type="button" class="btn" id="Submit">
@@ -206,9 +199,9 @@ function stateChange(){
 				</button>
 				<button type="button" class="btn" id="Clear">
 					<span>Ακύρωση..</span>
-				</button>		
-				
+				</button>						
 				</div>	
+				
 <script>
 $(function() {
     $("#Submit").click( function()
@@ -250,8 +243,7 @@ $(function() {
         else if(answered == true) {
        		Balance1 = Balance1 - TransferAmount;
        		Balance2 = Balance2 + TransferAmount;
-			transfer(AccountSel1, Balance1, AccNumber1, AccountSel2, Balance2, AccNumber2, TransferAmount, TransferDesc);
-       	 	// AccountSel1, Balance1, AccNumber1, AccountSel2, Balance2, AccNumber2, TransferAmount, TransferDesc ;
+			transfer(AccountSel1, Balance1, AccNumber1, AccountSel2, Balance2, AccNumber2, TransferAmount, TransferDesc);       	 	
         }
     	else if (TransferAmount < Balance1) {   
     		$("#result").fadeOut();
@@ -266,46 +258,44 @@ $(function() {
     });
 }); 
 
-</script>			
-			
-			<script>
-			var answered = false;
-			$("#AccountSel1 option[value='noAccount']").attr('selected', 'selected');
-			$("#AccountSel2 option[value='noAccount']").attr('selected', 'selected');
-			document.getElementById('TransferAmount').value = "";
-			document.getElementById('TransferDesc').value = "";
-    		document.getElementById('AccountSel1').disabled=false;
-    		document.getElementById('AccountSel2').disabled=false;
-    		document.getElementById('TransferAmount').disabled=false;
-    		document.getElementById('TransferDesc').disabled=false;
-				$('#AccountSel1').change(function()
-				{
-					var noAccount = document.getElementById("AccountSel1");
-					noAccount = noAccount.options[noAccount.selectedIndex].value;
-					if (noAccount == "noAccount") {
-						document.getElementById('Id1').innerHTML = "";
-						document.getElementById('Balance1').innerHTML = "";						
-					}
-		 			var Number = 1;		 		  
-		   			showAcc(this.value,Number);		   
-				});
+</script>						
+<script>
+	var answered = false;
+	$("#AccountSel1 option[value='noAccount']").attr('selected', 'selected');
+	$("#AccountSel2 option[value='noAccount']").attr('selected', 'selected');
+	document.getElementById('TransferAmount').value = "";
+	document.getElementById('TransferDesc').value = "";
+	document.getElementById('AccountSel1').disabled=false;
+	document.getElementById('AccountSel2').disabled=false;
+	document.getElementById('TransferAmount').disabled=false;
+	document.getElementById('TransferDesc').disabled=false;
+	$('#AccountSel1').change(function() {
+		var noAccount = document.getElementById("AccountSel1");
+		noAccount = noAccount.options[noAccount.selectedIndex].value;
+		if (noAccount == "noAccount") {
+			document.getElementById('Id1').innerHTML = "";
+			document.getElementById('Balance1').innerHTML = "";						
+		}
+	var Number = 1;		 		  
+	showAcc(this.value,Number);		   
+	});
 		
-				$('#AccountSel2').change(function()
-				{
-					var noAccount = document.getElementById("AccountSel2");
-					noAccount = noAccount.options[noAccount.selectedIndex].value;
-					if (noAccount == "noAccount") {
-						document.getElementById('Id2').innerHTML = "";
-						document.getElementById('Balance2').innerHTML = "";
-					}
-		   			var Number = 2;
-		   			showAcc(this.value,Number);
-				});		
-				</script>
+	$('#AccountSel2').change(function() {
+		var noAccount = document.getElementById("AccountSel2");
+		noAccount = noAccount.options[noAccount.selectedIndex].value;
+		if (noAccount == "noAccount") {
+			document.getElementById('Id2').innerHTML = "";
+			document.getElementById('Balance2').innerHTML = "";
+		}
+		var Number = 2;
+		showAcc(this.value,Number);
+		});		
+</script>
 			<div class="clear"></div>
 		</div>
 		<div class="clear"></div>
 		<%@ include file="../footer.jsp"%>
+		</div>
 </body>
 </html>
 <%
