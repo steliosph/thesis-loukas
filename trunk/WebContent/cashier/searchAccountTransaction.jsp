@@ -3,6 +3,7 @@
 	response.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html;charset=UTF-8");
 %>
+<%@ page import="java.text.NumberFormat" %>
 <%@ page import="sql.AccountTransactionsRepository"%>
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,6 +13,10 @@
 	int accountTransactionId;
 	float orio, initialAmount, accountAmount, accountBalance, totalPayedAmount, remainingPayeeAmount;
 	Timestamp accountTransactionTime;
+
+	NumberFormat nf = NumberFormat.getInstance();
+	nf.setMaximumFractionDigits(2);
+	nf.setMinimumFractionDigits(2);
 %>
 <script type="text/javascript" language="javascript"> 
 function showHide() {
@@ -114,9 +119,9 @@ function showHide() {
 								<td><%=lastname%></td>
 								<td><%=desc%></td>
 								<td><%=action%></td>
-								<td><%=initialAmount%></td>
-								<td><%=totalPayedAmount%></td>
-								<td><%=remainingPayeeAmount%></td>
+								<td><%=nf.format(initialAmount)%></td>
+								<td><%=nf.format(totalPayedAmount)%></td>
+								<td><%=nf.format(remainingPayeeAmount)%></td>
 								<td><%=accountTransactionTime%></td>
 							</tr>
 							<%
@@ -191,9 +196,9 @@ function showHide() {
 								<td><%=lastname%></td>
 								<td><%=desc%></td>
 								<td><%=action%></td>
-								<td><%=initialAmount%></td>
-								<td><%=totalPayedAmount%></td>
-								<td><%=remainingPayeeAmount%></td>
+								<td><%=nf.format(initialAmount)%></td>
+								<td><%=nf.format(totalPayedAmount)%></td>
+								<td><%=nf.format(remainingPayeeAmount)%></td>
 								<td><%=accountTransactionTime%></td>
 							</tr>
 							<%

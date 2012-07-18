@@ -1,3 +1,4 @@
+<%@ page import="java.text.NumberFormat" %> 
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="account" scope="page" class="sql.AccountsRepositoryImpl" />
@@ -6,6 +7,9 @@
 	int AccountId = 0;
 	float Balance;
 	Timestamp DateCreated;
+	NumberFormat nf = NumberFormat.getInstance();
+	nf.setMaximumFractionDigits(2);
+	nf.setMinimumFractionDigits(2);	
 %>
 
 <html>
@@ -77,7 +81,7 @@ $(document).ready(function() {
 								<td><%=AccountId%></td>
 								<td><%=Firstname%></td>
 								<td><%=Lastname%></td>
- 								<td><%=Balance%></td>
+ 								<td><%=nf.format(Balance)%></td>
 								<td><%=DateCreated%></td>								
 								<td><a href="accountDeposit.jsp?AccountId=<%=rs.getInt("Account_Id")%>" class="editform" >Κατάθεση</a></td>                  				
 								<td><a href="accountWithdrawals.jsp?AccountId=<%=rs.getInt("Account_Id")%>" class="editform" >Ανάληψη</a></td>                   				                  			

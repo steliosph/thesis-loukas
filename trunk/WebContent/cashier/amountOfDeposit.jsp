@@ -119,7 +119,7 @@ $(document).ready(function(){
 </script>
 <div id="correct" style="display: none; color: red; ">
 	<strong>Το ποσό για εξόφληση του δάνειο:(<%=loanId%>)
-		ανανεώθηκε!
+		ανανεώθηκε! <br>Το νέο υπόλοιπο αντιστοιχεί σε: <%=remainingPayeeAmount%> €
 	</strong>
 </div>
 <div id="error" style="display: none; color: red; ">

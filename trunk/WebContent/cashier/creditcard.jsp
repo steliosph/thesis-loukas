@@ -1,9 +1,13 @@
+<%@ page import="java.text.NumberFormat" %>    
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="creditCards" scope="page" class="sql.CreditCardsRepositoryImpl" />
 <%
 	String firstname = "", lastname = "", cardNumber = "";
 	float balance, orio;
+	NumberFormat nf = NumberFormat.getInstance();
+	nf.setMaximumFractionDigits(2);
+	nf.setMinimumFractionDigits(2);	
 %>
 
 <html>
@@ -79,8 +83,8 @@ $(document).ready(function() {
 								<td><%=cardNumber%></td>
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>
- 								<td><%=balance%></td>
-								<td><%=orio%></td>								
+ 								<td><%=nf.format(balance)%></td>
+								<td><%=nf.format(orio)%></td>								
 								<td><a href="ccDeposit.jsp?cardNumber=<%=rs.getString("card_number")%>" class="editform" >Κατάθεση</a></td>                  				
 								<td><a href="ccWithdrawals.jsp?cardNumber=<%=rs.getString("card_number")%>" class="editform" >Ανάληψη</a></td>                   				                  			
 							</tr>
