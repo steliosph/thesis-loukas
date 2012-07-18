@@ -29,12 +29,10 @@
 			RemainingPayeeAmount, AmountToClose;%>
 
 <%
-	LoanId = (Integer) session.getAttribute("loanId");
-
+			LoanId = (Integer) session.getAttribute("loanId");
 			CustomerId = (Integer) session.getAttribute("customerId");
 			LoanAmount = (Float) session.getAttribute("amount");
 			Desc = request.getParameter("desc");		 		
-			//System.out.println(Desc);
 			LoanBalance = (Float) session.getAttribute("remainingPayeeAmount");
 			TotalPayedAmount1 = request.getParameter("TotalPayedAmount");
 			TotalPayedAmount = Float.parseFloat(TotalPayedAmount1);

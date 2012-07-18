@@ -1,3 +1,4 @@
+<%@ page import="java.text.NumberFormat" %>     
 <%@ page import="sql.LoansRepository"%>
 <%@ page import="bean.Loans"%> 
 <%@ page import="sql.LoansRepositoryImpl"%> 
@@ -9,6 +10,10 @@
 	String firstname = "", lastname = "", loan_id = "", type = "", status = "";
 	int loanid = 0;
 	float remaingPayeeAmount, loan_amount;
+	
+	NumberFormat nf = NumberFormat.getInstance();
+	nf.setMaximumFractionDigits(2);
+	nf.setMinimumFractionDigits(2);
 %>
 <html>
 <head>
@@ -70,7 +75,7 @@ $(document).ready(function() {
 							ResultSet rs = loan.getResultWithName();
 								while (rs.next()) {
 									loan_id = rs.getString("loan_id");
-									firstname = rs.getString("Firstname");
+									firstname = rs.getString("firstname");
 									lastname = rs.getString("lastname");
 									remaingPayeeAmount = rs.getFloat("remaining_payee_amount");
 									loan_amount = rs.getFloat("loan_amount");
@@ -81,8 +86,8 @@ $(document).ready(function() {
 								<td><%=loan_id%></td>
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>
- 								<td><%=loan_amount%></td>
- 								<td><%=remaingPayeeAmount%></td>
+ 								<td><%=nf.format(loan_amount)%></td>
+ 								<td><%=nf.format(remaingPayeeAmount) %></td>
 								<td><%=type%></td>
 								<td><%=status%></td>
 								<td><a href="amountOfDeposit.jsp?LoanId=<%=rs.getInt("loan_id")%>" class="editform" >Κατάθεση</a></td>                  				

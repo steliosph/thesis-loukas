@@ -5,10 +5,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 //TODO Limit availiability
-	String StartDate, EndDate, TransactionTimeText, AccountType, Action, TransactionTime, Desc;
+	String Time,StartDate, EndDate, TransactionTimeText, AccountType, Action, TransactionTime, Desc;
 	int CustomerId, TransactionId;
 	float Balance, Poso, NewBalance;
-	Timestamp Time;
+ 
 %>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -23,14 +23,19 @@
 
 	StartDate = request.getParameter("StartDate");
 	EndDate = request.getParameter("EndDate");
-	String table = "<table class='table-2'><thead> <tr> <th>Αρ. Συναλ.</th><th>Περιγραφή</th><th>Ώρα Συναλ.</th><th>Αναλ./Κατ.</th><th>Υπόλοιπο</th><th>Ποσό</th><th>Νεο Υπολοιπο</th></tr></thead><tbody>";
-
+	String table = "<table class='table-2'><thead> <tr> <th>Αρ. Συναλ.</th><th>Περιγραφή</th><th>Ώρα Συναλ.</th><th>Ενέργεια</th><th>Υπόλοιπο</th><th>Ποσό</th><th>Νεο Υπολοιπο</th></tr></thead><tbody>";
+	
 	ResultSet rs;
 	if (AccountType.equals("TypeAcc")) {
 		if (TransactionTime.equals("date")) {
 			rs = accountTransactions.selectTransactionsDate(CustomerId,
 					StartDate, EndDate);
-		} else {
+		} else if (TransactionTime.equals("limit 10") || (TransactionTime.equals("limit 20"))) {
+			TransactionTime = "order by account_transacion_time DESC " + TransactionTime;
+			rs = accountTransactions.selectTransactionsCustomer(CustomerId, TransactionTime);			
+		}
+		else {
+			TransactionTime = TransactionTime + "order by account_transacion_time DESC";
 			rs = accountTransactions.selectTransactionsCustomer(CustomerId, TransactionTime);
 		}
 		if (rs.next()) {
@@ -39,7 +44,7 @@
 			while (rs.next()) {
 				TransactionId = rs.getInt("account_transaction_id");
 				Desc = rs.getString("description");
-				Time = rs.getTimestamp("account_transacion_time");
+				Time = rs.getString("account_transacion_time");
 				Action = rs.getString("action");
 				Balance = rs.getFloat("initial_account_amount");
 				Poso = rs.getFloat("total_account_amount");
@@ -67,7 +72,13 @@
 	if (AccountType.equals("TypeCc")) {
 		if (TransactionTime.equals("date")) {
 			rs = creditCardTransactions.selectTransactionsDate(CustomerId,StartDate, EndDate);
-		} else {
+		} 
+		else if (TransactionTime.equals("limit 10") || (TransactionTime.equals("limit 20"))) {
+			TransactionTime = "order by credit_car_transaction_time DESC " + TransactionTime;
+			rs = creditCardTransactions.selectTransactionsCustomer(CustomerId, TransactionTime);
+		}
+		else {
+			TransactionTime = TransactionTime + "order by credit_car_transaction_time DESC";
 			rs = creditCardTransactions.selectTransactionsCustomer(CustomerId, TransactionTime);
 		}
 		if (rs.next()) {
@@ -76,7 +87,7 @@
 			while (rs.next()) {
 				TransactionId = rs.getInt("credit_card_transaction_id");
 				Desc = rs.getString("description");
-				Time = rs.getTimestamp("credit_car_transaction_time");
+				Time = rs.getString("credit_car_transaction_time");
 				Action = rs.getString("deposit");
 				Balance = rs.getFloat("initial_credit_card_amount");
 				Poso = rs.getFloat("total_credit_card_amount");
@@ -104,9 +115,15 @@
 	if (AccountType.equals("TypeLoan")) {
 		if (TransactionTime.equals("date")) {		
 			rs = loanTransactions.selectTransactionsDate(CustomerId, StartDate, EndDate);
-			}	
+			}
+		
+		else if (TransactionTime.equals("limit 10") || (TransactionTime.equals("limit 20"))) {
+			TransactionTime = "order by loan_transaction_time DESC " + TransactionTime;
+			rs = loanTransactions.selectTransactionsCustomer(CustomerId,TransactionTime);
+		}
 		else {
-		rs = loanTransactions.selectTransactionsCustomer(CustomerId,TransactionTime);
+			TransactionTime = TransactionTime + "order by loan_transaction_time DESC";
+			rs = loanTransactions.selectTransactionsCustomer(CustomerId,TransactionTime);
 		}
 		if (rs.next()) {
 			response.getWriter().print(table);
@@ -114,7 +131,7 @@
 			while (rs.next()) {
 				TransactionId = rs.getInt("loan_transaction_id");
 				Desc = rs.getString("description");
-				Time = rs.getTimestamp("loan_transaction_time");
+				Time = rs.getString("loan_transaction_time");
 				Action = "Κατάθεση";
 				Balance = rs.getFloat("loan_balance");
 				Poso = rs.getFloat("total_payed_amount");

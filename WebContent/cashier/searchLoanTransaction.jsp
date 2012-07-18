@@ -3,6 +3,7 @@
 	response.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html;charset=UTF-8");
 %>
+<%@ page import="java.text.NumberFormat" %> 
 <%@ page import="sql.LoanTransactionsRepository"%>
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,6 +13,10 @@
 	int loanTransactionId ;
 	float loanAmount, loanBalance, totalPayedAmount, remainingPayeeAmount;
 	Timestamp loanTransactionTime; 
+	
+	NumberFormat nf = NumberFormat.getInstance();
+	nf.setMaximumFractionDigits(2);
+	nf.setMinimumFractionDigits(2);
 %>
 <script type="text/javascript" language="javascript"> 
 function showHide() {
@@ -112,10 +117,10 @@ function showHide() {
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>
 								<td><%=desc%></td>
- 								<td><%=loanAmount%></td>
- 								<td><%=loanBalance%></td>
-								<td><%=totalPayedAmount%></td>
-								<td><%=remainingPayeeAmount%></td>
+ 								<td><%=nf.format(loanAmount)%></td>
+ 								<td><%=nf.format(loanBalance)%></td>
+								<td><%=nf.format(totalPayedAmount)%></td>
+								<td><%=nf.format(remainingPayeeAmount)%></td>
 							    <td><%=loanTransactionTime%></td>							    			
 							</tr>
 							<%
@@ -188,10 +193,10 @@ function showHide() {
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>
 								<td><%=desc%></td>
- 								<td><%=loanAmount%></td>
- 								<td><%=loanBalance%></td>
-								<td><%=totalPayedAmount%></td>
-								<td><%=remainingPayeeAmount%></td>
+ 								<td><%=nf.format(loanAmount)%></td>
+ 								<td><%=nf.format(loanBalance)%></td>
+								<td><%=nf.format(totalPayedAmount)%></td>
+								<td><%=nf.format(remainingPayeeAmount)%></td>
 							    <td><%=loanTransactionTime%></td>							    			
 							</tr>		
 							<%

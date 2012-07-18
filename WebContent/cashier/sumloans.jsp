@@ -1,3 +1,4 @@
+<%@ page import="java.text.NumberFormat" %>
 <%@ page import="sql.LoansRepository"%>
 <%@ page import="bean.Loans"%> 
 <%@ page import="sql.LoansRepositoryImpl"%> 
@@ -6,8 +7,13 @@
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
 <jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
 <%
-	String Firstname = "", Lastname = "", customerId1 = "", sum = "", loan_id = "", customer_id = "", loan_amount = "", type = "", status = "";
+	String Firstname = "", Lastname = "", customerId1 = "", sum = "", loan_id = "", customer_id = "", type = "", status = "";
 	int y = 0, loanid = 0, customerId = 0;
+	Float loan_amount;
+	
+	NumberFormat nf = NumberFormat.getInstance();
+    nf.setMaximumFractionDigits(2);
+    nf.setMinimumFractionDigits(2);
 %>
 <html>
 <head>
@@ -26,7 +32,10 @@ $("a.editform").fancybox({
 	'frameWidth':400,
 	'frameHeight':208,
 	'hideOnContentClick':false,
-	'callbackOnShow':modalStart         
+	'callbackOnShow':modalStart,
+	'onClosed': function() {
+		   parent.location.reload(true);
+		  } 	
 });
              
 function modalStart(){
@@ -135,22 +144,27 @@ $(document).ready(function() {
 								while (rs.next()) {
 									loan_id = rs.getString("loan_id");
 									customer_id = rs.getString("customer_id");
-									loan_amount = rs.getString("loan_amount");
+									loan_amount = rs.getFloat("loan_amount");
 									type = rs.getString("type");
-									status = rs.getString("status");
+									status = rs.getString("status");									
 							%>
 							<tr>
 								<td><%=loan_id%></td>
 								<td><%=customer_id%></td>
-								<td><%=loan_amount%></td>
+								<td><%=nf.format(loan_amount)%></td>
 								<td><%=type%></td>
 								<td><%=status%></td>
 								<td><a href="editloans.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >Aλλαγή</a></td>
                   				<td><a href="sumloans.jsp?delete=yes&deleteid=<%=rs.getInt("loan_id")%>" onclick="return del()">Διαγραφή</a></td>
 							</tr>
 							<%
-								}
+								}	
+								
+								
+	
+								
 							%>
+							
 						</tbody>
 					</table>
 				</div>

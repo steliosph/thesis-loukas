@@ -1,20 +1,20 @@
 package enums;
 
 public enum LoanStatus {
-	
-	EKKREMEI ("Ξ•ΞΊΞΊΟΞµΞΌΞµΞ―"),
-	
-	EGKRITHIKE ("Ξ•Ξ³ΞΊΟΞ―ΞΈΞ·ΞΊΞµ"),
-	
-	APORIFTHIKE ("Ξ‘Ο€ΟΟΟΞΉΟΞ·");
-	
-	private String status;
+        
+        EKKREMEI ("Εκκρεμεί"),
+        
+        EGKRITHIKE ("Εγκρίθηκε"),
+        
+        APORIFTHIKE ("Απόρριψη");
+        
+        private String status;
 
-	private LoanStatus(String status) {
-		this.status = status;
-	}
+        private LoanStatus(String status) {
+                this.status = status;
+        }
 
-	public String getStatus() {
-		return status;
-	}
+        public String getStatus() {
+                return status;
+        }
 }

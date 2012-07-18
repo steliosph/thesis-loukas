@@ -1,24 +1,25 @@
 package enums;
 
 public enum LoanOptions {
-	
-	PROSOPIKO_DANEIO ("Ξ ΟΞΏΟƒΟ‰Ο€ΞΉΞΊΟ Ξ”Ξ¬Ξ½ΞµΞΉΞΏ"),
-	
-	DANEIO_AGORAS ("Ξ”Ξ¬Ξ½ΞµΞΉo Ξ‘Ξ³ΞΏΟΞ¬Ο‚"),
-	
-	STEGASTIKO_DANEIO ("Ξ£Ο„ΞµΞ³Ξ±ΟƒΟ„ΞΉΞΊΟ Ξ΄Ξ¬Ξ½ΞµΞΉΞΏ"),
-	
-	DANEIO_AGORA_AFTOKINITOU ("Ξ”Ξ¬Ξ½ΞµΞΉΞ± Ξ‘Ξ³ΞΏΟΞ¬Ο‚ Ξ‘Ο…Ο„ΞΏΞΊΞΉΞ½Ξ®Ο„ΞΏΟ…"),
-	
-	KATANALWTIKO_DANEIO ("ΞΞ±Ο„Ξ±Ξ½Ξ±Ξ»Ο‰Ο„ΞΉΞΊΟ Ξ”Ξ¬Ξ½ΞµΞΉΞΏ");
-	
-	private String type;
+       
+        PROSOPIKO_DANEIO ("Προσωπικό Δάνειο"),
+       
+        DANEIO_AGORAS ("Δάνειo Αγοράς"),
+       
+        STEGASTIKO_DANEIO ("Στεγαστικό δάνειο"),
+       
+        DANEIO_AGORA_AFTOKINITOU ("Δάνεια Αγοράς Αυτοκινήτου"),
+       
+        KATANALWTIKO_DANEIO ("Καταναλωτικό Δάνειο");
+       
+        private String type;
 
-	private LoanOptions(String type) {
-		this.type = type;
-	}
+        private LoanOptions(String type) {
+                this.type = type;
+        }
 
-	public String getType() {
-		return type;
-	}
+        public String getType() {
+                return type;
+        }
 }
+

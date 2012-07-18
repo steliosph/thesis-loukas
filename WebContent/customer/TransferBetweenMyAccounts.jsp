@@ -11,14 +11,14 @@
 <script type="text/javascript">
 var xmlhttp,xmlhttp1;
 	function transfer(AccountSel1, Balance1, AccNumber1, AccountSel2, Balance2,
-			AccNumber2, TransferAmount, TransferDesc) {
+			AccNumber2, TransferAmount, TransferDesc, NewBalance1, NewBalance2) {
 		xmlhttp = GetXmlHttpObject();
 		if (xmlhttp == null) {
 			alert("Your browser does not support AJAX!");
 			return;
 		}
 		var url = "transfer.jsp";
-		url = url + "?AccountSel1=" + AccountSel1 + "&Balance1=" + Balance1 + "&AccNumber1=" + AccNumber1 + "&AccountSel2=" + AccountSel2 + "&Balance2=" + Balance2 + "&AccNumber2=" + AccNumber2 + "&TransferAmount=" + TransferAmount + "&TransferDesc=" + TransferDesc;
+		url = url + "?AccountSel1=" + AccountSel1 + "&Balance1=" + Balance1 + "&AccNumber1=" + AccNumber1 + "&AccountSel2=" + AccountSel2 + "&Balance2=" + Balance2 + "&AccNumber2=" + AccNumber2 + "&TransferAmount=" + TransferAmount + "&TransferDesc=" + TransferDesc + "&NewBalance1=" + NewBalance1 + "&NewBalance2=" + NewBalance2;
 		xmlhttp.onreadystatechange = stateChanged;
 		xmlhttp.open("GET", url, true);
 		xmlhttp.send(null);
@@ -28,8 +28,9 @@ var xmlhttp,xmlhttp1;
 		if (xmlhttp.readyState == 4) {
 			document.getElementById('result').innerHTML = xmlhttp.responseText;
 			$("#result").fadeIn();
-			 document.getElementById('Submit').style.visibility='hidden';  
-			setTimeout(location.reload,4000);									
+			 document.getElementById('Submit').style.visibility='hidden';
+			 document.getElementById('Clear').style.visibility='hidden';
+			setTimeout(location.reload,2000);									
 		}
 		if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") { 
 			document.getElementById("result").innerHTML="<div align=center> <img src='../images/loading.gif' alt='Loading..'></div>";
@@ -60,9 +61,6 @@ var xmlhttp,xmlhttp1;
 				document.getElementById("Balance" + Number).innerHTML = data[6];
 			}
 		}
-		if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") { 
-			document.getElementById("result").innerHTML="<div align=center> <img src='../images/loading.gif' alt='Loading..'></div>";
-		}
 	}
 
 	function GetXmlHttpObject() {
@@ -83,6 +81,7 @@ var xmlhttp,xmlhttp1;
 	<%
 		String TypeAcc = "", TypeCc = "", TypeLoan = "";
 		int CustomerId = 0;
+		Float Orio,LoanAmount;
 	%>
 	<%
 		if (session.getAttribute("customerId") == null) {
@@ -96,17 +95,21 @@ var xmlhttp,xmlhttp1;
 			}
 			rs = creditCard.selectAccount(CustomerId);
 			while (rs.next()) {
-				TypeCc = "Πιστωτική κάρτα";;
+				TypeCc = "Πιστωτική κάρτα";
+				Orio = rs.getFloat("orio");
+				session.setAttribute( "Orio", Orio );
 			}
 			rs = loans.selectAccount(CustomerId);
 			while (rs.next()) {
 				TypeLoan = rs.getString("type");
+				LoanAmount = rs.getFloat("Loan_amount");
+				session.setAttribute( "LoanAmount", LoanAmount );
 			}
 	%>
 	<div class="pageTop"></div>
 	<div class="pageMain">
 		<div class="contentArea">
-			<h1>Μεταφορά Μεταξύ Λογαριασμών μουν</h1>
+			<h1>Μεταφορά Μεταξύ Λογαριασμών μου</h1>
 <div class="center" id="result" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;"></div>
 			<div class="left marginPX">
 				<table class="table-2">
@@ -125,13 +128,9 @@ var xmlhttp,xmlhttp1;
 								%>
 								<option value="TypeCc"><%=TypeCc%></option>
 								<%
-									}
-										if (TypeLoan != "") {
+									}									
 								%>
-								<option value="TypeLoan">Δάνειο</option>
-								<%
-									}
-								%>
+							
 						</select></td>
 					</tr>
 					<tr>
@@ -241,9 +240,9 @@ $(function() {
     		$("#result").text('To υπόλοιπο του λογαριασμού είναι μικρότερο από το ποσό που θέλετε να μεταφέρετε');
     	}
         else if(answered == true) {
-       		Balance1 = Balance1 - TransferAmount;
-       		Balance2 = Balance2 + TransferAmount;
-			transfer(AccountSel1, Balance1, AccNumber1, AccountSel2, Balance2, AccNumber2, TransferAmount, TransferDesc);       	 	
+       		NewBalance1 = Balance1 - TransferAmount;
+       		NewBalance2 = Balance2 + TransferAmount;       	       		
+			transfer(AccountSel1, Balance1, AccNumber1, AccountSel2, Balance2, AccNumber2, TransferAmount, TransferDesc, NewBalance1, NewBalance2);       	 	
         }
     	else if (TransferAmount < Balance1) {   
     		$("#result").fadeOut();
@@ -291,7 +290,7 @@ $(function() {
 		showAcc(this.value,Number);
 		});		
 </script>
-			<div class="clear"></div>
+		<div class="clear"></div>
 		</div>
 		<div class="clear"></div>
 		<%@ include file="../footer.jsp"%>

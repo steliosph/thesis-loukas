@@ -26,13 +26,10 @@
 			<li style="margin-bottom:10px;"><a href="TransactionHistory.jsp">Ιστορικό Κινήσεων</a></li>
 		 
 		<div class="left">	
-		<h3>Μεταφορές</h3>
-		
+		<h3>Μεταφορές</h3>	
 			<li style="margin-bottom:10px;"><a href="TransferBetweenMyAccounts.jsp">Μεταφορά Mεταξύ Λογαριασμών μου</a></li>
-			<li style="margin-bottom:10px;"><a href="../cashier/deposit.jsp">Μεταφορά σε Πελάτες Τράπεζας Κύπρου</a></li>
-			<li style="margin-bottom:10px;"><a href="../cashier/creditcard.jsp">Μεταφορά σε Τοπικές Τράπεζες</a></li>
 		<h3>e-shop</h3>				
-			<li style="margin-bottom:10px;"><a href="../cashier/accounts.jsp">Κάρτε χρόνου ομιλίας</a></li>			
+			<li style="margin-bottom:10px;"><a href="eshop.jsp">Κάρτε χρόνου ομιλίας</a></li>			
 		<h3>Δωρεές</h3>	
 			<li style="margin-bottom:10px;"><a href="../cashier/loantransactions.jsp">Δωρεές σε ιδρύματα</a></li>
 		<h3>Άλλες Υπηρεσίες</h3>			

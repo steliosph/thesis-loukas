@@ -129,13 +129,13 @@ public class LoanTransactionsRepositoryImpl implements
 	}
 	
 	public ResultSet selectTransactionsCustomer(Integer CustomerId, String TransactionTime) {
-		sqlQuery_ = "SELECT * FROM loan_transactions where customer_id='"+ CustomerId + "' and loan_transaction_time " + TransactionTime ;		
+		sqlQuery_ = "SELECT loan_transaction_id,DATE_FORMAT(loan_transaction_time, '%H:%i:%s , %d/%m/%Y') AS loan_transaction_time,loan_id,customer_id,description,loan_amount,loan_balance,total_payed_amount,remaining_payee_amount FROM loan_transactions where customer_id='"+ CustomerId + "' and loan_transaction_time " + TransactionTime ;		
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
 	}
 	
 	public ResultSet selectTransactionsDate(Integer CustomerId ,String StartDate, String EndDate) {
-		sqlQuery_ = "SELECT * FROM account_transactions where customer_id='"+ CustomerId + "' and account_transacion_time BETWEEN '" + StartDate + "' AND '" + EndDate + "'";
+		sqlQuery_ = "SELECT loan_transaction_id,DATE_FORMAT(loan_transaction_time, '%H:%i:%s , %d/%m/%Y') AS loan_transaction_time,loan_id,customer_id,description,loan_amount,loan_balance,total_payed_amount,remaining_payee_amount FROM loan_transactions where customer_id='"+ CustomerId + "' and loan_transaction_time BETWEEN STR_TO_DATE('" + StartDate + "', '%d/%m/%Y') AND STR_TO_DATE('" + EndDate + "', '%d/%m/%Y');";
 		System.out.println(sqlQuery_);
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
