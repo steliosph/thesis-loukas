@@ -49,7 +49,7 @@ function stateChanged() {
 			document.getElementById('Balance').innerHTML = "";
 			$("#Submit span").text("Αγορά..");    	
 		}, 1500);
-		
+		//var answered = false;
 		//setTimeout(location.reload,3000);
 		
 	}
