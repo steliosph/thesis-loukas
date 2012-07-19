@@ -52,12 +52,16 @@ xmlHttp.open("GET", url, true);
 xmlHttp.send(null);
 }
 function stateChange(){   
-	if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
-		document.getElementById("result").innerHTML=xmlHttp.responseText;  
+	if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){ 
+		$("#loading").show();		
+		$("#result").hide();
+		$("#loading").html("<div> <img src='../images/loading.gif' alt='Loading..'></div>");
+		setTimeout(function() {
+		document.getElementById("result").innerHTML=xmlHttp.responseText;
+		$("#loading").hide();
+		$("#result").show();
+		}, 700);
 	} 
-	if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") { 
-		document.getElementById("result").innerHTML="<div align=center> <img src='../images/loading.gif' alt='Loading..'></div>";
-	}
 
 }
 
@@ -200,13 +204,9 @@ else {
 });
 </script>				
 			</div>
-
-				<div id="result" style="overflow: auto; height: 250px;"></div>
-			
-			
-			
-			
-<br></br>
+			<div class="center" id="loading"></div>	
+			<div id="result" style="overflow: auto; height: 350px;"></div>	
+														
 
 <script>
 jQuery(function () 

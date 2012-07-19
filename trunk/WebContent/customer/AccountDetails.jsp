@@ -1,3 +1,4 @@
+<%@ page import="java.text.DecimalFormat" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.sql.*"%>
 <html>
@@ -30,22 +31,29 @@ function showAcc(AccountType)
 function stateChanged() 
 { 
 if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
-	{         
+	{
+	$("#loading").show();
+	$("#loading").html("<div> <img src='../images/loading.gif' alt='Loading..'></div>");
+	document.getElementById("AccId").innerHTML= "";
+	document.getElementById("LastTransaction").innerHTML= "";
+	document.getElementById("Type").innerHTML= "";
+	document.getElementById("FullName").innerHTML= "";
+	document.getElementById("Address").innerHTML= "";
+	document.getElementById("Balance").innerHTML= "";	
 	var showdata = xmlHttp.responseText; 
 	var data = showdata.split(",");        
 	if(data.length>1)
-		{			
+		{	
+		setTimeout(function() {
 			document.getElementById("AccId").innerHTML= data[1];
 			document.getElementById("LastTransaction").innerHTML= data[2];
 			document.getElementById("Type").innerHTML= data[3];
 			document.getElementById("FullName").innerHTML= data[4];
 			document.getElementById("Address").innerHTML= data[5];
 			document.getElementById("Balance").innerHTML= data[6];			
-			$("#show").hide();
+			$("#loading").hide();
+		}, 700);
 		}       
-	}
-if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") { 
-	document.getElementById("show").innerHTML="<div align=center> <img src='../images/loading.gif' alt='Loading..'></div>";
 	}
 
 }
@@ -58,7 +66,6 @@ if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") {
 <%
 	String showDiv = "", TypeAcc = "", TypeCc = "", TypeLoan = "";
 	int CustomerId;
-
 %>
 <body>
 	<%@ include file="top.jsp"%>
@@ -123,7 +130,7 @@ else {
 		
 	});
 </script>
-<div id="show"></div>	
+<div class="center" id="loading"></div>	
 			<table class="table-2">
 				<tr>
 					<td bgcolor="#fffaaa">Επιλογή Λογαριασμού:</td>

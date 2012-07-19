@@ -1,3 +1,4 @@
+<%@ page import="java.text.DecimalFormat" %>
 <%@page language="java" import="java.sql.*"%>
 <jsp:useBean id="accountTransactions" scope="page" class="sql.AccountTransactionsImpl" />
 <jsp:useBean id="creditCardTransactions" scope="page" class="sql.CreditCardsTransactionRepositoryImpl" />
@@ -8,7 +9,7 @@
 	String Time,StartDate, EndDate, TransactionTimeText, AccountType, Action, TransactionTime, Desc;
 	int CustomerId, TransactionId;
 	float Balance, Poso, NewBalance;
- 
+	DecimalFormat df = new DecimalFormat( "#,##0.00" );
 %>
 <%
 	request.setCharacterEncoding("UTF-8");

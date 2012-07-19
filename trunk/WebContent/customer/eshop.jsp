@@ -9,7 +9,54 @@
 	type="image/x-icon" />
 </head>
 <script type="text/javascript">
-var xmlhttp1;
+var xmlhttp,xmlhttp1;
+
+function buyCard(AccountSel, Balance, AccNumber, eshopCard, NewBalance, eshopCardNumber,eshopProvider) {
+	xmlhttp = GetXmlHttpObject();	
+	if (xmlhttp == null) {
+		alert("Your browser does not support AJAX!");
+		return;
+	}
+	var url = "eshopCardBuy.jsp";
+	url = url + "?AccountSel=" + AccountSel + "&Balance=" + Balance + "&AccNumber=" + AccNumber + "&eshopCard=" + eshopCard + "&NewBalance=" + NewBalance + "&eshopCardNumber=" + eshopCardNumber + "&eshopProvider=" + eshopProvider;
+	xmlhttp.onreadystatechange = stateChanged;
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send(null);
+}
+
+function stateChanged() {
+	if (xmlhttp.readyState == 4) {
+		document.getElementById('result').innerHTML = xmlhttp.responseText;		
+		 document.getElementById('Submit').style.visibility='hidden';
+		 document.getElementById('Clear').style.visibility='hidden';
+		 $("#cardShow").hide();
+		 $("#result").hide();
+		 $("#loading").show();
+		 $("#loading").html("<div> <img src='../images/loading.gif' alt='Loading..'></div>");	
+		 
+		setTimeout(function() {
+			$("#result").fadeIn();	
+			$("#loading").hide();
+			$("#AccountSel option[value='noAccount']").attr('selected', 'selected');
+			$("#eshopProvider option[value='noProvider']").attr('selected', 'selected');
+			$("#eshopCard option[value='noEshopCard']").attr('selected', 'selected');
+			document.getElementById("AccountSel").disabled=false;
+			document.getElementById("eshopProvider").disabled=false;
+			document.getElementById("eshopCard").disabled=false;
+			document.getElementById('Submit').style.visibility='visible';
+			document.getElementById('Clear').style.visibility='visible';
+			document.getElementById('Id').innerHTML = "";
+			document.getElementById('Balance').innerHTML = "";
+			$("#Submit span").text("Αγορά..");    	
+		}, 1500);
+		
+		//setTimeout(location.reload,3000);
+		
+	}
+
+}
+
+
 
 	function showAcc(AccountType) {
 		xmlhttp1 = GetXmlHttpObject();
@@ -48,14 +95,12 @@ var xmlhttp1;
 
 <body>
 	<jsp:useBean id="account" scope="page" class="sql.AccountsRepositoryImpl" />
-	<jsp:useBean id="accountTransactions" scope="page" class="sql.AccountTransactionsImpl" />
 	<jsp:useBean id="creditCardTransactions" scope="page" class="sql.CreditCardsTransactionRepositoryImpl" />
-	<jsp:useBean id="creditCard" scope="page" class="sql.CreditCardsRepositoryImpl" />
-	
-	
+		
 	<%
 		String TypeAcc = "", TypeCc = "", TypeLoan = "";
-		int CustomerId = 0;
+		int CustomerId;
+		Float Orio;
 	%>
 	<%
 		if (session.getAttribute("customerId") == null) {
@@ -70,6 +115,8 @@ var xmlhttp1;
 			rs = creditCardTransactions.selectAccount(CustomerId);
 			while (rs.next()) {
 				TypeCc = "Πιστωτική κάρτα";
+				Orio = rs.getFloat("orio");
+				session.setAttribute( "Orio", Orio );
 			}
 	%>
 	
@@ -117,29 +164,29 @@ var xmlhttp1;
 						<td bgcolor="#fffaaa">Επιλέξτε προμηθευτή:</td>
 						<td><select id="eshopProvider">
 								<option value="noProvider"> </option>
-								<option value="cosmote">Cosmote</option>
-								<option value="wind">Wind</option>
-								<option value="vodafone">Vodafone</option>
+								<option value="Cosmote">Cosmote</option>
+								<option value="Wind">Wind</option>
+								<option value="Vodafone">Vodafone</option>
 						</select></td>
 					</tr>
 					<tr>
 						<td bgcolor="#fffaaa">Επιλέξτε Κάρτα:</td>
 						<td><select id="eshopCard" disabled="disabled">
 								<option value="noEshopCard"> </option>
-								<option value="5">5 € </option>
-								<option value="10">10 €</option>
-								<option value="15">15 €</option>
-								<option value="20">20 €</option>
-								<option value="30">30 €</option>
+								<option value="5.00">5.00 € </option>
+								<option value="10.00">10.00 €</option>
+								<option value="15.00">15.00 €</option>
+								<option value="20.00">20.00 €</option>
+								<option value="30.00">30.00 €</option>
 						</select></td>
 					</tr>
  
 				</table>			
  				<br>
  				<br> 		
- 				
+ 		 <div class="center" id="loading" ></div>		
 				<button type="button" class="btn" id="Submit">
-					<span>Μεταφορά..</span>
+					<span>Αγορά..</span>
 				</button>
 				<button type="button" class="btn" id="Clear">
 					<span>Ακύρωση..</span>
@@ -149,7 +196,8 @@ var xmlhttp1;
 				 
 	</div>
 	
- <div class="center" id="cardShow" ></div>		
+ <div class="center" id="cardShow" ></div>	
+	 	
 
 
 <script>
@@ -182,18 +230,11 @@ $(function() {
     	
     	
         else if(answered == true) {        	
-        	NewBalance = Balance - eshopCard;  
-        	if (AccountSel == "TypeAcc" ) {	
-        		alert("FAsd");
-        		<%
-        		account.updateAccount(NewBalance1, AccNumber);
-        		//accountTransactions.accountTransaction(AccId1, CustomerId, Action, OldBalance1, TransferAmount, NewBalance1, TransferDesc);
-        		%>
-        	}
-        	if (AccountSel == "TypeCc" ) {
-        		creditCard.updateCreditCard(NewBalance1, AccNumber1);
-        		creditCardTransactions.creditCardTransaction(AccNumber1, CustomerId, Action, OldBalance1, TransferAmount, NewBalance1, Orio, TransferDesc);
-        	}    
+        	NewBalance = Balance - eshopCard;     
+        	max = 9999999999999999;
+        	min = 0000000000000001;
+        	var eshopCardNumber = Math.floor(Math.random() * (max - min + 1)) + min;    
+        	buyCard(AccountSel, Balance, AccNumber, eshopCard, NewBalance, eshopCardNumber, eshopProvider);        
         }
     	else if (eshopCard < Balance) {   
     		$("#result").fadeOut();
@@ -238,17 +279,17 @@ $(function() {
 		$("#eshopCard option[value='noEshopCard']").attr('selected', 'selected');
 		$("#cardShow").hide();
 		}
-		else if (noProvider == "cosmote") {		
+		else if (noProvider == "Cosmote") {		
 			$("#cardShow").show();
 			$("#cardShow").html("<div><img src='cosmote.jpg' width='900' height='130'></div>");	
 			document.getElementById('eshopCard').disabled=false;					
 		}
-		else if (noProvider == "vodafone") {		
+		else if (noProvider == "Vodafone") {		
 			$("#cardShow").show();
 			$("#cardShow").html("<div><img src='vodafone.jpg' width='900' height='130'></div>");	
 			document.getElementById('eshopCard').disabled=false;
 		}
-		else if (noProvider == "wind") {
+		else if (noProvider == "Wind") {
 			$("#cardShow").show();
 			$("#cardShow").html("<div><img src='wind.jpg' width='900' height='130'></div>");	
 			document.getElementById('eshopCard').disabled=false;
@@ -262,7 +303,7 @@ $(function() {
 		</div>
 		<div class="clear"></div>
 		<%@ include file="../footer.jsp"%>
-		</div>
+	 
 </body>
 </html>
 <%
