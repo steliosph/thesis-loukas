@@ -29,7 +29,7 @@
 		<h3>Μεταφορές</h3>	
 			<li style="margin-bottom:10px;"><a href="TransferBetweenMyAccounts.jsp">Μεταφορά Mεταξύ Λογαριασμών μου</a></li>
 		<h3>e-shop</h3>				
-			<li style="margin-bottom:10px;"><a href="eshop.jsp">Κάρτε χρόνου ομιλίας</a></li>			
+			<li style="margin-bottom:10px;"><a href="eshop.jsp?answered=false">Κάρτε χρόνου ομιλίας</a></li>			
 		<h3>Δωρεές</h3>	
 			<li style="margin-bottom:10px;"><a href="../cashier/loantransactions.jsp">Δωρεές σε ιδρύματα</a></li>
 		<h3>Άλλες Υπηρεσίες</h3>			

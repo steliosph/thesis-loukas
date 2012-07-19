@@ -26,14 +26,17 @@ var xmlhttp,xmlhttp1;
 
 	function stateChanged() {
 		if (xmlhttp.readyState == 4) {
+			$("#loading").show();
+			$("#loading").html("<div> <img src='../images/loading.gif' alt='Loading..'></div>");			
 			document.getElementById('result').innerHTML = xmlhttp.responseText;
+			
+			setTimeout(function() {
 			$("#result").fadeIn();
 			 document.getElementById('Submit').style.visibility='hidden';
 			 document.getElementById('Clear').style.visibility='hidden';
-			setTimeout(location.reload,2000);									
-		}
-		if (xmlHttp.readyState==1 || xmlHttp.readyState=="loading") { 
-			document.getElementById("result").innerHTML="<div align=center> <img src='../images/loading.gif' alt='Loading..'></div>";
+			 $("#loading").hide();
+			}, 700);
+			setTimeout(location.reload,3000);									
 		}
 	}
 
@@ -54,12 +57,32 @@ var xmlhttp,xmlhttp1;
 	function stateChanged1() {
 		var Number = this.Number;
 		if (xmlhttp1.readyState == 4) {
+			
+			$("#loading").show();
+			$("#loading").html("<div> <img src='../images/loading.gif' alt='Loading..'></div>");
+			document.getElementById('Id' + Number).innerHTML = "";
+			document.getElementById("Balance" + Number).innerHTML = "";
+			document.getElementById('AccountSel1').disabled=true;
+			document.getElementById('AccountSel2').disabled=true;
+			document.getElementById('TransferAmount').disabled=true;
+			document.getElementById('TransferDesc').disabled=true;
+			
+		setTimeout(function() {
+				
+			document.getElementById('AccountSel1').disabled=false;
+			document.getElementById('AccountSel2').disabled=false;
+			document.getElementById('TransferAmount').disabled=false;
+			document.getElementById('TransferDesc').disabled=false;
+				
 			var showdata = xmlhttp1.responseText;
-			var data = showdata.split(",");
-			if (data.length > 1) {
+			var data = showdata.split(",");									
+			$("#loading").hide();
+			if (data.length > 1) {				
 				document.getElementById('Id' + Number).innerHTML = data[1];
-				document.getElementById("Balance" + Number).innerHTML = data[6];
+				document.getElementById("Balance" + Number).innerHTML = data[6];				
 			}
+		}, 700);
+			
 		}
 	}
 
@@ -109,8 +132,9 @@ var xmlhttp,xmlhttp1;
 	<div class="pageTop"></div>
 	<div class="pageMain">
 		<div class="contentArea">
-			<h1>Μεταφορά Μεταξύ Λογαριασμών μου</h1>
+			<h1>Μεταφορά μεταξύ των λογαριασμών μου</h1>
 <div class="center" id="result" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;"></div>
+<div class="center" id="loading"></div>	
 			<div class="left marginPX">
 				<table class="table-2">
 					Στοιχεία Λογαριασμού Εντολέα
@@ -199,7 +223,7 @@ var xmlhttp,xmlhttp1;
 				<button type="button" class="btn" id="Clear">
 					<span>Ακύρωση..</span>
 				</button>						
-				</div>	
+				</div>						
 				
 <script>
 $(function() {
