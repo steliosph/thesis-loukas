@@ -60,7 +60,7 @@ function stateChange(){
 		document.getElementById("result").innerHTML=xmlHttp.responseText;
 		$("#loading").hide();
 		$("#result").show();
-		}, 700);
+		}, 500);
 	} 
 
 }
@@ -185,7 +185,7 @@ function stateChange(){
 				</table>
 				<br>
 				<button type="button" class="btn" onClick="showTransactions();">
-					<span>Search..</span>
+					<span>Αναζήτηση..</span>
 				</button>
 <script type="text/javascript">
 $(document).change(function() {

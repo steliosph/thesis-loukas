@@ -89,20 +89,30 @@
 $(document).ready(function(){
 	$("form#accountDeposit").submit(function() {
 	var TotalAccountAmount = $('#TotalAccountAmount').attr('value');
-	var desc = $('#desc').attr('value');	
+	var desc = $('#desc').attr('value');
+	if (TotalAccountAmount == "") {
+		$('#empty').fadeIn(500).show();	
+		$('#correct').fadeOut(1600, "linear");				
+	}	
+	else {
 		$.ajax({
 			type: "POST",
 			url: "updateAccountDeposit.jsp",
 			data: {"TotalAccountAmount": TotalAccountAmount, "desc": desc},
-			success: function(result){
+			success: function(result){	
+				$('#empty').fadeOut(1600, "linear");
+				$('#correct').fadeOut(1600, "linear");	
 				var result = $.trim(result);
-				$('#reload').load('accountDeposit.jsp', {'AccountId' : <%=AccountId%>,});				
-				if (result=='correct'){							
-					$('#correct').fadeIn(500).show();
-				}
-				else {}
-				}
-		});
+				$('#reload').load('accountDeposit.jsp', {'AccountId' : <%=AccountId%>,});
+				setTimeout(function(){
+				if (result=='correct'){		
+					$('#empty').fadeOut(1600, "linear");
+					$('#correct').fadeIn(500).show();			
+				}			
+				;},150);
+					}
+			});
+		}
 	return false;
 	});
 });
@@ -111,6 +121,9 @@ $(document).ready(function(){
 	<strong>Το υπόλοιπο του λογαριασμού:(<%=AccountId%>)
 		ανανεώθηκε!
 	</strong>
+</div>
+<div id="empty" style="display: none; color: red; ">
+	<strong>Το ποσο της κατάθεσης στου λογαριασμού:(<%=AccountId%>) δεν μπορεί να είναι κενό</strong>
 </div>
 </body>
 </html>

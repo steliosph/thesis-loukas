@@ -34,7 +34,7 @@
 			Balance = (Float) session.getAttribute("Balance");
 			Desc = request.getParameter("desc");
 			InitialAccountAmount = Balance;			
-			System.out.println(TotalAccountAmount);
+			Desc = Desc +  " Από " + (String) session.getAttribute("firstname") + " " +  (String) session.getAttribute("lastname");
 			TotalAccountAmount1 = request.getParameter("TotalAccountAmount");								
 			TotalAccountAmount = Float.parseFloat(TotalAccountAmount1);	
 			RemainingAccountAmount = InitialAccountAmount + TotalAccountAmount;						

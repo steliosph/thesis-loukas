@@ -33,7 +33,7 @@
 			LoanAmount = Float.parseFloat(LoanAmount1);
 			Type = request.getParameter("type");
 			Status = request.getParameter("status");
-			loan.updateLoan(LoanId, CustomerId, LoanAmount);
+			loan.updateLoan1(LoanId, CustomerId, LoanAmount);
 			loanstatus.updateLoan(LoanId, Status, Type);
 			out.println("correct");
 			break;

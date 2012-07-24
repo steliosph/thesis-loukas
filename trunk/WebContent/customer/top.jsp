@@ -66,6 +66,7 @@
 							<div class="mmDivider"></div>
 							<%
 								String isValid = (String) session.getAttribute("isValid");
+							System.out.println(isValid);
 								if (isValid == "no" || isValid == null) {
 							%>
 							<ul class="nav-main">

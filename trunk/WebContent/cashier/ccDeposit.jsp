@@ -17,6 +17,7 @@
 	});
 </script>
 </head>
+<body>
 <div id="reload">
 <jsp:useBean id="creditCards" scope="page" class="sql.CreditCardsRepositoryImpl" />
 <%!String cardNumber = "", Firstname = "", Lastname = "";
@@ -92,29 +93,42 @@ $(document).ready(function(){
 	$("form#ccDeposit").submit(function() {
 	var TotalCreditCardAmount = $('#TotalCreditCardAmount').attr('value');
 	var desc = $('#desc').attr('value');
+	if (TotalCreditCardAmount == "") {
+		$('#correct').fadeOut(1600, "linear");		
+		$('#empty').fadeIn(500).show();			 
+				
+	}	
+	else {
 		$.ajax({
 			type: "POST",
 			url: "updateCcDeposit.jsp",
 			data: {"TotalCreditCardAmount": TotalCreditCardAmount, "desc": desc},
 			success: function(result){
+				$('#empty').fadeOut(1600, "linear");
+				$('#correct').fadeOut(1600, "linear");	
 				var result = $.trim(result);
-				$('#reload').load('ccDeposit.jsp', {'cardNumber' : <%=cardNumber%>,});				
+				$('#reload').load('ccDeposit.jsp', {'cardNumber' : <%=cardNumber%>});
 				setTimeout(function(){					
-				if (result=='correct'){												
+				if (result=='correct'){		
 					$('#correct').fadeIn(500).show();
-				} else {}			
+					$('#empty').fadeOut(1600, "linear");
+						
+					
+				}			
 			;},150);
 				}
 		});
+	}
 	return false;
 	});
 });
 ;
 </script>
 <div id="correct" style="display: none; color: red; ">
-	<strong>Το υπόλοιπο της κάρτας:(<%=cardNumber%>)
-		ανανεώθηκε!
-	</strong>
+	<strong>Το υπόλοιπο της κάρτας:(<%=cardNumber%>) ανανεώθηκε! </strong>
+</div>
+<div id="empty" style="display: none; color: red; ">
+	<strong>Το ποσο της κατάθεσης στην πιστωτική κάρτα (<%=cardNumber%>) δεν μπορεί να είναι κενό</strong>
 </div>
 </body>
 </html>

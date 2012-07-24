@@ -47,7 +47,8 @@ function stateChanged() {
 			document.getElementById('Clear').style.visibility='visible';
 			document.getElementById('Id').innerHTML = "";
 			document.getElementById('Balance').innerHTML = "";
-			$("#Submit span").text("Αγορά..");    	
+			$("#Submit span").text("Αγορά..");
+			answered = false;
 		}, 1500);
 		//var answered = false;
 		//setTimeout(location.reload,3000);
@@ -73,13 +74,28 @@ function stateChanged() {
 
 	function stateChanged1() {
 		if (xmlhttp1.readyState == 4) {
+			$("#loading").show();
+			$("#loading").html("<div> <img src='../images/loading.gif' alt='Loading..'></div>");
+			
+			document.getElementById('Id').innerHTML = "";
+			document.getElementById("Balance").innerHTML = "";
+			document.getElementById('AccountSel').disabled=true;
+			document.getElementById('eshopProvider').disabled=true;
+			document.getElementById('eshopCard').disabled=true;
+			
+			setTimeout(function() {
+				document.getElementById('AccountSel').disabled=false;
+				document.getElementById('eshopProvider').disabled=false;
+				document.getElementById('eshopCard').disabled=false;
+				$("#loading").hide();			
 			var showdata = xmlhttp1.responseText;
 			var data = showdata.split(",");
 			if (data.length > 1) {
 				document.getElementById('Id').innerHTML = data[1];
 				document.getElementById("Balance").innerHTML = data[6];
 			}
-		}
+			}, 500);
+			}
 	}
 
 	function GetXmlHttpObject() {
@@ -103,8 +119,7 @@ function stateChanged() {
 		Float Orio;
 	%>
 	<%
-		if (session.getAttribute("customerId") == null) {
-			response.sendRedirect("../errorpage.jsp");
+		if (session.getAttribute("customerId") == null) {			
 		} else {
 			CustomerId = (Integer) session.getAttribute("customerId");
 
@@ -188,7 +203,7 @@ function stateChanged() {
 				<button type="button" class="btn" id="Submit">
 					<span>Αγορά..</span>
 				</button>
-				<button type="button" class="btn" id="Clear">
+				<button type="button" class="btn" id="Clear" onClick="window.location.reload()">
 					<span>Ακύρωση..</span>
 				</button>
 			</div>	

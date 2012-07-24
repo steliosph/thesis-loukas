@@ -18,22 +18,28 @@
 	nf.setMaximumFractionDigits(2);
 	nf.setMinimumFractionDigits(2);	
 %>
-<script type="text/javascript" language="javascript"> 
+<script type="text/javascript">
 function showHide() {
-    var table = document.getElementById("table");
-    if(table.style.display == "block") {
-    	table.style.display = "none";
-      }
-    else {
-    	table.style.display = "block";
-    	table2.style.display = "none";
-    }
+	var error = document.getElementById("error");
+	var table = document.getElementById("table");
+	var table2 = document.getElementById("table2");
+	
+	if(table.style.display == "block") {
+		table.style.display = "none";		
+		if(error != null) {			 
+			   error.style.display = "none";
+			}		
+	}
+	else {
+		if(error != null) {
+			   error.style.display = "none";
+			}
+		if(table2 != null) {
+			   table2.style.display = "none";
+			}
+		table.style.display = "block";		
+	}
 }
-	function openPage(pageURL)
-
- {
- window.location.href = pageURL;
- }
 </script>
 <html>
 <head>
@@ -49,11 +55,13 @@ function showHide() {
 			<!-- Main Menu Links -->
 		<%@ include file="menu.jsp"%>
 			<h1>Συνολική εικόνα συναλλαγων πιστωτικών καρτών</h1>
-			<table ALIGN="center" border="1">
+			<table id="table-2"> 
+				<thead>
 				<tr>
 					<td ALIGN="center">Αναζήτηση</td>
 					<td ALIGN="center">Όλες οι συναλλαγές</td>
 				</tr>
+				</thead>
 				<tr>
 					<td>
 						<form action="searchCcTransaction.jsp" method="post" style="padding: 0; margin: 0">
@@ -84,7 +92,7 @@ function showHide() {
 			</table>
 			<br>				
 			<div>
-				<div id="table" style="overflow: auto; height: 500px; display: none;">
+				<div id="table" style="overflow: auto; max-height:500px; height: auto; display: none;">
 					<table id="table-2">
 						<thead>
 							<tr>
@@ -115,7 +123,7 @@ function showHide() {
 									orio = rs.getFloat("orio");
 									ccTransactionTime = rs.getTimestamp("credit_car_Transaction_Time");
 							%>
-							<tr> 
+							<tr align='center'> 
 								<td><%=ccTransactionId%></td>
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>
@@ -137,26 +145,7 @@ function showHide() {
 				<% 
 				Search = request.getParameter("search");
 				System.out.println(Search);
-				if (Search != "" ) {
-				%>				
-				<div id="table2" style="overflow: auto; height: 500px; width: auto;">
-					<table id="table-2">
-						<thead>
-							<tr>
-								<th>Αρ. Συναλ.</th>
-								<th>Όνομα</th>
-								<th>Επώνυμο</th>
-								<th>Περιγραφή</th>
-								<th>Κατ./Ανά.</th>
-								<th>Υπόλοιπο</th>
-								<th>Ποσό Κατ./Ανά.</th>								
-								<th>Νέο Υπόλοιπο</th>
-								<th>Όριο</th>
-								<th>Ώρα Συναλ.</th>								
-							</tr>
-						</thead>
-						<tbody>
-				<% 			
+				if (Search != "" ) {			 		
 				combobox = request.getParameter("searchCombo");							
 				if (combobox.equals("searchId") ) {				
 					rs = ccTransactions.searchCcTransactionId(Search); 
@@ -184,7 +173,28 @@ function showHide() {
 				}	
 				else if (combobox.equals("searchOrio") ) {
 					rs = ccTransactions.searchCcTransactionOrio(Search); 
-				}	
+				}
+				if (rs.next()) {
+				%>
+		<div id="table2" style="overflow: auto; max-height:500px; height: auto; width: auto;">
+					<table id="table-2">
+						<thead>
+							<tr align='center'>
+								<th>Αρ. Συναλ.</th>
+								<th>Όνομα</th>
+								<th>Επώνυμο</th>
+								<th>Περιγραφή</th>
+								<th>Κατ./Ανά.</th>
+								<th>Υπόλοιπο</th>
+								<th>Ποσό Κατ./Ανά.</th>								
+								<th>Νέο Υπόλοιπο</th>
+								<th>Όριο</th>
+								<th>Ώρα Συναλ.</th>								
+							</tr>
+						</thead>
+						<tbody>				
+				<%
+				rs.beforeFirst();
 				while (rs.next()) {
 					ccTransactionId = rs.getInt("credit_card_transaction_id");
 					firstname = rs.getString("Firstname");
@@ -197,7 +207,7 @@ function showHide() {
 					orio = rs.getFloat("orio");
 					ccTransactionTime = rs.getTimestamp("credit_car_Transaction_Time");				
 				%>	
-							<tr> 
+							<tr align='center'> 
 								<td><%=ccTransactionId%></td>
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>
@@ -209,15 +219,15 @@ function showHide() {
 								<td><%=nf.format(orio)%></td>
 							    <td><%=ccTransactionTime%></td>							    			
 							</tr>
-							<%
-								}
-							%>
+							<% } %>	
 						</tbody>
 					</table>
 				</div>	
-						<%
-							}
-						%>							
+			<% } else {	%>			
+<div class="center" id="error" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;">Δεν υπάρχουν συναλλαγές με τα κριτήρια που έχετε εισάγει</div>
+			<% } } else  { %>
+<div class="center" id="error" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;">Δεν υπάρχουν συναλλαγές με τα κριτήρια που έχετε εισάγει</div>							
+			<% } %>													
 			</div>
 		</div>
 		<div class="clear"></div>

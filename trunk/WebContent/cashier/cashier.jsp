@@ -23,7 +23,7 @@
 		<h1>Παρακαλώ επιλέξτε μια απο τις παρακάτω λειτουργίες.</h1>
 		<li style="margin-bottom:10px;"><a href="sumloans.jsp">Συνολική εικόνα δανείων</a></li>
 		<li style="margin-bottom:10px;"><a href="deposit.jsp">Κατάθεση χρημάτων σε δάνειο</a></li>
-		<li style="margin-bottom:10px;"><a href="creditcard.jsp">Κατάθεση/Ανάληψη χρημάτων σε κάρτα</a></li>
+		<li style="margin-bottom:10px;"><a href="creditcard.jsp">Κατάθεση/Ανάληψη χρημάτων σε πιστωτική κάρτα κάρτα</a></li>
 		<li style="margin-bottom:10px;"><a href="accounts.jsp">Κατάθεση/Ανάληψη χρημάτων σε λογαριασμό</a></li>
 		<li style="margin-bottom:10px;"><a href="loantransactions.jsp">Συναλλαγές Δανείων</a></li>
 		<li style="margin-bottom:10px;"><a href="ccTransactions.jsp">Συναλλαγές Καρτών</a></li>

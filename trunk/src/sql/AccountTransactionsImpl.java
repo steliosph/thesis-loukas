@@ -133,14 +133,14 @@ public class AccountTransactionsImpl implements AccountTransactionsRepository {
 	
 	public ResultSet selectTransactionsCustomer(Integer CustomerId, String TransactionTime) {
 		//sqlQuery_ = "SELECT * FROM account_transactions where customer_id='"+ CustomerId + "' and account_transacion_time " + TransactionTime ;
-		sqlQuery_ = "SELECT account_transaction_id,customer_id,account_id,description,DATE_FORMAT(account_transacion_time, '%d/%m/%Y , %H:%i:%s') AS account_transacion_time,action,initial_account_amount,total_account_amount,remaining_account_amount FROM account_transactions where customer_id='"+ CustomerId + "' and account_transacion_time " + TransactionTime ;	
+		sqlQuery_ = "SELECT account_transaction_id,customer_id,account_id,description,DATE_FORMAT(account_transacion_time, '%d/%m/%Y %H:%i:%s') AS account_transacion_time,action,initial_account_amount,total_account_amount,remaining_account_amount FROM account_transactions where customer_id='"+ CustomerId + "' and account_transacion_time " + TransactionTime ;	
 		System.out.println(sqlQuery_);
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
 	}
 	
 	public ResultSet selectTransactionsDate(Integer CustomerId ,String StartDate, String EndDate) {
-		sqlQuery_ = "SELECT account_transaction_id,customer_id,account_id,description,DATE_FORMAT(account_transacion_time, '%d/%m/%Y , %H:%i:%s') AS account_transacion_time,action,initial_account_amount,total_account_amount,remaining_account_amount FROM account_transactions where customer_id='"+ CustomerId + "' and account_transacion_time BETWEEN STR_TO_DATE('" + StartDate + "', '%d/%m/%Y') AND STR_TO_DATE('" + EndDate + "', '%d/%m/%Y');";	
+		sqlQuery_ = "SELECT account_transaction_id,customer_id,account_id,description,DATE_FORMAT(account_transacion_time, '%d/%m/%Y %H:%i:%s') AS account_transacion_time,action,initial_account_amount,total_account_amount,remaining_account_amount FROM account_transactions where customer_id='"+ CustomerId + "' and account_transacion_time BETWEEN STR_TO_DATE('" + StartDate + "', '%d/%m/%Y') AND STR_TO_DATE('" + EndDate + "', '%d/%m/%Y');";	
 		System.out.println(sqlQuery_);
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;

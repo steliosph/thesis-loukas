@@ -52,7 +52,7 @@ if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 			document.getElementById("Address").innerHTML= data[5];
 			document.getElementById("Balance").innerHTML= data[6];			
 			$("#loading").hide();
-		}, 700);
+		}, 300);
 		}       
 	}
 
@@ -157,28 +157,28 @@ else {
 			</table>	
 			<table class="table-2">				
 				<tr>
-					<td bgcolor="#fffaaa">Αριθμός Λογαριασμού:</td>
-					<td id="AccId"></td>
+					<td align='center' bgcolor="#fffaaa">Αριθμός Λογαριασμού:</td>
+					<td align='center' id="AccId"></td>
 				</tr>
 				<tr>
-					<td bgcolor="#fffaaa">Τελευταία Ενημέρωση:</td>
-					<td id="LastTransaction"></td>
+					<td align='center' bgcolor="#fffaaa">Τελευταία Ενημέρωση:</td>
+					<td align='center' id="LastTransaction"></td>
 				</tr>
 				<tr>
-					<td bgcolor="#fffaaa">Είδος Λογαριασμού:</td>
-					<td id="Type"></td>
+					<td align='center' bgcolor="#fffaaa">Είδος Λογαριασμού:</td>
+					<td align='center' id="Type"></td>
 				</tr>
 				<tr>
-					<td bgcolor="#fffaaa">Κάτοχος Λογαριασμού:</td>
-					<td id="FullName"></td>
+					<td align='center' bgcolor="#fffaaa">Κάτοχος Λογαριασμού:</td>
+					<td align='center' id="FullName"></td>
 				</tr>
 				<tr>
-					<td bgcolor="#fffaaa">Διεύθυνση Αλληλογραφίας:</td>
-					<td id="Address"></td>
+					<td align='center' bgcolor="#fffaaa">Διεύθυνση Αλληλογραφίας:</td>
+					<td align='center' id="Address"></td>
 				</tr>
 				<tr>
-					<td bgcolor="#fffaaa">Υπόλοιπο:</td>
-					<td id="Balance"></td>
+					<td align='center' bgcolor="#fffaaa">Υπόλοιπο:</td>
+					<td align='center' id="Balance"></td>
 				</tr>
 				
 			</table>		

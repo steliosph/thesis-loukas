@@ -65,7 +65,19 @@ public class LoansRepositoryImpl implements LoansRepository {
 		return rs;
 	}
 
-	public void updateLoan(Integer LoanId, Integer CustomerId, Float RemainingPayeeAmount) {
+	public void updateLoan1(Integer LoanId, Integer CustomerId, Float RemainingPayeeAmount) {
+		try {
+			sqlQuery_ = "update loans set customer_id= '" + CustomerId
+					+ "', loan_amount = '" + RemainingPayeeAmount + "' where loan_id='"
+					+ LoanId + "'"; 			
+			database_.update(sqlQuery_);
+			System.out.println(sqlQuery_);
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateLoan2(Integer LoanId, Integer CustomerId, Float RemainingPayeeAmount) {
 		try {
 			sqlQuery_ = "update loans set customer_id= '" + CustomerId
 					+ "', remaining_payee_amount = '" + RemainingPayeeAmount + "' where loan_id='"

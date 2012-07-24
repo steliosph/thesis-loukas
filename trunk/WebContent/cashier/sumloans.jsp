@@ -126,7 +126,7 @@ $(document).ready(function() {
 			<div class="left ">
 				<div style="overflow: auto; height: 500px;">
 					<table id="table-2">
-						<caption>Στοιχεία δανείου</caption>
+						<caption>Στοιχεία δανείων</caption>
 						<thead>
 							<tr>
 								<th>Αρ. Δανείου</th>
@@ -149,13 +149,13 @@ $(document).ready(function() {
 									status = rs.getString("status");									
 							%>
 							<tr>
-								<td><%=loan_id%></td>
-								<td><%=customer_id%></td>
-								<td><%=nf.format(loan_amount)%></td>
-								<td><%=type%></td>
-								<td><%=status%></td>
-								<td><a href="editloans.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >Aλλαγή</a></td>
-                  				<td><a href="sumloans.jsp?delete=yes&deleteid=<%=rs.getInt("loan_id")%>" onclick="return del()">Διαγραφή</a></td>
+								<td align='center'><%=loan_id%></td>
+								<td align='center'><%=customer_id%></td>
+								<td align='center'><%=nf.format(loan_amount)%></td>
+								<td align='center'><%=type%></td>
+								<td align='center'><%=status%></td>
+								<td align='center'><a href="editloans.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >Aλλαγή</a></td>
+                  				<td align='center'><a href="sumloans.jsp?delete=yes&deleteid=<%=rs.getInt("loan_id")%>" onclick="return del()">Διαγραφή</a></td>
 							</tr>
 							<%
 								}	

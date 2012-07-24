@@ -115,4 +115,16 @@ public class WebLoginRepositoryImpl implements WebLoginRepository {
 			e.getMessage();
 		}
 	}
+	
+	public void updateWebLogin(String Username, String Password, Integer CustomerId) {
+		try {
+			sqlQuery_ = "update web_login set password = '" + Password + "' where customer_id='"
+					+ CustomerId + "'";
+			System.out.println(sqlQuery_);
+
+			database_.update(sqlQuery_);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

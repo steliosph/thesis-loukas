@@ -81,6 +81,14 @@ public class AccountsRepositoryImpl implements AccountsRepository {
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;
 	}
+	
+	public ResultSet editAccountWithWebLogin(Integer CustomerId) {
+		sqlQuery_ = "SELECT * FROM customers inner join address on customers.address_id = address.address_id inner join web_login on customers.customer_id = web_login.customer_id where customers.customer_id = '"
+				+ CustomerId + "'";
+		//System.out.println(sqlQuery_);
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
+	}
 
 
 	
