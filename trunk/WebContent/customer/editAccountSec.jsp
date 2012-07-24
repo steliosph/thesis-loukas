@@ -33,14 +33,15 @@
 	<div class="contentArea">
 	<h1>Εισαγωγή του κωδικού σας <span> για να μπορέσετε να συνεχίσετε </span></h1>
 <div class="center" id="result" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;"></div>	
-	<table class="table-2">
+	<table id="table-2">
 		<tr>
 			<td bgcolor="#fffaaa">Username:</td>
 			<td bgcolor="#fffaaa">Password:</td>			
 		</tr>
 		<tr>
 			<td><input type="text" id="username" value="<%=Username%>" disabled="disabled"/></td>
-			<td><input type="password" id="password" /></td>
+			<td><input type="password" id="password" onkeydown="if (event.keyCode == 13) document.getElementById('Submit').click()"/></td>
+			
 		</tr>
 	</table>
 <div class = "center">
@@ -52,6 +53,7 @@
 				</button>
 </div>
 <script>
+$("#password").focus();
 var count = 1;
 var x = 0;
 $(function() {

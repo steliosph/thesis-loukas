@@ -43,6 +43,7 @@ function showHide() {
 </script>
 <html>
 <head>
+<script src="../js/sorttable.js"></script>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" /> 
@@ -93,7 +94,7 @@ function showHide() {
 			<br>				
 			<div>
 				<div id="table" style="overflow: auto; max-height:500px; height: auto; display: none;">
-					<table id="table-2">
+					<table id="table-2" class="sortable">
 						<thead>
 							<tr>
 								<th>Αρ. Συναλ.</th>
@@ -177,7 +178,7 @@ function showHide() {
 				if (rs.next()) {
 				%>
 		<div id="table2" style="overflow: auto; max-height:500px; height: auto; width: auto;">
-					<table id="table-2">
+					<table id="table-2" class="sortable">
 						<thead>
 							<tr align='center'>
 								<th>Αρ. Συναλ.</th>

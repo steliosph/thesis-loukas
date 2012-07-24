@@ -17,6 +17,7 @@
 %>
 <html>
 <head>
+<script src="../js/sorttable.js"></script>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
@@ -124,8 +125,8 @@ $(document).ready(function() {
 				</form>
 			</div>
 			<div class="left ">
-				<div style="overflow: auto; height: 500px;">
-					<table id="table-2">
+				<div style="overflow: auto; height: 500px;">					
+					<table id="table-2" class="sortable">
 						<caption>Στοιχεία δανείων</caption>
 						<thead>
 							<tr>
@@ -134,7 +135,7 @@ $(document).ready(function() {
 								<th>Ποσό</th>
 								<th>Τύπος</th>
 								<th>Κατάσταση</th>
-								<th colspan="2">Επιλογές</th>
+								<th colspan="2" class="sorttable_nosort">Επιλογές</th>
 								
 							</tr>
 						</thead>

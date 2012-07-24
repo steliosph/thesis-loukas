@@ -135,7 +135,7 @@ var xmlhttp,xmlhttp1;
 <div class="center" id="result" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;"></div>
  
 			<div class="left marginPX">
-				<table class="table-2">
+				<table id="table-2">
 					Στοιχεία Λογαριασμού Εντολέα
 					<tr>
 						<td bgcolor="#fffaaa">Από Λογαριασμό:</td>
@@ -166,7 +166,7 @@ var xmlhttp,xmlhttp1;
 					</tr>
 				</table>			
 				<br> Στοιχεία Μεταφοράς
-				<table class="table-2">
+				<table id="table-2">
 					<tr>
 						<td bgcolor="#fffaaa">Ποσό Μεταφοράς::</td>
 						<td><input type="text" id="TransferAmount" /></td>
@@ -179,7 +179,7 @@ var xmlhttp,xmlhttp1;
 
 			</div>
 			<div class="left ">
-				<table class="table-2">
+				<table id="table-2">
 					Δικαιούχος
 					<tr>
 						<td bgcolor="#fffaaa">Σε Λογαριασμό:</td>

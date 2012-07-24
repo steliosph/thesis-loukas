@@ -83,35 +83,35 @@ function GetXmlHttpObject() {
 	<div class="center" id="result" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;"></div>	
 <img src="edit.png" style="float: left;"/>
 <div class="left">	
-	<table class="table-2">
+	<table id="table-2">
 		<tr>
 			<td bgcolor="#fffaaa">Όνομα:</td>
-			<td><input type="text" id="firstname" value="<%=Firstname%>"/></td>
+			<td><input type="text" id="firstname" value="<%=Firstname%>" onkeydown="if (event.keyCode == 13) document.getElementById('Submit').click()"/></td>
 			<td>Το πραγματικό σας όνομα</td>
 		</tr>
 		<tr>
 			<td bgcolor="#fffaaa">Επώνυμο:</td>
-			<td><input type="text" id="lastname" value="<%=Lastname%>"/></td>
+			<td><input type="text" id="lastname" value="<%=Lastname%>" onkeydown="if (event.keyCode == 13) document.getElementById('Submit').click()"/></td>
 			<td>Το πραγματικό σας επώνυμο</td>
 		</tr>
 		<tr>
 			<td bgcolor="#fffaaa">Διεύθυνση:</td>
-			<td><input type="text" id="address" value="<%=Address%>" /></td>
+			<td><input type="text" id="address" value="<%=Address%>" onkeydown="if (event.keyCode == 13) document.getElementById('Submit').click()" /></td>
 			<td>Η πραγματική σας διεύθυνση σπιτιού</td>
 		</tr>
 		<tr>
 			<td bgcolor="#fffaaa">Πόλη:</td>
-			<td><input type="text" id="city" value="<%=City%>"/></td>
+			<td><input type="text" id="city" value="<%=City%>" onkeydown="if (event.keyCode == 13) document.getElementById('Submit').click()" /></td>
 			<td>Η πραγματική σας πόλη του σας</td>
 		</tr>
 		<tr>
 			<td bgcolor="#fffaaa">Ταχ. Κώδ.:</td>
-			<td><input type="text" id="postalCode" value="<%=PostalCode%>"/></td>
+			<td><input type="text" id="postalCode" value="<%=PostalCode%>" onkeydown="if (event.keyCode == 13) document.getElementById('Submit').click()" /></td>
 			<td>Ο πραγματικός σας ταχυδρομικός κώδικας</td>
 		</tr>
 		<tr>
 			<td bgcolor="#fffaaa">Τηλέφωνο:</td>
-			<td><input type="text" id="phone" value="<%=Phone%>" /></td>
+			<td><input type="text" id="phone" value="<%=Phone%>" onkeydown="if (event.keyCode == 13) document.getElementById('Submit').click()" /></td>
 			<td>Τηλέφωνο</td>
 		</tr>
 		<tr>
@@ -121,12 +121,12 @@ function GetXmlHttpObject() {
 		</tr>
 		<tr>
 			<td bgcolor="#fffaaa">Νέος κωδικός:</td>
-			<td><input type="password" id="password" /></td>
+			<td><input type="password" id="password" onkeydown="if (event.keyCode == 13) document.getElementById('Submit').click()" /></td>
 			<td>Εισαγωγή νέου κωδικόυ</td>
 		</tr>
 		<tr>
 			<td bgcolor="#fffaaa">Επαλήθευση:</td>
-			<td><input type="password" id="confirPassword" /></td>
+			<td><input type="password" id="confirPassword" onkeydown="if (event.keyCode == 13) document.getElementById('Submit').click()" /></td>
 			<td>Επαλήθευση νέου κωδικόυ</td>
 		</tr>
 	</table>
@@ -153,38 +153,45 @@ $(function() {
     	var password = document.getElementById('password').value;
     	var confirmPassword = document.getElementById('confirPassword').value;		    	
    		var x = 0;
-if (firstname == "" ) {
+if (firstname == "" || firstname.length <= 2) {
 	$("#result").text('To όνομα δεν μπορεί να είναι κενό');
+	$("#firstname").focus();
+
 }
 else {
 	x = x + 1;
 }
-if (lastname == "" ) {
+if (lastname == "" || lastname.length <= 3) {
 	$("#result").text('To επώνυμο δεν μπορεί να είναι κενό');
+	$("#lastname").focus();
 }
 else {
 	x = x + 1;
 }
-if (address == "" ) {
+if (address == "" || address.length <= 7) {
 	$("#result").text('H διεύθυνση δεν μπορεί να είναι κενό');
+	$("#address").focus();
 }
 else {
 	x = x + 1;
 }
-if (city == "" ) {
+if (city == "" || city.length <= 3) {
 	$("#result").text('Η πόλη δεν μπορεί να είναι κενό');
+	$("#city").focus();
 }
 else {
 	x = x + 1;
 }
-if (postalCode == "" ) {
+if (postalCode == "" || postalCode.length <= 3) {
 	$("#result").text('Ο ταχυδρομικός κώδικας δεν μπορεί να είναι κενό');
+	$("#postalCode").focus();
 }
 else {
 	x = x + 1;
 }
-if (phone == "" ) {
+if (phone == "" || phone.length <= 9) {
 	$("#result").text('To τηλέφωνο δεν μπορεί να είναι κενό');
+	$("#phone").focus();
 }
 else {
 	x = x + 1;
@@ -196,14 +203,17 @@ if (password != "" || confirmPassword != "") {
 		}
 		else if (confirmPassword == "") {		
 			$("#result").text('Επαληθεύστε τον νέο σας κωδικό');
+			$("#confirmPassword").focus();
 			x = x - 1;
 		}
 		else if (password == "") {			
 			$("#result").text('Παρακαλώ εισάγετε τον νέο σας κωδικό και στη συνέχεια την επαλήθευση του');
+			$("#password").focus();
 			x = x - 1;
 		}
 		else if (password != confirmPassword) {
 			$("#result").text('Η επαλήθευση του κωδικού δεν είναι σωστή');
+			$("#confirmPassword").focus();
 			x = x - 1;			
 		}
 }
