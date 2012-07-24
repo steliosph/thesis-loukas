@@ -3,8 +3,8 @@
 <html>
 <head>
 <%@ include file="top.jsp"%>
+<script src="../js/sorttable.js"></script>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="SHORTCUT ICON" href="../images/favicon.ico" type="image/x-icon" />
 
 <script type="text/javascript" src="../js/datepicker/jquery-ui-1.8.19.custom.min.js"></script>
@@ -136,7 +136,7 @@ function stateChange(){
 	});
 </script>
 			<div class="left">
-				<table class="table-2">
+				<table id="table-2">
 					<tr>
 						<td bgcolor="#fffaaa">Επιλογή Λογαριασμού:</td>
 						<td><select id="AccountSel">
@@ -217,12 +217,13 @@ jQuery(function ()
     	changeMonth: true,
 		changeYear: true,
         showOn: "both",
+     	buttonImageOnly: true,
         buttonImage: '../js/datepicker/smoothness/images/calendar.gif',
         beforeShow: customRange,
         dateFormat: "dd/mm/yy",
         firstDay: 1, 
-        changeFirstDay: false, 
-        buttonImageOnly: true
+        changeFirstDay: false 
+        
     });
 
 });

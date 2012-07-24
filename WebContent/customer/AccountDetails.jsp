@@ -131,7 +131,7 @@ else {
 	});
 </script>
 <div class="center" id="loading"></div>	
-			<table class="table-2">
+			<table id="table-2">
 				<tr>
 					<td bgcolor="#fffaaa">Επιλογή Λογαριασμού:</td>
 					<td><select id="AccountSel" onchange="showAcc(this.value);">
@@ -155,7 +155,7 @@ else {
 					</select></td>
 				</tr>
 			</table>	
-			<table class="table-2">				
+			<table id="table-2">				
 				<tr>
 					<td align='center' bgcolor="#fffaaa">Αριθμός Λογαριασμού:</td>
 					<td align='center' id="AccId"></td>

@@ -24,13 +24,12 @@
 
 	StartDate = request.getParameter("StartDate");
 	EndDate = request.getParameter("EndDate");
-	String table = "<table class='table-2'><thead> <tr> <th>Αρ. Συναλ.</th><th>Περιγραφή</th><th>Ώρα Συναλ.</th><th>Ενέργεια</th><th>Υπόλοιπο</th><th>Ποσό</th><th>Νεο Υπολοιπο</th></tr></thead><tbody>";
+	String table = "<table id='table-2' class='sortable'><thead> <tr> <th>Αρ. Συναλ.</th><th>Περιγραφή</th><th>Ώρα Συναλ.</th><th>Ενέργεια</th><th>Υπόλοιπο</th><th>Ποσό</th><th>Νεο Υπολοιπο</th></tr></thead><tbody>";
 	
 	ResultSet rs;
 	if (AccountType.equals("TypeAcc")) {
 		if (TransactionTime.equals("date")) {
-			rs = accountTransactions.selectTransactionsDate(CustomerId,
-					StartDate, EndDate);
+			rs = accountTransactions.selectTransactionsDate(CustomerId,StartDate, EndDate);
 		} else if (TransactionTime.equals("limit 10") || (TransactionTime.equals("limit 20"))) {
 			TransactionTime = "order by account_transacion_time DESC " + TransactionTime;
 			rs = accountTransactions.selectTransactionsCustomer(CustomerId, TransactionTime);			
@@ -159,5 +158,5 @@
 	}
 }
 
-	response.getWriter().println("</tbody>");
+	response.getWriter().println("</tbody></table>");
 %>

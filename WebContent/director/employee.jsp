@@ -28,6 +28,7 @@
  
 <html>
 <head>
+<script src="../js/sorttable.js"></script>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
@@ -77,7 +78,7 @@ $(document).ready(function() {
 			</div>
 			<h1>Kατάσταση Υπαλλήλων της τράπεζας</h1>
 				<div style="overflow: auto; height: 500px;">
-					<table id="table-2">
+					<table id="table-2" class="sortable">
 						<thead>
 							<tr>
 								<th>A/A</th>
@@ -94,7 +95,7 @@ $(document).ready(function() {
 								<th>Πόλη Κατα.</th>
 								<th>Τ.Κ Κατα.</th>
 								<th>Τηλέφωνο Κατα.</th>
-								<th colspan="2">Επιλογές</th>	
+								<th colspan="2" class="sorttable_nosort">Επιλογές</th>	
 							</tr>
 						</thead>
 						<tbody>

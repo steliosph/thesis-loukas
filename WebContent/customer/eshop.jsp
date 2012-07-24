@@ -142,7 +142,7 @@ function stateChanged() {
 			<h1>Κάρτες Top up</h1>
 <div class="center" id="result" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;"></div>			
 		<div class="left marginPX">	
-			<table class="table-2">
+			<table id="table-2">
 					Στοιχεία Λογαριασμού Εντολέα
 					<tr>
 						<td bgcolor="#fffaaa">Επιλογή Λογαριασμού:</td>
@@ -174,7 +174,7 @@ function stateChanged() {
 			</div>
 			
 			<div class="left" id="left"><br>
-				<table class="table-2">										
+				<table id="table-2">										
 					<tr>
 						<td bgcolor="#fffaaa">Επιλέξτε προμηθευτή:</td>
 						<td><select id="eshopProvider">

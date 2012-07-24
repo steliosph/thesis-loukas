@@ -1,4 +1,4 @@
-<%@ page import="java.text.NumberFormat" %>  
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page import="sql.LoanTransactionsRepository"%>
 <%@ page language="java" import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,9 +9,9 @@
 	float loanAmount, loanBalance, totalPayedAmount, remainingPayeeAmount;
 	Timestamp loanTransactionTime; 
 	
-	NumberFormat nf = NumberFormat.getInstance();
-	nf.setMaximumFractionDigits(2);
-	nf.setMinimumFractionDigits(2);
+
+DecimalFormat df = new DecimalFormat( "#,##0.00" );
+
 %>
 <script type="text/javascript" language="javascript"> 
 function showHide() {
@@ -26,6 +26,7 @@ function showHide() {
 </script> 
 <html>
 <head>
+<script src="../js/sorttable.js"></script>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />   
@@ -77,7 +78,7 @@ function showHide() {
 			<br>			
 			<div>
 				<div id="table" style="overflow: auto; height: 500px; display: none;">
-					<table id="table-2">
+					<table id="table-2" class="sortable">
 						<thead>
 							<tr>
 								<th>Αρ. Συναλ.</th>
@@ -110,10 +111,10 @@ function showHide() {
 								<td align='center' ><%=firstname%></td>
 								<td align='center' ><%=lastname%></td>
 								<td align='center' ><%=desc%></td>
- 								<td align='center' ><%=nf.format(loanAmount)%></td>
- 								<td align='center' ><%=nf.format(loanBalance)%></td>
-								<td align='center' ><%=nf.format(totalPayedAmount)%></td>
-								<td align='center' ><%=nf.format(remainingPayeeAmount)%></td>
+ 								<td align='center' ><%=df.format(loanAmount)%></td>
+ 								<td align='center' ><%=df.format(loanBalance)%></td>
+								<td align='center' ><%=df.format(totalPayedAmount)%></td>
+								<td align='center' ><%=df.format(remainingPayeeAmount)%></td>
 							    <td align='center' ><%=loanTransactionTime%></td>							    			
 							</tr>
 							<%

@@ -45,16 +45,12 @@
 	TransferDesc = request.getParameter("TransferDesc");
 	if (AccountSel1.equals("TypeAcc") ) {			
 		if (AccountSel2.equals("TypeCc") ) {
-			if (TransferDesc.equals("")) {
-			TransferDesc = "Μεταφορά από ταμιευτήριο σε πιστωτική κάρτα";
-			}
+			TransferDesc = TransferDesc + " Aπό ταμιευτήριο σε πιστωτική κάρτα";
 			creditCard.updateCreditCard(NewBalance2, AccNumber2);
 			creditCardTransactions.creditCardTransaction(AccNumber2, CustomerId, Action, OldBalance2, TransferAmount, NewBalance2, Orio, TransferDesc);
 		}
 		if (AccountSel2.equals("TypeLoan") ) {
-			if (TransferDesc.equals("")) {
-			TransferDesc = "Μεταφορά από ταμιευτήριο σε δάνειο";
-			}
+			TransferDesc = TransferDesc + " Aπό ταμιευτήριο σε δάνειο";
 			NewBalance2 = OldBalance2 - TransferAmount;
 			loan.updateLoan2(AccId2, CustomerId, NewBalance2);
 			loanTransactions.loanTransaction(AccId2, CustomerId, LoanAmount, OldBalance2, TransferAmount, NewBalance2, TransferDesc);		
@@ -66,16 +62,12 @@
 	
 	if (AccountSel1.equals("TypeCc") ) {
 		if (AccountSel2.equals("TypeAcc") ) {
-			if (TransferDesc.equals("")) {
-			TransferDesc = "Μεταφορά από πιστωτική κάρτα σε ταμιευτήριο";
-			}
+			TransferDesc = TransferDesc + " Aπό πιστωτική κάρτα σε ταμιευτήριο";
 			account.updateAccount(NewBalance2, AccId2);
 			accountTransactions.accountTransaction(AccId2, CustomerId, Action, OldBalance2, TransferAmount, NewBalance2, TransferDesc);
 		}
 		if (AccountSel2.equals("TypeLoan") ) {
-			if (TransferDesc.equals("")) {
-			TransferDesc = "Μεταφορά από πιστωτική κάρτα σε δάνειο";
-			}
+			TransferDesc = TransferDesc + " Aπό πιστωτική κάρτα σε δάνειο";
 			NewBalance2 = OldBalance2 - TransferAmount;
 			loan.updateLoan2(AccId2, CustomerId, NewBalance2);
 			loanTransactions.loanTransaction(AccId2, CustomerId, LoanAmount, OldBalance2, TransferAmount, NewBalance2, TransferDesc);		

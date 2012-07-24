@@ -17,6 +17,7 @@
 %>
 <html>
 <head>
+<script src="../js/sorttable.js"></script>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
@@ -52,10 +53,10 @@ $(document).ready(function() {
 		<div class="contentArea">
 			<!-- Main Menu Links -->
 		<%@ include file="menu.jsp"%>
-			<h1>Συνολική εικόνα Δανείων</h1>
+			<h1>Κατάθεση χρημάτων σε δάνεια</h1>
 			<div>
 				<div style="overflow: auto; height: 500px;">
-					<table id="table-2">
+					<table id="table-2" class="sortable">
 						<caption>Στοιχεία δανείων</caption>
 						<thead>
 							<tr>
@@ -66,7 +67,7 @@ $(document).ready(function() {
 								<th>Ποσό για εξόφληση</th>
 								<th>Κατάσταση</th>
 								<th>Τύπος</th>
-								<th>Actions</th>
+								<th class="sorttable_nosort">Actions</th>
 								
 							</tr>
 						</thead>

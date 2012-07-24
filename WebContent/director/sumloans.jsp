@@ -1,5 +1,6 @@
 <%@ page import="enums.AccessRightsEnum"%>
 <%@ page import="bean.AccessRights"%>
+<%@ page import="java.text.DecimalFormat" %>	
 
 <%	
 	Integer accountTypeId = (Integer) session.getAttribute("accountTypeId");
@@ -18,11 +19,14 @@
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
 <jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
 <%
-	String Firstname = "", Lastname = "", customerId1 = "", sum = "", loan_id = "", customer_id = "", loan_amount = "", type = "", status = "";
+	String Firstname = "", Lastname = "", customerId1 = "", sum = "", loan_id = "", customer_id = "", type = "", status = "";
 	int y = 0, x = 0, loanid = 0, customerId = 0;
+	Float loan_amount;
+	DecimalFormat df = new DecimalFormat( "#,##0.00" );	
 %>
 <html>
 <head>
+<script src="../js/sorttable.js"></script>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
@@ -134,7 +138,7 @@ $(document).ready(function() {
 			</div>
 			<div class="left ">
 				<div style="overflow: auto; height: 500px;">
-					<table id="table-2">
+					<table id="table-2" class="sortable">
 						<caption>Στοιχεία δανείου</caption>
 						<thead>
 							<tr>
@@ -143,7 +147,7 @@ $(document).ready(function() {
 								<th>Ποσό</th>
 								<th>Τύπος</th>
 								<th>Κατάσταση</th>
-								<th colspan="2">Επιλογές</th>							
+								<th colspan="2" class="sorttable_nosort">Επιλογές</th>							
 							</tr>
 						</thead>
 						<tbody>
@@ -152,14 +156,14 @@ $(document).ready(function() {
 								while (rs.next()) {
 									loan_id = rs.getString("loan_id");
 									customer_id = rs.getString("customer_id");
-									loan_amount = rs.getString("loan_amount");
+									loan_amount = rs.getFloat("loan_amount");
 									type = rs.getString("type");
 									status = rs.getString("status");
 							%>
 							<tr>
 								<td><%=loan_id%></td>
 								<td><%=customer_id%></td>
-								<td><%=loan_amount%></td>
+								<td><%=df.format(loan_amount)%></td>
 								<td><%=type%></td>
 								<td><%=status%></td>
 								<td><a href="editloans.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >	Aλλαγή</a></td>
