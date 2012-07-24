@@ -93,39 +93,54 @@ $(document).ready(function(){
 	$("form#CcWithdrawals").submit(function() {
 	var TotalCreditCardAmount = $('#TotalCreditCardAmount').attr('value');
 	var desc = $('#desc').attr('value');	
+	if (TotalCreditCardAmount == "") {
+		$('#error').fadeOut(1600, "linear");	
+		$('#correct').fadeOut(1600, "linear");			
+		$('#empty').fadeIn(500).show();				
+	}	
+	else {		
 		$.ajax({
 			type: "POST",
 			url: "updateCcWithdrawals.jsp",
 			data: {"TotalCreditCardAmount": TotalCreditCardAmount, "desc": desc},	
 			success: function(result){
 				var result = $.trim(result);
-				$('#reload').load('ccWithdrawals.jsp', {'cardNumber' : <%=cardNumber%>,});				
-				setTimeout(function(){
+				$('#reload').load('ccWithdrawals.jsp', {'cardNumber' : <%=cardNumber%>,});
+				$('#error').fadeOut(1600, "linear");	
+				$('#correct').fadeOut(1600, "linear");			
+				$('#empty').fadeOut(1600, "linear");
+				setTimeout(function(){		
 					//$("#loading").show().delay(100).fadeOut();					
 				if (result=='correct'){
+					$('#empty').fadeOut(1600, "linear");	
 					$('#error').fadeOut(1600, "linear");								
 					$('#correct').fadeIn(500).show();
 				} else {
+					$('#empty').fadeOut(1600, "linear");	
 					$('#correct').fadeOut(1600, "linear");				
 					$('#error').fadeIn(500).show();	
 				}			
 			;},150);
 				}
 		});
+	}
 	return false;
 	});
 });
 ;
 </script>
 <div id="correct" style="display: none; color: red; ">
-	<strong>Το ποσό για εξόφληση του δάνειο:(<%=cardNumber%>)
+	<strong>Το ποσό για εξόφληση της πιστωτική κάρτα (<%=cardNumber%>)
 		ανανεώθηκε!
 	</strong>
 </div>
 <div id="error" style="display: none; color: red; ">
-	<strong>Το υπόλοιπο του λογαριασμού:(<%=cardNumber%>) δεν
+	<strong>Το υπόλοιπο της πιστωτική κάρτα (<%=cardNumber%>) δεν
 		επαρκεί για αυτή την συναλλαγή!
 	</strong>
+</div>
+<div id="empty" style="display: none; color: red; ">
+	<strong>Το ποσο της ανάληψης της πιστωτική κάρτα (<%=cardNumber%>) δεν μπορεί να είναι κενό</strong>
 </div>
 </body>
 </html>

@@ -32,14 +32,19 @@
 			LoanId = (Integer) session.getAttribute("loanId");
 			CustomerId = (Integer) session.getAttribute("customerId");
 			LoanAmount = (Float) session.getAttribute("amount");
-			Desc = request.getParameter("desc");		 		
+			Desc = request.getParameter("desc");
+			Desc = Desc +  " Από " + (String) session.getAttribute("firstname") + " " +  (String) session.getAttribute("lastname");
+			if (Desc == "") {
+				Desc = "Kατάθεση σε δάνειο";
+				System.out.println(Desc);
+			}
 			LoanBalance = (Float) session.getAttribute("remainingPayeeAmount");
 			TotalPayedAmount1 = request.getParameter("TotalPayedAmount");
 			TotalPayedAmount = Float.parseFloat(TotalPayedAmount1);
 			RemainingPayeeAmount = LoanBalance - TotalPayedAmount;
 			if (RemainingPayeeAmount >= 0) {
 				loantransactions.loanTransaction(LoanId, CustomerId, LoanAmount, LoanBalance, TotalPayedAmount, RemainingPayeeAmount, Desc);
-				loan.updateLoan(LoanId, CustomerId,
+				loan.updateLoan2(LoanId, CustomerId,
 						RemainingPayeeAmount);
 				out.println("correct");
 			} else if (RemainingPayeeAmount < 0) {

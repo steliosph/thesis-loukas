@@ -94,24 +94,38 @@ $(document).ready(function(){
 	$("form#aaa").submit(function() {
 	var TotalPayedAmount = $('#TotalPayedAmount').attr('value');
 	var desc = $('#desc').attr('value');
+	if (TotalPayedAmount == "") {
+		$('#empty').fadeIn(500).show();	
+		$('#correct').fadeOut(1600, "linear");				
+		$('#error').fadeOut(1600, "linear");
+	}
+	else {
 		$.ajax({
 			type: "POST",
 			url: "updateDeposit.jsp",
 			data: {"TotalPayedAmount": TotalPayedAmount, "desc": desc},
 			success: function(result){
+				$('#empty').fadeOut(1600, "linear");		
+				$('#correct').fadeOut(1600, "linear");				
+				$('#error').fadeOut(1600, "linear");
+				
 				var result = $.trim(result);
 				$('#reload').load('amountOfDeposit.jsp', {'LoanId' : <%=loanId%>,});				
 				setTimeout(function(){					
 				if (result=='correct'){
-					$('#error').fadeOut(1600, "linear");								
+					$('#error').fadeOut(1600, "linear");
+					$('#empty').fadeOut(1600, "linear");
 					$('#correct').fadeIn(500).show();
+						
 				} else {
 					$('#correct').fadeOut(1600, "linear");				
 					$('#error').fadeIn(500).show();	
+					$('#empty').fadeOut(1600, "linear");	
 				}			
 			;},150);
 				}
 		});
+	}
 	return false;
 	});
 });
@@ -125,6 +139,9 @@ $(document).ready(function(){
 <div id="error" style="display: none; color: red; ">
 	<strong>Το ποσο για εξόγληση του δανείου:<%=loanId%> αντιστοιχεί σε:</br><%=remainingPayeeAmount%> €
 	</strong>
+</div>
+<div id="empty" style="display: none; color: red; ">
+	<strong>Το ποσο της κατάθεσης του δανείου:<%=loanId%> δεν μπορεί να είναι <br>κενό</strong>
 </div>
 
 </body>

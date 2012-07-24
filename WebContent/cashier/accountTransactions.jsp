@@ -24,11 +24,6 @@ function showHide() {
     	table.style.display = "block";
     }
 }
-	function openPage(pageURL)
-
- {
- window.location.href = pageURL;
- }
 </script>
 
 <html>
@@ -45,11 +40,13 @@ function showHide() {
 			<!-- Main Menu Links -->
 			<%@ include file="menu.jsp"%>
 			<h1>Συνολική εικόνα συναλλαγων λογαριασμών</h1>
-			<table ALIGN="center" border="1">
-				<tr>
+			<table id="table-2"> 
+				<thead>
+					<tr>
 					<td ALIGN="center">Αναζήτηση</td>
 					<td ALIGN="center">Όλες οι συναλλαγές</td>
-				</tr>
+					</tr>
+				</thead>
 				<tr>
 					<td>
 						<form action="searchAccountTransaction.jsp" method="post" style="padding: 0; margin: 0">
@@ -81,7 +78,7 @@ function showHide() {
 			</table>
 			<br>
 			<div>
-				<div id="table" style="overflow: auto; height: 500px; display: none;">
+				<div id="table" style="overflow: auto; max-height:500px; height: auto; display: none;">
 					<table id="table-2">
 						<thead>
 							<tr>
@@ -110,7 +107,7 @@ function showHide() {
 												remainingPayeeAmount = rs.getFloat("remaining_account_amount");
 												accountTransactionTime = rs.getTimestamp("account_Transacion_Time");
 							%>
-							<tr>
+							<tr align='center'>
 								<td><%=accountTransactionId%></td>
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>

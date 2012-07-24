@@ -51,13 +51,13 @@
 				Poso = rs.getFloat("total_account_amount");
 				NewBalance = rs.getFloat("remaining_account_amount");
 				response.getWriter().print("<tr>");
-				response.getWriter().print("<td>" + TransactionId + "</td>");
-				response.getWriter().print("<td>" + Desc + "</td>");
-				response.getWriter().print("<td>" + Time + "</td>");
-				response.getWriter().print("<td>" + Action + "</td>");
-				response.getWriter().print("<td>" + Balance + "</td>");
-				response.getWriter().print("<td>" + Poso + "</td>");
-				response.getWriter().print("<td>" + NewBalance + "</td>");
+				response.getWriter().print("<td align='center'>" + TransactionId + "</td>");
+				response.getWriter().print("<td align='center'>" + Desc + "</td>");
+				response.getWriter().print("<td align='center'>" + Time + "</td>");
+				response.getWriter().print("<td align='center'>" + Action + "</td>");
+				response.getWriter().print("<td align='center'>" + Balance + "</td>");
+				response.getWriter().print("<td align='center'>" + Poso + "</td>");
+				response.getWriter().print("<td align='center'>" + NewBalance + "</td>");
 				response.getWriter().print("</tr>");
 			}
 		} else if (TransactionTime.equals("date")) {
@@ -94,13 +94,13 @@
 				Poso = rs.getFloat("total_credit_card_amount");
 				NewBalance = rs.getFloat("remaining_credit_card_amount");
 				response.getWriter().print("<tr>");
-				response.getWriter().print("<td>" + TransactionId + "</td>");
-				response.getWriter().print("<td>" + Desc + "</td>");
-				response.getWriter().print("<td>" + Time + "</td>");
-				response.getWriter().print("<td>" + Action + "</td>");
-				response.getWriter().print("<td>" + Balance + "</td>");
-				response.getWriter().print("<td>" + Poso + "</td>");
-				response.getWriter().print("<td>" + NewBalance + "</td>");
+				response.getWriter().print("<td align='center'>" + TransactionId + "</td>");
+				response.getWriter().print("<td align='center'>" + Desc + "</td>");
+				response.getWriter().print("<td align='center'>" + Time + "</td>");
+				response.getWriter().print("<td align='center'>" + Action + "</td>");
+				response.getWriter().print("<td align='center'>" + Balance + "</td>");
+				response.getWriter().print("<td align='center'>" + Poso + "</td>");
+				response.getWriter().print("<td align='center'>" + NewBalance + "</td>");
 				response.getWriter().print("</tr>");
 			}
 		} else if (TransactionTime.equals("date")) {
@@ -138,13 +138,13 @@
 				Poso = rs.getFloat("total_payed_amount");
 				NewBalance = rs.getFloat("remaining_payee_amount");
 				response.getWriter().print("<tr>");
-				response.getWriter().print("<td>" + TransactionId + "</td>");
-				response.getWriter().print("<td>" + Desc + "</td>");
-				response.getWriter().print("<td>" + Time + "</td>");
-				response.getWriter().print("<td>" + Action + "</td>");
-				response.getWriter().print("<td>" + Balance + "</td>");
-				response.getWriter().print("<td>" + Poso + "</td>");
-				response.getWriter().print("<td>" + NewBalance + "</td>");
+				response.getWriter().print("<td align='center'>" + TransactionId + "</td>");
+				response.getWriter().print("<td align='center'>" + Desc + "</td>");
+				response.getWriter().print("<td align='center'>" + Time + "</td>");
+				response.getWriter().print("<td align='center'>" + Action + "</td>");
+				response.getWriter().print("<td align='center'>" + Balance + "</td>");
+				response.getWriter().print("<td align='center'>" + Poso + "</td>");
+				response.getWriter().print("<td align='center'>" + NewBalance + "</td>");
 				response.getWriter().print("</tr>");
 			}
 		} 

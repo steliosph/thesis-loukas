@@ -81,7 +81,7 @@ var xmlhttp,xmlhttp1;
 				document.getElementById('Id' + Number).innerHTML = data[1];
 				document.getElementById("Balance" + Number).innerHTML = data[6];				
 			}
-		}, 700);
+		}, 500);
 			
 		}
 	}
@@ -103,12 +103,11 @@ var xmlhttp,xmlhttp1;
 	<jsp:useBean id="loans" scope="page" class="sql.LoansRepositoryImpl" />
 	<%
 		String TypeAcc = "", TypeCc = "", TypeLoan = "";
-		int CustomerId = 0;
+		int CustomerId;
 		Float Orio,LoanAmount;
 	%>
 	<%
 		if (session.getAttribute("customerId") == null) {
-			response.sendRedirect("../errorpage.jsp");
 		} else {
 			CustomerId = (Integer) session.getAttribute("customerId");
 
@@ -134,7 +133,7 @@ var xmlhttp,xmlhttp1;
 		<div class="contentArea">
 			<h1>Μεταφορά μεταξύ των λογαριασμών μου</h1>
 <div class="center" id="result" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;"></div>
-<div class="center" id="loading"></div>	
+ 
 			<div class="left marginPX">
 				<table class="table-2">
 					Στοιχεία Λογαριασμού Εντολέα
@@ -214,13 +213,14 @@ var xmlhttp,xmlhttp1;
 						<td id="Balance2" />
 				</table>
 
-			</div>			
-			<br><br><br><br><br><br><br><br><br><br>
+			</div>						
+			<br><br><br><br><br><br><br><div class="center" id="loading" ></div><br><br><br>
+				
 			<div class="left marginPX80">
 				<button type="button" class="btn" id="Submit">
 					<span>Μεταφορά..</span>
 				</button>
-				<button type="button" class="btn" id="Clear">
+				<button type="button" class="btn" id="Clear"  onClick="window.location.reload()">
 					<span>Ακύρωση..</span>
 				</button>						
 				</div>						

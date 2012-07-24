@@ -23,7 +23,7 @@
 <jsp:useBean id="creditCards" scope="page" class="sql.CreditCardsRepositoryImpl" />
 <jsp:useBean id="creditCardsTransaction" scope="page" class="sql.CreditCardsTransactionRepositoryImpl" />
 
-<%!String TotalCreditCardAmount1, CardNumber, Deposit, Desc;
+<%!String a, TotalCreditCardAmount1, CardNumber, Deposit, Desc;
 	int CustomerId;
 	float balance, Orio, InitialCreditCardAmount,  TotalCreditCardAmount, RemainingCreditCardAmount;
 %>
@@ -31,7 +31,8 @@
 <%
 			CustomerId = (Integer) session.getAttribute("customerId");
 			Deposit = "Κατάθεση";
-			Desc = request.getParameter("desc");			
+			Desc = request.getParameter("desc");						   				
+			Desc = Desc +  " Από " + (String) session.getAttribute("firstname") + " " +  (String) session.getAttribute("lastname");				
 			CardNumber = (String) session.getAttribute("cardNumber");	
 			Orio = (Float) session.getAttribute("orio");			
 			balance = (Float) session.getAttribute("balance");				

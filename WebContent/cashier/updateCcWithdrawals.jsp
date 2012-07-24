@@ -32,6 +32,7 @@
 			CustomerId = (Integer) session.getAttribute("customerId");
 			Deposit = "Ανάληψη";
 			Desc = request.getParameter("desc");
+			Desc = Desc +  " Από " + (String) session.getAttribute("firstname") + " " +  (String) session.getAttribute("lastname");
 			CardNumber = (String) session.getAttribute("cardNumber");	
 			Orio = (Float) session.getAttribute("orio");			
 			balance = (Float) session.getAttribute("balance");				

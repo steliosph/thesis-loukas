@@ -79,7 +79,7 @@ $(document).ready(function() {
 									balance = rs.getFloat("balance");									
 									orio = rs.getFloat("orio");
 							%>
-							<tr> 
+							<tr align='center'> 
 								<td><%=cardNumber%></td>
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>

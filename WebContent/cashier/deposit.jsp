@@ -56,7 +56,7 @@ $(document).ready(function() {
 			<div>
 				<div style="overflow: auto; height: 500px;">
 					<table id="table-2">
-						<caption>Στοιχεία δανείών</caption>
+						<caption>Στοιχεία δανείων</caption>
 						<thead>
 							<tr>
 								<th>Αρ. Δανείου</th>
@@ -82,14 +82,14 @@ $(document).ready(function() {
 									type = rs.getString("type");
 									status = rs.getString("status");
 							%>
-							<tr> 
+							<tr align='center'> 
 								<td><%=loan_id%></td>
 								<td><%=firstname%></td>
 								<td><%=lastname%></td>
  								<td><%=nf.format(loan_amount)%></td>
- 								<td><%=nf.format(remaingPayeeAmount) %></td>
-								<td><%=type%></td>
+ 								<td><%=nf.format(remaingPayeeAmount) %></td>								
 								<td><%=status%></td>
+								<td><%=type%></td>
 								<td><a href="amountOfDeposit.jsp?LoanId=<%=rs.getInt("loan_id")%>" class="editform" >Κατάθεση</a></td>                  				
 							</tr>
 							<%

@@ -23,11 +23,6 @@ function showHide() {
     	table.style.display = "block";
     }
 }
-	function openPage(pageURL)
-
- {
- window.location.href = pageURL;
- }
 </script> 
 <html>
 <head>
@@ -43,11 +38,13 @@ function showHide() {
 			<!-- Main Menu Links -->
 		<%@ include file="menu.jsp"%>
 			<h1>Συνολική εικόνα συναλλαγων δανείων</h1>
-			<table ALIGN="center" border="1">
-				<tr>
-					<td ALIGN="center">Αναζήτηση</td>
-					<td ALIGN="center">Όλες οι συναλλαγές</td>
-				</tr>
+			<table id="table-2"> 
+				<thead>
+					<tr>
+						<td ALIGN="center">Αναζήτηση</td>
+						<td ALIGN="center">Όλες οι συναλλαγές</td>
+					</tr>
+				</thead>
 				<tr>
 					<td>
 						<form action="searchLoanTransaction.jsp" method="post" style="padding: 0; margin: 0">
@@ -109,15 +106,15 @@ function showHide() {
 									loanTransactionTime = rs.getTimestamp("loan_Transaction_Time");
 							%>
 							<tr> 
-								<td><%=loanTransactionId%></td>
-								<td><%=firstname%></td>
-								<td><%=lastname%></td>
-								<td><%=desc%></td>
- 								<td><%=nf.format(loanAmount)%></td>
- 								<td><%=nf.format(loanBalance)%></td>
-								<td><%=nf.format(totalPayedAmount)%></td>
-								<td><%=nf.format(remainingPayeeAmount)%></td>
-							    <td><%=loanTransactionTime%></td>							    			
+								<td align='center' ><%=loanTransactionId%></td>
+								<td align='center' ><%=firstname%></td>
+								<td align='center' ><%=lastname%></td>
+								<td align='center' ><%=desc%></td>
+ 								<td align='center' ><%=nf.format(loanAmount)%></td>
+ 								<td align='center' ><%=nf.format(loanBalance)%></td>
+								<td align='center' ><%=nf.format(totalPayedAmount)%></td>
+								<td align='center' ><%=nf.format(remainingPayeeAmount)%></td>
+							    <td align='center' ><%=loanTransactionTime%></td>							    			
 							</tr>
 							<%
 								}

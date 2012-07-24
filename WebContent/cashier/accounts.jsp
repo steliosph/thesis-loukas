@@ -77,7 +77,7 @@ $(document).ready(function() {
 									Balance = rs.getFloat("balance");									
 									DateCreated = rs.getTimestamp("date_created");
 							%>
-							<tr> 
+							<tr  align='center'> 
 								<td><%=AccountId%></td>
 								<td><%=Firstname%></td>
 								<td><%=Lastname%></td>

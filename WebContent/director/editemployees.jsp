@@ -107,15 +107,20 @@
 			<td>Πόλη Εργαζομένου:</td>
 			<td><input type="text" name="empCity" id="empCity" value="<%=empCity%>"></td>
 		</tr>
-				<tr>
+		<tr>
 			<td>Τ.Κ Εργαζομένου:</td>
 			<td><input type="text" name="empPostalCode" id="empPostalCode" value="<%=empPostalCode%>"></td>
 		</tr>
-				<tr>
+		<tr>
 			<td>Τηλέφωνο Εργαζομένου:</td>
 			<td><input type="text" name="empTelephone" id="empTelephone" value="<%=empTelephone%>"></td>
 		</tr>
 				<tr>
+			<td colspan=2 style="font-weight: bold;" align="center"><h2
+					style="margin-bottom: -3px;">Στοιχεία καταστήματος</h2>
+				<div class="hr" style="margin-bottom: -3px;"></div></td>
+		</tr>
+		<tr>
 			<td>Διευθυνση Καταστήματος:</td>
 			<td><input type="text" name="branchAddress" id="branchAddress" value="<%=branchAddress%>"></td>
 		</tr>

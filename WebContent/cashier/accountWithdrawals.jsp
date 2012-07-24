@@ -87,24 +87,36 @@ $(document).ready(function(){
 	$("form#accountWithdrawals").submit(function() {
 	var TotalAccountAmount = $('#TotalAccountAmount').attr('value');
 	var desc = $('#desc').attr('value');
+	if (TotalAccountAmount == "") {
+		$('#error').fadeOut(1600, "linear");	
+		$('#correct').fadeOut(1600, "linear");			
+		$('#empty').fadeIn(500).show();				
+	}	
+	else {
 		$.ajax({
 			type: "POST",
 			url: "updateAccountWithdrawals.jsp",
 			data: {"TotalAccountAmount": TotalAccountAmount, "desc": desc},	
 			success: function(result){
+				$('#empty').fadeOut(1600, "linear");	
+				$('#error').fadeOut(1600, "linear");								
+				$('#correct').fadeOut(1600, "linear");	
 				var result = $.trim(result);				
 				$('#reload').load('accountWithdrawals.jsp', {'AccountId' : <%=AccountId%>,});
 				setTimeout(function(){										
 				if (result=='correct'){
+					$('#empty').fadeOut(1600, "linear");	
 					$('#error').fadeOut(1600, "linear");								
 					$('#correct').fadeIn(500).show();
 				} else {
+					$('#empty').hide();
 					$('#correct').fadeOut(1600, "linear");				
 					$('#error').fadeIn(500).show();	
 				}			
 			;},150);
 				}
 		});
+	}
 	return false;
 	});
 });
@@ -120,6 +132,9 @@ $(document).ready(function(){
 	<strong>Το υπόλοιπο του λογαριασμού:(<%=AccountId%>) δεν
 		επαρκεί για αυτή την συναλλαγή!
 	</strong>
+</div>
+<div id="empty" style="display: none; color: red; ">
+	<strong>Το ποσο της ανάληψης  του λογαριασμού:(<%=AccountId%>) δεν μπορεί να είναι κενό</strong>
 </div>
 </body>
 </html>

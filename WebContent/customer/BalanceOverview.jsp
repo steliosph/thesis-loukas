@@ -19,6 +19,12 @@
 </head>
 <body>
 	<%@ include file="top.jsp"%>
+	<%
+		if (session.getAttribute("customerId") == null) {
+		}
+		else {
+	%>
+
 	<div class="pageTop"></div>
 	<div class="pageMain">
 		<div class="contentArea">
@@ -51,10 +57,10 @@
 							%>
 							<tr> 
 								<td><a href= "AccountDetails.jsp?showDiv=Acc"><%=AccountId%></a> <a href="TransactionHistory.jsp?showDiv=Acc&TransactionsSelect=l10t"> <img src="../images/10t.png" align="right"> </a></td>								
- 								<td><%=Type%></td>
- 								<td><%=Firstname%> <%=Lastname%></td>
- 								<td><%=df.format(Balance)%></td>
- 								<td><%=df.format(Limit)%></td>								
+ 								<td align='center'><%=Type%></td>
+ 								<td align='center'><%=Firstname%> <%=Lastname%></td>
+ 								<td align='center'><%=df.format(Balance)%></td>
+ 								<td align='center'><%=df.format(Limit)%></td>								
 							</tr>
 							<%
 								}
@@ -72,10 +78,10 @@
 							%>
 							<tr> 
 								<td><a href= "AccountDetails.jsp?showDiv=Cc"><%=CardNumber%></a> <a href="TransactionHistory.jsp?showDiv=Cc&TransactionsSelect=l10t"> <img src="../images/10t.png" align="right"></a></td> 								
- 								<td><%=Type%></td>
- 								<td><%=Firstname%> <%=Lastname%></td>
- 								<td><%=df.format(Balance)%></td>
- 								<td><%=df.format(Limit)%></td>								
+ 								<td align='center'><%=Type%></td>
+ 								<td align='center'><%=Firstname%> <%=Lastname%></td>
+ 								<td align='center'><%=df.format(Balance)%></td>
+ 								<td align='center'><%=df.format(Limit)%></td>								
 							</tr>
 							<%
 								}							
@@ -99,10 +105,10 @@
 							</thead>					 						
 							<tr> 
 								<td><a href= "AccountDetails.jsp?showDiv=Loan"><%=LoanId%></a> <a href="TransactionHistory.jsp?showDiv=Loan&TransactionsSelect=l10t"><img src="../images/10t.png" align="right"></a></td>								
- 								<td><%=Type%></td>
- 								<td><%=Firstname%> <%=Lastname%></td>
- 								<td><%=df.format(Balance)%></td>
- 								<td><%=df.format(Limit)%></td>								
+ 								<td align='center'><%=Type%></td>
+ 								<td align='center'><%=Firstname%> <%=Lastname%></td>
+ 								<td align='center'><%=df.format(Balance)%></td>
+ 								<td align='center'><%=df.format(Limit)%></td>								
 							</tr>
 							<%
 								}
@@ -121,3 +127,4 @@
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>
+<% } %>

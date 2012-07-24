@@ -56,7 +56,7 @@
 		</tr>
 		<tr>
 			<td>Id Πελάτη:</td>
-			<td><input type="text" name="customerId" value="<%=customerId%>" readonly></td>
+			<td><input type="text" name="customerId" value="<%=customerId%>" disabled="disabled" style="background: #E8E8E8;"> </td>
 		</tr>
 		<tr>
 			<td>Ποσό:</td>
