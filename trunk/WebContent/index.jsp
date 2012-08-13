@@ -5,9 +5,10 @@
 <body>
  
  <!-- 
-       footer ti allo na valo
        kartes.jsp
        karta1-4 na ftiaxtoun
+       export db pirgo, import laptop,
+       fix sql squery about transactions customer
         -->
 
     <!-- Rotate image script-->

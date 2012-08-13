@@ -89,7 +89,7 @@ $(document).ready(function() {
 				</script>
 				<button class="btn"
 					ONCLICK="window.location.href='javascript:toggle();'">
-					<span>Συνολικό Άθροισμα Δανείων.</span>
+					<span>Συνολικό Άθροισμα Δανείων</span>
 				</button>
 				<div id="toggleText" style="display: none">
 					<h2>
@@ -111,7 +111,7 @@ $(document).ready(function() {
 						πελάτη</label> <input type="text" name="customerId" id="customerId"
 						class="bInput textInput" /> <br>
 					<button style="width: 236px" class="btn" type="submit">
-						<span>Αναζήτηση Πελάτη.</span>
+						<span>Αναζήτηση Πελάτη</span>
 					</button>
 					<br>
 					<%
@@ -139,7 +139,7 @@ $(document).ready(function() {
 			<div class="left ">
 				<div style="overflow: auto; height: 500px;">
 					<table id="table-2" class="sortable">
-						<caption>Στοιχεία δανείου</caption>
+						<caption>Στοιχεία δανείων</caption>
 						<thead>
 							<tr>
 								<th>Αρ. Δανείου</th>
