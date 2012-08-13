@@ -74,11 +74,11 @@ body {
 
 /* logo */
 
-#Logo	{ float: left; margin: -60px 0 24px 23px;}
+#Logo	{ float: left; margin: -60px 0 15px 23px;}
 #Logo a { 
 	display: block; 
 	width: 368px;
-	height: 80px;
+	height: 110px;
 	background: transparent url("../images/logo.png") no-repeat 0 0;}
 	
 /* max width containers */
@@ -92,7 +92,7 @@ body {
 .contentArea	{ padding: 15px 0; }
 .full-page	{ margin-right: 25px; float: none; }
 .full-page .breadcrumbs 	{ margin-bottom: 0; }
-.pattern_box_icon{ float:left; padding:5px; }	
+.pattern_box_icon{ float:left; padding:2px; }	
 
 /* portfolio page */
 
@@ -401,7 +401,7 @@ ul.nav-sub li a {
 	padding: .2em 0 .2em .5em;
 	text-align: left;
 	color: #4B4B4B;
-	background-color: #ffffcc;
+	background-color: #fffaaa;
 	border-bottom: solid 1px #999;
 }
 #table-2 th {
@@ -422,5 +422,5 @@ ul.nav-sub li a {
 	border-top: 1px solid #fff;
 }
 #table-2 tr:hover {
-    background-color: #fff
+    background-color: #fffccc
 }

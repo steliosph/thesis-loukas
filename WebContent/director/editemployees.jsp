@@ -92,10 +92,6 @@
 			<td><input type="text" name="salary" id="salary" value="<%=salary%>"></td>
 		</tr>
 		<tr>
-			<td>Ημ. Προσληψης:</td>
-			<td><input type="text" name="dataHired" value=""></td>
-		</tr>
-		<tr>
 			<td>Τυπος:</td>
 			<td><input type="text" name="type" id="type" value="<%=type%>"></td>
 		</tr>
@@ -122,25 +118,25 @@
 		</tr>
 		<tr>
 			<td>Διευθυνση Καταστήματος:</td>
-			<td><input type="text" name="branchAddress" id="branchAddress" value="<%=branchAddress%>"></td>
+			<td><input type="text" name="branchAddress" id="branchAddress" value="<%=branchAddress%>" disabled="true"></td>
 		</tr>
 				<tr>
 			<td>Πόλη Καταστήματος:</td>
-			<td><input type="text" name="branchCity" id="branchCity" value="<%=branchCity%>"></td>
+			<td><input type="text" name="branchCity" id="branchCity" value="<%=branchCity%>" disabled="true"></td>
 		</tr>
 				<tr>
 			<td>Τ.Κ Καταστήματος:</td>
-			<td><input type="text" name="branchPostalCode" id="branchPostalCode" value="<%=branchPostalCode%>"></td>
+			<td><input type="text" name="branchPostalCode" id="branchPostalCode" value="<%=branchPostalCode%>" disabled="true"></td>
 		</tr>
 				<tr>
 			<td>Τηλέφωνο Καταστήματος:</td>
-			<td><input type="text" name="branchTelephone" id="branchTelephone" value="<%=branchTelephone%>"></td>
+			<td><input type="text" name="branchTelephone" id="branchTelephone" value="<%=branchTelephone%>" disabled="true"></td>
 		</tr>		
 	</table>
 	<div class="hr" style="margin-bottom: -3px;"></div>
 	<p class="right noMargin">
 		<button type="submit" class="btn" value="Submit">
-			<span>Save..</span>
+			<span>Αποθήκευση..</span>
 		</button>
 		<br>
 </form>
@@ -182,7 +178,7 @@ $(document).ready(function(){
 ;
 </script>
 <div id="correct" style="display: none; color: red; ">
-	<strong>Οι πληροφορίες του εργαζομένου <br><%=firstname%> <%=lastname%>
+	<strong>Οι πληροφορίες του εργαζομένου <%=firstname%> <%=lastname%>
 		ανανεώθηκαν
 	</strong>
 </div>

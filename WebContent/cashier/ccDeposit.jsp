@@ -83,7 +83,7 @@
 	<div class="hr" style="margin-bottom: -3px;"></div>
 	<p class="right noMargin">
 		<button type="submit" class="btn" value="Submit">
-			<span>Save..</span>
+			<span>Αποθήκευση..</span>
 		</button>
 		<br>
 </form>
