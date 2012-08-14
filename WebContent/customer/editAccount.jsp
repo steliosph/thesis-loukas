@@ -81,7 +81,7 @@ function GetXmlHttpObject() {
 	<div class="contentArea">
 	<h1>Ρυθμίσεις Λογαριασμού</h1>
 	<div class="center" id="result" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;"></div>	
-<img src="edit.png" style="float: left;"/>
+<img src="edit.png" style="float: left; height:250px;"/>
 <div class="left">	
 	<table id="table-2">
 		<tr>
