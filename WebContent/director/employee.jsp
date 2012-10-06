@@ -133,12 +133,11 @@ $(document).ready(function() {
 								<td><%=branchPostalCode%></td>
 								<td><%=branchTelephone%></td>
 								<td><a href="editemployees.jsp?employeeId=<%=rs.getInt("employee_Id")%>" class="editform" >Aλλαγή</a></td>
-                  				<td><a href="sumloans.jsp?delete=yes&deleteid= >" onclick="return del()">Διαγραφή</a></td>
-							</tr>
+       						</tr>
 							<%
 								}
 							%>			
-						</tbody>
+						</tbody> 
 					</table>
 				</div>
 				<div class="clear"></div>

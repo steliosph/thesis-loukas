@@ -46,7 +46,7 @@
 	</table>
 <div class = "center">
 				<button type="button" class="btn" id="Submit"> 
-					<span>Submit..</span>
+					<span>Συνέχεια..</span>
 				</button>
 				<button type="button" class="btn" id="Clear" onClick="location.href='customer.jsp'">
 					<span>Ακύρωση..</span>

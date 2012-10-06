@@ -31,11 +31,11 @@
 		if (TransactionTime.equals("date")) {
 			rs = accountTransactions.selectTransactionsDate(CustomerId,StartDate, EndDate);
 		} else if (TransactionTime.equals("limit 10") || (TransactionTime.equals("limit 20"))) {
-			TransactionTime = "order by account_transacion_time DESC " + TransactionTime;
+			TransactionTime = " order by account_transaction_id DESC " + TransactionTime;
 			rs = accountTransactions.selectTransactionsCustomer(CustomerId, TransactionTime);			
 		}
 		else {
-			TransactionTime = TransactionTime + "order by account_transacion_time DESC";
+			TransactionTime = TransactionTime + " order by account_transaction_id DESC";
 			rs = accountTransactions.selectTransactionsCustomer(CustomerId, TransactionTime);
 		}
 		if (rs.next()) {
@@ -74,11 +74,11 @@
 			rs = creditCardTransactions.selectTransactionsDate(CustomerId,StartDate, EndDate);
 		} 
 		else if (TransactionTime.equals("limit 10") || (TransactionTime.equals("limit 20"))) {
-			TransactionTime = "order by credit_car_transaction_time DESC " + TransactionTime;
+			TransactionTime = " order by credit_card_transaction_id DESC " + TransactionTime;
 			rs = creditCardTransactions.selectTransactionsCustomer(CustomerId, TransactionTime);
 		}
 		else {
-			TransactionTime = TransactionTime + "order by credit_car_transaction_time DESC";
+			TransactionTime = TransactionTime + " order by credit_card_transaction_id DESC";
 			rs = creditCardTransactions.selectTransactionsCustomer(CustomerId, TransactionTime);
 		}
 		if (rs.next()) {
@@ -118,11 +118,11 @@
 			}
 		
 		else if (TransactionTime.equals("limit 10") || (TransactionTime.equals("limit 20"))) {
-			TransactionTime = "order by loan_transaction_time DESC " + TransactionTime;
+			TransactionTime = " order by loan_transaction_id DESC " + TransactionTime;
 			rs = loanTransactions.selectTransactionsCustomer(CustomerId,TransactionTime);
 		}
 		else {
-			TransactionTime = TransactionTime + "order by loan_transaction_time DESC";
+			TransactionTime = TransactionTime + " order by loan_transaction_id DESC";
 			rs = loanTransactions.selectTransactionsCustomer(CustomerId,TransactionTime);
 		}
 		if (rs.next()) {

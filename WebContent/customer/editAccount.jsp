@@ -169,28 +169,28 @@ else {
 	x = x + 1;
 }
 if (address == "" || address.length <= 7) {
-	$("#result").text('H διεύθυνση δεν μπορεί να είναι κενό');
+	$("#result").text('H διεύθυνση δεν μπορεί να είναι κενή');
 	$("#address").focus();
 }
 else {
 	x = x + 1;
 }
 if (city == "" || city.length <= 3) {
-	$("#result").text('Η πόλη δεν μπορεί να είναι κενό');
+	$("#result").text('Η πόλη δεν μπορεί να είναι κενή');
 	$("#city").focus();
 }
 else {
 	x = x + 1;
 }
 if (postalCode == "" || postalCode.length <= 3) {
-	$("#result").text('Ο ταχυδρομικός κώδικας δεν μπορεί να είναι κενό');
+	$("#result").text('Ο ταχυδρομικός κώδικας δεν μπορεί να είναι κενός');
 	$("#postalCode").focus();
 }
 else {
 	x = x + 1;
 }
 if (phone == "" || phone.length <= 9) {
-	$("#result").text('To τηλέφωνο δεν μπορεί να είναι κενό');
+	$("#result").text('To τηλέφωνο δεν μπορεί να είναι κενό η λιγότερο από 10 χαρακτήρες');
 	$("#phone").focus();
 }
 else {

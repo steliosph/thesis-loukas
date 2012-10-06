@@ -174,7 +174,7 @@ body {
 
 /* login */
 
-.loginForm		{ height: 207px; overflow: hidden; }
+.loginForm		{ height: 200px; overflow: hidden; }
 .loginContainer {
 	float: left;
 	width:245px;

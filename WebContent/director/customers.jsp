@@ -116,8 +116,7 @@ $(document).ready(function() {
 								<td><%=postalCode%></td>
 								<td><%=telephone%></td>
 								<td><a href="editcustomer.jsp?customerId=<%=rs.getInt("customer_id")%>" class="editform" >Aλλαγή</a></td>
-                  				<td><a href="sumloans.jsp?delete=yes&deleteid=<%=rs.getInt("customer_id")%>>" onclick="return del()">Διαγραφή</a></td>
-							</tr>
+                  			</tr>
 
 							<%
 								}
