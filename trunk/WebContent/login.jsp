@@ -26,27 +26,25 @@
 		</div>
 		<div class="loginContainer">
 			<h2>
-				Customer & Employee Login <span>Sign in to your account</span>
+				Είσοδος Εργαζομένου & Υπαλλήλου<span>Εισάγετε τα στοιχεία σας</span>
 			</h2>
 
 
 			<p>
-				<label for="log" class="overlabel">Username</label> <input id="log"
+				<label for="log" class="overlabel">Ψευδώνυμο</label> <input id="log"
 					name="username" type="text" class="loginInput textInput rounded" />
 			</p>
 			<p>
-				<label for="password" class="overlabel">Password</label> <input id="password"
+				<label for="password" class="overlabel">Κωδικός</label> <input id="password"
 					name="password" type="password"
 					class="loginInput textInput rounded" />
 			</p>
 		</div>
 		<div class="hr" style="margin-bottom: 3px;"></div>
-		<p class="left" style="margin: 14px 0 0 15px">
-			<a href="#">Forgot your password?</a><br>
-		</p>
+		
 		<p class="right noMargin">
 			<button type="submit" class="btn">
-				<span>Sign in</span>
+				<span>Είσοδος</span>
 			</button>
 		</p>
 

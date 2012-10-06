@@ -7,9 +7,9 @@
 <jsp:useBean id="loan" scope="page" class="sql.LoansRepositoryImpl" />
 <jsp:useBean id="customer" scope="page" class="sql.CustomersRepositoryImpl" />
 <%
-	String Firstname = "", Lastname = "", customerId1 = "", sum = "", loan_id = "", customer_id = "", type = "", status = "";
-	int y = 0, loanid = 0, customerId = 0;
-	Float loan_amount;
+	String Firstname = "", Lastname = "", customerId1 = "", loan_id = "", customer_id = "", type = "", status = "";
+	int w = 0, y = 0, loanid = 0, customerId = 0;
+	Float loan_amount, sum;
 	
 	NumberFormat nf = NumberFormat.getInstance();
     nf.setMaximumFractionDigits(2);
@@ -84,13 +84,13 @@ $(document).ready(function() {
 				<%
 					ResultSet rs = loan.SumOfLoans();
 					while (rs.next()) {
-						sum = rs.getString("SumOfLoans");
-				%>
-						Η τράπεζα μας έχει δώσει <br>δάνεια αξίας: <strong>
-						<%=sum%></strong><br> ευρώ!!
-									<%
+						sum = rs.getFloat("SumOfLoans");
+						%>
+						<font color="red">Η τράπεζα μας έχει δώσει <br>δάνεια αξίας: <br>
+						<%=nf.format(sum)%> ευρώ!!</font>
+						<%
 							}
-						%> 
+						%> 						
 					</h2>
 				</div>
 				<br>
@@ -104,8 +104,11 @@ $(document).ready(function() {
 					<br>
 					<%
 						customerId1 = request.getParameter("customerId");
-					if (customerId1 == "")
+					if (customerId1 == "") {
 						customerId1 = null;
+						w = 1;
+						Firstname = "Παρακαλώ είσαγετε αριθμό πελάτη";
+					}
 					if(customerId1 != null) {						
 						customerId = Integer.parseInt(customerId1);
 						rs = customer.customerSearch(customerId);
@@ -115,13 +118,19 @@ $(document).ready(function() {
 							Lastname = rs.getString("lastname");
 						}}
 					else y = 0;
-						if (y == 1) {
-							y = 0;
-					%>
-					Όνομα:<%=Firstname%><br> Επώνυμο:<%=Lastname%><br>
-					<%
-						}
-					%>
+					if (y == 1) {
+						y = 0;
+				%>
+				<font color="red">Όνομα:<%=Firstname%><br> Επώνυμο:<%=Lastname%><br></font>
+				<%
+					}
+					if (w == 1) {
+						w = 0;
+				%>
+				<font color="red"><%=Firstname%></font>
+				<%	
+					}
+				%>
 				</form>
 			</div>
 			<div class="left ">
@@ -155,8 +164,7 @@ $(document).ready(function() {
 								<td align='center'><%=nf.format(loan_amount)%></td>
 								<td align='center'><%=type%></td>
 								<td align='center'><%=status%></td>
-								<td align='center'><a href="editloans.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >Aλλαγή</a></td>
-                  				<td align='center'><a href="sumloans.jsp?delete=yes&deleteid=<%=rs.getInt("loan_id")%>" onclick="return del()">Διαγραφή</a></td>
+								<td align='center'><a href="editloans.jsp?loanId=<%=rs.getInt("loan_id")%>" class="editform" >Aλλαγή</a></td>                  				
 							</tr>
 							<%
 								}	

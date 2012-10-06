@@ -25,7 +25,7 @@
 		case WRONG_USERNAME_PASSWORD:
 			session.setAttribute("isValid", "no");
 %>
-<jsp:forward page="epistrofi.jsp"></jsp:forward>
+<jsp:forward page="loginError.jsp"></jsp:forward>
 <%
 	break;
 		case CORRECT_EMPLOYEE:

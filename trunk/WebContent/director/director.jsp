@@ -36,17 +36,7 @@
 			<li style="margin-bottom:10px;"><a href="customers.jsp">Πληροφορίες πελατών της τράπεζας</a></li>
 			<li style="margin-bottom:10px;"><a href="employee.jsp">Πληροφορίες υπαλλήλων της τράπεζας</a></li>
 		 
-		<div class="left">	
-		<h1>Λειτουργίες Ταμια.</h1>
 		
-			<li style="margin-bottom:10px;"><a href="../cashier/sumloans.jsp">Συνολική εικόνα δανείων</a></li>
-			<li style="margin-bottom:10px;"><a href="../cashier/deposit.jsp">Κατάθεση χρημάτων σε δάνειο</a></li>
-			<li style="margin-bottom:10px;"><a href="../cashier/creditcard.jsp">Κατάθεση/Ανάληψη χρημάτων σε κάρτα</a></li>
-			<li style="margin-bottom:10px;"><a href="../cashier/accounts.jsp">Κατάθεση/Ανάληψη χρημάτων σε λογαριασμό</a></li>
-			<li style="margin-bottom:10px;"><a href="../cashier/loantransactions.jsp">Συναλλαγές Δανείων</a></li>
-			<li style="margin-bottom:10px;"><a href="../cashier/ccTransactions.jsp">Συναλλαγές Καρτών</a></li>
-			<li style="margin-bottom:10px;"><a href="../cashier/accountTransactions.jsp">Συναλλαγές Λογαριασμών</a></li>
-			</div>
 	</div>
 	<div class="clear"></div>
 </div>
