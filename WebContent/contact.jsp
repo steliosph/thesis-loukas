@@ -18,21 +18,6 @@
 	});
 </script>
 
-<script type="text/javascript">
-	$().ready(function() {
-		$("#contactForm").validate({
-			rules : {
-				email : {
-					required : true,
-					email : true
-				}
-			},
-			messages : {
-				email : "Εισάγετε έγκυρη διεύθυνση email."
-			}
-		});
-	});
-</script>
 
 <style type="text/css">
 #contactForm {
@@ -56,35 +41,87 @@ form label.error,label.error {
 
 </head>
 <body>
-
 	<form id="contactForm" method="post" action="">
 			<center>
 				<h1>Φόρμα Επικοινωνίας</h1>
 			</center>
-			<div class="hr" style="margin-top: -12px; margin-right: 52px;"></div>
-	<div id="contactimg">
-			<img SRC="images/contact.jpg" width="115" height="78"/>
-		</div>
+			<div class="hr" style="margin-top: -12px; "></div>
+	
+			<img align="right" SRC="images/contact.jpg" width="115" height="78"/>
+	
 			<p>
-				<label for="firstname" class="overlabel">Όνομα</label> <input
-					id="firstname" name="firstname" type="text"
+				<label for="Fullname" class="overlabel">Όνομα</label> <input
+					id="Fullname" name="Fullname" type="text"
 					class="Input  textInput" />
 			</p>
 			<p>
-				<label for="email" class="overlabel">Εmail</label> <input id="email"
-					name="email" type="text" class="Input  textInput" />
+				<label for="Email" class="overlabel">Εmail</label> <input id="Email"
+					name="Email" type="text" class="Input  textInput" />
 			</p>
-			<p>
-				<label for="comment" class="overlabel"> </label>
-				<textarea name="message" id="message"
+			<p>				
+				<textarea name="Message" id="Message"
 					style='resize: none; width: 278px; height: 150px;' /></textarea>
 			</p>
 			<p class="right noMargin">
 				<button type="submit" class="btn" value="Submit">
-					<span>Submit</span>
+					<span>Αποστολή...</span>
 				</button>			
 			</p>
 	</form>
 
+<script>
+jQuery(function($) {
+    $("#contactForm").validate({
+    	rules : {
+			Email : {
+				required : true,
+				email : true
+			},
+			Fullname : {
+				required : true					
+			},
+			Message : {
+				required : true,
+				minlength : 15
+			}
+		},
+		messages : {
+			Email : "Εισάγετε έγκυρη διεύθυνση email.",
+			Fullname : "Παρακαλώ εισάγετε το όνοματεπώνυμο σας.",
+			Message : "Εισάγετε το μήνυμα που θέλετε (μεγαλύτερο απο 15 χαρακτήρες)."
+		},
+		
+		submitHandler: function(form) {
+				var Email = $('#Email').attr('value');
+				var Message = $('#Message').attr('value');
+				var Fullname = $('#Fullname').attr('value');
+				alert("AFd");
+				
+					$.ajax({
+						type: "POST",
+						url: "submitMessage.jsp",
+						data: {"Email": Email, "Message": Message, "Fullname": Fullname,},
+						success: function(result){				
+							$('#correct').fadeOut(1600, "linear");	
+							var result = $.trim(result);
+							setTimeout(function(){					
+							if (result=='correct'){		
+								$('#correct').fadeIn(500).show();			
+							}			
+						;},150);
+							}
+					});										            
+    }
+    });
+});
+    
+    
+    
+</script>
+<div id="correct" style="display: none; color: red; ">
+	<strong>Το μύνημα εστάλη. Ευχαριστούμε! </strong>
+</div>	
+
+	
 </body>
 </html>
