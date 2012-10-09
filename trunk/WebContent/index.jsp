@@ -4,9 +4,7 @@
 
 <body>
  
- <!-- 
-       kartes.jsp
-       karta1-4 na ftiaxtoun
+ <!--       
        fix sql squery about transactions customer
         -->
 
@@ -25,22 +23,22 @@
     var img0 = new Object( );
      
     img0.src = "images/card1.jpg";
-    img0.href = "karta1";
+    img0.href = "karta1.jsp";
      
     var img1 = new Object( );
      
     img1.src = "images/card2.jpg";
-    img1.href = "2";
+    img1.href = "karta2.jsp";
      
     var img2 = new Object( );
      
     img2.src = "images/card3.jpg";
-    img2.href = "3";
+    img2.href = "karta3.jsp";
      
     var img3 = new Object( );
      
     img3.src = "images/card4.jpg";
-    img3.href = "4";
+    img3.href = "karta4.jsp";
      
     //Put all of those objects into the array.
      
@@ -65,7 +63,7 @@
      
     i++;
      
-    setTimeout("rotateImage()", 4000);
+    setTimeout("rotateImage()", 3000);
      
     }
      
@@ -77,7 +75,7 @@
     <div class="contentArea">
         <div class="full-page">
         <div class="pattern_box_icon"><img src="images/slogo.png" alt="" title=""  /></div>
-                Η Παπεί EFG είναι ένας Ευρωπαϊκός χρηματοοικονομικός οργανισμός με παρουσία σε 10 χώρες και σύνολο ενεργητικού €23,2 δισ. Απασχολεί
+                Η Dream Bank είναι ένας Ευρωπαϊκός χρηματοοικονομικός οργανισμός με παρουσία σε 10 χώρες και σύνολο ενεργητικού €23,2 δισ. Απασχολεί
 		πάνω από 500 άτομα και προσφέρει τα προϊόντα και τις υπηρεσίες του, τόσο μέσα από ένα δίκτυο 1,600 καταστημάτων, επιχειρηματικών
 		κέντρων και σημείων εξυπηρέτησης, όσο και μέσα από εναλλακτικά δίκτυα διάθεσης. Στην Eurobank EFG, οι πελάτες μας βρίσκονται στο
 		επίκεντρο κάθε μας ενέργειας. Σκοπός μας είναι να στεκόμαστε υπεύθυνα δίπλα σας, στηρίζοντας κάθε σας βήμα, παρέχοντας λύσεις για

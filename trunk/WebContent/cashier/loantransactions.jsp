@@ -76,9 +76,11 @@ function showHide() {
 				</tr>
 			</table>
 			<br>			
-			<div>
-				<div id="table" style="overflow: auto; height: 500px; display: none;">
-					<table id="table-2" class="sortable">
+			<div>			
+				<div id="table" style="overflow: auto; max-height:500px; display: none;">
+					<% ResultSet rs = loanTransactions.getLoanTransaction(); 
+						if (rs.next()) { %> 
+					<table id="table-2" class="sortable">					
 						<thead>
 							<tr>
 								<th>Αρ. Συναλ.</th>
@@ -93,8 +95,8 @@ function showHide() {
 							</tr>
 						</thead>
 						<tbody>
-							<%
-							ResultSet rs = loanTransactions.getLoanTransaction();
+							<%							
+							rs.beforeFirst();
 								while (rs.next()) {
 									loanTransactionId = rs.getInt("loan_transaction_id");
 									firstname = rs.getString("Firstname");
@@ -116,12 +118,16 @@ function showHide() {
 								<td align='center' ><%=df.format(totalPayedAmount)%></td>
 								<td align='center' ><%=df.format(remainingPayeeAmount)%></td>
 							    <td align='center' ><%=loanTransactionTime%></td>							    			
-							</tr>
-							<%
-								}
-							%>
+							</tr>							
 						</tbody>
 					</table>
+					<%
+						}
+					 }
+						else { 		
+					%>
+					<div class="center" id="error" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;">Δεν υπάρχουν συναλλαγές στην ενότητα των δανείων.</div>
+					<% } %>
 				</div>
 				<div class="clear"></div>
 			</div>

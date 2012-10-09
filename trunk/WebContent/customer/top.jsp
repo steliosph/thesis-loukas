@@ -15,7 +15,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="style.css" />
 <link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
-<title>Τράπεζα Παπεί</title>
+<title>Dream Bank</title>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <!-- login menu -->
 <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
