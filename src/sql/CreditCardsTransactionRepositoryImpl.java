@@ -142,7 +142,7 @@ public class CreditCardsTransactionRepositoryImpl implements
 	}
 	
 	public ResultSet selectAccount(Integer CustomerId) {
-		sqlQuery_ = "select credit_cards.orio,credit_cards.card_number,DATE_FORMAT(credit_cards_transactions.credit_car_transaction_time, '%H:%i:%s %d/%m/%Y') AS credit_car_transaction_time,customers.firstname,customers.lastname,address.address,address.city,credit_cards.balance from credit_cards inner join customers on credit_cards.customer_id = customers.customer_id inner join address on customers.address_id = address.address_id inner join credit_cards_transactions on customers.customer_id = credit_cards_transactions.customer_id where credit_cards.customer_id='"
+		sqlQuery_ = "select credit_cards.orio,credit_cards.card_number,DATE_FORMAT(credit_cards_transactions.credit_car_transaction_time, '%H:%i:%s %d/%m/%Y') AS credit_car_transaction_time,customers.firstname,customers.lastname,address.address,address.city,credit_cards.balance from credit_cards inner join customers on credit_cards.customer_id = customers.customer_id inner join address on customers.address_id = address.address_id LEFT OUTER JOIN credit_cards_transactions on customers.customer_id = credit_cards_transactions.customer_id where credit_cards.customer_id='"
 				+ CustomerId + "'limit 1";
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;

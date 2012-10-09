@@ -3,7 +3,7 @@
 <html>
 <head>
 
-<title>Insert title here</title>
+<title>Dream Bank</title>
 </head>
 <body>
 	<%@ include file="top.jsp"%>
@@ -12,7 +12,7 @@
 		<div class="contentArea">
 			<h1>
 				Η πρόσβαση σε αυτή την Ιστοσελίδα απαγορεύεται! <br> <br>
-				Επιστροφή στην αρχική <a href="./">σελίδα</a>.
+				Επιστροφή στην <a href="./">αρχική</a> σελίδα.
 			</h1>
 		</div>
 		<%@ include file="footer.jsp"%>

@@ -79,7 +79,9 @@ function showHide() {
 			<br>				
 			<div>
 				<div id="table" style="overflow: auto; max-height:500px; height: auto; display: none;">
-					<table id="table-2" class="sortable">
+					<% ResultSet rs = ccTransactions.getCcTransaction();
+						if (rs.next()) { %> 
+						<table id="table-2" class="sortable">
 						<thead>
 							<tr>
 								<th>Αρ. Συναλ.</th>
@@ -95,8 +97,8 @@ function showHide() {
 							</tr>
 						</thead>
 						<tbody>
-							<%
-							ResultSet rs = ccTransactions.getCcTransaction();
+							<%	
+							rs.beforeFirst();
 								while (rs.next()) {
 									ccTransactionId = rs.getInt("credit_card_transaction_id");
 									firstname = rs.getString("Firstname");
@@ -120,12 +122,16 @@ function showHide() {
 								<td><%=nf.format(remainingPayeeAmount)%></td>
 								<td><%=nf.format(orio)%></td>
 							    <td><%=ccTransactionTime%></td>							    			
-							</tr>
-							<%
-								}
-							%>
+							</tr>						
 						</tbody>
 					</table>
+					<%
+						}
+					 }
+						else { 		
+					%>
+					<div class="center" id="error" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;">Δεν υπάρχουν συναλλαγές στην ενότητα των πιστωτικών καρτών.</div>
+					<% } %>
 				</div>
 				<div class="clear"></div>
 			</div>

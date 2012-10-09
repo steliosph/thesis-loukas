@@ -90,7 +90,7 @@ public class LoansRepositoryImpl implements LoansRepository {
 	}
 	
 	public ResultSet selectAccount(Integer CustomerId) {
-		sqlQuery_ = "SELECT loans.loan_amount,loan_status.type,loans.loan_id,loans.remaining_payee_amount,DATE_FORMAT(loan_transactions.loan_transaction_time, '%H:%i:%s %d/%m/%Y') AS loan_transaction_time,customers.firstname,customers.lastname,address.address,address.city FROM loans inner join customers on loans.customer_id = customers.customer_id inner join loan_status on loans.loan_id = loan_status.loan_id inner join address on customers.address_id = address.address_id inner join loan_transactions on customers.customer_id = loan_transactions.customer_id where loans.customer_id='"
+		sqlQuery_ = "SELECT loans.loan_amount,loan_status.type,loans.loan_id,loans.remaining_payee_amount,DATE_FORMAT(loan_transactions.loan_transaction_time, '%H:%i:%s %d/%m/%Y') AS loan_transaction_time,customers.firstname,customers.lastname,address.address,address.city FROM loans inner join customers on loans.customer_id = customers.customer_id inner join loan_status on loans.loan_id = loan_status.loan_id inner join address on customers.address_id = address.address_id LEFT OUTER JOIN loan_transactions on customers.customer_id = loan_transactions.customer_id where loans.customer_id='"
 				+ CustomerId + "'limit 1";
 		ResultSet rs = database_.getResultSet(sqlQuery_);
 		return rs;

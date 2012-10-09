@@ -14,16 +14,15 @@
 	nf.setMinimumFractionDigits(2);
 %>
 
-<script type="text/javascript" language="javascript"> 
-function showHide() {
-    var table = document.getElementById("table");
-    if(table.style.display == "block") {
-    	table.style.display = "none";
-      }
-    else {
-    	table.style.display = "block";
-    }
-}
+<script type="text/javascript" language="javascript">
+	function showHide() {
+		var table = document.getElementById("table");
+		if (table.style.display == "block") {
+			table.style.display = "none";
+		} else {
+			table.style.display = "block";
+		}
+	}
 </script>
 
 <html>
@@ -80,7 +79,9 @@ function showHide() {
 			<br>
 			<div>
 				<div id="table" style="overflow: auto; max-height:500px; height: auto; display: none;">
-					<table id="table-2" class="sortable">
+					<% ResultSet rs = accountTransactions.getAccountTransaction();
+						if (rs.next()) { %> 
+						<table id="table-2" class="sortable">
 						<thead>
 							<tr>
 								<th>Αρ. Συναλ.</th>
@@ -96,7 +97,7 @@ function showHide() {
 						</thead>
 						<tbody>
 							<%
-								ResultSet rs = accountTransactions.getAccountTransaction();
+							rs.beforeFirst();
 											while (rs.next()) {
 												accountTransactionId = rs.getInt("account_transaction_id");
 												firstname = rs.getString("Firstname");
@@ -118,12 +119,16 @@ function showHide() {
 								<td><%=nf.format(totalPayedAmount)%></td>
 								<td><%=nf.format(remainingPayeeAmount)%></td>
 								<td><%=accountTransactionTime%></td>
-							</tr>
-							<%
-								}
-							%>
+							</tr>														
 						</tbody>
 					</table>
+					<%
+						}
+					 }
+						else { 		
+					%>
+					<div class="center" id="error" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;">Δεν υπάρχουν συναλλαγές στην ενότητα των λογαριασμών.</div>
+					<% } %>
 				</div>
 				<div class="clear"></div>
 			</div>

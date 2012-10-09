@@ -95,7 +95,11 @@ function showHide() {
 			<br>			
 			<div>
 				<div  id="table" style="overflow: auto; max-height:500px; height: auto; display: none;">
-					<<table id="table-2" class="sortable">
+					<% 					
+					ResultSet rs = loanTransactions.getLoanTransaction(); 
+					if (rs.next()) { 
+					%> 
+						<table id="table-2" class="sortable">
 						<thead>
 							<tr>
 								<th>Αρ. Συναλ.</th>
@@ -110,9 +114,8 @@ function showHide() {
 							</tr>
 						</thead>
 						<tbody>
-							<%
-							Search = request.getParameter("search");
-							ResultSet rs = loanTransactions.getLoanTransaction();
+							<%										
+							rs.beforeFirst();
 								while (rs.next()) {
 									loanTransactionId = rs.getInt("loan_transaction_id");
 									firstname = rs.getString("Firstname");
@@ -134,15 +137,20 @@ function showHide() {
 								<td><%=nf.format(totalPayedAmount)%></td>
 								<td><%=nf.format(remainingPayeeAmount)%></td>
 							    <td><%=loanTransactionTime%></td>							    			
-							</tr>
-							<%
-								}
-							%>
+							</tr>							
 						</tbody>
 					</table>
+					<%
+						}
+					 }
+						else { 		
+					%>
+					<div class="center" id="error3" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;">Δεν υπάρχουν συναλλαγές στην ενότητα των δανείων.</div>
+					<% } %>
 				</div>
 				<div class="clear"></div>
 				<% 
+				Search = request.getParameter("search");	
 				if (Search != "" ) {				 
 				combobox = request.getParameter("searchCombo");							
 				if (combobox.equals("searchId") ) {				
@@ -220,9 +228,9 @@ function showHide() {
 					</table>
 					</div>
 			<% } else {	%>			
-<div class="center" id="error" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;">Δεν υπάρχουν συναλλαγές με τα κριτήρια που έχετε εισάγει</div>
+<div class="center" id="error" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;">Δεν υπάρχουν συναλλαγές με τα κριτήρια που έχετε εισάγει.</div>
 			<% } } else  { %>
-<div class="center" id="error" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;">Δεν υπάρχουν συναλλαγές με τα κριτήρια που έχετε εισάγει</div>							
+<div class="center" id="error" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;">Δεν υπάρχουν συναλλαγές με τα κριτήρια που έχετε εισάγει.</div>							
 			<% } %>											
 			</div>
 		</div>
