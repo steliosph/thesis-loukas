@@ -35,6 +35,7 @@
 			<li style="margin-bottom:10px;"><a href="sumloans.jsp">Συνολική εικόνα δανείων</a></li>
 			<li style="margin-bottom:10px;"><a href="customers.jsp">Πληροφορίες πελατών της τράπεζας</a></li>
 			<li style="margin-bottom:10px;"><a href="employee.jsp">Πληροφορίες υπαλλήλων της τράπεζας</a></li>
+			<li style="margin-bottom:10px;"><a href="message.jsp">Μηνύματα</a></li>
 		 
 		
 	</div>

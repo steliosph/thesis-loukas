@@ -29,7 +29,7 @@
 <script src="../js/sorttable.js"></script>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="style.css" type="text/css" />
-<link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
+<link rel="SHORTCUT ICON" href="../images/favicon.ico" type="image/x-icon" />
 <script src="../js/jquery.min.js" type="text/javascript" ></script>
 <link rel="stylesheet" type="text/css" href="../css/fancybox.css" />       
     
