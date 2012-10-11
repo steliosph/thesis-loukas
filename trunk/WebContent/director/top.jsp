@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <link rel="stylesheet" type="text/css" href="style.css" />
-<link rel="SHORTCUT ICON" href="images/favicon.ico" type="image/x-icon" />
+<link rel="SHORTCUT ICON" href="../images/favicon.ico" type="image/x-icon" />
 <title>Dream Bank</title>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <!-- login menu -->
