@@ -49,5 +49,16 @@ public class LoanStatusRepositoryImpl implements LoanStatusRepository {
 			e.printStackTrace();
 		}
 	}
+	
+	public void addLoan(Integer LoanId, String Status, String Type) {
+		try {
+			sqlQuery_ = "INSERT INTO loan_status (loan_id, type, status) VALUES ('" + LoanId + "','" + Status + "','" + Type + "')"; ;
+			System.out.println(sqlQuery_);
+
+			database_.update(sqlQuery_);
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+	}
 
 }

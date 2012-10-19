@@ -106,4 +106,20 @@ public class LoansRepositoryImpl implements LoansRepository {
 			e.printStackTrace();
 		}
 	}
+	
+	public void addLoan(Integer CustomerId, Float LoanAmount) {
+		try {
+			sqlQuery_ = "INSERT INTO loans (customer_id, loan_amount, remaining_payee_amount) VALUES ('" + CustomerId + "','" + LoanAmount + "','" + LoanAmount + "')"; 			
+			database_.update(sqlQuery_);
+			System.out.println(sqlQuery_);
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+	}
+	
+	public ResultSet selectLoanId() {
+		sqlQuery_ = "select max(loan_id) as loanId from loans";
+		ResultSet rs = database_.getResultSet(sqlQuery_);
+		return rs;
+	}
 }
