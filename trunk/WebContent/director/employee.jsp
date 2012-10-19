@@ -73,6 +73,7 @@ $(document).ready(function() {
 							<li><a href="sumloans.jsp">Συνολική εικόνα δανείων</a></li>
 							<li><a href="customers.jsp">Κατάσταση Πελατών</a></li>
 							<li><a href="employee.jsp">Κατάσταση εργαζομένων</a></li>
+							<li><a href="message.jsp">Mηνύματα</a></li>
 						</ul></li>
 				</ul>
 			</div>

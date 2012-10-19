@@ -47,7 +47,21 @@ $("a.editform").fancybox({
 	'onClosed': function() {
 		   parent.location.reload(true);
 		  } 	
-});
+	});
+    
+	$("a.aaa").fancybox({
+		'padding' : 3,
+		'type': 'iframe',
+		'overlayOpacity' : 0.2,
+		'overlayColor' : overlayColor,
+		'width': 330, 
+        'height': 200,
+		'hideOnContentClick' : false,
+		'callbackOnShow' : modalStart,
+		'onClosed': function() {
+			   parent.location.reload(true);
+			  } 	
+	});   
                  
 function modalStart(){
     Cufon.replace('.fancy_title > div')};                                                          
@@ -71,6 +85,7 @@ $(document).ready(function() {
 							<li><a href="sumloans.jsp">Συνολική εικόνα δανείων</a></li>
 							<li><a href="customers.jsp">Κατάσταση Πελατών</a></li>
 							<li><a href="employee.jsp">Κατάσταση εργαζομένων</a></li>
+							<li><a href="message.jsp">Mηνύματα</a></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -139,10 +154,10 @@ $(document).ready(function() {
 						if (w == 1) {
 							w = 0;
 					%>
-					<font color="red"><%=Firstname%></font>
+					<font color="red"><%=Firstname%> </br></font>
 					<%	
 						}
-					%>
+					%>																												
 				</form>
 			</div>
 			<div class="left ">
@@ -185,6 +200,8 @@ $(document).ready(function() {
 				</div>
 				<div class="clear"></div>
 			</div>
+			<a href="addLoan.jsp" class="aaa" ><img src="../images/add.png"/>Προσθήκη Δανείου</a>                  				
+							
 		</div>
 		<div class="clear"></div>
 	</div>
