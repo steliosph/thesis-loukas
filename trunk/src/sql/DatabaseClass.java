@@ -2,13 +2,9 @@ package sql;
 
 import java.sql.*;
 
-//Database Class may be a better name
 public class DatabaseClass {
-
-     //   private final String URL = "jdbc:mysql://localhost:3306/bankdb?user=root&password=tessera";
         private Connection connection_;
-
-        // TODO HAndle then with out the Throws Exception
+ 
         public DatabaseClass() {
                 try {
                         Class.forName("com.mysql.jdbc.Driver").newInstance();

@@ -43,7 +43,7 @@
 	<table width="300px">
 		<tr>
 			<td colspan=2 style="font-weight: bold;" align="center"><h2
-					style="margin-bottom: -3px;">Επεξεργασία Δανείου</h2>
+					style="margin-bottom: -3px;">Εισαγωγή Δανείου</h2>
 				<div class="hr" style="margin-bottom: -3px;"></div></td>
 		</tr>
 		<tr>

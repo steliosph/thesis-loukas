@@ -200,7 +200,7 @@ $(document).ready(function() {
 				</div>
 				<div class="clear"></div>
 			</div>
-			<a href="addLoan.jsp" class="aaa" ><img src="../images/add.png"/>Προσθήκη Δανείου</a>                  				
+			<a href="addLoan.jsp" class="aaa" ><img src="../images/add.png"/>Προσθήκη</a>                  				
 							
 		</div>
 		<div class="clear"></div>

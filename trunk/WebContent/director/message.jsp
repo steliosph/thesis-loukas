@@ -66,7 +66,7 @@ function modalStart(){
 				</ul>
 			</div>
 			<h1>Μηνύματα από πελάτες</h1>
-				<div style="overflow: auto; max-height:500px; height: auto; width: auto;">
+				<div style="max-height:500px; overflow: auto; width: 66%; margin:0 auto;">
 				
 					<table id="table-2" class="sortable">
 						<thead>
@@ -100,7 +100,7 @@ function modalStart(){
 								<td><%=Time%></td>
 								<td><%=Message%><a href="editMessage.jsp?MessageId=<%=Id%>" class="editform" >...</a></td>
 								<td><a href="editMessage.jsp?MessageId=<%=Id%>" class="editform" >Aλλαγή</a></td>
-								<td class="record" id="<%=Id%>"><a href="?delete='<%=Id%>'" class="delete">Delete</a></td>
+								<td class="record" id="<%=Id%>"><a href="?delete='<%=Id%>'" class="delete">Διαγραφή</a></td>
 							</tr>
 
 							<%

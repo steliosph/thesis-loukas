@@ -55,7 +55,7 @@ $(document).ready(function() {
 		<%@ include file="menu.jsp"%>
 			<h1>Κατάθεση/Ανάληψη χρημάτων σε λογαριασμό</h1>
 			<div>
-				<div id="result" style="overflow: auto; height: 500px;">
+				<div style="max-height:500px; overflow: auto; width: 640px; margin:0 auto;">
 					<table id="table-2" class="sortable">
 						<caption>Στοιχεία λογαριασμών πελατών</caption>
 						<thead>

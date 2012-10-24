@@ -19,14 +19,12 @@
 	CustomersRepository customerRepository = new CustomersRepositoryImpl();
 	
 	if (username.isEmpty() || password.isEmpty()) {
-		// TODO : Show him something else
+		response.sendRedirect("loginError.jsp");
 	} else {
 		switch (webLoginRepository.checkLogin(username, password)) {
 		case WRONG_USERNAME_PASSWORD:
 			session.setAttribute("isValid", "no");
-%>
-<jsp:forward page="loginError.jsp"></jsp:forward>
-<%
+			response.sendRedirect("loginError.jsp");
 	break;
 		case CORRECT_EMPLOYEE:
 			session.setAttribute("isValid", "yes");
