@@ -118,18 +118,5 @@ public class CustomersRepositoryImpl implements CustomersRepository {
 		}
 	}
 	
-//	public Integer getCustomerId(String Firstname, String Lastname) {
-//		try {
-//		sqlQuery_ = "SELECT customer_id FROM customers WHERE firstname='" + Firstname + "' and Lastname=  '" + Lastname + "'";
-//		System.out.println(sqlQuery_);
-//			ResultSet rs = database_.getResultSet(sqlQuery_);
-//			if (rs.isLast() )
-//				return rs.getInt("customer_id");
-//		} catch (Exception e) {
-//			e.getMessage();
-//		}
-//		return null;
-//	}
-	
 
 }

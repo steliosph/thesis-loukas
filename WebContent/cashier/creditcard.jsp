@@ -57,7 +57,7 @@ $(document).ready(function() {
 			        		out.print(updatecc);
 			        %>
 			<div>
-				<div style="overflow: auto; height: 500px;">
+				<div style="max-height:500px; overflow: auto; width: 590px; margin:0 auto;">
 					<table id="table-2" class="sortable">
 						<caption>Στοιχεία πιστωτικών καρτών</caption>
 						<thead>
