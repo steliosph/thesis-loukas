@@ -120,13 +120,10 @@
 								<td><%=nf.format(remainingPayeeAmount)%></td>
 								<td><%=accountTransactionTime%></td>
 							</tr>														
+					<% } %>
 						</tbody>
-					</table>
-					<%
-						}
-					 }
-						else { 		
-					%>
+						</table>
+						<% } else { %>
 					<div class="center" id="error" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;">Δεν υπάρχουν συναλλαγές στην ενότητα των λογαριασμών.</div>
 					<% } %>
 				</div>

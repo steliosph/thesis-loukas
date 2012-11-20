@@ -119,13 +119,10 @@ function showHide() {
 								<td align='center' ><%=df.format(remainingPayeeAmount)%></td>
 							    <td align='center' ><%=loanTransactionTime%></td>							    			
 							</tr>							
+					<% } %>
 						</tbody>
-					</table>
-					<%
-						}
-					 }
-						else { 		
-					%>
+						</table>
+						<% } else { %>
 					<div class="center" id="error" style="font-size: 17pt; overflow: auto; font-style:italic; color:red;">Δεν υπάρχουν συναλλαγές στην ενότητα των δανείων.</div>
 					<% } %>
 				</div>

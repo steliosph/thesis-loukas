@@ -12,23 +12,23 @@
 
 	var img0 = new Object();
 
-	img0.src = "images/card1.jpg";
-	img0.href = "karta1";
-
-	var img1 = new Object();
-
-	img1.src = "images/card2.jpg";
-	img1.href = "2";
-
-	var img2 = new Object();
-
-	img2.src = "images/card3.jpg";
-	img2.href = "3";
-
-	var img3 = new Object();
-
-	img3.src = "images/card4.jpg";
-	img3.href = "4";
+    img0.src = "images/card1.jpg";
+    img0.href = "karta1.jsp";
+     
+    var img1 = new Object( );
+     
+    img1.src = "images/card2.jpg";
+    img1.href = "karta2.jsp";
+     
+    var img2 = new Object( );
+     
+    img2.src = "images/card3.jpg";
+    img2.href = "karta3.jsp";
+     
+    var img3 = new Object( );
+     
+    img3.src = "images/card4.jpg";
+    img3.href = "karta4.jsp";
 
 	//Put all of those objects into the array.
 

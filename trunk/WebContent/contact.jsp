@@ -94,10 +94,8 @@ jQuery(function($) {
 		submitHandler: function(form) {
 				var Email = $('#Email').attr('value');
 				var Message = $('#Message').attr('value');
-				var Fullname = $('#Fullname').attr('value');
-				alert("AFd");
-				
-					$.ajax({
+				var Fullname = $('#Fullname').attr('value');			
+				$.ajax({
 						type: "POST",
 						url: "submitMessage.jsp",
 						data: {"Email": Email, "Message": Message, "Fullname": Fullname,},
